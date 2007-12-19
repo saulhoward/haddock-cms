@@ -1,0 +1,5 @@
+#summary Don't call us, We'll call you
+
+= Introduction =
+
+Many Haddock modules use this design method.
