@@ -1,0 +1,20 @@
+#summary All modules are on an Equal Footing
+
+= Introduction =
+
+There's no concept of a "core" module in Rockling, they are all of equal value and can be deprecated and replaced at will.
+
+= Common Modules =
+
+Of course, that doesn't mean that all modules are equally useful or widely used.
+
+It's hard to imagine a project that didn't use one or all of the following modules:
+
+ * [HTTPResponseModule]
+ * [CLIScriptsModule]
+ * [DatabaseConnectionsModule]
+ * [HTMLPagesModule]
+ * [DefineConstantsModule]
+ * [UnitTestsModule]
+
+It's a good idea to check for the presence of modules in your unit tests.
