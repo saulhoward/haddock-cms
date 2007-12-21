@@ -1,0 +1,27 @@
+#summary Extending Haddock CMS with Modules
+
+= Introduction =
+
+Code reuse is encouraged by moving useful code to modules.
+
+= Dependencies =
+
+A possible future feature of Haddock CMS is the idea of module dependency. 
+
+Each module could have a list of other modules on which it depends.
+
+This list is saved in an XML file.
+
+== Abstract Modules ==
+
+A module could be said to be abstract. This would be like an abstract class. It would have to be implemented by a module that claims to implement that module.
+
+== Reasons Not To Implement ==
+
+This gets away from the idea of only doing the simplest thing that could possibly work (which is a central tenet of the design philosophy of Haddock CMS).
+
+This will not be implemented until there is a pressing need for this. E.g. people are complaining about errors in code that are the result of dependencies not being met and the error messages that are being thrown are not useful.
+
+A better solution would be to build error handling into the code to test whether a function from a related module is available using unit tests.
+
+Again this might be going beyond solving the problem in hand.
