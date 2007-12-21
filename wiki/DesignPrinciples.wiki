@@ -1,0 +1,23 @@
+#summary What Rockling is all about
+
+= Aims =
+
+Rockling aims to help the developer get their job done without getting in the way.
+
+= Principles =
+
+The following rules should be kept in mind while developing Rockling.
+
+  * Do the simplest thing that could possible work.
+  * If it's not needed, move it to a different plug-in.
+  * NoAutomaticallyGeneratedCode
+  * NeverThinkAboutWhatCodersMightNotKnow
+  * Framework designers don't know best.
+
+= Where these principles are forgotten =
+
+These are all fine words and aspirations. But they are not adhered to fanatically. Here are some of the places where these principles were put to one side for the greater good:
+
+ * [NoINCFiles]
+ * [NoGlobalFunctions]
+ * [StaticRenderFunctions]
