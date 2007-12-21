@@ -1,8 +1,8 @@
-#summary Rockling has been built selfishly
+#summary Haddock CMS has been built selfishly
 
 = Introduction =
 
-A previous framework that the project founder worked on was designed with other people in mind.
+Early versions of the project were designed with other people in mind.
 
 A lot of time was spent thinking about other coders who might use the framework. Thoughts like "So-and-so might not understand inheritance" or "All SQL should be hidden away in case it frightens someone." The result was a complete mess of half baked attempts to recreate watered down versions of PHP and SQL.
 
