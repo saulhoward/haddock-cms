@@ -1,16 +1,15 @@
-#summary What Rockling is all about
+#summary What Haddock is all about
 
 = Aims =
 
-Rockling aims to help the developer get their job done without getting in the way.
+Haddock aims to help the developer get their job done without getting in the way.
 
 = Principles =
 
-The following rules should be kept in mind while developing Rockling.
+The following rules should be kept in mind while developing Haddock.
 
   * Do the simplest thing that could possible work.
-  * If it's not needed, move it to a different plug-in.
-  * NoAutomaticallyGeneratedCode
+  * If it's not needed, move it to a different module.
   * NeverThinkAboutWhatCodersMightNotKnow
   * Framework designers don't know best.
 
