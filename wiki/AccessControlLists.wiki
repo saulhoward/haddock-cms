@@ -1,0 +1,20 @@
+#summary How Access Control Lists will work in Rockling.
+
+= Introduction =
+
+A very common required feature of web pages is the an ACL.
+
+This should be one of the first features to be implemented.
+
+= Required Features =
+
+ * Users can be stored in a RDBMS or an XML file.
+ * Users can be members of groups.
+ * Groups can be stored in an RDBMS or an XML file.
+ * Group membership can be stored in a RDBMS or an XML file.
+ * Page access can be restricted to groups or users. The permitted group should be the union  (or the complement of the union) of the specific groups and users.
+ * It should be possible to control access to an individual page, a group of pages or even an item on a page.
+
+= Unnecessary Complexity =
+
+Do it all with the RDBMS first before implementing the XML file bits.
