@@ -1,0 +1,61 @@
+#summary Rockling has been built selfishly
+
+= Introduction =
+
+A previous framework that the project founder worked on was designed with other people in mind.
+
+A lot of time was spent thinking about other coders who might use the framework. Thoughts like "So-and-so might not understand inheritance" or "All SQL should be hidden away in case it frightens someone." The result was a complete mess of half baked attempts to recreate watered down versions of PHP and SQL.
+
+= Isn't separating SQL from presentation code a good idea? =
+
+Of course.
+
+But if you want to get your code working quickly so that testers/clients/etc. can have something to play with (or reject ...) it makes sense to put SQL wherever it falls.
+
+Once the functionality is working, you can go back and refactor your code. If there's some pressing need. Much of the time there won't be. You try and convince a customer to pay a freelancer an hourly rate to refactor working code.
+
+Remember: "Do the simplest thing that could possibly work."
+
+Hiding code behind functions is a good thing because it allows code reuse.
+However, it is not a substitute for documentation.
+
+e.g.
+
+We start with:
+
+{{{
+$dbh = DB::m();
+$query = <<<SQL
+SELECT 
+    *
+FROM
+    foo_bars
+SQL;
+
+$result = mysql_query($query, $dbh);
+
+echo "<table>\n";
+while ($row = mysql_fetch_array($result)) {
+echo "<tr>\n";
+foreach ($row as $item) {
+echo "<td>$item</td>\n";
+}
+echo "</tr>\n";
+}
+echo "</table>\n";
+
+}}}
+
+Clearly, this is only half complete. There are lots of ways that this code could be refactored. 
+
+We could write a helper class called {{{GazModule_FooBarsTable}}} that had a static method called {{{get_all_foo_bars()}}} that returned an associative array.
+
+We could add to that a static function called {{{render_foo_bars_in_html_table(...)}}} that took an array as an argument. 
+
+We could make an instance of the {{{GazModule_FooBarsTable}}} class and make the functions methods. Instead of an array of hashes, {{{get_all_foo_bars()}}} could return an array of instances of the {{{GazModule_FooBarRow}}} class. 
+
+Instead of a static function that just rendered the data, we could make a class that represented all HTML tables and had its own render functions.
+
+The list is endless. 
+All of the solutions above have been tried with varying degrees of success.
+It is almost certainly a bad idea, however, to go down the route of refactoring code before you are sure that the code is useful or can be reused or works efficiently.
