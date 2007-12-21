@@ -2,7 +2,7 @@
 
 = Introduction =
 
-There's no concept of a "core" module in Rockling, they are all of equal value and can be deprecated and replaced at will.
+There's no concept of a "core" module in Haddock CMS, they are all of equal value and can be deprecated and replaced at will.
 
 = Common Modules =
 
@@ -17,4 +17,4 @@ It's hard to imagine a project that didn't use one or all of the following modul
  * [DefineConstantsModule]
  * [UnitTestsModule]
 
-It's a good idea to check for the presence of modules in your unit tests.
+It's a good idea to check for the presence of other modules in your unit tests.
