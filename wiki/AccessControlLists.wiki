@@ -1,4 +1,4 @@
-#summary How Access Control Lists will work in Rockling.
+#summary How Access Control Lists will work in Haddock CMS.
 
 = Introduction =
 
