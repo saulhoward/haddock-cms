@@ -1,0 +1,11 @@
+# Specification for the questions CRUD pages.
+#
+# An experimental format for specifying CRUD pages.
+#
+# @copyright Clear Line Web Design, 2008-01-09
+
+table:hpi_polls_questions
+
+#field name, filter code for the display table, type of input, string or numeric when inserting and updating.
+fields:
+question,return Strings_SimpleFilters::truncate_with_ellipsis($str);,ta,s
