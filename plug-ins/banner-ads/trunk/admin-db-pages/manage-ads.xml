@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admin_db_page>
+	<table name="hpi_banner_ads_banner_ads" />
+	<display>
+		<annotations
+			rows_table_caption="Banner Ads"
+		/>
+		<pre_list_items>
+			<pre_list_item name="delete-all" />
+			<pre_list_item 
+				name="add-new-row"
+				title="Add new banner ad"
+				renderer="table"
+				render_method="get_admin_ad_banner_ad_a"
+			/>
+		</pre_list_items>
+		<selection_defaults
+			order_by="name" 
+		/>
+			<!-- 
+			direction="ASC" 
+			limit="10"
+			offset="0"
+			-->
+		<columns>
+			<column 
+				name="name"
+				sortable="yes"
+			/>
+			<column
+				name="embed"
+				sortable="no"
+			/>
+		</columns>
+		<actions>
+			<action name="edit" />
+			<action	name="delete" />
+		</actions>
+	</display>
+	<adding>
+		<db_method name="add_banner_ad" />
+		<fields>
+			<field
+				name="name"
+				required="yes"
+			/>
+			<field
+				name="embed"
+				required="yes"
+				title="Embedded text"
+			/>
+		</fields>
+	</adding>
+	<!-- no need for editing section as it's the same as adding -->
+	<deleting>
+		<row_render_method
+			name="get_admin_name_and_banner_dl"
+		/>
+	</deleting>
+</admin_db_page>

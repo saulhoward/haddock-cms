@@ -1,0 +1,3 @@
+"embed","text","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"name","varchar(255)","NO","UNI","",""
