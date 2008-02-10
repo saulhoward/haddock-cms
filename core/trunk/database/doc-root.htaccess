@@ -1,0 +1,12 @@
+## .htaccess fragment for the DOC_ROOT.
+##
+## © Clear Line Web Design, 2007-08-03
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^hc-database-img-cache/(\d+).([a-z]+) /hc/database/images/$1.$2
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^hc/database/images/(\d+).([a-z]+) /?section=haddock&module=database&page=db-image&type=$2&image_id=$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^hc/database/db-pages/([-a-z]+)\.html$ /?section=haddock&module=database&page=db-page&type=html&page-name=$1

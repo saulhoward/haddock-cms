@@ -1,0 +1,47 @@
+/**
+ * Template for the style sheet of the admin
+ * pages of a database site.
+ *
+ * RFI & SANH 2006-09-21
+ */
+
+body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;;
+}
+
+th {
+    border: 1px solid black;
+}
+
+td {
+    vertical-align: top;
+}
+
+.top-level-panel {
+    border: 1px solid black;
+    
+    padding: 2px;
+}
+
+table#middle-panels {
+    width: 100%;
+}
+
+#navigation {
+    width: 17%;
+}
+
+#main {
+    width: 83%;
+}
+
+div.error {
+    color: red;
+}
+
+/**
+ * Makes the sorted table column header stand out.
+ */
+th#ordered-by {
+    background: #E4F4FF;
+}

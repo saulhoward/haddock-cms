@@ -1,0 +1,79 @@
+/**
+ * TEXT
+ * Style sheet for the Admin Section
+ *
+ * RFI & SANH 2006-11-20
+ */
+
+body {
+    font-family: 'Verdana', Arial, Helvetica, sans-serif;
+}
+a {
+    outline: none;
+}
+
+#header h1 {
+    font-size: 1.6em;
+    padding: 10px 0 0 65px;
+    margin: 0;
+    color: #666666;
+}
+#content p {
+    margin: 1em 0;
+    padding: 0;
+    }
+#content p.center {
+    text-align: center;
+    }
+   #content h2 {
+    	font-size: 1.8em;
+    	text-align: center;
+   }
+   #content h3 {
+    	font-size: 1.4em;
+   }
+	#content ul {
+    list-style: disc url(/haddock/admin/public-html/images/bullet_black.gif) outside;
+	}
+	#content ul li{
+		padding: 0 0 1em 0;
+}
+/* dl list like in social networking*/
+	#content dl {
+   	display: block;
+    	width: 40em;
+    	margin: 0 auto 0 auto;
+    	text-align: center;
+	}	
+	#content dt {
+    	font-size: 1.1em;
+    	text-align: left;
+    	padding: 0 0 5px 1.5em;
+    	border-bottom:1px solid #cccccc;
+    	color: #666666;
+	}
+	#content dd {
+    	font-family: "Courier New", Courier, monospace;
+    	font-size: 110%;
+    	text-align: left;
+    	padding: 5px 1.5em 1.5em 5em;
+	}
+/* end of dl list */
+
+#content #form-products table {
+		padding: 1em;
+	}
+	
+#navigation h3 {
+    margin: 0 0 0 20px;
+    font-size: 1.4em;
+    color: #666666;
+    }
+#navigation ul{
+    list-style: disc url(/haddock/admin/public-html/images/bullet_blue.gif) outside;
+    margin: 1em 0 1em 1em;
+    }
+#navigation ul li{
+    padding: 0 0 0.2em 0;
+    margin: 0;
+    } 

@@ -1,0 +1,5 @@
+# Configuration for the Haddock Project Organisation module.
+#
+# © Clear Line Web Design, 2007-01-16
+
+admin-section-title=Haddock Project Organisation

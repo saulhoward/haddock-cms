@@ -1,0 +1,5 @@
+# Configuration for the Logging module.
+#
+# © Clear Line Web Design, 2007-04-01
+
+admin-section-title=Logging

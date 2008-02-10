@@ -1,0 +1,27 @@
+## .htaccess fragment for the public-html core module.
+##
+## © Clear Line Web Design, 2007-08-03
+
+RewriteRule ^/?$ /haddock/public-html/public-html/
+#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^styles/(.*) /project-specific/public-html/styles/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^scripts/(.*) /project-specific/public-html/scripts/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^images/(.*) /project-specific/public-html/images/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^files/(.*) /project-specific/public-html/files/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]*)\.htm$ $1.html
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^favicon.ico /project-specific/public-html/images/favicon.ico
+
+#RewriteRule ^\?(.+)$ /haddock/public-html/public-html/index.php?$1
+
