@@ -7,7 +7,7 @@
 
 /**
  * A class to get error codes and messages from
- * a database handle where something has just gone
+ * a database handle where something has recently gone
  * wrong.
  */
 class
