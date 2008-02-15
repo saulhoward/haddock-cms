@@ -13,7 +13,7 @@ assemble-dbcnf-from-csv-files.pl
 
 =head1 DESCRIPTION
 
-Finds the CSV files that specific which classes are associated with
+Finds the CSV files that specify which classes are associated with
 which database entities and assembles a file that is used by the
 haddock code to know which class to use with which database entity.
 
