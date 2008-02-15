@@ -1,7 +1,7 @@
 @ECHO OFF
 REM BAT wrapper script for the create-new-database-element-subclass script.
 
-REM Auto-generated on 2007-11-22.
+REM Auto-generated on 2008-02-15.
 REM DO NOT EDIT!
 
 @ECHO ON
