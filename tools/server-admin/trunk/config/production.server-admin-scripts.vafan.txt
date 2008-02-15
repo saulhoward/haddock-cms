@@ -1,5 +1,0 @@
-dump-directory=/home/clwd/mysql-dumps/vafan
-
-mysql-host=localhost
-mysql-username=root
-mysql-password=FzUI8UrA
