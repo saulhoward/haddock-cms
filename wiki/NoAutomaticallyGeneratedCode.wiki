@@ -1,8 +1,8 @@
-#summary Rockling Projects should have no code generators
+#summary Haddock CMS Projects should have no code generators
 
 = Introduction =
 
-A lot of frameworks out there at the moment generate code automatically using command line scripts. I've ever written a few such scripts myself. Rockling is phobic of such scripts.
+A lot of frameworks out there at the moment generate code automatically using command line scripts. I've ever written a few such scripts myself. Haddock CMS is phobic of such scripts.
 
 = Writing Code should be painful =
 
@@ -20,7 +20,7 @@ A danger of using automatically generated code is that it tricks you into thinki
 
 = Do the simplest thing that could possibly work =
 
-This is one of the design principles of Rockling.
+This is one of the design principles of Haddock CMS.
 
 If you generate a whole load code, it's more than likely that you are going to generate some code that you don't use. This then has to be removed. Or the script has to be altered. This script is now getting in the way of solving the problem.
 
