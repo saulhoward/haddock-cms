@@ -1,0 +1,5 @@
+# Restrict Access to the congig folder for server-admin-scripts.
+# © Clear Line Web Design,  2007-04-27
+
+Order Deny,Allow
+Deny from all

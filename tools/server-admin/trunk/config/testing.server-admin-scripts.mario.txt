@@ -1,0 +1,5 @@
+dump-directory=/home/clwd/mysql-dumps/mario
+
+mysql-host=localhost
+mysql-username=root
+mysql-password=b8i+Roup
