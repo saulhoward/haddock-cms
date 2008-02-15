@@ -13,6 +13,8 @@ assemble-htaccess.pl
 
 =head1 DESCRIPTION
 
+DEPRECATED!
+
 Finds the various .htaccess fragments and assembles them into
 one file.
 
