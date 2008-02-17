@@ -41,6 +41,14 @@ extends
 		}
 	}
 	
+	#public function
+	#	render_body_div_header()
+	#{
+	#	require PROJECT_ROOT
+	#		. '/haddock/admin/www-includes/html/admin-includer/'
+	#		. 'body.div.admin-header.inc.php';
+	#}
+	
 	public function
 		render_body_div_navigation()
 	{

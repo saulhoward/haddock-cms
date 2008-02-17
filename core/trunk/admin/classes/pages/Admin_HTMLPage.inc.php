@@ -16,14 +16,7 @@ extends
 	protected function
 		render_head_link_stylesheet()
 	{
-?>
-<link
-    rel="stylesheet"
-    href="/admin/styles/styles.css"
-    type="text/css"
-    media="screen"
-/>
-<?php
+		HTMLTags_LinkRenderer::render_style_sheet_link('/admin/styles/styles.css');
 	}
 }
 ?>
