@@ -36,11 +36,11 @@ $result = mysql_query($query, $dbh);
 
 echo "<table>\n";
 while ($row = mysql_fetch_array($result)) {
-echo "<tr>\n";
-foreach ($row as $item) {
-echo "<td>$item</td>\n";
-}
-echo "</tr>\n";
+    echo "<tr>\n";
+    foreach ($row as $item) {
+        echo "<td>$item</td>\n";
+    }
+    echo "</tr>\n";
 }
 echo "</table>\n";
 
