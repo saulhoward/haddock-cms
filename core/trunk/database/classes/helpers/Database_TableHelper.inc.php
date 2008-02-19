@@ -21,7 +21,9 @@ class
 		
 		$query = 'SELECT ';
 		
-		if ($fields_str != '*') {
+		if ($fields_str == '*') {
+			$query .= $fields_str;
+		} else {
 			$fields = explode(' ', $fields_str);
 			
 			for ($i = 0; $i < count($fields); $i++) {
@@ -41,6 +43,8 @@ class
 		$id = mysql_real_escape_string($id, $dbh);
 		
 		$query .= " WHERE $id_field_name = $id";
+		
+		#echo $query; exit;
 		
 		$result = mysql_query($query, $dbh);
 		
