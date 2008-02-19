@@ -525,10 +525,15 @@ extends
 		 */
 		$limit_action = $this->get_current_url_just_file();
 	
+		#$limit_form = new Database_LimitForm(
+		#	$limit_action,
+		#	$this->get_current_limit(),
+		#	'10 20 50'
+		#);
 		$limit_form = new Database_LimitForm(
 			$limit_action,
 			$this->get_current_limit(),
-			'10 20 50'
+			$this->get_limits_str()
 		);
 		
 		$cbu = $this->get_current_base_url();
@@ -568,6 +573,12 @@ extends
 ?>
 <!-- End of a limit_previous_next div -->
 <?php
+	}
+	
+	protected function
+		get_limits_str()
+	{
+		return '10 20 50 100';
 	}
 	
 	/**
