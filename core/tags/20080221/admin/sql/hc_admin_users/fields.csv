@@ -1,0 +1,6 @@
+"email","varchar(255)","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"name","varchar(255)","NO","UNI","",""
+"password","varchar(255)","NO","","",""
+"real_name","varchar(255)","NO","","",""
+"type","enum('Developer','Admin','User')","NO","","User",""

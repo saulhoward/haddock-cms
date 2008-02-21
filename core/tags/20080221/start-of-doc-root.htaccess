@@ -1,0 +1,7 @@
+## The .htaccess fragment that starts the .htaccess file
+## for the DOCUMENT_ROOT.
+##
+## © Clear Line Web Design, 2007-08-03
+
+RewriteEngine on
+

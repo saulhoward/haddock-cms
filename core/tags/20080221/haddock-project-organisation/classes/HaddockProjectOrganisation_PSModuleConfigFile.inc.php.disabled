@@ -1,0 +1,14 @@
+<?php
+/**
+ * HaddockProjectOrganisation_PSModuleConfigFile
+ *
+ * @copyright Clear Line Web Design, 2007-09-29
+ */
+
+class
+	HaddockProjectOrganisation_PSModuleConfigFile
+extends
+    HaddockProjectOrganisation_AbstractModuleConfigXMLFile
+{
+}
+?>
