@@ -1,0 +1,5 @@
+# Add all new files to SVN.
+perl -e 'for (split /\n/, `svn status`) { if (/\?\s+(.+)/) { system "svn add $1" }}'
+
+# Update a haddock project.
+pwd && cd haddock/ && svn info && svn up && cd .. && cd plug-ins/  && ls -1 | xargs svn info && ls -1 | xargs svn up && cd .. && cd project-specific/ && svn info && svn up && cd .. && cd haddock/cli-scripts/bin && php bin-runner.php --section=haddock --module=public-html --script=assemble-htaccess && cd ../../.. &&  pwd
