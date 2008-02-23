@@ -1257,6 +1257,22 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/Navigation_URLsCRUDManager.inc.php';
 			break;
 
+		case('News_ManageNewsItemsAdminPage'): 
+			require_once PROJECT_ROOT . '/plug-ins/news/classes/crud-pages/manage-news-items/News_ManageNewsItemsAdminPage.inc.php';
+			break;
+
+		case('News_ManageNewsItemsAdminRedirectScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/news/classes/crud-pages/manage-news-items/News_ManageNewsItemsAdminRedirectScript.inc.php';
+			break;
+
+		case('News_NewsItemsCRUDManager'): 
+			require_once PROJECT_ROOT . '/plug-ins/news/classes/crud-pages/manage-news-items/News_NewsItemsCRUDManager.inc.php';
+			break;
+
+		case('News_SPoE'): 
+			require_once PROJECT_ROOT . '/plug-ins/news/classes/News_SPoE.inc.php';
+			break;
+
 		case('ObjectOrientation_NamedMethodCaller'): 
 			require_once PROJECT_ROOT . '/haddock/object-orientation/classes/ObjectOrientation_NamedMethodCaller.inc.php';
 			break;
