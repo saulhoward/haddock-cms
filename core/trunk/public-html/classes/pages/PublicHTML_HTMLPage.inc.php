@@ -54,6 +54,9 @@ extends
 	public function
 		render_head()
 	{
+		#print_r($this); exit;
+		#var_dump($this instanceof PublicHTML_HTMLPage); exit;
+		
 ?>
 <head>
 	<title><?php echo $this->get_head_title(); ?></title>

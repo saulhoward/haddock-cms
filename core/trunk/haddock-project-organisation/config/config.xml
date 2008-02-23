@@ -12,7 +12,7 @@
     </release>
 	<project>
 		<name value="Haddock Project" />
-		<copyright-holder value="Clear Line Web Design" />
+		<copyright-holder value="Robert Impey" />
 	</project>
 	<haddock-project-organisation>
 		<config-manager
