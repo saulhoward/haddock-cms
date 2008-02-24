@@ -41,6 +41,12 @@ extends
 	}
 	
 	protected function
+		set_return_to_url(HTMLTags_URL $return_to_url)
+	{
+		$this->set_return_to($return_to_url->get_as_string());
+	}
+	
+	protected function
 		redirect_to_return_to()
 	{
 		if (isset($this->return_to)) {
