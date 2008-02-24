@@ -1,0 +1,11 @@
+#summary Compiling the Document Root's .htaccess file
+
+= Introduction =
+
+Various commands are given to Apache from the .htaccess file in the document root of a vhost.
+
+This file is compiled from several fragments that are found in the core modules, the plug-ins and the project specific code.
+
+These fragments are put together into a single file that is saved in the document root of the vhost.
+
+This file should not be edited. Instead, you should edit the fragments of files and re run the compile script.
