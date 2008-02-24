@@ -733,6 +733,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_Word.inc.php';
 			break;
 
+		case('HaddockCMS_DBPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/HaddockCMS_DBPage.inc.php';
+			break;
+
+		case('HaddockCMS_HTMLPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/HaddockCMS_HTMLPage.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_AbstractModuleConfigXMLFile.inc.php';
 			break;
