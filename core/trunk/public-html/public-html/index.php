@@ -56,25 +56,41 @@ require_once PROJECT_ROOT
  */
 ob_start();
 
-if (isset($_GET['oo-page']) && isset($_GET['page-class'])) {
-    try {
-        $pcrc = new ReflectionClass($_GET['page-class']);
-        $pcro = $pcrc->newInstance();
-		
-		try {
-			$pcro->run();
-		} catch (Exception $e) {
-			$exception_page_url = PublicHTML_ExceptionHelper
-				::set_session_and_get_exception_page_url($e);
+if (isset($_GET['oo-page'])) {
+	try {
+		if (isset($_GET['page-class'])) {
+			$pcrc = new ReflectionClass($_GET['page-class']);
+			$pcro = $pcrc->newInstance();
+		} elseif (isset($_GET['pcro-factory'])) {
+			/*
+			 * We want to make our page class reflection object using a Page Class Reflection Object factory.
+			 *
+			 * Blimy!
+			 */
 			
-			header('Location: ' . $exception_page_url->get_as_string());
-			exit;
+			$pcrofc = new ReflectionClass($_GET['pcro-factory']);
+			
+			$pcrof = $pcrofc->newInstance();
+			
+			$pcro = $pcrof->get_page_class_reflection_object();
+		} else {
+			echo "No page class set!\n";
 		}
-    } catch (ReflectionException $re) {
-        #print_r($e);
-        #echo "Unable to show that page!\n";
+	} catch (ReflectionException $re) {
+		#print_r($e);
+		#echo "Unable to show that page!\n";
 		echo $re->getMessage();
-    }
+	}
+	
+	try {
+		$pcro->run();
+	} catch (Exception $e) {
+		$exception_page_url = PublicHTML_ExceptionHelper
+			::set_session_and_get_exception_page_url($e);
+		
+		header('Location: ' . $exception_page_url->get_as_string());
+		exit;
+	}
 } else {
     $page_manager = PublicHTML_PageManager::get_instance();
     
