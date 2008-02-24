@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-02-23
+ * Last Modified: 2008-02-24
  */
 
 function __autoload($class_name)
@@ -593,6 +593,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/DB.inc.php';
 			break;
 
+		case('DBPages_ConfigManager'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_ConfigManager.inc.php';
+			break;
+
 		case('DBPages_ContentManager'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_ContentManager.inc.php';
 			break;
@@ -603,6 +607,10 @@ function __autoload($class_name)
 
 		case('DBPages_FilterHelper'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_FilterHelper.inc.php';
+			break;
+
+		case('DBPages_HTMLPage'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/pages/DBPages_HTMLPage.inc.php';
 			break;
 
 		case('DBPages_ManagePagesAdminPage'): 
@@ -619,6 +627,10 @@ function __autoload($class_name)
 
 		case('DBPages_PageRenderer'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/renderers/DBPages_PageRenderer.inc.php';
+			break;
+
+		case('DBPages_PCROFactory'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_PCROFactory.inc.php';
 			break;
 
 		case('DBPages_Section'): 
@@ -1331,6 +1343,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_PagesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PagesDirectory.inc.php';
+			break;
+
+		case('PublicHTML_PCROFactory'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PCROFactory.inc.php';
 			break;
 
 		case('PublicHTML_PublicURLFactory'): 
