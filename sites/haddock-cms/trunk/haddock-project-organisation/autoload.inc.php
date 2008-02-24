@@ -738,11 +738,11 @@ function __autoload($class_name)
 			break;
 
 		case('HaddockCMS_DBPage'): 
-			require_once PROJECT_ROOT . '/project-specific/classes/pages/HaddockCMS_DBPage.inc.php';
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockCMS_DBPage.inc.php';
 			break;
 
 		case('HaddockCMS_HTMLPage'): 
-			require_once PROJECT_ROOT . '/project-specific/classes/pages/HaddockCMS_HTMLPage.inc.php';
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockCMS_HTMLPage.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
