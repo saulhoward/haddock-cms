@@ -19,11 +19,20 @@ RewriteEngine on
 ## End of start core file.
 ## Start of the db-pages plug-in module's file.
 # Fragment of the doc root .htaccess file for the db pages module.
+# @copyright RFI, 2008-02-24
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page&pcro-factory=DBPages_PCROFactory&page=$1
+RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
 
 ## End of the db-pages plug-in module's file.
+## Start of the mailing-list plug-in module's file.
+# Rules for the mailing list plug-in
+# @copyright RFI, 2008-02-24
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^mailing-list/([a-z-]*)\.([a-z-]*) /?oo-page=1&pcro-factory=MailingList_PCROFactory&page=$1&type=html
+
+## End of the mailing-list plug-in module's file.
 ## Start of the admin core module's file.
 ## .htaccess fragment for the admin core module.
 ##
