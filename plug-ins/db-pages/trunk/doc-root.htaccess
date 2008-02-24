@@ -1,0 +1,5 @@
+# Fragment of the doc root .htaccess file for the db pages module.
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page&pcro-factory=DBPages_PCROFactory&page=$1
+
