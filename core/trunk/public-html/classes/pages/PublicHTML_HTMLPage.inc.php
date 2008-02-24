@@ -161,7 +161,7 @@ extends
 	}
 	
 	public function
-		render_body_div_header()
+		get_body_div_header()
 	{
 		/*
 		 * Create the HTML tags objects.
@@ -176,6 +176,14 @@ extends
 		);
 		
 		$div_header->append_tag_to_content($h1_title);
+		
+		return $div_header;
+	}
+	
+	public function
+		render_body_div_header()
+	{
+		$div_header = $this->get_body_div_header();
 		
 		echo $div_header->get_as_string();
 	}
