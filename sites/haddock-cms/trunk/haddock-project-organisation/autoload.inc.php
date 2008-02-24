@@ -733,6 +733,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_Word.inc.php';
 			break;
 
+		case('Haddock_MailingListSignUpPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/Haddock_MailingListSignUpPage.inc.php';
+			break;
+
 		case('HaddockCMS_DBPage'): 
 			require_once PROJECT_ROOT . '/project-specific/classes/pages/HaddockCMS_DBPage.inc.php';
 			break;
