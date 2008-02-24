@@ -12,6 +12,22 @@ body {
 	font-family: Trebuchet MS, Verdana, sans-serif;
 }
 
+div#container {
+	text-align: left;
+}
+
+div#header h1 a {
+	text-decoration: none;
+}
+
+div#footer {
+	text-align: center;
+	
+	font-size: smaller;
+	
+	color: #b7b7b7;
+}
+
 .error {
 	color: red;
 }

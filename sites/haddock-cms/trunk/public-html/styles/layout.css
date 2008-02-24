@@ -23,24 +23,17 @@ div {
 
 div#container {
 	width: 50em;
-	/*margin: auto;*/
 	
 	padding-top: 30px;
 	
 	padding-left: 30px;
 	padding-right: 30px;
 	
-	text-align: left;
-	
 	clear: both;
 }
 
 div#header {
 	clear: right;
-}
-
-div#header h1 a {
-	text-decoration: none;
 }
 
 div#navigation {
@@ -62,22 +55,11 @@ div#content {
 	
 	clear: none;
 	
-	/*border: solid 1px black;*/
-	
 	position: relative;
-	/*position: absolute;*/
 }
 
 div#footer {
 	clear: both;
-	text-align: center;
-	font-size: smaller;
-	/*position: absolute;*/
-	/*bottom: 0;*/
 	width: 100%;
-	/*text-align: right;*/
-	
-	color: #b7b7b7;
-	
 	padding-top: 30px;
 }
