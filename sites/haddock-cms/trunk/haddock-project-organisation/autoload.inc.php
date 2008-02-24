@@ -1193,6 +1193,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/logging/classes/database/renderers/table-renderers/Logging_ServerLogsTableRenderer.inc.php';
 			break;
 
+		case('MailingList_ConfigManager'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/MailingList_ConfigManager.inc.php';
+			break;
+
 		case('MailingList_EmailTooLongException'): 
 			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/exceptions/MailingList_EmailTooLongException.inc.php';
 			break;
@@ -1207,6 +1211,10 @@ function __autoload($class_name)
 
 		case('MailingList_NameTooLongException'): 
 			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/exceptions/MailingList_NameTooLongException.inc.php';
+			break;
+
+		case('MailingList_PCROFactory'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/MailingList_PCROFactory.inc.php';
 			break;
 
 		case('MailingList_PeopleHelper'): 
@@ -1227,6 +1235,22 @@ function __autoload($class_name)
 
 		case('MailingList_PersonRowRenderer'): 
 			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/database/renderers/row-renderers/MailingList_PersonRowRenderer.inc.php';
+			break;
+
+		case('MailingList_SignUpPage'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/pages/html/MailingList_SignUpPage.inc.php';
+			break;
+
+		case('MailingList_SignUpRedirectScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/pages/redirect-scripts/MailingList_SignUpRedirectScript.inc.php';
+			break;
+
+		case('MailingList_SignUpRenderer'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/renderers/MailingList_SignUpRenderer.inc.php';
+			break;
+
+		case('MailingList_SignUpURLFactory'): 
+			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/url-factories/MailingList_SignUpURLFactory.inc.php';
 			break;
 
 		case('Navigation_1DTreeRetriever'): 
