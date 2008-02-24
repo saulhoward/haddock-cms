@@ -17,5 +17,15 @@ extends
 		
 		echo "</div>\n";
 	}
+	
+	public function
+		render_body_div_footer()
+	{
+?>
+<div id="footer">
+	&copy 2008, Robert Impey
+</div>
+<?php
+	}	
 }
 ?>
