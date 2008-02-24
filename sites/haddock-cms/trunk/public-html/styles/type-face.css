@@ -1,0 +1,17 @@
+/**
+ * Styles to do with the type face for the Haddock CMS site.
+ *
+ * @copyright 2008-02-24, RFI
+ */
+
+body {
+	text-align: center;
+	
+	font-size: larger;
+	
+	font-family: Trebuchet MS, Verdana, sans-serif;
+}
+
+.error {
+	color: red;
+}

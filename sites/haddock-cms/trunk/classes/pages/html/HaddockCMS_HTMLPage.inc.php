@@ -25,6 +25,10 @@ extends
 			);
 		HTMLTags_LinkRenderer
 			::render_style_sheet_link(
+				'/styles/type-face.css'
+			);
+		HTMLTags_LinkRenderer
+			::render_style_sheet_link(
 				'/styles/rounded-corners.css'
 			);
 		
