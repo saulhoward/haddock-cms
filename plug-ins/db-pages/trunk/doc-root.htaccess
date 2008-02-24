@@ -1,5 +1,6 @@
 # Fragment of the doc root .htaccess file for the db pages module.
+# @copyright RFI, 2008-02-24
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page&pcro-factory=DBPages_PCROFactory&page=$1
+RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
 
