@@ -1229,6 +1229,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/database/renderers/row-renderers/MailingList_PersonRowRenderer.inc.php';
 			break;
 
+		case('Navigation_1DTreeRetriever'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/database/retrievers/Navigation_1DTreeRetriever.inc.php';
+			break;
+
+		case('Navigation_1DULRenderer'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/renderers/Navigation_1DULRenderer.inc.php';
+			break;
+
 		case('Navigation_LinkNode'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/Navigation_LinkNode.inc.php';
 			break;
@@ -1259,6 +1267,10 @@ function __autoload($class_name)
 
 		case('Navigation_ManageURLsAdminRedirectScript'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/pages/Navigation_ManageURLsAdminRedirectScript.inc.php';
+			break;
+
+		case('Navigation_NodeRenderer'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/renderers/Navigation_NodeRenderer.inc.php';
 			break;
 
 		case('Navigation_NodesCRUDManager'): 
