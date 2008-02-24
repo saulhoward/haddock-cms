@@ -18,6 +18,12 @@ extends
 	public function
 		content()
 	{
+		DBPages_PageRenderer
+			::render_page_section(
+				'mailing-list-sign-up',
+				'content-explanation'
+			);
+		
 		MailingList_SignUpRenderer::render_body_div_email_adding();
 	}
 }
