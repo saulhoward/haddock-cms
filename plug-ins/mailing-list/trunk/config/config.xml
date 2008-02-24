@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>MailingList_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<page-classes>
+		<html-pages>
+			<sign-up value="MailingList_SignUpPage" />
+		</html-pages>
+		<redirect-scripts>
+			<sign-up value="MailingList_SignUpRedirectScript" />
+		</redirect-scripts>
+	</page-classes>
+</config>
