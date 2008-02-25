@@ -9,9 +9,16 @@ class
 	PublicHTML_URLHelper
 {
 	/**
-	 * DEPRECATED!
+	 * NOT DEPRECATED!
 	 *
 	 * Use PublicHTML_URLFactory::make_local_url instead.
+	 *
+	 * In fact, ignore that warning.
+	 *
+	 * Use this class for now.
+	 *
+	 * The URL factories will probably work in a more OO way and be
+	 * objects that are returned by a URL factory factory.
 	 */
 	public static function
 		get_oo_page_url(
