@@ -10,6 +10,8 @@ body {
 	font-size: larger;
 	
 	font-family: Trebuchet MS, Verdana, sans-serif;
+	
+	color: #010141;
 }
 
 div#container {
@@ -30,4 +32,12 @@ div#footer {
 
 .error {
 	color: red;
+}
+
+a:visited {
+	color: #010141;
+}
+
+.navigation a:visited{
+	text-decoration: none;
 }
