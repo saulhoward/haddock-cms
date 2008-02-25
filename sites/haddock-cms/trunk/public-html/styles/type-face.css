@@ -35,9 +35,11 @@ div#footer {
 }
 
 a:visited {
-	color: #010141;
+	/*color: #010141;*/
 }
 
 .navigation a:visited{
+	color: #010141;
+	
 	text-decoration: none;
 }
