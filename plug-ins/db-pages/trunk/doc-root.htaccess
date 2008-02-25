@@ -2,5 +2,6 @@
 # @copyright RFI, 2008-02-24
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
+#RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
+RewriteRule ^db-pages/([-\w]+)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
 
