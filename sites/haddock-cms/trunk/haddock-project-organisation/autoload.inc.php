@@ -741,6 +741,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockCMS_DBPage.inc.php';
 			break;
 
+		case('HaddockCMS_ExceptionPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockCMS_ExceptionPage.inc.php';
+			break;
+
 		case('HaddockCMS_HTMLPage'): 
 			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockCMS_HTMLPage.inc.php';
 			break;

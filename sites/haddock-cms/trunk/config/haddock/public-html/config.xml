@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<verbosity>
-		<exceptions>
-			<names-are-printed value="FALSE" />
-			<stack-traces-are-printed value="FALSE" />
-		</exceptions>
 		<meta-pages>
 			<show-about-haddock-cms value="FALSE" />
 		</meta-pages>
@@ -12,4 +8,7 @@
 	<locations>
 		<default value="/db-pages/home.html" />
 	</locations>
+	<oo-page-classes>
+		<exception value="HaddockCMS_ExceptionPage" />
+	</oo-page-classes>
 </config>
