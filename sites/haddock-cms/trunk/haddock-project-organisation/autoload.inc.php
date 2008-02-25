@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-02-24
+ * Last Modified: 2008-02-25
  */
 
 function __autoload($class_name)
@@ -1337,12 +1337,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/object-orientation/classes/ObjectOrientation_NamedMethodCaller.inc.php';
 			break;
 
+		case('PublicHTML_AboutHaddockCMS'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/html/PublicHTML_AboutHaddockCMS.inc.php';
+			break;
+
 		case('PublicHTML_AJAXFormHelper'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_AJAXFormHelper.inc.php';
 			break;
 
 		case('PublicHTML_ConfigManager'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_ConfigManager.inc.php';
+			break;
+
+		case('PublicHTML_Exception'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/exceptions/PublicHTML_Exception.inc.php';
 			break;
 
 		case('PublicHTML_ExceptionHelper'): 
@@ -1387,6 +1395,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_PageManager'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PageManager.inc.php';
+			break;
+
+		case('PublicHTML_PageNotFoundException'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/exceptions/PublicHTML_PageNotFoundException.inc.php';
 			break;
 
 		case('PublicHTML_PagesDirectory'): 
