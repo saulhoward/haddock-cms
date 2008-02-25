@@ -62,7 +62,7 @@ extends
 	<title><?php echo $this->get_head_title(); ?></title>
 	<meta
 		name="author"
-		content="Clear Line Web Design"
+		content="<?php echo $this->get_head_meta_author(); ?>"
 	/>
 	<meta
 		name="keywords"
@@ -87,6 +87,15 @@ extends
 		get_head_title()
 	{
 		return $this->get_project_title();
+	}
+	
+	public function
+		get_head_meta_author()
+	{
+		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+		$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
+		
+		return $config_manager->get_copyright_holder();
 	}
 	
 	public function
