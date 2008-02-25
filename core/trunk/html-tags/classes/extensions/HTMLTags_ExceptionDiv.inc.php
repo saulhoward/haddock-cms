@@ -41,6 +41,7 @@ extends
     public function
         __construct(
 			Exception $e,
+			$print_name = FALSE,
 			$print_trace = FALSE
 		)
     {
@@ -52,7 +53,9 @@ extends
 		 * The exception class p.
 		 */
 		
-        $this->append_tag_to_content(new HTMLTags_P(get_class($e)));
+		if ($print_name) {
+			$this->append_tag_to_content(new HTMLTags_P(get_class($e)));
+		}
 		
 		/*
 		 * The exception message p.

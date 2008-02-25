@@ -79,6 +79,16 @@ extends
 	}
 	
 	public function
+		are_exception_names_printed()
+	{
+		$value = $this->get_config_value('verbosity/exceptions/names-are-printed');
+		
+		#echo $value; exit;
+		
+		return $value == 'TRUE';
+	}
+	
+	public function
 		are_exception_trace_lists_printed()
 	{
 		$value = $this->get_config_value('verbosity/exceptions/stack-traces-are-printed');
@@ -86,6 +96,18 @@ extends
 		#echo $value; exit;
 		
 		return $value == 'TRUE';
+	}
+	
+	public function
+		get_default_url()
+	{
+		return $this->get_config_value('locations/default');
+	}
+	
+	public function
+		is_meta_page_about_haddock_cms_shown()
+	{
+		return $this->get_config_value('verbosity/meta-pages/show-about-haddock-cms') == 'TRUE';
 	}
 }
 ?>

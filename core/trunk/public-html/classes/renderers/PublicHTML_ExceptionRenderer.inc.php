@@ -27,6 +27,7 @@ class
 			$exception_div
 				= new HTMLTags_ExceptionDiv(
 					$_SESSION['exception'],
+					$phcm->are_exception_names_printed(),
 					$phcm->are_exception_trace_lists_printed()
 				);
 			

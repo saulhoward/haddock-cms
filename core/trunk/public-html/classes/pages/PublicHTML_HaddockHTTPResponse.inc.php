@@ -5,6 +5,7 @@ class
 	public function
 		run()
 	{
+		$this->run_pre_session_header_commands();
 		$this->send_http_headers();
 		$this->run_post_session_header_commands();
 	}
@@ -16,10 +17,16 @@ class
 	}
 	
 	/**
-	 * The idea is that this should be overridden.
+	 * The idea is that these should be overridden.
 	 *
 	 * Is there not a nicer way to do this?
 	 */
+	
+	public function
+		run_pre_session_header_commands()
+	{
+	}
+
 	public function
 		run_post_session_header_commands()
 	{

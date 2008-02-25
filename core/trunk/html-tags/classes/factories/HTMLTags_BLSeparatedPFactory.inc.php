@@ -5,13 +5,13 @@
  * @copyright Clear Line Web Design, 2007-05-07
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_P.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/strings/classes/'
-    . 'Strings_Splitter.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_P.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/strings/classes/'
+#    . 'Strings_Splitter.inc.php';
 
 class
     HTMLTags_BLSeparatedPFactory

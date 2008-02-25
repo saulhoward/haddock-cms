@@ -23,7 +23,14 @@
 	</oo-page-classes>
 	<verbosity>
 		<exceptions>
+			<names-are-printed value="TRUE" />
 			<stack-traces-are-printed value="TRUE" />
 		</exceptions>
+		<meta-pages>
+			<show-about-haddock-cms value="TRUE" />
+		</meta-pages>
 	</verbosity>
+	<locations>
+		<default value="/PublicHTML_AboutHaddockCMS" />
+	</locations>
 </config>
