@@ -23,8 +23,8 @@
 	</oo-page-classes>
 	<verbosity>
 		<exceptions>
-			<names-are-printed value="TRUE" />
-			<stack-traces-are-printed value="TRUE" />
+			<names-are-printed value="FALSE" />
+			<stack-traces-are-printed value="FALSE" />
 		</exceptions>
 		<meta-pages>
 			<show-about-haddock-cms value="TRUE" />
