@@ -38,7 +38,7 @@ a:visited {
 	/*color: #010141;*/
 }
 
-.navigation a:visited{
+.navigation a {
 	color: #010141;
 	
 	text-decoration: none;
