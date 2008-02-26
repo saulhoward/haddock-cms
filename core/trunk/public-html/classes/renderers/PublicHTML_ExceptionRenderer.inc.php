@@ -33,7 +33,7 @@ class
 			
 			echo $exception_div->get_as_string();
 		} else {
-			echo "<p class=\"error\">No exception set!</p>\n";
+			echo "<p class=\"error\">An unrecognised error has occured!</p>\n";
 		}
 	}
 }
