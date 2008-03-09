@@ -1,4 +1,10 @@
 <?php
+/**
+ * PublicHTML_HaddockHTTPResponse
+ *
+ * @copyright 2008-03-09, RFI
+ */
+
 class
 	PublicHTML_HaddockHTTPResponse
 {

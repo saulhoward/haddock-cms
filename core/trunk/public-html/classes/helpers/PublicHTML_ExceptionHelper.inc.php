@@ -1,5 +1,12 @@
 <?php
-class PublicHTML_ExceptionHelper
+/**
+ * PublicHTML_ExceptionHelper
+ *
+ * @copyright 2008-03-09, RFI
+ */
+
+class
+	PublicHTML_ExceptionHelper
 {
 	public static function
 		set_session_and_get_exception_page_url(Exception $e)

@@ -63,7 +63,8 @@ if (isset($_GET['oo-page'])) {
 			$pcro = $pcrc->newInstance();
 		} elseif (isset($_GET['pcro-factory'])) {
 			/*
-			 * We want to make our page class reflection object using a Page Class Reflection Object factory.
+			 * We want to make our page class reflection object using
+			 * a Page Class Reflection Object factory.
 			 *
 			 * Blimy!
 			 */
