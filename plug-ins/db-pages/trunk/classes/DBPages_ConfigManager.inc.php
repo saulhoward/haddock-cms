@@ -1,4 +1,10 @@
 <?php
+/**
+ * DBPages_ConfigManager
+ *
+ * @copyright 2008-02-09, RFI
+ */
+
 class
 	DBPages_ConfigManager
 extends
