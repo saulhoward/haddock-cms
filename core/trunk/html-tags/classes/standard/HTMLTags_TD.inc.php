@@ -2,16 +2,22 @@
 /**
  * HTMLTags_TD
  *
- * RFI & SANH 2006-11-29
+ * @copyright 2006-11-29, RFI
  */
 
-require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagWithContent.inc.php';
+#require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagWithContent.inc.php';
 
-class HTMLTags_TD extends HTMLTags_TagWithContent
+class
+	HTMLTags_TD
+extends
+	HTMLTags_TagWithContent
 {
-    public function __construct($content = null)
-    {
-        parent::__construct('td', $content);
-    }
+	public function
+		__construct(
+			$content = NULL
+		)
+	{
+		parent::__construct('td', $content);
+	}
 }
 ?>

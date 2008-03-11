@@ -674,9 +674,15 @@ extends
 		
 		foreach ($fields as $field) {
 			if (isset($field['sortable']) && (strtolower($field['sortable']) == 'no')) {
-				$heading_row->append_nonsortable_field_name($field['col_name']);
+				$heading_row->append_nonsortable_field_name(
+					$field['col_name'],
+					isset($field['title']) ? $field['title'] : NULL
+				);
 			} else {
-				$heading_row->append_sortable_field_name($field['col_name']);
+				$heading_row->append_sortable_field_name(
+					$field['col_name'],
+					isset($field['title']) ? $field['title'] : NULL
+				);
 			}
 		}
 		
@@ -690,7 +696,7 @@ extends
 		
 		/*
 		 * ----------------------------------------
-		 * Fetch the products from the database table.
+		 * Fetch the rows from the database table.
 		 * ----------------------------------------
 		 */
 		
@@ -852,11 +858,15 @@ extends
 		
         $title_low
                 = Formatting_ListOfWords
-                    ::get_list_of_words_for_string($action_str);
-            
-        return new HTMLTags_TH(
-            $title_low->get_words_as_capitalised_string()
-        );
+                    ::get_list_of_words_for_string(
+						$action_str,
+						'_'
+					);
+        
+		$title = $title_low->get_words_as_capitalised_string();
+		#echo $title;
+		
+        return new HTMLTags_TH($title);
     }
 	
 	protected function
@@ -882,7 +892,12 @@ extends
 	protected function
 		make_content_for_action_td_for_item($name, $get_var_content, $identifiers)
 	{
-		$c = Formatting_ListOfWords::capitalise_delimited_string($name);
+		$c
+			= Formatting_ListOfWords
+				::capitalise_delimited_string(
+					$name,
+					'_'
+				);
 		
 		$a = new HTMLTags_A($c);
 		
@@ -912,9 +927,17 @@ extends
 	}
 	
 	protected function
-		append_data_to_tr($row, HTMLTags_TR $tr)
+		append_data_to_tr(
+			$row,
+			HTMLTags_TR $tr
+		)
 	{
 		$fields = $this->get_data_table_fields();
+		
+		#echo "The fields: \n"; print_r($fields);
+		##exit;
+		#echo "The row: \n"; print_r($row);
+		#exit;
 		
 		foreach ($fields as $field) {
 			$str = $row[$field['col_name']];
