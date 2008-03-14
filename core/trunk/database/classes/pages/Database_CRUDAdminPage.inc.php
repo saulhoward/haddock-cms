@@ -400,6 +400,18 @@ extends
 		return 'Add something';
 	}
 	
+	protected function
+		get_delete_everything_title()
+	{
+		return 'Delete Everything';
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with links to other pages at the top of the page.
+	 * ----------------------------------------
+	 */
+	
 	/**
 	 * Returns the text that is put in the link to the
 	 * page where the user can add something to this set of data.
@@ -408,12 +420,6 @@ extends
 		get_add_something_link_text()
 	{
 		return $this->get_add_something_title();
-	}
-	
-	protected function
-		get_delete_everything_title()
-	{
-		return 'Delete Everything';
 	}
 	
 	protected function
@@ -432,46 +438,58 @@ extends
 	{
 		$page_options_div = new HTMLTags_Div();
 		$page_options_div->set_attribute_str('id', 'page-options');
-	
+		
 		$other_pages_ul = new HTMLTags_UL();
 		
-		/**
-		 * Link to the add row form.
-		 */
-		$add_row_li = new HTMLTags_LI();
-	
-		$add_row_a = new HTMLTags_A($this->get_add_something_link_text());
-	
-		$add_row_href = $this->get_add_something_page_url();
+		foreach ($this->get_other_page_link_as() as $a) {
+			$li = new HTMLTags_LI();
+			
+			$li->append_tag_to_content($a);
+			
+			$other_pages_ul->append_tag_to_content($li);
+		}
 		
-		$add_row_a->set_href($add_row_href);
-	
-		$add_row_li->append_tag_to_content($add_row_a);
-	
-		$other_pages_ul->append_tag_to_content($add_row_li);
-	
-		/**
-		 * Link to the delete all confirmation page.
-		 */
-		$delete_all_li = new HTMLTags_LI();
-	
-		$delete_all_a = new HTMLTags_A($this->get_delete_everything_link_text());
-	
-		$delete_all_href = $this->get_current_base_url();
-		$delete_all_href->set_get_variable('content', 'delete_everything');
-	
-		$delete_all_a->set_href($delete_all_href);
-	
-		$delete_all_li->append_tag_to_content($delete_all_a);
-	
-		$other_pages_ul->append_tag_to_content($delete_all_li);
 		$page_options_div->append_tag_to_content($other_pages_ul);
 	
 		echo $page_options_div->get_as_string();
 	}
-	/*
-	 * End of render_other_pages_ul()
+	
+	/**
+	 * Returns an array of HTMLTags_A objects that are the
+	 * links to the other pages at the top of the page.
+	 *
+	 * E.g. add something or delete everything.
 	 */
+	protected function
+		get_other_page_link_as()
+	{
+		$as = array();
+		
+		/*
+		 * Link to the add row form.
+		 */
+		$add_row_a = new HTMLTags_A($this->get_add_something_link_text());
+		
+		$add_row_href = $this->get_add_something_page_url();
+		
+		$add_row_a->set_href($add_row_href);
+		
+		$as[] = $add_row_a;
+		
+		/**
+		 * Link to the delete all confirmation page.
+		 */
+		$delete_all_a = new HTMLTags_A($this->get_delete_everything_link_text());
+		
+		$delete_all_href = $this->get_current_base_url();
+		$delete_all_href->set_get_variable('content', 'delete_everything');
+		
+		$delete_all_a->set_href($delete_all_href);
+		
+		$as[] = $delete_all_a;
+		
+		return $as;
+	}
 	
 	protected function
 		get_add_something_page_url()
@@ -481,6 +499,12 @@ extends
 		
 		return $url;
 	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with rendering the data for this page.
+	 * ----------------------------------------
+	 */
 	
 	/**
 	 * Renders a table with data to do with this page.
@@ -851,6 +875,9 @@ extends
         return $action_ths;
     }
     
+	/**
+	 * The column heading of for an action.
+	 */
     protected function
         make_action_th($action_str)
     {
@@ -869,6 +896,13 @@ extends
         return new HTMLTags_TH($title);
     }
 	
+	/**
+	 * Creates the URL that will be visited when the user
+	 * clicks on one of the action links.
+	 *
+	 * @param string $get_var_content The name of the method that will be called to display the content.
+	 * @param array $identifiers The key value pairs for the key that identies the row to be acted on.
+	 */
 	protected function
 		get_action_url_for_content(
 			$get_var_content,
@@ -890,7 +924,11 @@ extends
 	 * Makes the link to the page specified by the action.
 	 */
 	protected function
-		make_content_for_action_td_for_item($name, $get_var_content, $identifiers)
+		make_content_for_action_td_for_item(
+			$name,
+			$get_var_content,
+			$identifiers
+		)
 	{
 		$c
 			= Formatting_ListOfWords
@@ -926,6 +964,9 @@ extends
 		return $tr;
 	}
 	
+	/**
+	 * Append data to a row in the table.
+	 */
 	protected function
 		append_data_to_tr(
 			$row,
@@ -956,8 +997,23 @@ extends
 		return $tr;
 	}
 	
+	/**
+	 * Append action TDs to the row.
+	 *
+	 * The array of action hashes can be built up to contain
+	 * different actions.
+	 *
+	 * The default behaviour is to just show the name of the action.
+	 *
+	 * However, if a filter has been associated with the action,
+	 * then the content of the TD is run through that filter using
+	 * eval(...).
+	 */
 	protected function
-		append_actions_to_tr($row, HTMLTags_TR $tr)
+		append_actions_to_tr(
+			$row,
+			HTMLTags_TR $tr
+		)
 	{
 		$actions = $this->get_data_table_actions();
 		

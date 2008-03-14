@@ -22,6 +22,14 @@ class
 	}
 	
 	public static function
+		get_img_as_string($image_id)
+	{
+		$img = self::get_img($image_id);
+		
+		return $img->get_as_string();
+	}
+	
+	public static function
 		render_img($image_id)
 	{
 		$img = self::get_img($image_id);

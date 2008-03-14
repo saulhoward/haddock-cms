@@ -5,17 +5,17 @@
  * @copyright Clear Line Web Design, 2006-11-24
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_SQLStatement.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_SQLStatementWithWhereClause.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_AddConditionsToWhereClauseBehaviour.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_SQLStatement.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_SQLStatementWithWhereClause.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_AddConditionsToWhereClauseBehaviour.inc.php';
 
 class
     Database_SQLSelectQuery
