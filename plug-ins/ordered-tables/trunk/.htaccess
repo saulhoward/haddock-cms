@@ -1,0 +1,6 @@
+# To retrict access from the web server to the ordered-tables module.
+#
+# @copyright 2008-03-13, RFI
+
+Order Deny,Allow
+Deny from all
