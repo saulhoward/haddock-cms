@@ -8,53 +8,53 @@
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_Directory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ProjectSpecificDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_CoreModulesDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_CoreModuleDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_PlugInModuleDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_PlugInModulesDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_RequiredModulesFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_FileName.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_TableNameTranslatorFactory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_DatabaseClassFinder.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/table-structure-synchronisation/'
-    . 'Database_TableStructureManager.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/unit-tests/classes/'
-    . 'UnitTests_UnitTestsPHPClassFile.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_Directory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ProjectSpecificDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_CoreModulesDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_CoreModuleDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_PlugInModuleDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_PlugInModulesDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_RequiredModulesFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_FileName.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_TableNameTranslatorFactory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_DatabaseClassFinder.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/table-structure-synchronisation/'
+#    . 'Database_TableStructureManager.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/unit-tests/classes/'
+#    . 'UnitTests_UnitTestsPHPClassFile.inc.php';
     
 /**
  * Represents a directory that contains a haddock project.

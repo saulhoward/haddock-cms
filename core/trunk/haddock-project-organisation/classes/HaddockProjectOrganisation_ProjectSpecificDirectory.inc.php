@@ -8,29 +8,29 @@
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ModuleDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_ListOfWords.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_PasswordFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_DatabaseClassNameFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ConfigFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_AutoloadIncFile.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ModuleDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_ListOfWords.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_PasswordFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_DatabaseClassNameFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ConfigFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_AutoloadIncFile.inc.php';
 
 /**
  * Represents a directory under SVN control

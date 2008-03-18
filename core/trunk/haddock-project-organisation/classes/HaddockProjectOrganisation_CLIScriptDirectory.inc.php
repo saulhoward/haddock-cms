@@ -8,9 +8,9 @@
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_Directory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_Directory.inc.php';
 
 class
     HaddockProjectOrganisation_CLIScriptDirectory

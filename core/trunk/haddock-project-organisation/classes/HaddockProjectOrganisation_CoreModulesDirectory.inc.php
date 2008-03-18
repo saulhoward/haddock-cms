@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-09-27
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ModulesDirectory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ModulesDirectory.inc.php';
 
 class
 	HaddockProjectOrganisation_CoreModulesDirectory

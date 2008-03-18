@@ -2,16 +2,20 @@
 /**
  * HTMLTags_TR
  *
- * RFI & SANH 2006-11-29
+ * @copyright 2006-11-29, RFI
  */
 
-require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagWithContent.inc.php';
+#require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagWithContent.inc.php';
 
-class HTMLTags_TR extends HTMLTags_TagWithContent
+class
+	HTMLTags_TR
+extends
+	HTMLTags_TagWithContent
 {
-    public function __construct($content = null)
-    {
-        parent::__construct('tr', $content);
-    }
+	public function
+		__construct($content = null)
+	{
+		parent::__construct('tr', $content);
+	}
 }
 ?>

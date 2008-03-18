@@ -2,10 +2,13 @@
 /**
  * HTMLTags_TagWithContent
  *
- * RFI & SANH 2006-11-27
+ * @copyright 2006-11-27, RFI
  */
 
-require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_Tag.inc.php';
+require_once PROJECT_ROOT
+	. '/haddock/html-tags/classes/'
+	. 'HTMLTags_Tag.inc.php';
+
 #require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagContent.inc.php';
 
 class
@@ -15,7 +18,11 @@ extends
 {
     private $content;
     
-    protected function __construct($name, $content)
+    protected function
+		__construct(
+			$name,
+			$content
+		)
     {
         parent::__construct($name);
         
@@ -26,22 +33,28 @@ extends
         }
     }
     
-    protected function get_content()
+    protected function
+		get_content()
     {
         return $this->content;
     }
     
-    public function append_str_to_content($str)
+    public function
+		append_str_to_content($str)
     {
         $this->content->append_str($str);
     }
 
-    public function append_tag_to_content(HTMLTags_Tag $tag)
+    public function
+		append_tag_to_content(
+			HTMLTags_Tag $tag
+		)
     {
         $this->content->append_tag($tag);
     }
     
-    protected function get_opening_tag()
+    protected function
+		get_opening_tag()
     {
         $opening_tag = '<' . $this->get_name();
         
@@ -52,12 +65,14 @@ extends
         return $opening_tag;
     }
     
-    protected function get_closing_tag()
+    protected function
+		get_closing_tag()
     {
         return '</' . $this->get_name() . ">\n";
     }
     
-    public function get_as_string()
+    public function
+		get_as_string()
     {
         $string = '';
         
