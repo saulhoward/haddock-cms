@@ -8,13 +8,13 @@
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_Renderer.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/html-tags/'
-    . 'Database_AddRowOLForm.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_Renderer.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/html-tags/'
+#    . 'Database_AddRowOLForm.inc.php';
 /**
  * A class to help rendering a database table.
  */
@@ -298,7 +298,7 @@ extends
         get_action_th($action_str)
     {
         $title_low
-                = Formatting_ListOfWords
+                = Formatting_ListOfWordsHelper
                     ::get_list_of_words_for_string($action_str);
             
         return new HTMLTags_TH(

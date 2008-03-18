@@ -884,7 +884,7 @@ extends
 		#echo "\$action_str: $action_str\n";
 		
         $title_low
-                = Formatting_ListOfWords
+                = Formatting_ListOfWordsHelper
                     ::get_list_of_words_for_string(
 						$action_str,
 						'_'
@@ -931,7 +931,7 @@ extends
 		)
 	{
 		$c
-			= Formatting_ListOfWords
+			= Formatting_ListOfWordsHelper
 				::capitalise_delimited_string(
 					$name,
 					'_'
@@ -1468,7 +1468,9 @@ SQL;
 		)
 	{
 		if (!isset($title)) {
-			$title = Formatting_ListOfWords::capitalise_delimited_string($name, '_');
+			$title
+				= Formatting_ListOfWordsHelper
+					::capitalise_delimited_string($name, '_');
 		}
 ?>
 <li>
@@ -1503,7 +1505,9 @@ SQL;
 		#echo $value; exit;
 		
 		if (!isset($title)) {
-			$title = Formatting_ListOfWords::capitalise_delimited_string($name, '_');
+			$title
+				= Formatting_ListOfWordsHelper
+					::capitalise_delimited_string($name, '_');
 		}
 ?>
 <li>

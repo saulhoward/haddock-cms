@@ -2,7 +2,7 @@
 /**
  * Database_SortableHeadingTR
  *
- * @copyright Clear Line Web Design, 2007-03-08
+ * @copyright 2007-03-08, RFI
  */
 
 #require_once PROJECT_ROOT
@@ -80,8 +80,9 @@ extends
         
 		if (!isset($title)) {
 			$s_f_n_l_o_ws
-				= Formatting_ListOfWords
+				= Formatting_ListOfWordsHelper
 					::get_list_of_words_for_string($sortable_field_name, '_');
+					
 			$title = $s_f_n_l_o_ws->get_words_as_capitalised_string();
 		}
         

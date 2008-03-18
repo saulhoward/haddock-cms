@@ -5,21 +5,21 @@
  * @copyright Clear Line Web Design, 2007-01-24
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_Directory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_PageConfigFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_ListOfWords.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_Directory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_PageConfigFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_ListOfWords.inc.php';
     
 /**
  * This class and its subclasses represent directories
@@ -126,7 +126,7 @@ extends
          * Work out the title from the link.
          */
         $title_as_l_o_w
-            = Formatting_ListOfWords
+            = Formatting_ListOfWordsHelper
                 ::get_list_of_words_for_string(
                     $this->get_page_name(),
                     '-'

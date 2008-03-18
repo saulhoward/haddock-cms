@@ -5,13 +5,13 @@
  * @copyright Clear Line Web Design, 2006-12-02
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/html-tags/'
-    . 'Database_RowOLForm.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Row.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/html-tags/'
+#    . 'Database_RowOLForm.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Row.inc.php';
 
 class
     Database_EditRowOLForm
@@ -60,11 +60,12 @@ extends
             $input_li = new HTMLTags_LI();
             
             $l_t_l_o_ws
-                = Formatting_ListOfWords::get_list_of_words_for_string(
-                    $visible_field->get_name(),
-                    '_'
-                );
-            
+                = Formatting_ListOfWordsHelper
+                    ::get_list_of_words_for_string(
+                        $visible_field->get_name(),
+                        '_'
+                    );
+                
             $label_text = $l_t_l_o_ws->get_words_as_capitalised_string();
             
             $input_label = new HTMLTags_Label($label_text);

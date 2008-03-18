@@ -51,7 +51,10 @@ extends
             if ($visible_field->get_name() != 'id') {
                 $input_li = new HTMLTags_LI();
                 
-                $l_t_l_o_ws = Formatting_ListOfWords::get_list_of_words_for_string($visible_field->get_name(), '_');
+                $l_t_l_o_ws
+                    = Formatting_ListOfWordsHelper
+                        ::get_list_of_words_for_string($visible_field->get_name(), '_');
+                
                 $label_text = $l_t_l_o_ws->get_words_as_capitalised_string();
                 
                 $input_label = new HTMLTags_Label($label_text);

@@ -107,7 +107,7 @@ SQL;
 			echo "No match!\n";
 		}
 		
-		$c = Formatting_ListOfWords::capitalise_delimited_string($table_name, '_');
+		$c = Formatting_ListOfWordsHelper::capitalise_delimited_string($table_name, '_');
 		
 		#echo $c;
 		#exit;
