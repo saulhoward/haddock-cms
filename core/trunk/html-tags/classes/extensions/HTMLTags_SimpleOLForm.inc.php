@@ -5,57 +5,57 @@
  * @copyright 2006-11-27, RFI
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_InputTag.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_URL.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Div.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Span.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_TagContent.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Form.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Input.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Legend.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_FieldSet.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_OL.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Label.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Script.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_ListOfWords.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/'
+#    . 'HTMLTags_InputTag.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/'
+#    . 'HTMLTags_URL.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Div.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Span.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/'
+#    . 'HTMLTags_TagContent.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Form.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Input.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Legend.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_FieldSet.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_OL.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Label.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Script.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_ListOfWords.inc.php';
 
 /**
  * This extension to the standard form tag is intended
@@ -145,10 +145,11 @@ MSG;
 		
 		if (!isset($label_text)) {
 			$l_t_l_o_ws
-				= Formatting_ListOfWords::get_list_of_words_for_string(
-					$name,
-					'_'
-				);
+				= Formatting_ListOfWordsHelper
+					::get_list_of_words_for_string(
+						$name,
+						'_'
+					);
 			
 			$label_text = $l_t_l_o_ws->get_words_as_capitalised_string();
 		#    echo "\$label_text: $label_text\n";
