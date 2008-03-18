@@ -113,7 +113,7 @@ extends
         
 		if (!isset($title)) {
 			$f_n_l_o_ws
-				= Formatting_ListOfWords
+				= Formatting_ListOfWordsHelper
 					::get_list_of_words_for_string($field_name, '_');
 			
 			$title = $f_n_l_o_ws->get_words_as_capitalised_string();
