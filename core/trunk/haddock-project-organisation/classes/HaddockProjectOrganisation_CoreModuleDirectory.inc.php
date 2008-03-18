@@ -56,7 +56,9 @@ extends
 				# so we should work out the name algorithmically.
 		
 				if (preg_match('{([^\\\\/]+)$}', $this->get_name(), $matches)) {
-					$c_c_m_n_l_o_ws = Formatting_ListOfWords::get_list_of_words_for_string($matches[1], '-');
+					$c_c_m_n_l_o_ws
+						= Formatting_ListOfWordsHelper
+							::get_list_of_words_for_string($matches[1], '-');
 				
 					$this->module_name = $c_c_m_n_l_o_ws->get_words_as_camel_case_string();
 				} else {
