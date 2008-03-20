@@ -1,4 +1,10 @@
 <?php
+/**
+ * Database_ImagesHelper
+ *
+ * @copyright 2008-03-19, RFI
+ */
+
 class
 	Database_ImagesHelper
 {
@@ -24,9 +30,17 @@ class
 	public static function
 		get_img_as_string($image_id)
 	{
+		#echo __METHOD__ . "\n";
+		
+		#echo "\$image_id: $image_id\n";
+		
 		$img = self::get_img($image_id);
 		
-		return $img->get_as_string();
+		$str = $img->get_as_string();
+		
+		#echo "\$str: $str\n";
+		
+		return $str;
 	}
 	
 	public static function
