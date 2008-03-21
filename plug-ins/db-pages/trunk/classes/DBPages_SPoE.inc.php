@@ -2,14 +2,12 @@
 /**
  * DBPages_SPoE
  *
- * @copyright RFI 2007-12-15
+ * @copyright 2007-12-15, RFI
  */
 
 /**
- * The single/simplest/safest point of entry to the DB pages module.
- * 
- * Coders who want to use this module in other modules should probably
- * only use the functions in this class.
+ * Rather old fashioned.
+ * Should be renamed 'helper'.
  *
  * If you find that you need to use objects and functions from this module
  * in code in other modules, perhaps more functionality needs to be

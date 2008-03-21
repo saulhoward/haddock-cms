@@ -2,7 +2,7 @@
 /**
  * DBPages_ContentManager
  *
- * @copyright RFI 2007-12-15
+ * @copyright 2007-12-15, RFI
  */
 
 /**
@@ -60,7 +60,41 @@ class
 	public function
 		get_page($page_name)
 	{
+		$raw_page_sections = self::get_raw_page_sections($page_name);
+		
+		$first = TRUE;
+		foreach ($raw_page_sections as $rps) {
+			if ($first) {
+				$first = FALSE;
+				
+				$page = new DBPages_Page($rps['name']);
+			}
+			
+			$section
+				= new DBPages_Section(
+					$rps['text'],
+					$rps['filter_function'],
+					$rps['modified']
+				);
+			
+			$page->add_section($rps['section'], $section);
+			
+			#$at_start_of_section = FALSE;
+		}
+		
+		#print_r($page); exit;
+		
+		return $page;
+	}
+	
+	private function
+		get_raw_page_sections($page_name)
+	{
 		$dbh = DB::m();
+		
+		$raw_page_sections = array();
+		
+		$page_name = mysql_real_escape_string($page_name, $dbh);
 		
 		$query = <<<SQL
 SELECT
@@ -98,30 +132,12 @@ SQL;
 		
 		$result = mysql_query($query, $dbh);
 		
-		if (mysql_num_rows($result) > 0) {
-			$first = TRUE;
-			
-			while ($row = mysql_fetch_assoc($result)) {
-				if ($first) {
-					$first = FALSE;
-					
-					$page = new DBPages_Page($row['name']);
-				}
-				
-				$section = new DBPages_Section(
-					$row['text'],
-					$row['filter_function'],
-					$row['modified']
-				);
-				
-				$page->add_section($row['section'], $section);
-				
-				$at_start_of_section = FALSE;
-			}
-			
-			#print_r($page); exit;
-			
-			return $page;
+		while ($row = mysql_fetch_assoc($result)) {
+			$raw_page_sections[] = $row;
+		}
+		
+		if (count($raw_page_sections) > 0) {
+			return $raw_page_sections;
 		} else {
 			throw new Exception("Unable to find page '$page_name'!");
 		}
