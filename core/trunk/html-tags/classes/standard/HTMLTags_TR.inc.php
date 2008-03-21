@@ -13,7 +13,9 @@ extends
 	HTMLTags_TagWithContent
 {
 	public function
-		__construct($content = null)
+		__construct(
+			$content = NULL
+		)
 	{
 		parent::__construct('tr', $content);
 	}

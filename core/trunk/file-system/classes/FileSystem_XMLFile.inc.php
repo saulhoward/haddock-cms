@@ -2,12 +2,12 @@
 /**
  * FileSystem_XMLFile
  *
- * @copyright RFI, 2007-05-08
+ * @copyright 2007-05-08, RFI
  */
 
-require_once PROJECT_ROOT
-	. '/haddock/file-system/classes/'
-	. 'FileSystem_TextFile.inc.php';
+#require_once PROJECT_ROOT
+#	. '/haddock/file-system/classes/'
+#	. 'FileSystem_TextFile.inc.php';
 
 /**
  * A thin wrapper around a DOMDocument.
@@ -63,14 +63,17 @@ extends
 			if ($this->is_file()) {
 				$this->dom_document = DOMImplementation::createDocument();
 				
-				$this->dom_document->load(
-					$this->get_name()
-				);
+				$file_name = $this->get_name();
+				
+				#echo "\$file_name: $file_name\n";
+				
+				$this->dom_document->load($file_name);
 			} else {
-				$this->dom_document = new DOMDocument(
-					$this->get_xml_version(),
-					$this->get_encoding()
-				);
+				$this->dom_document
+					= new DOMDocument(
+						$this->get_xml_version(),
+						$this->get_encoding()
+					);
 			}
 		}
 		
@@ -111,6 +114,8 @@ extends
 		get_simple_xml_element()
 	{
 		$dd = $this->get_dom_document();
+		
+		#print_r($dd);
 		
 		if (!isset($this->simple_xml_element)) {
 			$this->simple_xml_element = simplexml_import_dom($dd);

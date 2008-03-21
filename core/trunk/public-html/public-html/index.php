@@ -44,8 +44,12 @@ require_once $_SERVER['DOCUMENT_ROOT']
 // */
 //$project_directory->define_autoload_inc_file();
 
-require_once PROJECT_ROOT
-    . '/project-specific/haddock-project-organisation/autoload.inc.php';
+#require_once PROJECT_ROOT
+#    . '/project-specific/haddock-project-organisation/autoload.inc.php';
+
+require PROJECT_ROOT
+	. '/haddock/haddock-project-organisation/includes/'
+	. 'autoload.inc.php';
 
 /*
  * Output buffering so that we can throw an exception
