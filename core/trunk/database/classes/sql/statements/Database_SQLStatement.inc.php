@@ -98,8 +98,17 @@ abstract class
 	 * So much for design patterns removing the need
 	 * for that sort of thing!
 	 */
-	abstract protected function
-		set_behaviours();
+	#abstract protected function
+	#	set_behaviours();
+	protected function
+		set_behaviours()
+	{
+		/*
+		 * Don't do anything by default.
+		 *
+		 * If you want to delegate, override this method.
+		 */
+	}
 	
 	protected function
 		add_behaviour(

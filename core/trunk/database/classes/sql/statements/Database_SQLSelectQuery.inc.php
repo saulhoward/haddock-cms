@@ -21,12 +21,16 @@ class
 	Database_SQLSelectQuery
 extends
 	Database_SQLStatement
-implements
-	Database_SQLStatementWithWhereClause
+#implements
+#	Database_SQLStatementWithWhereClause
 {
-	private $selected_items_clause;
+	#private $selected_items_clause;
 	
-	private $tables;
+	private $select_clause;
+	
+	#private $tables;
+	
+	private $from_clause;
 	
 	private $where_clause;
 	
@@ -34,35 +38,45 @@ implements
 	
 	private $limit_clause;
 	
-	protected function
-		set_behaviours()
-	{
-		$this->add_behaviour(
-			'add_conditions_to_where_clause',
-			new Database_AddConditionsToWhereClauseBehaviour($this)
-		);
-	}
+	#protected function
+	#	set_behaviours()
+	#{
+	#	$this->add_behaviour(
+	#		'add_conditions_to_where_clause',
+	#		new Database_AddConditionsToWhereClauseBehaviour($this)
+	#	);
+	#}
+	#
+	#public function
+	#	get_selected_items_clause()
+	#{
+	#	if (!isset($this->selected_items_clause)) {
+	#		$this->selected_items_clause
+	#			= new Database_SQLStatementSelectedItemsClause();
+	#	}
+	#	
+	#	return $this->selected_items_clause;
+	#}
 	
 	public function
-		get_selected_items_clause()
+		get_select_clause()
 	{
-		if (!isset($this->selected_items_clause)) {
-			$this->selected_items_clause
-				= new Database_SQLStatementSelectedItemsClause();
+		if (!isset($this->select_clause)) {
+			$this->select_clause = new Database_SQLStatementSelectClause();
 		}
 		
-		return $this->selected_items_clause;
+		return $this->select_clause;
 	}
 	
-	public function
-		add_table(Database_Table $table)
-	{
-		if (!is_array($this->tables)) {
-			$this->tables = array();
-		}
-		
-		$this->tables[] = $table;
-	}
+	#public function
+	#	add_table(Database_Table $table)
+	#{
+	#	if (!is_array($this->tables)) {
+	#		$this->tables = array();
+	#	}
+	#	
+	#	$this->tables[] = $table;
+	#}
 	
 	public function
 		get_where_clause()
@@ -74,16 +88,16 @@ implements
 		return $this->where_clause;
 	}
 	
-	public function
-		add_conditions_to_where_clause(
-			$conditions
-		)
-	{
-		$this->run_behaviour(
-			'add_conditions_to_where_clause',
-			$conditions
-		);
-	}
+	#public function
+	#	add_conditions_to_where_clause(
+	#		$conditions
+	#	)
+	#{
+	#	$this->run_behaviour(
+	#		'add_conditions_to_where_clause',
+	#		$conditions
+	#	);
+	#}
 	
 	public function
 		get_order_by_clause()
@@ -108,36 +122,43 @@ implements
 	protected function
 		assemble()
 	{
-		$this->str = 'SELECT ';
+		$this->str ='';
 		
-		#$this->str .= ' * ';
+		#$this->str = 'SELECT ';
+		#
+		##$this->str .= ' * ';
+		#
+		#$selected_items_clause = $this->get_selected_items_clause();
+		#
+		#$this->str .= $selected_items_clause->get_as_string();
 		
-		$selected_items_clause = $this->get_selected_items_clause();
-		
-		$this->str .= $selected_items_clause->get_as_string();
-		
-		$this->str .= ' FROM ';
+		#$this->str .= ' FROM ';
 		
 		/*
-		 * The table references.
+		 * The SELECT clause.
 		 */
-		if (
-			!is_array($this->tables)
-			and (count($this->tables) < 1)
-		) {
-			throw new Exception('No table added to SQL SELECT statement!');
-		}
+		$select_clause = $this->get_select_clause();
 		
-		$first = TRUE;
-		foreach ($this->tables as $table) {
-			if ($first) {
-				$first = FALSE;
-			} else {
-				$this->str .= ' , ';
-			}
-			
-			$this->str .= ' ' . $table->get_name() . ' ';
-		}
+		#/*
+		# * The table references.
+		# */
+		#if (
+		#	!is_array($this->tables)
+		#	and (count($this->tables) < 1)
+		#) {
+		#	throw new Exception('No table added to SQL SELECT statement!');
+		#}
+		#
+		#$first = TRUE;
+		#foreach ($this->tables as $table) {
+		#	if ($first) {
+		#		$first = FALSE;
+		#	} else {
+		#		$this->str .= ' , ';
+		#	}
+		#	
+		#	$this->str .= ' ' . $table->get_name() . ' ';
+		#}
 		
 		/*
 		 * The WHERE clause.

@@ -2,12 +2,12 @@
 /**
  * Database_SQLStatementClause
  *
- * @copyright Clear Line Web Design, 2007-02-20
+ * @copyright 2007-02-20, RFI
  */
 
 class
-    Database_SQLStatementClause
+	Database_SQLStatementClause
 {
-    
+	
 }
 ?>
