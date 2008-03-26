@@ -1,4 +1,10 @@
 <?php
+/**
+ * OrderedTables_AdminCRUDShiftRedirectScript
+ *
+ * @copyright 2008-03-18, RFI
+ */
+
 class
 	OrderedTables_AdminCRUDShiftRedirectScript
 extends
