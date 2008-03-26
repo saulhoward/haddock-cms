@@ -90,51 +90,60 @@ class
 	private function
 		get_raw_page_sections($page_name)
 	{
-		$dbh = DB::m();
+		#$dbh = DB::m();
 		
-		$raw_page_sections = array();
+		#$raw_page_sections = array();
 		
-		$page_name = mysql_real_escape_string($page_name, $dbh);
+		#$page_name = mysql_real_escape_string($page_name, $dbh);
 		
-		$query = <<<SQL
-SELECT
-	hpi_db_pages_pages.name AS name,
-	hpi_db_pages_edits.submitted AS modified,
-	hpi_db_pages_sections.name AS section,
-	hpi_db_pages_texts.text AS text,
-	hpi_db_pages_filter_functions.name AS filter_function
-FROM
-	hpi_db_pages_pages
-		INNER JOIN hpi_db_pages_edits ON
-			hpi_db_pages_pages.id = hpi_db_pages_edits.page_id
-		INNER JOIN hpi_db_pages_texts ON
-			hpi_db_pages_edits.text_id = hpi_db_pages_texts.id
-		INNER JOIN hpi_db_pages_text_section_links ON
-			hpi_db_pages_texts.id = hpi_db_pages_text_section_links.text_id
-		INNER JOIN hpi_db_pages_sections ON
-			hpi_db_pages_text_section_links.section_id = hpi_db_pages_sections.id
-		LEFT JOIN hpi_db_pages_filter_functions ON
-			hpi_db_pages_texts.filter_function_id
-			=
-			hpi_db_pages_filter_functions.id
-WHERE
-	hpi_db_pages_pages.name = '$page_name'
-	AND
-	hpi_db_pages_edits.deleted = 'No'
-	AND
-	hpi_db_pages_edits.current = 'Yes'
-ORDER BY
-	section ASC,
-	modified ASC
-SQL;
-
+#		$query = <<<SQL
+#SELECT
+#	hpi_db_pages_pages.name AS name,
+#	hpi_db_pages_edits.submitted AS modified,
+#	hpi_db_pages_sections.name AS section,
+#	hpi_db_pages_texts.text AS text,
+#	hpi_db_pages_filter_functions.name AS filter_function
+#FROM
+#	hpi_db_pages_pages
+#		INNER JOIN hpi_db_pages_edits ON
+#			hpi_db_pages_pages.id = hpi_db_pages_edits.page_id
+#		INNER JOIN hpi_db_pages_texts ON
+#			hpi_db_pages_edits.text_id = hpi_db_pages_texts.id
+#		INNER JOIN hpi_db_pages_text_section_links ON
+#			hpi_db_pages_texts.id = hpi_db_pages_text_section_links.text_id
+#		INNER JOIN hpi_db_pages_sections ON
+#			hpi_db_pages_text_section_links.section_id = hpi_db_pages_sections.id
+#		LEFT JOIN hpi_db_pages_filter_functions ON
+#			hpi_db_pages_texts.filter_function_id
+#			=
+#			hpi_db_pages_filter_functions.id
+#WHERE
+#	hpi_db_pages_pages.name = '$page_name'
+#	AND
+#	hpi_db_pages_edits.deleted = 'No'
+#	AND
+#	hpi_db_pages_edits.current = 'Yes'
+#ORDER BY
+#	section ASC,
+#	modified ASC
+#SQL;
+		
 		#echo $query; exit;
 		
-		$result = mysql_query($query, $dbh);
+		$query = new DBPages_FetchAllSectionsForPageSelectQuery($page_name);
 		
-		while ($row = mysql_fetch_assoc($result)) {
-			$raw_page_sections[] = $row;
-		}
+		print_r($query);
+		echo '$query->get_as_string(): ' . "\n";
+		echo $query->get_as_string();
+		exit;
+		
+		#$result = mysql_query($query, $dbh);
+		#
+		#while ($row = mysql_fetch_assoc($result)) {
+		#	$raw_page_sections[] = $row;
+		#}
+		
+		$raw_page_sections = Database_FetchingHelper::get_rows_for_query($query);
 		
 		if (count($raw_page_sections) > 0) {
 			return $raw_page_sections;
