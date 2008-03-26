@@ -17,8 +17,8 @@ class
 		
 		$str_query = $query->get_as_string();
 		
-		echo "\$str_query: $str_query\n";
-		exit;
+		#echo "\$str_query: $str_query\n";
+		#exit;
 		
 		$result = mysql_query($str_query, $dbh);
 		
