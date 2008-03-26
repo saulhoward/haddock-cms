@@ -132,10 +132,11 @@ class
 		
 		$query = new DBPages_FetchAllSectionsForPageSelectQuery($page_name);
 		
-		print_r($query);
-		echo '$query->get_as_string(): ' . "\n";
-		echo $query->get_as_string();
-		exit;
+		#print_r($query);
+		#echo '$query->get_as_string(): ' . "\n";
+		#echo $query->get_as_string();
+		#print_r($query);
+		#exit;
 		
 		#$result = mysql_query($query, $dbh);
 		#

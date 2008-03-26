@@ -10,13 +10,33 @@ class
 extends
 	Database_SQLSelectQuery
 {
-	#private $page_name;
+	private $page_name;
 	
 	public function
 		__construct($page_name)
 	{
-		#$this->page_name = $page_name;
+		$this->page_name = $page_name;		
+	}
+	
+	public function
+		get_page_name()
+	{
+		return $this->page_name;
+	}
+	
+	public function
+		set_page_name($page_name)
+	{
+		if ($this->assembled) {
+			throw new Exception('The query has already been assembled!');
+		}
 		
+		$this->page_name = $page_name;		
+	}
+	
+	protected function
+		assemble_begin()
+	{
 		/*
 		 * Build the SELECT clause.
 		 */
@@ -71,13 +91,17 @@ extends
 		 */
 		$this->add_where_clause_str_literal_and_condition('No', 'deleted', 'hpi_db_pages_edits');
 		$this->add_where_clause_str_literal_and_condition('Yes', 'current', 'hpi_db_pages_edits');
-		$this->add_where_clause_str_literal_and_condition($page_name, 'name', 'hpi_db_pages_pages');
+		$this->add_where_clause_str_literal_and_condition(
+			$this->get_page_name(),
+			'name',
+			'hpi_db_pages_pages'
+		);
 		
 		/*
 		 * Build the ORDER BY clause.
 		 */
 		$this->add_order_by_clause_field('section', 'ASC');
-		$this->add_order_by_clause_field('modified', 'ASC');		
+		$this->add_order_by_clause_field('modified', 'ASC');
 	}
 }
 ?>
