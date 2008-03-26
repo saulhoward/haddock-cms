@@ -62,22 +62,38 @@ abstract class
 	 *
 	 * If this statement needs to be put together from
 	 * various items, it is.
+	 *
+	 * It also sets the "assembled" flag to true.
 	 */
 	public final function
 		get_as_string()
 	{
 		if (!$this->assembled) {
+			$this->assemble_begin();
+			
 			$this->assemble();
+			
+			$this->assemble_end();
 		}
 		
 		return $this->str;
 	}
 	
+	protected function
+		assemble_begin()
+	{
+		
+	}
+	
+	protected function
+		assemble_end()
+	{
+		
+	}
+	
 	/**
 	 * This puts all the parts together to make a SQL
 	 * statement as a string.
-	 *
-	 * It also sets the "assembled" flag to true.
 	 */
 	abstract protected function
 		assemble();

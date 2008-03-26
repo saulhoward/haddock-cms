@@ -49,7 +49,7 @@ extends
 	
 	/*
 	 * -------------------------------------------------
-	 * Functions to do with the SELECT clause;
+	 * Functions to do with the SELECT clause.
 	 * -------------------------------------------------
 	 */
 	
@@ -108,7 +108,7 @@ extends
 	
 	/*
 	 * -------------------------------------------------
-	 * Functions to do with the FROM clause;
+	 * Functions to do with the FROM clause.
 	 * -------------------------------------------------
 	 */
 	
@@ -178,7 +178,7 @@ extends
 	
 	/*
 	 * -------------------------------------------------
-	 * Functions to do with the WHERE clause;
+	 * Functions to do with the WHERE clause.
 	 * -------------------------------------------------
 	 */
 	
@@ -221,7 +221,7 @@ extends
 	
 	/*
 	 * -------------------------------------------------
-	 * Functions to do with the ORDER BY clause;
+	 * Functions to do with the ORDER BY clause.
 	 * -------------------------------------------------
 	 */
 	
@@ -242,12 +242,18 @@ extends
 			$table_name = NULL
 		)
 	{
+		$order_by_clause_field = $this->get_order_by_clause();
 		
+		$order_by_clause_field->add_field_str(
+			$field_name,
+			$direction,
+			$table_name
+		);
 	}
 	
 	/*
 	 * -------------------------------------------------
-	 * Functions to do with the LIMIT clause;
+	 * Functions to do with the LIMIT clause.
 	 * -------------------------------------------------
 	 */
 	
@@ -260,6 +266,12 @@ extends
 		
 		return $this->limit_clause;
 	}
+	
+	/*
+	 * -------------------------------------------------
+	 * Functions to do with putting it all together.
+	 * -------------------------------------------------
+	 */
 	
 	/**
 	 * Puts the SELECT statement together.

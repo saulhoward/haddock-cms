@@ -26,6 +26,8 @@ class
 			$rows[] = $row;
 		}
 		
+		#print_r($rows);
+		
 		return $rows;
 	}
 }
