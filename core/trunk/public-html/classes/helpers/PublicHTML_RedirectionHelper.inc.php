@@ -2,7 +2,7 @@
 /**
  * PublicHTML_RedirectionHelper
  *
- * @copyright RFI, 2008-02-21
+ * @copyright 2008-02-21, RFI
  */
 
 class
