@@ -5,24 +5,24 @@
  * @copyright Clear Line Web Design, 2007-02-14
  */
 
-/*
- * Define the classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_TR.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_TH.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_TD.inc.php';
+#/*
+# * Define the classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_TR.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_TH.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_TD.inc.php';
 
 /*
  * Make the content div.
