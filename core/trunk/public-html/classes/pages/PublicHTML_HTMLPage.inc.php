@@ -1,8 +1,8 @@
 <?php
 /**
- * PublicHTML_ExceptionPage
+ * PublicHTML_HTMLPage
  *
- * @copyright Clear Line Web Design, 2008-02-05
+ * @copyright 2008-02-05, RFI
  */
 
 abstract class
