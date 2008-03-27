@@ -2,12 +2,12 @@
 /**
  * Admin_LoginManager
  *
- * @copyright Clear Line Web Design, 2007-08-06
+ * @copyright 2007-08-06, RFI
  */
 
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/'
-	. 'HaddockProjectOrganisation_LoginManager.inc.php';
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/'
+#	. 'HaddockProjectOrganisation_LoginManager.inc.php';
 
 class
 	Admin_LoginManager

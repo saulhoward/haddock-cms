@@ -2,16 +2,16 @@
 /**
  * HaddockProjectOrganisation_AutoloadIncFile
  *
- * @copyright Clear Line Web Design, 2007-05-11
+ * @copyright 2007-05-11, RFI
  */
 
-require_once PROJECT_ROOT
-	. '/haddock/file-system/classes/'
-	. 'FileSystem_PHPIncFile.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/'
-	. 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
+#require_once PROJECT_ROOT
+#	. '/haddock/file-system/classes/'
+#	. 'FileSystem_PHPIncFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/'
+#	. 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
 	
 class
 	HaddockProjectOrganisation_AutoloadIncFile

@@ -2,7 +2,7 @@
 /**
  * HaddockProjectOrganisation_ConfigFile
  *
- * @copyright Clear Line Web Design, 2007-09-29
+ * @copyright 2007-09-29, RFI
  */
 
 #require_once PROJECT_ROOT
@@ -248,6 +248,7 @@ extends
         
         return FALSE;
     }
+	
 	/**
 	 * Searches the XML file for the value nested in nodes with the given names.
 	 * 

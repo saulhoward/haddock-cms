@@ -2,67 +2,67 @@
 /**
  * HaddockProjectOrganisation_ModuleDirectory
  *
- * @copyright Clear Line Web Design, 2006-11-13
+ * @copyright 2006-11-13, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-	. '/haddock/admin/classes/'
-	. 'Admin_IncludesDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/cli-scripts/classes/'
-	. 'CLIScripts_BinIncludesDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/database/classes/table-structure-synchronisation/'
-	. 'Database_TableSpecificationDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/file-system/classes/'
-	. 'FileSystem_Directory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/file-system/classes/'
-	. 'FileSystem_SVNWorkingDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/file-system/classes/'
-	. 'FileSystem_PHPClassFile.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/formatting/classes/'
-	. 'Formatting_ListOfWords.inc.php';
-
+#/*
+# * Define the necessary classes.
+# */
 #require_once PROJECT_ROOT
-#    . '/haddock/haddock-project-organisation/classes/'
-#    . 'HaddockProjectOrganisation_ModuleConfigFile.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/'
-	. 'HaddockProjectOrganisation_ClassesDirectory.inc.php';
-
-//require_once PROJECT_ROOT
-//    . '/haddock/haddock-project-organisation/classes/'
-//    . 'HaddockProjectOrganisation_PublicPageDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/'
-	. 'HaddockProjectOrganisation_CLIScriptDirectory.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/'
-	. 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
-
+#	. '/haddock/admin/classes/'
+#	. 'Admin_IncludesDirectory.inc.php';
+#
 #require_once PROJECT_ROOT
-#    . '/haddock/haddock-project-organisation/classes/'
-#    . 'HaddockProjectOrganisation_ModuleConfigXMLFile.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/haddock-project-organisation/classes/exceptions/'
-	. 'HaddockProjectOrganisation_ModuleConfigException.inc.php';
+#	. '/haddock/cli-scripts/classes/'
+#	. 'CLIScripts_BinIncludesDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/database/classes/table-structure-synchronisation/'
+#	. 'Database_TableSpecificationDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/file-system/classes/'
+#	. 'FileSystem_Directory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/file-system/classes/'
+#	. 'FileSystem_SVNWorkingDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/file-system/classes/'
+#	. 'FileSystem_PHPClassFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/formatting/classes/'
+#	. 'Formatting_ListOfWords.inc.php';
+#
+##require_once PROJECT_ROOT
+##    . '/haddock/haddock-project-organisation/classes/'
+##    . 'HaddockProjectOrganisation_ModuleConfigFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/'
+#	. 'HaddockProjectOrganisation_ClassesDirectory.inc.php';
+#
+#//require_once PROJECT_ROOT
+#//    . '/haddock/haddock-project-organisation/classes/'
+#//    . 'HaddockProjectOrganisation_PublicPageDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/'
+#	. 'HaddockProjectOrganisation_CLIScriptDirectory.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/'
+#	. 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
+#
+##require_once PROJECT_ROOT
+##    . '/haddock/haddock-project-organisation/classes/'
+##    . 'HaddockProjectOrganisation_ModuleConfigXMLFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#	. '/haddock/haddock-project-organisation/classes/exceptions/'
+#	. 'HaddockProjectOrganisation_ModuleConfigException.inc.php';
 
 /**
  * Represents a module directory under SVN control
@@ -955,6 +955,21 @@ extends
 		if ($this->has_config_file()) {
 			$config_file
 				= $this->get_config_file();
+			
+			if (DEBUG) {
+				echo DEBUG_DELIM_OPEN;
+				
+				echo 'Line: ' . __LINE__ . "\n";
+				echo 'File: ' . __FILE__ . "\n";
+				echo 'Class: ' . __CLASS__ . "\n";
+				echo 'Method: ' . __METHOD__ . "\n";
+				echo 'get_class($this): ' . get_class($this) . "\n";
+				
+				echo 'print_r($config_file):' . "\n";
+				print_r($config_file);
+				
+				echo DEBUG_DELIM_CLOSE;
+			}
 			
 			if ($config_file->has_value($key)) {
 				$value = $config_file->get_value($key);

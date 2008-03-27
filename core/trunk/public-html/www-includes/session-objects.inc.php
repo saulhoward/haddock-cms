@@ -16,12 +16,12 @@
 //echo __FILE__ . "\n";
 #exit;
 
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUserFactory.inc.php';
 
 ?>

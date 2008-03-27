@@ -41,8 +41,8 @@ if (function_exists('__autoload')) {
 				#echo "Current rp_file: $rp_file\n";
 				
 				#if ($wanted_file == $file) {
-				if (strpos($rp_file, $wanted_file)) {
-					
+				#if (strpos($rp_file, $wanted_file)) {
+				if (preg_match("{(?:\\\\|/)$wanted_file$}", $rp_file)) {
 					#echo "Found: $rp_file\n";
 					
 					require_once $rp_file;

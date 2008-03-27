@@ -4,7 +4,7 @@
  * The program that runs all our command line
  * scripts.
  *
- * @copyright Clear Line Web Design, 2007-02-02
+ * @copyright 2007-02-02, RFI
  */
 
 /*
@@ -109,7 +109,9 @@ if (isset($args['section'])) {
 } else {
 	echo "The section must be set:\n";
 	
-	$section = CLIScripts_InputReader::get_choice_from_string('haddock plug-ins project-specific');
+	$section
+		= CLIScripts_InputReader
+			::get_choice_from_string('haddock plug-ins project-specific');
 	
 	if (!isset($section)) {
 		echo "Quitting!\n";

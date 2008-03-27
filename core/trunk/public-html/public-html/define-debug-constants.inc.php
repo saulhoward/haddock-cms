@@ -2,7 +2,7 @@
 /**
  * Defines constants that are used when we debugging.
  *
- * @copyright Clear Line Web Design, 2006-11-17
+ * @copyright 2006-11-17, RFI
  */
 
 #define('DEBUG', TRUE);
