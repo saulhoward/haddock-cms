@@ -1,4 +1,10 @@
 <?php
+/**
+ * MailingList_SignUpPage
+ *
+ * @copyright 2008-03-30, RFI
+ */
+
 class
 	MailingList_SignUpPage
 extends
