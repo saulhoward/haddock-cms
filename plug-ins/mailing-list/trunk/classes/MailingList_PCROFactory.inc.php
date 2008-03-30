@@ -1,4 +1,10 @@
 <?php
+/**
+ * MailingList_PCROFactory
+ *
+ * @copyright 2008-03-30, RFI
+ */
+
 class
 	MailingList_PCROFactory
 extends
