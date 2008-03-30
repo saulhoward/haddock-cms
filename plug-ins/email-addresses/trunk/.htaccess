@@ -1,0 +1,5 @@
+# Restrict access to the email-addresses plug-in.
+# @copyright 2008-03-30
+
+Order Deny,Allow
+Deny from all
