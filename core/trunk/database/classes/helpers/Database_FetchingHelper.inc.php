@@ -13,6 +13,8 @@ class
 			Database_SQLSelectQuery $query
 		)
 	{
+		$rows = array();
+		
 		$dbh = DB::m();
 		
 		$str_query = $query->get_as_string();
