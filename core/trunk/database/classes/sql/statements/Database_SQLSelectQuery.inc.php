@@ -219,6 +219,20 @@ extends
 		);
 	}
 	
+	public function
+		add_exclusively_future_column(
+			$field_name,
+			$table_name = NULL
+		)
+	{
+		$where_clause = $this->get_where_clause();
+		
+		$where_clause->add_exclusively_future_column(
+			$field_name,
+			$table_name
+		);
+	}
+	
 	/*
 	 * -------------------------------------------------
 	 * Functions to do with the ORDER BY clause.

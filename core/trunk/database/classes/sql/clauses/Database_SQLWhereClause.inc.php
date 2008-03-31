@@ -47,6 +47,27 @@ extends
 		);
 	}
 	
+	/**
+	 * This causes the query to only find rows where this column
+	 * is in the future.
+	 */
+	public function
+		add_exclusively_future_column(
+			$field_name,
+			$table_name = NULL
+		)
+	{
+		$this->add_condition(
+			new Database_SQLWhereClauseConditionSubClause(
+				'NOW()',
+				$field_name,
+				$table_name,
+				'>',
+				'AND'
+			)
+		);
+	}
+	
     public function
 		get_as_string()
 	{
