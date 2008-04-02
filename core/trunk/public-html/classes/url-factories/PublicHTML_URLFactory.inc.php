@@ -41,7 +41,7 @@ class
 		
 		if (isset($get_variables)) {
 			foreach ($get_variables as $k => $v) {
-				$url->set_get_variable($k, $v);
+				$url->set_get_variable($k, urlencode($v));
 			}
 		}
 		
