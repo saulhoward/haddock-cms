@@ -149,7 +149,7 @@ class
 		if (count($raw_page_sections) > 0) {
 			return $raw_page_sections;
 		} else {
-			throw new Exception("Unable to find page '$page_name'!");
+			throw new DBPages_PageSectionNotFoundException($page_name);
 		}
 	}
 	

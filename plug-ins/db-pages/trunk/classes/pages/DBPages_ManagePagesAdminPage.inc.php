@@ -200,7 +200,15 @@ SQL;
 					type="text"
 					name="page"
 					id="page"
-					value="<?php if ($acm->has_form_session_var('page')) { echo $acm->get_form_session_var('page'); } ?>"
+					value="<?php
+					if ($acm->has_form_session_var('page')) {
+						echo $acm->get_form_session_var('page');
+					} else {
+						if (isset($_GET['page'])) {
+							echo urldecode($_GET['page']);
+						}
+					}
+					?>"
 				/>
 				<span id="pagemsg" class="rules"></span>
 			</li>
@@ -210,7 +218,15 @@ SQL;
 					type="text"
 					name="section"
 					id="section"
-					value="<?php if ($acm->has_form_session_var('section')) { echo $acm->get_form_session_var('section'); } ?>"
+					value="<?php
+					if ($acm->has_form_session_var('section')) {
+						echo $acm->get_form_session_var('section');
+					} else {
+						if (isset($_GET['section'])) {
+							echo urldecode($_GET['section']);
+						}
+					}
+					?>"
 				/>
 				<span id="sectionmsg" class="rules"></span>
 			</li>
