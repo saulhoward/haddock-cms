@@ -2,19 +2,13 @@
 /**
  * Database_LimitForm
  *
- * @copyright RFI, 2008-02-19
+ * @copyright 2008-02-19, RFI
  */
-
-#require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_URL.inc.php';
-#
-#require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Form.inc.php';
-#require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Select.inc.php';
-#require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Option.inc.php';
 
 class
 	Database_LimitForm
 extends
-	HTMLTags_Form
+	HTMLTags_FormWithInputs
 {
 	const default_limits_str = '10 20 50 100 250';
 	

@@ -24,7 +24,7 @@ class
 		if (isset($url)) {
 			$this->url = $url;
 		} else {
-		$this->port = NULL;
+			$this->port = NULL;
 			$this->get_variables = array();
 		}
 	}

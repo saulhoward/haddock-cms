@@ -5,13 +5,7 @@
  * @copyright 2006-11-27, RFI
  */
 
-#require_once PROJECT_ROOT
-#	. '/haddock/html-tags/classes/'
-#	. 'HTMLTags_Tag.inc.php';
-
-#require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_TagContent.inc.php';
-
-class
+abstract class
 	HTMLTags_TagWithContent
 extends
 	HTMLTags_Tag
@@ -38,6 +32,12 @@ extends
 	{
 		return $this->content;
 	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with appending things to the content.
+	 * ----------------------------------------
+	 */
 	
 	public function
 		append_str_to_content($str)

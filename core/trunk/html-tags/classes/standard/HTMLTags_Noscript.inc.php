@@ -2,21 +2,18 @@
 /**
  * HTMLTags_Noscript
  *
- * @copyright Clear Line Web Design, 2007-03-08
+ * @copyright 2007-03-08, RFI
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_TagWithContent.inc.php';
-
 class
-    HTMLTags_Noscript
+	HTMLTags_Noscript
 extends
-    HTMLTags_TagWithContent
+	HTMLTags_TagWithContent
 {
-    public function __construct($content = null)
-    {
-        parent::__construct('noscript', $content);
-    }
+	public function
+		__construct($content = NULL)
+	{
+		parent::__construct('noscript', $content);
+	}
 }
 ?>

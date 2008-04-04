@@ -5,58 +5,6 @@
  * @copyright 2006-11-27, RFI
  */
 
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/'
-#    . 'HTMLTags_InputTag.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/'
-#    . 'HTMLTags_URL.inc.php';
-#    
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Div.inc.php';
-#    
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Span.inc.php';
-#    
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/'
-#    . 'HTMLTags_TagContent.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Form.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Input.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Legend.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_FieldSet.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_OL.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Label.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_Script.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/formatting/classes/'
-#    . 'Formatting_ListOfWords.inc.php';
-
 /**
  * This extension to the standard form tag is intended
  * to remove some of the tedium and common errors of
@@ -65,10 +13,11 @@
 class
 	HTMLTags_SimpleOLForm
 extends
-	HTMLTags_Form
+	HTMLTags_SimpleForm
 {
 	private $first_input_name;
 	
+	private $legend_text;
 	private $legend;
 	
 	private $input_lis;
@@ -85,7 +34,7 @@ extends
 			$method = 'POST'
 		)
 	{
-		parent::__construct('form', null);
+		parent::__construct('form', NULL);
 		
 		$this->set_attribute_str('name', $name);
 		$this->set_attribute_str('method', $method);
@@ -115,27 +64,61 @@ MSG;
 		throw new Exception($msg);
 	}
 	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the the legend
+	 * ----------------------------------------
+	 */
+	
+	public function
+		get_legend_text()
+	{
+		if (isset($this->legend_text)) {
+			return $this->legend_text;
+		} else {
+			throw new Exception('Legend text not set in SimpleOLForm!');
+		}
+	}
+	
 	public function
 		set_legend_text($legend_text)
 	{
-		$this->legend = new HTMLTags_Legend($legend_text);
+		$this->legend_text = $legend_text;
 	}
 	
 	protected function
 		get_legend()
 	{
-		if (isset($this->legend)) {
-			return $this->legend;
-		} else {
-			throw new Exception('Legend not set in SimpleOLForm!');
+		if (!isset($this->legend)) {
+			$this->set_legend(
+				new HTMLTags_Legend(
+					$this->get_legend_text()
+				)
+			);
 		}
+		
+		return $this->legend;
 	}
+	
+	public function
+		set_legend(
+			HTMLTags_Legend $legend
+		)
+	{
+		$this->legend = $legend;
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the inputs
+	 * ----------------------------------------
+	 */
 	
 	public function
 		add_input_tag(
 			$name,
 			HTMLTags_InputTag $input_tag,
-			$label_text = null,
+			$label_text = NULL,
 			$post_content = ''
 		)
 	{
@@ -168,14 +151,12 @@ MSG;
 		$input_li->append_tag_to_content($input_tag);
 		
 		if (strlen($post_content) > 0) {
-			
 			$input_li->append_str_to_content($post_content);
-			
 		}
 		
 		$input_msg_box = new HTMLTags_Span();
 		$input_msg_box->set_attribute_str('id', $name . 'msg');
-			$input_msg_box->set_attribute_str('class', 'rules');
+		$input_msg_box->set_attribute_str('class', 'rules');
 		
 		$input_li->append_tag_to_content($input_msg_box);
 		
@@ -193,7 +174,10 @@ MSG;
 	} 
 
 	public function
-		add_input_name($name, $label_text = null)
+		add_input_name(
+			$name,
+			$label_text = NULL
+		)
 	{
 		$input_tag = new HTMLTags_Input();
 		
@@ -208,7 +192,7 @@ MSG;
 		add_input_name_with_value(
 			$name,
 			$value,
-			$label_text = null
+			$label_text = NULL
 		)
 	{
 		$input_tag = new HTMLTags_Input();
@@ -227,6 +211,12 @@ MSG;
 		return $this->input_lis;
 	}
 	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the submit button.
+	 * ----------------------------------------
+	 */
+	
 	public function
 		set_submit_text($submit_text)
 	{
@@ -239,7 +229,10 @@ MSG;
 		if (isset($this->submit_text)) {
 			return $this->submit_text;
 		} else {
-			throw new Exception('Submit text must be set in HTMLTags_SimpleOLForm!');
+			throw
+				new Exception(
+					'Submit text must be set in HTMLTags_SimpleOLForm!'
+				);
 		}
 	}
 	
@@ -254,6 +247,12 @@ MSG;
 		
 		return $submit_button;
 	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the cancel button.
+	 * ----------------------------------------
+	 */
 	
 	public function
 		get_cancel_text()
@@ -277,16 +276,26 @@ MSG;
 		$this->cancel_location = $cancel_location;
 	}
 	
-	protected function
+	public function
 		get_cancel_location()
 	{
 		if (isset($this->cancel_location)) {
 			return $this->cancel_location;
 		} else {
-			throw new Exception('Cancel location must be set in HTMLTags_SimpleOLForm!');
+			throw
+				new Exception(
+					'Cancel location must be set in HTMLTags_SimpleOLForm!'
+				);
 		}
 	}
 	
+	/**
+	 * Returns the cancel button object.
+	 *
+	 * At the moment, this uses java script to move to the cancel location.
+	 *
+	 * Should just be a link.
+	 */
 	protected function
 		get_cancel_button()
 	{
@@ -306,14 +315,32 @@ MSG;
 		return $cancel_button;
 	}
 	
-	protected static function
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the field set
+	 * ----------------------------------------
+	 */
+	
+	protected function
+		get_field_set()
+	{
+		
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with putting the whole thing together.
+	 * ----------------------------------------
+	 */
+	
+	protected function
 		get_required_attributes()
 	{
-		$required_attributes = array();
+		$required_attributes = parent::get_required_attributes();
 		
 		$required_attributes[] = 'name';
 		$required_attributes[] = 'method';
-		$required_attributes[] = 'action';
+		#$required_attributes[] = 'action';
 		
 		return $required_attributes;
 	}
@@ -323,7 +350,9 @@ MSG;
 	{
 		$content = new HTMLTags_TagContent();
 		
-		# The field set.
+		/*
+		 * The field set.
+		 */
 		$field_set = new HTMLTags_FieldSet();
 		
 		$field_set->append_tag_to_content($this->get_legend());
@@ -344,53 +373,66 @@ MSG;
 		
 		$content->append_tag($field_set);
 		
+		/*
+		 * The hidden inputs.
+		 */
+		
 		foreach ($this->get_hidden_inputs() as $hidden_input) {
 			$content->append_tag($hidden_input);
 		}
 		
-		$submit_buttons_div = new HTMLTags_Div();
-			$submit_buttons_div->set_attribute_str('class', 'submit_buttons_div');
-			
-			$submit_buttons_div->append_tag_to_content($this->get_submit_button());
+		/*
+		 * The buttons
+		 */
 		
-			$submit_buttons_div->append_tag_to_content($this->get_cancel_button());
+		$submit_buttons_div = new HTMLTags_Div();
+		$submit_buttons_div->set_attribute_str(
+			'class',
+			'submit_buttons_div'
+		);
+		
+		$submit_buttons_div
+			->append_tag_to_content($this->get_submit_button());
+		
+		$submit_buttons_div
+			->append_tag_to_content($this->get_cancel_button());
 		
 		$content->append_tag($submit_buttons_div);
-		# The content
+		
 		return $content;
 	}
 	
-	public function
-		get_as_string()
-	{
-		$string = '';
-		
-		$string .= $this->get_opening_tag();
-		$content = $this->get_content();
-		$string .= $content->get_as_string();
-		$string .= $this->get_closing_tag();
-		
-		#$script = new HTMLTags_Script();
-		#
-		#$script->set_attribute_str('type', 'text/javascript');
-		#
-		#$name_attribute = $this->get_attribute('name');
-		#
-		#$onload = "document.";
-		#
-		#$onload .= $name_attribute->get_value();
-		#
-		#$onload .= '.';
-		#
-		#$onload .= $this->first_input_name;
-		#
-		#$onload .= ".focus();";
-		#
-		#$script->append_str_to_content($onload);
-		#
-		#$string .= $script->get_as_string();
-		
-		return $string;
-	}
+	#public function
+	#	get_as_string()
+	#{
+	#	$string = '';
+	#	
+	#	$string .= $this->get_opening_tag();
+	#	$content = $this->get_content();
+	#	$string .= $content->get_as_string();
+	#	$string .= $this->get_closing_tag();
+	#	
+	#	#$script = new HTMLTags_Script();
+	#	#
+	#	#$script->set_attribute_str('type', 'text/javascript');
+	#	#
+	#	#$name_attribute = $this->get_attribute('name');
+	#	#
+	#	#$onload = "document.";
+	#	#
+	#	#$onload .= $name_attribute->get_value();
+	#	#
+	#	#$onload .= '.';
+	#	#
+	#	#$onload .= $this->first_input_name;
+	#	#
+	#	#$onload .= ".focus();";
+	#	#
+	#	#$script->append_str_to_content($onload);
+	#	#
+	#	#$string .= $script->get_as_string();
+	#	
+	#	return $string;
+	#}
 }
 ?>

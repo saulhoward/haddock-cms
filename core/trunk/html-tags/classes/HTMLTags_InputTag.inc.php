@@ -1,12 +1,20 @@
 <?php
 /**
- * HTMLTags_Input
+ * HTMLTags_InputTag
  *
- * RFI & SANH 2006-11-27
+ * @copyright 2006-11-27, RFI
  */
 
-interface HTMLTags_InputTag
+/**
+ * E.g.
+ *	- input
+ *	- textarea
+ *	- select
+ */
+interface
+	HTMLTags_InputTag
 {
-    public function set_value($value);
+	public function
+		set_value($value);
 }
 ?>
