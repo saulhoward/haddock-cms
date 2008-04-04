@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-03-28
+ * Last Modified: 2008-04-04
  */
 
 function __autoload($class_name)
@@ -625,6 +625,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/DB.inc.php';
 			break;
 
+		case('DBPages_AdminHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/helpers/DBPages_AdminHelper.inc.php';
+			break;
+
 		case('DBPages_ConfigManager'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_ConfigManager.inc.php';
 			break;
@@ -663,6 +667,10 @@ function __autoload($class_name)
 
 		case('DBPages_PageRenderer'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/renderers/DBPages_PageRenderer.inc.php';
+			break;
+
+		case('DBPages_PageSectionNotFoundException'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/exceptions/DBPages_PageSectionNotFoundException.inc.php';
 			break;
 
 		case('DBPages_PCROFactory'): 
@@ -1025,8 +1033,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Form.inc.php';
 			break;
 
+		case('HTMLTags_FormActionAttribute'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_FormActionAttribute.inc.php';
+			break;
+
+		case('HTMLTags_FormWithInputs'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_FormWithInputs.inc.php';
+			break;
+
 		case('HTMLTags_Heading'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Heading.inc.php';
+			break;
+
+		case('HTMLTags_HiddenInput'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_HiddenInput.inc.php';
 			break;
 
 		case('HTMLTags_HR'): 
@@ -1131,6 +1151,10 @@ function __autoload($class_name)
 
 		case('HTMLTags_SelectFactory'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/factories/HTMLTags_SelectFactory.inc.php';
+			break;
+
+		case('HTMLTags_SimpleForm'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_SimpleForm.inc.php';
 			break;
 
 		case('HTMLTags_SimpleOLForm'): 
