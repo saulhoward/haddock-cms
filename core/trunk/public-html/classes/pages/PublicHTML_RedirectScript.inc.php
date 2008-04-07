@@ -2,7 +2,7 @@
 /**
  * PublicHTML_RedirectScript
  * 
- * @copyright RFI 2007-12-18
+ * @copyright 2007-12-18, RFI
  */
 
 abstract class
@@ -10,7 +10,7 @@ abstract class
 extends
 	PublicHTML_HaddockHTTPResponse
 {
-	private $return_to = NULL;
+	private $return_to_url = NULL;
 	
 	public function
 		run()
@@ -34,34 +34,72 @@ extends
 	abstract protected function
 		do_actions();
 		
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with redirecting the browser after the code has run.
+	 * ----------------------------------------
+	 */
+	
 	protected function
-		set_return_to($return_to)
+		get_return_to_url()
 	{
-		$this->return_to = $return_to;
+		if (!isset($this->return_to_url)) {
+			if (isset($_GET['return_to'])) {
+				$this->return_to_url
+					= HTMLTags_URL
+						::parse_and_make_url($_GET['return_to']);
+			} else {
+				#$return_to = $this->get_current_url_file_str();
+				$this->return_to_url
+					= HTMLTags_URL
+						::parse_and_make_url('/');
+			}
+		}
+		
+		return $this->return_to_url;
 	}
 	
 	protected function
-		set_return_to_url(HTMLTags_URL $return_to_url)
+		set_return_to($return_to)
 	{
-		$this->set_return_to($return_to_url->get_as_string());
+		#$this->return_to_url = $return_to;
+		
+		$this->set_return_to_url(
+			HTMLTags_URL::parse_and_make_url($return_to)
+		);
+	}
+	
+	protected function
+		set_return_to_url(
+			HTMLTags_URL $return_to_url
+		)
+	{
+		#$this->set_return_to($return_to_url->get_as_string());
+		
+		$this->return_to_url = $return_to_url;
 	}
 	
 	protected function
 		redirect_to_return_to()
 	{
-		if (isset($this->return_to)) {
-			$return_to = $this->return_to;
-		} elseif (isset($_GET['return_to'])) {
-			$return_to = $_GET['return_to'];
-		} else {
-			$return_to = $this->get_current_url_file_str();
-		}
-		
-		#echo $return_to;
+		#if (isset($this->return_to)) {
+		#	$return_to = $this->return_to;
+		#} elseif (isset($_GET['return_to'])) {
+		#	$return_to = $_GET['return_to'];
+		#} else {
+		#	$return_to = $this->get_current_url_file_str();
+		#}
+		#
+		##echo $return_to;
+		##exit;
+		#
+		#header("Location: $return_to");
 		#exit;
 		
-		header("Location: $return_to");
-		exit;
+		$return_to_url = $this->get_return_to_url();
+		
+		PublicHTML_RedirectionHelper::redirect_to_url($return_to_url);
 	}
 }
 ?>

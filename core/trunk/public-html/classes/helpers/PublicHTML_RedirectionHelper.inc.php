@@ -18,6 +18,12 @@ class
 	{
 		$url = new HTMLTags_URL($local_part);
 		
+		self::redirect_to_url($url);
+	}
+	
+	public static function
+		redirect_to_url(HTMLTags_URL $url)
+	{
 		header('Location: ' . $url->get_as_string());
 		exit;
 	}
