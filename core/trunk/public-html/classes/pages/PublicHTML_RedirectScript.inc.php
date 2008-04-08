@@ -51,9 +51,16 @@ extends
 						::parse_and_make_url($_GET['return_to']);
 			} else {
 				#$return_to = $this->get_current_url_file_str();
-				$this->return_to_url
-					= HTMLTags_URL
-						::parse_and_make_url('/');
+				
+				if (isset($_SERVER['HTTP_REFERER'])) {
+					$this->return_to_url
+						= HTMLTags_URL
+							::parse_and_make_url($_SERVER['HTTP_REFERER']);
+				} else {
+					$this->return_to_url
+						= HTMLTags_URL
+							::parse_and_make_url('/');
+				}
 			}
 		}
 		

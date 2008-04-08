@@ -2,14 +2,14 @@
 /**
  * InputValidation_InvalidInputException
  *
- * @copyright Clear Line Web Design, 2007-03-02
+ * @copyright 2007-03-02, RFI
  */
 
 class
-    InputValidation_InvalidInputException
+	InputValidation_InvalidInputException
 extends
-    Exception
+	Exception
 {
-    
+	
 }
 ?>
