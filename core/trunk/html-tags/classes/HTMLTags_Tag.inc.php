@@ -18,11 +18,17 @@ abstract class
 	
 	private $attributes;
 	
+	/*
+	 * A HTMLTags_Script object that goes after the tag.
+	 */
+	private $post_script_tag;
+	
 	protected function
 		__construct($name)
 	{
 		$this->name = $name;
 		$this->attributes = array();
+		$this->post_script_tag = NULL;
 	}
 	
 	public final function
@@ -174,6 +180,18 @@ abstract class
 	
 	/*
 	 * ----------------------------------------
+	 * For convenience with common attributes.
+	 * ----------------------------------------
+	 */
+	
+	public function
+		set_id($id)
+	{
+		$this->set_attribute_str('id', $id);
+	}
+	
+	/*
+	 * ----------------------------------------
 	 * Functions to do with surrounding the tag with comments.
 	 * ----------------------------------------
 	 */
@@ -192,12 +210,54 @@ abstract class
 	
 	/*
 	 * ----------------------------------------
+	 * Functions to do with adding a Script tag after this tag.
+	 * ----------------------------------------
+	 */
+	
+	public function
+		set_post_script_tag(
+			HTMLTags_Script $post_script_tag
+		)
+	{
+		$this->post_script_tag = $post_script_tag;
+	}
+	
+	public function
+		get_post_script_tag()
+	{
+		return $this->post_script_tag;
+	}
+	
+	/*
+	 * ----------------------------------------
 	 * Functions to do with putting the whole thing together.
 	 * ----------------------------------------
 	 */
 	
+	#abstract public function
+	#	get_as_string();
+	
 	abstract public function
-		get_as_string();
+		get_tag_string();
+	
+	public function
+		get_as_string()
+	{
+		$str = '';
+		
+		$str .= $this->get_pre_opening_tag_comment();
+		
+		$str .= $this->get_tag_string();
+		
+		$str .= $this->get_post_closing_tag_comment();
+		
+		$post_script_tag = $this->get_post_script_tag();
+		if (isset($post_script_tag)) {
+			$str .= $post_script_tag->get_as_string();
+		}
+		
+		return $str;
+	}
 	
 	public function
 		__toString()

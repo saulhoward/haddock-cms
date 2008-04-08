@@ -119,7 +119,7 @@ MSG;
 			$name,
 			HTMLTags_InputTag $input_tag,
 			$label_text = NULL,
-			$post_content = ''
+			$post_content = NULL
 		)
 	{
 		#echo "In HTMLTags_SimpleOLForm::add_input_tag(...)\n";
@@ -150,8 +150,12 @@ MSG;
 		
 		$input_li->append_tag_to_content($input_tag);
 		
-		if (strlen($post_content) > 0) {
-			$input_li->append_str_to_content($post_content);
+		if (isset($post_content)) {
+			#print_r($post_content);
+			
+			$input_li->append($post_content);
+		#} else {
+		#	echo "No post_content!\n";
 		}
 		
 		$input_msg_box = new HTMLTags_Span();
@@ -176,7 +180,8 @@ MSG;
 	public function
 		add_input_name(
 			$name,
-			$label_text = NULL
+			$label_text = NULL,
+			$post_content = NULL
 		)
 	{
 		$input_tag = new HTMLTags_Input();
@@ -185,14 +190,20 @@ MSG;
 		$input_tag->set_attribute_str('id', $name);
 		$input_tag->set_attribute_str('name', $name);
 		
-		$this->add_input_tag($name, $input_tag, $label_text);
+		$this->add_input_tag(
+			$name,
+			$input_tag,
+			$label_text,
+			$post_content
+		);
 	}
 	
 	public function
 		add_input_name_with_value(
 			$name,
 			$value,
-			$label_text = NULL
+			$label_text = NULL,
+			$post_content = NULL
 		)
 	{
 		$input_tag = new HTMLTags_Input();
@@ -202,7 +213,12 @@ MSG;
 		$input_tag->set_attribute_str('name', $name);
 		$input_tag->set_attribute_str('value', $value);
 		
-		$this->add_input_tag($name, $input_tag, $label_text);
+		$this->add_input_tag(
+			$name,
+			$input_tag,
+			$label_text,
+			$post_content
+		);
 	}
 	
 	protected function

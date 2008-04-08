@@ -85,23 +85,25 @@ extends
 	}
 	
 	public function
-		get_as_string()
+		get_tag_string()
 	{
 		$string = '';
 		
-		$string .= $this->get_pre_opening_tag_comment();
-		
-		# Open the tag.
+		/*
+		 * Open the tag.
+		 */
 		$string .= $this->get_opening_tag();
 		
-		# The content
+		/*
+		 * The content
+		 */
 		$content = $this->get_content();
 		$string .= $content->get_as_string();
 		
-		# Close the tag.
+		/*
+		 * Close the tag.
+		 */
 		$string .= $this->get_closing_tag();
-
-		$string .= $this->get_post_closing_tag_comment();
 		
 		return $string;
 	}

@@ -87,5 +87,10 @@ extends
 	#	$this->hidden_inputs[$name]->set_attribute_str('name', $name);
 	#	$this->hidden_inputs[$name]->set_attribute_str('value', $value);
 	#}
+	
+	/*
+	 * Functions to do with a JS script tag that goes after the form.
+	 * ----------------------------------------
+	 */
 }
 ?>

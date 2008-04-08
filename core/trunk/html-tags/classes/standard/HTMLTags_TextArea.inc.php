@@ -25,5 +25,15 @@ implements
 	{
 		$this->append_str_to_content($value);
 	}
+	
+	public function
+		set_dimensions(
+			$cols,
+			$rows
+		)
+	{
+		$this->set_attribute_str('cols', $cols);
+		$this->set_attribute_str('rows', $rows);
+	}
 }
 ?>

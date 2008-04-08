@@ -11,7 +11,7 @@ extends
 	HTMLTags_Tag
 {
 	public function
-		get_as_string()
+		get_tag_string()
 	{
 		$string = '';
 		
