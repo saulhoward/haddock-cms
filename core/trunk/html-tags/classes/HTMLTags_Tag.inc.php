@@ -190,6 +190,12 @@ abstract class
 		$this->set_attribute_str('id', $id);
 	}
 	
+	public function
+		set_class($class)
+	{
+		$this->set_attribute_str('class', $class);
+	}
+	
 	/*
 	 * ----------------------------------------
 	 * Functions to do with surrounding the tag with comments.
