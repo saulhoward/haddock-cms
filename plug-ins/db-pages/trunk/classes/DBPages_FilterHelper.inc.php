@@ -29,18 +29,90 @@ class
 	{
 		#echo $in; exit;
 		
-		$out = '';
+		$in = stripcslashes($in);
+		
+		$in = self::replace_double_square_brackets_with_link_to_db_page($in);
 		
 		$ps = HTMLTags_BLSeparatedPFactory::get_ps_from_str($in);
 		
 		#print_r($ps); exit;
+		
+		$out = '';
 		
 		foreach ($ps as $p) {
 			$out .= $p->get_as_string();
 			$out .= "\n";
 		}
 		
-		$out = stripcslashes($out);
+		#$out = stripcslashes($out);
+		
+		return $out;
+	}
+	
+	public static function
+		replace_double_square_brackets_with_link_to_db_page(
+			$in
+		)
+	{
+		#echo "\$in: \n\n$in\n";
+		
+		#$out = $in;
+		
+		#$out = '';
+		#
+		#$lines = Strings_Splitter::line_separated($in);
+		#
+		#foreach ($lines as $line) {
+		#	if ($line)
+		#	
+		#	$out .= "$line\n";
+		#}
+		#
+		#return $out;
+		
+		$parts = preg_split(
+			'/(?:(?<!\\\\)|(?<=\\\\\\\\))(\[\[[-\w]+(?:\|[- \w]+)?\]\])/',
+			$in,
+			-1,
+			PREG_SPLIT_DELIM_CAPTURE
+		);
+		
+		#echo "\nParts: \n\n";
+		#
+		#print_r($parts);
+		
+		$out = '';
+		
+		foreach ($parts as $part) {
+			if (
+				preg_match(
+					'/^\[\[([-\w]+)(?:\|([- \w]+))?\]\]$/',
+					$part,
+					$matches
+				)
+			) {
+				#print_r($matches);
+				
+				$page_name = $matches[1];
+				
+				if (isset($matches[2])) {
+					$title = $matches[2];
+				} else {
+					$title
+						= Formatting_ListOfWordsHelper
+							::capitalise_delimited_string(
+								$page_name,
+								'-'
+							);
+				}
+				
+				$out .= "<a href=\"/db-pages/$page_name.html\">$title</a>";
+			} else {
+				$out .= $part;				
+			}
+		}
+		
+		#echo "$out\n";
 		
 		return $out;
 	}
