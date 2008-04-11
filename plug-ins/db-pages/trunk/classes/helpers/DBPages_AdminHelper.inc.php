@@ -38,35 +38,57 @@ class
 	 * ----------------------------------------
 	 */
 	
-	public static function
-		get_link_p_to_add_new_section_admin_page(
-			$page_name,
-			$section_name
+	private static function
+		get_link_a_to_admin_section(
+			$link_text,
+			HTMLTags_URL $href
+		)
+	{
+		$a = new HTMLTags_A($link_text);
+		
+		$a->set_href($href);
+		
+		$a->set_attribute_str('target', '_blank');
+		
+		return $a;
+	}
+	
+	private static function
+		get_link_p_to_admin_section(
+			HTMLTags_A $a
 		)
 	{
 		$p = new HTMLTags_P();
 		
 		$p->set_attribute_str('class', 'haddock_admin');
 		
-		$url = self
-			::get_add_new_section_admin_page_url(
-				$page_name,
-				$section_name
-			);
-		
-		$a = new HTMLTags_A(
-			self
-				::get_add_new_section_admin_page_link_text(
-					$page_name,
-					$section_name
-				)
-		);
-		
-		$a->set_href($url);
-		
 		$p->append($a);
 		
 		return $p;
+	}
+	
+	public static function
+		get_link_p_to_add_new_section_admin_page(
+			$page_name,
+			$section_name
+		)
+	{
+		return self
+			::get_link_p_to_admin_section(
+				self
+					::get_link_a_to_admin_section(
+						self
+							::get_add_new_section_admin_page_link_text(
+								$page_name,
+								$section_name
+							),
+						self
+							::get_add_new_section_admin_page_url(
+								$page_name,
+								$section_name
+							)
+					)
+				);
 	}
 	
 	public static function
@@ -75,29 +97,22 @@ class
 			$section_name
 		)
 	{
-		$p = new HTMLTags_P();
-		
-		$p->set_attribute_str('class', 'haddock_admin');
-		
-		$url = self
-			::get_edit_section_admin_page_url(
-				$page_name,
-				$section_name
-			);
-		
-		$a = new HTMLTags_A(
-			self
-				::get_edit_section_admin_page_link_text(
-					$page_name,
-					$section_name
-				)
-		);
-		
-		$a->set_href($url);
-		
-		$p->append($a);
-		
-		return $p;
+		return self
+			::get_link_p_to_admin_section(
+				self
+					::get_link_a_to_admin_section(
+						self
+							::get_edit_section_admin_page_link_text(
+								$page_name,
+								$section_name
+							),
+						self
+							::get_edit_section_admin_page_url(
+								$page_name,
+								$section_name
+							)
+					)
+				);
 	}
 	
 	/*
