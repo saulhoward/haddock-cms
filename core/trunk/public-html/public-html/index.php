@@ -61,7 +61,7 @@ require PROJECT_ROOT
 ob_start();
 
 if (isset($_GET['oo-page'])) {
-	try {
+	try {		
 		if (isset($_GET['page-class'])) {
 			$pcrc = new ReflectionClass($_GET['page-class']);
 			$pcro = $pcrc->newInstance();

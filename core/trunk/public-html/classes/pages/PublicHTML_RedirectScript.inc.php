@@ -106,7 +106,12 @@ extends
 		
 		$return_to_url = $this->get_return_to_url();
 		
-		PublicHTML_RedirectionHelper::redirect_to_url($return_to_url);
+		#print_r($return_to_url); exit;
+		
+		$return_to_url->make_absolute_for_current_server();
+		
+		PublicHTML_RedirectionHelper
+			::redirect_to_url($return_to_url);
 	}
 }
 ?>

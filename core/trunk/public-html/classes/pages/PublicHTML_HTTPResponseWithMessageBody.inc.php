@@ -1,4 +1,10 @@
 <?php
+/**
+ * PublicHTML_HTTPResponseWithMessageBody
+ *
+ * @copyright 2008-04-11, RFI
+ */
+
 abstract class
 	PublicHTML_HTTPResponseWithMessageBody
 extends

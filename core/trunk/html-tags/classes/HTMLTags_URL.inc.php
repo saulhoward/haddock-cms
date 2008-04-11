@@ -341,5 +341,62 @@ class
 		
 		return $url;
 	}
+	
+	/**
+	 * Makes a URL absolute for this server.
+	 *
+	 * If the remote part of the URL has already been set,
+	 * then an exception is thrown.
+	 */
+	public function
+		make_absolute_for_current_server()
+	{
+		#print_r($this);
+		
+		if ($this->has_remote_part()) {
+			throw new Exception('Attempt to make a URL absolute when the remote part has already been set!');
+		}
+		
+		/*
+		 * Set the scheme.
+		 */
+		if ($_SERVER['HTTPS']) {
+			$this->set_scheme('https');
+		} else {
+			$this->set_scheme('http');
+		}
+		
+		/*
+		 * Set the domain.
+		 */
+		if (isset($_SERVER['HTTP_HOST'])) {
+			$this->set_domain($_SERVER['HTTP_HOST']);
+		} else {
+			throw new Exception('Can\'t set the domain when HTTP_HOST is not set in superglobal!');
+		}
+		
+		/*
+		 * Set the port.
+		 */
+		if (
+			!(
+				(
+					$_SERVER['SERVER_PORT'] == 80
+				)
+				||
+				(
+					$_SERVER['HTTPS']
+					&&
+					($_SERVER['SERVER_PORT'] == 443)
+				)
+			)
+		) {
+			$this->set_port($_SERVER['SERVER_PORT']);
+		}
+		#
+		#print_r($this);
+		#
+		#exit;
+	}
 }
 ?>

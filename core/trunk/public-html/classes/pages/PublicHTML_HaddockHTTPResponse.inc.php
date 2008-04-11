@@ -20,6 +20,9 @@ class
 		send_http_headers()
 	{
 		session_start();
+		
+		#print_r($_SESSION); exit;
+		#echo session_id() . "\n"; exit;
 	}
 	
 	/**
