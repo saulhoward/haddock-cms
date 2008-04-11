@@ -26,7 +26,17 @@ class
 		)
 	{
 		try {
-			echo DBPages_SPoE::get_filtered_page_section($page_name, $section_name);
+			$filtered_page_section = DBPages_SPoE::get_filtered_page_section($page_name, $section_name);
+			
+			if (Admin_LogInHelper::is_logged_id()) {
+				DBPages_AdminHelper
+					::render_link_p_to_edit_section_admin_page(
+						$page_name,
+						$section_name
+					);
+			}
+			
+			echo $filtered_page_section;
 		} catch (DBPages_PageSectionNotFoundException $e) {
 			#print_r($e);
 			if (Admin_LogInHelper::is_logged_id()) {
