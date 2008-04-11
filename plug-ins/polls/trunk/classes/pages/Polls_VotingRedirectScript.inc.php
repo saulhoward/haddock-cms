@@ -1,4 +1,10 @@
 <?php
+/**
+ * Polls_VotingRedirectScript
+ *
+ * @copyright 2008-04-10, RFI
+ */
+
 class
 	Polls_VotingRedirectScript
 extends
