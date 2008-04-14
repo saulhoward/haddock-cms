@@ -2,7 +2,7 @@
 /**
  * DBPages_ManagePagesAdminPage
  *
- * @copyright RFI 2007-12-16
+ * @copyright 2007-12-16, RFI
  */
 
 class
