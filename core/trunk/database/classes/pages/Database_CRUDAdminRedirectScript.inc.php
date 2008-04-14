@@ -2,7 +2,7 @@
 /**
  * Database_CRUDAdminRedirectScript
  * 
- * @copyright RFI 2007-12-18
+ * @copyright 2007-12-18, RFI
  */
 
 abstract class
