@@ -49,6 +49,9 @@ class
 		return $out;
 	}
 	
+	/**
+	 * Makes links to other DB pages.
+	 */
 	public static function
 		replace_double_square_brackets_with_link_to_db_page(
 			$in
@@ -70,6 +73,9 @@ class
 		#
 		#return $out;
 		
+		/*
+		 * Split the string on all the square bracket links. 
+		 */
 		$parts = preg_split(
 			'/(?:(?<!\\\\)|(?<=\\\\\\\\))(\[\[[-\w]+(?:\|[- \w\'".]+)?\]\])/',
 			$in,
@@ -80,6 +86,10 @@ class
 		#echo "\nParts: \n\n";
 		#
 		#print_r($parts);
+		
+		/*
+		 * Make the appropriate stings into links.
+		 */
 		
 		$out = '';
 		
@@ -108,6 +118,19 @@ class
 				
 				$out .= "<a href=\"/db-pages/$page_name.html\">$title</a>";
 			} else {
+				
+				#echo "\$part: $part\n";
+				
+				/*
+				 * Remove any back slashes that were used to escape any
+				 * brackets.
+				 */
+				$part = preg_replace(
+					'/(?<!\\\\)\\\\(?=\[\[)/', 
+					'',
+					$part
+				);
+				
 				$out .= $part;				
 			}
 		}
