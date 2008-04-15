@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-04-04
+ * Last Modified: 2008-04-15
  */
 
 function __autoload($class_name)
@@ -977,12 +977,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_BR.inc.php';
 			break;
 
+		case('HTMLTags_Button'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Button.inc.php';
+			break;
+
 		case('HTMLTags_Caption'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Caption.inc.php';
 			break;
 
 		case('HTMLTags_Code'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Code.inc.php';
+			break;
+
+		case('HTMLTags_ColGroup'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_ColGroup.inc.php';
 			break;
 
 		case('HTMLTags_ConfirmationP'): 
