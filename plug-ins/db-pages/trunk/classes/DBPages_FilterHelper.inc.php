@@ -77,7 +77,7 @@ class
 		 * Split the string on all the square bracket links. 
 		 */
 		$parts = preg_split(
-			'/(?:(?<!\\\\)|(?<=\\\\\\\\))(\[\[[-\w]+(?:\|[- \w\'".]+)?\]\])/',
+			'/(?:(?<!\\\\)|(?<=\\\\\\\\))(\[\[[-\w]+(?:\|[- \w\'".\/]+)?\]\])/',
 			$in,
 			-1,
 			PREG_SPLIT_DELIM_CAPTURE
@@ -96,7 +96,7 @@ class
 		foreach ($parts as $part) {
 			if (
 				preg_match(
-					'/^\[\[([-\w]+)(?:\|([- \w\'".]+))?\]\]$/',
+					'/^\[\[([-\w]+)(?:\|([- \w\'".\/]+))?\]\]$/',
 					$part,
 					$matches
 				)
