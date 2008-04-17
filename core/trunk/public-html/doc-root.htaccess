@@ -1,27 +1,44 @@
 ## .htaccess fragment for the public-html core module.
 ##
-## © Clear Line Web Design, 2007-08-03
+## © 2007-08-03, RFI
 
-RewriteRule ^/?$ /haddock/public-html/public-html/
-#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
+<IfModule rewrite>
+	RewriteRule ^/?$ /haddock/public-html/public-html/
+	#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^styles/(.*) /project-specific/public-html/styles/$1
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^scripts/(.*) /project-specific/public-html/scripts/$1
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^images/(.*) /project-specific/public-html/images/$1
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^files/(.*) /project-specific/public-html/files/$1
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([^/]*)\.htm$ $1.html
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^favicon.ico /project-specific/public-html/images/favicon.ico
+	
+	#RewriteRule ^\?(.+)$ /haddock/public-html/public-html/index.php?$1
+</IfModule>
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^styles/(.*) /project-specific/public-html/styles/$1
+# Back up using mod_alias
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^scripts/(.*) /project-specific/public-html/scripts/$1
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^images/(.*) /project-specific/public-html/images/$1
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^files/(.*) /project-specific/public-html/files/$1
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/]*)\.htm$ $1.html
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^favicon.ico /project-specific/public-html/images/favicon.ico
-
-#RewriteRule ^\?(.+)$ /haddock/public-html/public-html/index.php?$1
-
+<IfModule !rewrite>
+	RedirectMatch temp ^/?$ /haddock/public-html/public-html/index.php
+	
+	RedirectMatch temp ^/styles/(.*) /project-specific/public-html/styles/$1
+	
+	RedirectMatch temp ^/scripts/(.*) /project-specific/public-html/scripts/$1
+	
+	RedirectMatch temp ^/images/(.*) /project-specific/public-html/images/$1
+	
+	RedirectMatch temp ^/files/(.*) /project-specific/public-html/files/$1
+	
+	RedirectMatch temp ^/([^/]*)\.htm$ $1.html
+</IfModule>

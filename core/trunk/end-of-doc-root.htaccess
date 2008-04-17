@@ -1,16 +1,30 @@
 ## The .htaccess fragment that finishes the .htaccess file
 ## for the DOCUMENT_ROOT.
 ##
-## © Clear Line Web Design, 2007-08-03
+## © 2007-08-03, RFI
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^hpi/([a-z-]+)/([a-z-]+).([a-z]+)$ /?section=plug-ins&module=$1&page=$2&type=$3
+<IfModule rewrite>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hpi/([a-z-]+)/([a-z-]+).([a-z]+)$ /?section=plug-ins&module=$1&page=$2&type=$3
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hc/([a-z-]+)/([a-z-]+).([a-z]+)$ /?section=haddock&module=$1&page=$2&type=$3
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([a-z-]+)\.([a-z]+)$ /?section=project-specific&page=$1&type=$2
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([A-Z0-9][a-zA-Z0-9]*_[A-Z0-9][a-zA-Z0-9]*)$ /?oo-page=1&page-class=$1
+</IfModule>
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^hc/([a-z-]+)/([a-z-]+).([a-z]+)$ /?section=haddock&module=$1&page=$2&type=$3
+# Back up using mod_alias
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([a-z-]+)\.([a-z]+)$ /?section=project-specific&page=$1&type=$2
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([A-Z0-9][a-zA-Z0-9]*_[A-Z0-9][a-zA-Z0-9]*)$ /?oo-page=1&page-class=$1
+<IfModule !rewrite>
+	RedirectMatch temp ^/hpi/([a-z-]+)/([a-z-]+).([a-z]+)$ /haddock/public-html/public-html/index.php?section=plug-ins\&module=$1\&page=$2\&type=$3
+	
+	RedirectMatch temp ^/hc/([a-z-]+)/([a-z-]+).([a-z]+)$ /haddock/public-html/public-html/index.php?section=haddock\&module=$1\&page=$2\&type=$3
+	
+	RedirectMatch temp ^/([a-z-]+)\.([a-z]+)$ /haddock/public-html/public-html/index.php?section=project-specific\&page=$1\&type=$2
+	
+	RedirectMatch temp ^/([A-Z0-9][a-zA-Z0-9]*_[A-Z0-9][a-zA-Z0-9]*)$ /haddock/public-html/public-html/index.php?oo-page=1\&page-class=$1
+</IfModule>
