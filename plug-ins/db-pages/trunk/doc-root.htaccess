@@ -1,7 +1,14 @@
 # Fragment of the doc root .htaccess file for the db pages module.
-# @copyright RFI, 2008-02-24
+#
+# @copyright 2008-02-24, RFI
 
-RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^db-pages/([a-z-]*)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
-RewriteRule ^db-pages/([-\w]+)\.html /?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
+<IfModule rewrite>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^db-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1&pcro-factory=DBPages_PCROFactory&page=$1
+</IfModule>
 
+# Back up using mod_alias
+
+<IfModule !rewrite>
+	RedirectMatch temp ^/db-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1\&pcro-factory=DBPages_PCROFactory\&page=$1
+</IfModule>
