@@ -2,7 +2,7 @@
 ##
 ## © 2007-08-03, RFI
 
-<IfModule rewrite>
+<IfModule mod_rewrite.c>
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^admin.html /hc/admin/login.html
 	
@@ -22,7 +22,7 @@
 
 # Back up using mod_alias
 
-<IfModule !rewrite>
+<IfModule !mod_rewrite.c>
 	RedirectMatch temp ^/admin.html /hc/admin/login.html
 	
 	RedirectMatch temp ^/admin/hc/([a-z-]+)/([a-z-]+).([a-z-]+)$ /haddock/public-html/public-html/index.php?section=haddock\&module=admin\&page=admin-includer\&type=$3\&admin-section=haddock\&admin-module=$1\&admin-page=$2
@@ -34,3 +34,4 @@
 	# Shouldn't this be deprecated and removed?
 	RedirectMatch temp ^/admin/?(.*) /haddock/admin/public-html/$1
 </IfModule>
+

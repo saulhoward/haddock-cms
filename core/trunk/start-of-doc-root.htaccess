@@ -3,6 +3,7 @@
 ##
 ## © 2007-08-03, RFI
 
-<IfModule rewrite>
+<IfModule mod_rewrite.c>
 	RewriteEngine on
 </IfModule>
+

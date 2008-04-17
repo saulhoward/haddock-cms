@@ -2,8 +2,10 @@
 ##
 ## © 2007-08-03, RFI
 
-<IfModule rewrite>
-	RewriteRule ^/?$ /haddock/public-html/public-html/
+<IfModule mod_rewrite.c>
+	#RewriteRule ^/?$ /haddock/public-html/public-html/
+	RewriteRule ^/?$ /haddock/public-html/public-html/index.php
+	
 	#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
 	
 	RewriteCond %{REQUEST_FILENAME} !-f
@@ -29,7 +31,7 @@
 
 # Back up using mod_alias
 
-<IfModule !rewrite>
+<IfModule !mod_rewrite.c>
 	RedirectMatch temp ^/?$ /haddock/public-html/public-html/index.php
 	
 	RedirectMatch temp ^/styles/(.*) /project-specific/public-html/styles/$1
@@ -42,3 +44,4 @@
 	
 	RedirectMatch temp ^/([^/]*)\.htm$ $1.html
 </IfModule>
+
