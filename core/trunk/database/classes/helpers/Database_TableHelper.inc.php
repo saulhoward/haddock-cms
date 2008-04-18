@@ -21,7 +21,8 @@ class
 			$id_field_name = 'id'
 		)
 	{
-		$hash = array();
+		#$hash = array();
+		$hash = NULL;
 		
 		$dbh = DB::m();
 		
