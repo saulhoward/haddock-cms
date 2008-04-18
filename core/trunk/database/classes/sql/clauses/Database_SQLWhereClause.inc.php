@@ -68,6 +68,23 @@ extends
 		);
 	}
 	
+	public function
+		add_exclusively_past_column(
+			$field_name,
+			$table_name = NULL
+		)
+	{
+		$this->add_condition(
+			new Database_SQLWhereClauseConditionSubClause(
+				'NOW()',
+				$field_name,
+				$table_name,
+				'<',
+				'AND'
+			)
+		);
+	}
+	
     public function
 		get_as_string()
 	{
