@@ -1,4 +1,10 @@
 <?php
+/**
+ * Database_TableHelper
+ *
+ * @copyright 2008-04-17, RFI
+ */
+
 class
 	Database_TableHelper
 {

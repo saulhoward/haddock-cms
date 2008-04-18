@@ -2,7 +2,7 @@
 /**
  * HTMLTags_ConfirmationP
  *
- * @copyright Clear Line Web Design, 2007-08-30
+ * @copyright 2007-08-30, RFI
  */
 
 class
@@ -40,27 +40,23 @@ extends
 		$content = new HTMLTags_TagContent();
 		
 		$content->append_str($this->question);
-
+		
 		$content->append_tag(new HTMLTags_BR());
-
+		
 		$action_a = new HTMLTags_A($this->yes_str);
-
+		
 		$action_a->set_href($this->action);
 		
 		$content->append_tag($action_a);
-
-		$content->append_str('&nbsp;');
-
-		$cancel_a = new HTMLTags_A($this->no_str);
-
-                $cancel_a->set_href($this->cancel);
-
-                $content->append_tag($cancel_a);
 		
-#		echo 'print_r($content): ' . "\n";
-#		print_r($content);
-#		exit;
-
+		$content->append_str('&nbsp;');
+		
+		$cancel_a = new HTMLTags_A($this->no_str);
+		
+		$cancel_a->set_href($this->cancel);
+		
+		$content->append_tag($cancel_a);
+		
 		return $content;
 	}
 }
