@@ -16,13 +16,16 @@ class
 	public static function
 		redirect_to_absolute_location($local_part)
 	{
-		$url = new HTMLTags_URL($local_part);
+		#$url = new HTMLTags_URL($local_part);
+		$url = HTMLTags_URL::parse_and_make_url($local_part);
 		
 		self::redirect_to_url($url);
 	}
 	
 	public static function
-		redirect_to_url(HTMLTags_URL $url)
+		redirect_to_url(
+			HTMLTags_URL $url
+		)
 	{
 		#throw new Exception('Testing exception handling');
 	

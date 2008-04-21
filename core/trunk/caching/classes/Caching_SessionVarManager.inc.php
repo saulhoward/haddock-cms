@@ -2,7 +2,7 @@
 /**
  * Caching_SessionVarManager
  *
- * @copyright Clear Line Web Design, 2007-08-26
+ * @copyright 2007-08-26, RFI
  */
 
 /**

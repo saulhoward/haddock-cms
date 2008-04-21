@@ -49,5 +49,19 @@ class
 		
 		return PublicHTML_URLFactory::make_local_url($page_class, $get_variables);
 	}
+	
+	public static function
+		get_current_url()
+	{
+		$url
+			= HTMLTags_URL
+				::parse_and_make_url(
+					$_SERVER['REQUEST_URI']
+				);
+		
+		$url->make_absolute_for_current_server();
+		
+		return $url;
+	}
 }
 ?>
