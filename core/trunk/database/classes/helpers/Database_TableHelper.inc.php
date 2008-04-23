@@ -118,5 +118,13 @@ SQL;
 			return TRUE;
 		}
 	}
+	
+	public static function
+		empty_table($table_name)
+	{
+		$dbh = DB::m();
+		
+		mysql_query("TRUNCATE TABLE $table_name", $dbh);
+	}
 }
 ?>
