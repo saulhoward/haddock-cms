@@ -192,5 +192,14 @@ class
 		
 		return $disk_usage;
 	}
+	
+	public function
+		delete()
+	{
+		#echo __METHOD__ . "\n";
+		#echo $this->get_name() . "\n";
+		
+		unlink($this->get_name());
+	}
 }
 ?>
