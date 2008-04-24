@@ -126,5 +126,25 @@ SQL;
 		
 		mysql_query("TRUNCATE TABLE $table_name", $dbh);
 	}
+	
+	/**
+	 * Empties a space separated list of tables.
+	 *
+	 * The optional second argument changes the separator.
+	 */
+	public static function
+		empty_tables(
+			$table_names_str,
+			$separator = ' '
+		)
+	{
+		foreach (
+			explode($separator, $table_names_str)
+			as
+			$table_name
+		) {
+			self::empty_table($table_name);
+		}
+	}
 }
 ?>
