@@ -2,7 +2,7 @@
 /**
  * HaddockProjectOrganisation_ConfigManager
  *
- * @copyright Clear Line Web Design, 2007-10-08
+ * @copyright 2007-10-08, RFI
  */
 
 /**
@@ -275,4 +275,3 @@ abstract class
 	}
 }
 ?>
-

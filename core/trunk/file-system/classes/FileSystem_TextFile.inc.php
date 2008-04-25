@@ -5,13 +5,6 @@
  * @copyright 2006-09-18, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-#require_once PROJECT_ROOT
-#    . '/haddock/file-system/classes/'
-#    . 'FileSystem_File.inc.php';
-
 /**
  * Represents a text file.
  */

@@ -2,7 +2,7 @@
 /**
  * HaddockProjectOrganisation_ConfigDBManager
  * 
- * @copyright Clear Line Web Design, 2007-10-17
+ * @copyright 2007-10-17, RFI
  */
 
 /**

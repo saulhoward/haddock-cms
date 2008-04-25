@@ -2,12 +2,8 @@
 /**
  * HaddockProjectOrganisation_ModuleConfigException
  *
- * @copyright Clear Line Web Design, 2007-10-02
+ * @copyright 2007-10-02, RFI
  */
-
-require_once PROJECT_ROOT
-	. '/haddock/error-handling/classes/exceptions/'
-	. 'ErrorHandling_SprintfException.inc.php';
 
 class
 	HaddockProjectOrganisation_ModuleConfigException
