@@ -14,18 +14,9 @@ class
 			$length = 50,
 			$ellipsis = '&#0133'
 		)
-	{
-		#$str = stripcslashes($str);
-		#
-		#if (strlen($str) > $length) {
-		#	$str = substr($str, 0, $length);
-		#	$str .= $ellipsis;
-		#}
-		#
-		#return $str;
-		
+	{	
 		return Strings_FilteringHelper
-			::truncate_with_ellipsis(
+			::truncate_with_ellipsis_and_convert_html_entities(
 				$str,
 				$length = 50,
 				$ellipsis = '&#0133'
