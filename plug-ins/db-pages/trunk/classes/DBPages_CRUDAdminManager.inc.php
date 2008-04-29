@@ -1,4 +1,9 @@
 <?php
+/**
+ * DBPages_CRUDAdminManager
+ *
+ * @copyright 2008-04-29, RFI
+ */
 
 class
 	DBPages_CRUDAdminManager

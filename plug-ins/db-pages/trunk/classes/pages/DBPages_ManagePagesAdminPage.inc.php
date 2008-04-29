@@ -75,7 +75,7 @@ extends
 			array(
 				'col_name' => 'text',
 				'sortable' => 'no',
-				'filter' => '$str = stripcslashes($str); $str = substr($str, 0, 50); $str = htmlentities($str); $str .= \'...\'; return $str;'
+				'filter' => 'return Strings_FilteringHelper::truncate_with_ellipsis_and_convert_html_entities($str);'
 			)
 		);
 	}
