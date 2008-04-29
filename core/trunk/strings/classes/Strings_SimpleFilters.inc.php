@@ -15,14 +15,21 @@ class
 			$ellipsis = '&#0133'
 		)
 	{
-		$str = stripcslashes($str);
+		#$str = stripcslashes($str);
+		#
+		#if (strlen($str) > $length) {
+		#	$str = substr($str, 0, $length);
+		#	$str .= $ellipsis;
+		#}
+		#
+		#return $str;
 		
-		if (strlen($str) > $length) {
-			$str = substr($str, 0, $length);
-			$str .= $ellipsis;
-		}
-		
-		return $str;
+		return Strings_FilteringHelper
+			::truncate_with_ellipsis(
+				$str,
+				$length = 50,
+				$ellipsis = '&#0133'
+			);
 	}
 }
 ?>
