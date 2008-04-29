@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-04-15
+ * Last Modified: 2008-04-29
  */
 
 function __autoload($class_name)
@@ -51,6 +51,10 @@ function __autoload($class_name)
 
 		case('Admin_NavigationXMLFile'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_NavigationXMLFile.inc.php';
+			break;
+
+		case('Admin_NXFPage'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_NXFPage.inc.php';
 			break;
 
 		case('Admin_PageDirectory'): 
@@ -117,6 +121,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_InputReader.inc.php';
 			break;
 
+		case('CLIScripts_LockFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_LockFile.inc.php';
+			break;
+
 		case('CLIScripts_ScriptDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptDirectory.inc.php';
 			break;
@@ -135,6 +143,10 @@ function __autoload($class_name)
 
 		case('CodeAnalysis_ExecutionTimer'): 
 			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/CodeAnalysis_ExecutionTimer.inc.php';
+			break;
+
+		case('Configuration_ConfigManagerHelper'): 
+			require_once PROJECT_ROOT . '/haddock/configuration/classes/helpers/Configuration_ConfigManagerHelper.inc.php';
 			break;
 
 		case('Database_AddConditionsToWhereClauseBehaviour'): 
@@ -323,6 +335,10 @@ function __autoload($class_name)
 
 		case('Database_ImagesTableRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/table-renderers/Database_ImagesTableRenderer.inc.php';
+			break;
+
+		case('Database_InputSanitationHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_InputSanitationHelper.inc.php';
 			break;
 
 		case('Database_IntField'): 
@@ -630,7 +646,7 @@ function __autoload($class_name)
 			break;
 
 		case('DBPages_ConfigManager'): 
-			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_ConfigManager.inc.php';
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/managers/config/DBPages_ConfigManager.inc.php';
 			break;
 
 		case('DBPages_ContentManager'): 
@@ -650,7 +666,7 @@ function __autoload($class_name)
 			break;
 
 		case('DBPages_HTMLPage'): 
-			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/pages/DBPages_HTMLPage.inc.php';
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/pages/html/DBPages_HTMLPage.inc.php';
 			break;
 
 		case('DBPages_ManagePagesAdminPage'): 
@@ -679,6 +695,10 @@ function __autoload($class_name)
 
 		case('DBPages_Section'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_Section.inc.php';
+			break;
+
+		case('DBPages_SectionsHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/helpers/DBPages_SectionsHelper.inc.php';
 			break;
 
 		case('DBPages_SPoE'): 
@@ -971,6 +991,10 @@ function __autoload($class_name)
 
 		case('HTMLTags_BLSeparatedPFactory'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/factories/HTMLTags_BLSeparatedPFactory.inc.php';
+			break;
+
+		case('HTMLTags_BLSeparatedPsRenderer'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/renderers/HTMLTags_BLSeparatedPsRenderer.inc.php';
 			break;
 
 		case('HTMLTags_BR'): 
@@ -1273,6 +1297,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/logging/classes/Logging_Logger.inc.php';
 			break;
 
+		case('Logging_LogsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/logging/classes/helpers/Logging_LogsHelper.inc.php';
+			break;
+
 		case('Logging_ServerLogsTable'): 
 			require_once PROJECT_ROOT . '/haddock/logging/classes/database/elements/table-subclasses/Logging_ServerLogsTable.inc.php';
 			break;
@@ -1527,6 +1555,10 @@ function __autoload($class_name)
 
 		case('Strings_Describer'): 
 			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_Describer.inc.php';
+			break;
+
+		case('Strings_FilteringHelper'): 
+			require_once PROJECT_ROOT . '/haddock/strings/classes/helpers/Strings_FilteringHelper.inc.php';
 			break;
 
 		case('Strings_SimpleFilters'): 
