@@ -1,7 +1,7 @@
 @ECHO OFF
 REM BAT wrapper script for the reset-logs script.
 
-REM Auto-generated on 2008-04-24.
+REM Auto-generated on 2008-04-30.
 REM DO NOT EDIT!
 
 @ECHO ON
