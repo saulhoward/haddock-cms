@@ -14,5 +14,7 @@ ol#trace-list li {
 	padding: 1em;
 	
 	text-align: left;
+	
+	font-family: monospace;
 }
 
