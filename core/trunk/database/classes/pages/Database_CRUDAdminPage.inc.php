@@ -232,6 +232,9 @@ extends
 	 * ----------------------------------------
 	 */
 	
+	/**
+	 * The title of the page.
+	 */
 	protected function
 		get_body_div_header_heading_content()
 	{
@@ -432,6 +435,9 @@ extends
 	 * Renders a UL that contains links to other pages
 	 * to do with this one.
 	 * e.g. the 'delete_everything' version of this page.
+	 *
+	 * If you don't want your users to be able to change the model,
+	 * override this method but leave the body empty.
 	 */
 	protected function
 		render_other_pages_ul()
@@ -810,6 +816,9 @@ extends
 	 * 
 	 * See <code>make_action_td_for_item</code> for an explanation of how that
 	 * code works and what args it takes.
+	 *
+	 * If you don't want your users to be able to edit or delete items of the model,
+	 * then override this function and return an empty array.
 	 */
 	protected function
 		get_data_table_actions()
