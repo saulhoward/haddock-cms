@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-04-29
+ * Last Modified: 2008-05-01
  */
 
 function __autoload($class_name)
@@ -1377,6 +1377,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/renderers/Navigation_1DULRenderer.inc.php';
 			break;
 
+		case('Navigation_HTMLListsHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/helpers/Navigation_HTMLListsHelper.inc.php';
+			break;
+
 		case('Navigation_LinkNode'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/Navigation_LinkNode.inc.php';
 			break;
@@ -1415,6 +1419,10 @@ function __autoload($class_name)
 
 		case('Navigation_NodesCRUDManager'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/Navigation_NodesCRUDManager.inc.php';
+			break;
+
+		case('Navigation_NodesHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/helpers/Navigation_NodesHelper.inc.php';
 			break;
 
 		case('Navigation_SPoE'): 

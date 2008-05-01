@@ -1,4 +1,10 @@
 <?php
+/**
+ * HaddockCMS_HTMLPage
+ *
+ * @copyright 2008-05-01, RFI
+ */
+
 abstract class
 	HaddockCMS_HTMLPage
 extends
@@ -42,9 +48,10 @@ extends
 	public function
 		render_head_script_javascript()
 	{
-?>
-<script type="text/javascript" src="/scripts/rounded-corners.js"></script>
-<?php
+		HTMLTags_ScriptRenderer
+			::render_external_js_script(
+				'/scripts/rounded-corners.js'
+			);
 	}
 	
 	public function
@@ -56,9 +63,11 @@ extends
 		
 		$this->render_body_div_header();
 		
-		$this->render_body_div_navigation();
+		#$this->render_body_div_features_navigation();
 		
 		$this->render_body_div_content();
+		
+		$this->render_body_div_secondary_navigation();
 		
 		$this->render_body_div_footer();
 		
@@ -73,6 +82,12 @@ extends
 		$div_header = parent::get_body_div_header();
 		
 		$div_header->set_attribute_str('class', 'bw-rc');
+		
+		$features_navigation_div
+			= $this
+				->get_features_navigation_div();
+		
+		$div_header->append($features_navigation_div);
 		
 		return $div_header;
 	}
@@ -91,15 +106,50 @@ extends
 	}
 	
 	public function
-		render_body_div_navigation()
+		render_body_div_features_navigation()
 	{
 		#echo __METHOD__; exit;
 		
-		echo "<div id=\"navigation\" class=\"bw-rc\">\n";
+		//echo "<div id=\"features_navigation\" class=\"bw-rc\">\n";
+		//
+		//#Navigation_SPoE::render_tree('Left Nav');
+		//
+		//Navigation_1DULRenderer::render_ul('features');
+		//
+		//echo "</div>\n";
 		
-		#Navigation_SPoE::render_tree('Left Nav');
+		$div = $this->get_features_navigation_div();
 		
-		Navigation_1DULRenderer::render_ul('Left Nav');
+		echo $div->get_as_string();
+	}
+	
+	public function
+		get_features_navigation_div()
+	{
+		$div = new HTMLTags_Div();
+		
+		$div->set_id('features_navigation');
+		
+		$ul = Navigation_HTMLListsHelper
+				::get_1d_ul(
+					'features'
+				);
+		
+		$div->append($ul);
+		
+		return $div;
+	}
+	
+	public function
+		render_body_div_secondary_navigation()
+	{
+		#echo __METHOD__; exit;
+		
+		echo "<div id=\"secondary_navigation\" class=\"bw-rc\">\n";
+		
+		#Navigation_SPoE::render_tree('secondary');
+		
+		Navigation_1DULRenderer::render_ul('secondary');
 		
 		echo "</div>\n";
 	}

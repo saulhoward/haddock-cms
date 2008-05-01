@@ -1,5 +1,5 @@
 /**
- * CSS for Haddock CMS Web Site.
+ * CSS for laying out the major divs of the Haddock CMS Web Site.
  *
  * @copyright 2008-02-24, RFI
  */
@@ -13,6 +13,8 @@ body {
 	
 	background-image: url('/images/background-gradient.png');
 	background-repeat: repeat-x;
+	
+	/*text-align: center;*/
 }
 
 div {
@@ -22,44 +24,67 @@ div {
 }
 
 div#container {
-	width: 50em;
+	width: 40em;
 	
 	padding-top: 30px;
 	
 	padding-left: 30px;
 	padding-right: 30px;
 	
-	clear: both;
+	/*clear: both;*/
+	
+	margin: 0 auto;
 }
 
 div#header {
-	clear: right;
+	/*clear: right;*/
 }
 
 div#navigation {
-	width: 10em;
+	/*width: 10em;*/
 	
-	float: left;
+	/*float: left;*/
+}
+
+div#features_navigation ul.navigation {
+	text-align: right;
+}
+
+div#secondary_navigation ul.navigation {
+	text-align: center;
 }
 
 ul.navigation li {
 	list-style: none;
-}
-
-div#content {
-	width: 40em;
 	
-	float: left;
+	/*float: left;*/
 	
 	display: inline;
 	
-	clear: none;
+	margin: 2px;
+}
+
+div#secondary_navigation ul.navigation li {
+	margin: 0.3em 0.75em 0.3em 0.75em;
+}
+
+div#content {
+	/*width: 40em;*/
 	
-	position: relative;
+	/*float: left;*/
+	/**/
+	/*display: inline;*/
+	/**/
+	/*clear: none;*/
+	/**/
+	/*position: relative;*/
 }
 
 div#footer {
-	clear: both;
+	/*clear: both;*/
 	width: 100%;
-	padding-top: 30px;
+	
+	/*padding-top: 30px;*/
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
