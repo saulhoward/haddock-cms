@@ -2,7 +2,7 @@
 /**
  * Database_CRUDAdminPage
  *
- * @copyright RFI 2007-12-16
+ * @copyright 2007-12-16, RFI
  */
 
 /**
@@ -608,7 +608,16 @@ extends
 	protected function
 		get_limits_str()
 	{
-		return '10 20 50 100 250 500 1000';
+		#return '10 20 50 100 250 500 1000';
+		
+		$db_cm
+			= Configuration_ConfigManagerHelper
+				::get_config_manager(
+					'haddock',
+					'database'
+				);
+		
+		return $db_cm->get_crud_admin_page_limits_string();
 	}
 	
 	/**
