@@ -2,20 +2,20 @@
 /**
  * Database_SQLUpdateStatement
  *
- * @copyright Clear Line Web Design, 2006-11-24
+ * @copyright 2006-11-24, RFI
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_SQLStatement.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_SQLStatementWithWhereClause.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/sql-statements/'
-    . 'Database_SQLStatementWithSetClause.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_SQLStatement.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_SQLStatementWithWhereClause.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/sql-statements/'
+#    . 'Database_SQLStatementWithSetClause.inc.php';
     
 class
     Database_SQLUpdateStatement

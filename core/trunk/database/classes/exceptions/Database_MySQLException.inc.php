@@ -2,7 +2,7 @@
 /**
  * Database_MySQLException
  *
- * @copyright Clear Line Web Design, 2006-09-08
+ * @copyright 2006-09-08, RFI
  */
 
 /**
@@ -11,31 +11,40 @@
  * wrong.
  */
 class
-    Database_MySQLException
+	Database_MySQLException
 extends
-    Exception
+	Exception
 {
-    private $error_number;
-    
-    private $error_message;
-    
-    public function __construct($dbh)
-    {
-        $this->error_number = mysql_errno($dbh);
-        
-        $this->error_message = mysql_error($dbh);
-        
-        parent::__construct('MySQL Error: ' . $this->error_number . ' - ' . $this->error_message);
-    }
-    
-    public function get_error_number()
-    {
-        return $this->error_number;
-    }
-    
-    public function get_error_message()
-    {
-        return $this->error_message;
-    }
+	private $error_number;
+	
+	private $error_message;
+	
+	public function
+		__construct($dbh)
+	{
+		$this->error_number = mysql_errno($dbh);
+		
+		$this->error_message = mysql_error($dbh);
+		
+		parent
+			::__construct(
+				'MySQL Error: '
+				. $this->error_number
+				. ' - '
+				. $this->error_message
+			);
+	}
+	
+	public function
+		get_error_number()
+	{
+		return $this->error_number;
+	}
+	
+	public function
+		get_error_message()
+	{
+		return $this->error_message;
+	}
 }
 ?>

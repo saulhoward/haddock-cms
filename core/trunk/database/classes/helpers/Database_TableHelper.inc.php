@@ -91,6 +91,12 @@ SQL;
 		return mysql_num_rows($result) == 1;
 	}
 	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with deleting rows
+	 * ----------------------------------------
+	 */
+	
 	public static function
 		delete_row(
 			$id,
