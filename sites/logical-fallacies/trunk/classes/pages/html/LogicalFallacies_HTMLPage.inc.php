@@ -170,17 +170,15 @@ extends
 <script type="text/javascript">
 round_all_corners('bw-rc');
 </script>
-<?php
-#<script type="text/javascript">
-#var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-#document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-#</script>
-#<script type="text/javascript">
-#var pageTracker = _gat._getTracker("UA-1939164-4");
-#pageTracker._initData();
-#pageTracker._trackPageview();
-#</script>
-#<?php
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1939164-5");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
 	}
 }
 ?>
