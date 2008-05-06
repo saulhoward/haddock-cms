@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<page-classes>
+		<html-page value="LogicalFallacies_DBPage" />
+	</page-classes>
+</config>

@@ -1297,6 +1297,22 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/logging/classes/database/renderers/table-renderers/Logging_ServerLogsTableRenderer.inc.php';
 			break;
 
+		case('LogicalFallacies_DBPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/LogicalFallacies_DBPage.inc.php';
+			break;
+
+		case('LogicalFallacies_ExceptionPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/LogicalFallacies_ExceptionPage.inc.php';
+			break;
+
+		case('LogicalFallacies_HTMLPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/LogicalFallacies_HTMLPage.inc.php';
+			break;
+
+		case('LogicalFallacies_MailingListSignUpPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/LogicalFallacies_MailingListSignUpPage.inc.php';
+			break;
+
 		case('MailingList_ConfigManager'): 
 			require_once PROJECT_ROOT . '/plug-ins/mailing-list/classes/MailingList_ConfigManager.inc.php';
 			break;
