@@ -22,6 +22,8 @@ class
 				$modules
 			);
 		}
+		
+		return FALSE;
 	}
 }
 ?>
