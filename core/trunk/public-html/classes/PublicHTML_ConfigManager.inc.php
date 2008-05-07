@@ -113,7 +113,7 @@ extends
 	public function
 		server_has_mod_rewrite()
 	{
-		return $this->get_config_value('server_capabilities/has_mod_rewrite');
+		return $this->get_config_value('server_capabilities/has_mod_rewrite') == 'TRUE';
 	}
 }
 ?>
