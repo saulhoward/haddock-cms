@@ -7,3 +7,7 @@
 	RewriteRule ^mailing-list/([a-z-]*)\.([a-z-]*) /haddock/public-html/public-html/index.php?oo-page=1&pcro-factory=MailingList_PCROFactory&page=$1&type=html
 </IfModule>
 
+
+<IfModule !mod_rewrite.c>
+	RedirectMatch temp ^/mailing-list/([a-z-]*)\.([a-z-]*) /haddock/public-html/public-html/index.php?oo-page=1\&pcro-factory=MailingList_PCROFactory\&page=$1\&type=html
+</IfModule>

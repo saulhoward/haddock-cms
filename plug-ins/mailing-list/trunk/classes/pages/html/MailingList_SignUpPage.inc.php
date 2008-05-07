@@ -13,7 +13,8 @@ extends
 	public function
 		content()
 	{
-		MailingList_SignUpRenderer::render_body_div_email_adding();
+		MailingList_SignUpRenderer
+			::render_body_div_email_adding();
 	}
 }
 ?>

@@ -1,4 +1,10 @@
 <?php
+/**
+ * MailingList_SignUpRenderer
+ *
+ * @copyright 2008-05-07, RFI
+ */
+
 class
 	MailingList_SignUpRenderer
 {
