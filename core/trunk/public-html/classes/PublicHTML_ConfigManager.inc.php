@@ -2,7 +2,7 @@
 /**
  * PublicHTML_ConfigManager
  * 
- * @copyright Clear Line Web Design, 2007-10-16
+ * @copyright 2007-10-16, RFI
  */
 
 class
@@ -108,6 +108,12 @@ extends
 		is_meta_page_about_haddock_cms_shown()
 	{
 		return $this->get_config_value('verbosity/meta-pages/show-about-haddock-cms') == 'TRUE';
+	}
+	
+	public function
+		server_has_mod_rewrite()
+	{
+		return $this->get_config_value('server_capabilities/has_mod_rewrite');
 	}
 }
 ?>

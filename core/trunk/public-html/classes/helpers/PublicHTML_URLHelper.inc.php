@@ -8,18 +8,46 @@
 class
 	PublicHTML_URLHelper
 {
-	/**
-	 * NOT DEPRECATED!
-	 *
-	 * Use PublicHTML_URLFactory::make_local_url instead.
-	 *
-	 * In fact, ignore that warning.
-	 *
-	 * Use this class for now.
-	 *
-	 * The URL factories will probably work in a more OO way and be
-	 * objects that are returned by a URL factory factory.
+	public static function
+		get_current_url()
+	{
+		$url
+			= HTMLTags_URL
+				::parse_and_make_url(
+					$_SERVER['REQUEST_URI']
+				);
+		
+		$url->make_absolute_for_current_server();
+		
+		return $url;
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with making Haddock style URLs.
+	 * ----------------------------------------
 	 */
+	
+	public static function
+		get_base_url()
+	{
+		$url = new HTMLTags_URL();
+		
+		$ph_cm = Configuration_ConfigManagerHelper
+			::get_config_manager(
+				'haddock',
+				'public-html'
+			);
+		
+		if ($ph_cm->server_has_mod_rewrite()) {
+			$url->set_file('/');
+		} else {
+			$url->set_file('/haddock/public-html/public-html/index.php');
+		}
+		
+		return $url;
+	}
+	
 	public static function
 		get_oo_page_url(
 			$page_class,
@@ -47,19 +75,18 @@ class
 		#
 		#return $url;
 		
-		return PublicHTML_URLFactory::make_local_url($page_class, $get_variables);
-	}
-	
-	public static function
-		get_current_url()
-	{
-		$url
-			= HTMLTags_URL
-				::parse_and_make_url(
-					$_SERVER['REQUEST_URI']
-				);
+		#return PublicHTML_URLFactory::make_local_url($page_class, $get_variables);
 		
-		$url->make_absolute_for_current_server();
+		$url = self::get_base_url();
+		
+		$url->set_get_variable('oo-page');
+		$url->set_get_variable('page-class', $page_class);
+		
+		if (isset($get_variables)) {
+			foreach ($get_variables as $k => $v) {
+				$url->set_get_variable($k, urlencode($v));
+			}
+		}
 		
 		return $url;
 	}
@@ -72,9 +99,7 @@ class
 				$module = NULL
 			)
 	{
-		$url = new HTMLTags_URL();
-		
-		$url->set_file('/haddock/public-html/public-html/index.php');
+		$url = self::get_base_url();
 		
 		$url->set_get_variable('page', $page);
 		$url->set_get_variable('type', $type);
