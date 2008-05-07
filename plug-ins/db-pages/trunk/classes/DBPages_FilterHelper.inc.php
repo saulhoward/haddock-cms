@@ -116,7 +116,12 @@ class
 							);
 				}
 				
-				$out .= "<a href=\"/db-pages/$page_name.html\">$title</a>";
+				$page_url
+					= DPPages_URLsHelper
+						::get_db_page_url($page_name);
+				
+				#$out .= "<a href=\"/db-pages/$page_name.html\">$title</a>";
+				$out .= '<a href="' . $page_url->get_as_string() . "\">$title</a>";
 			} else {
 				
 				#echo "\$part: $part\n";
