@@ -33,13 +33,17 @@ class
 	{
 		$url = new HTMLTags_URL();
 		
-		$ph_cm = Configuration_ConfigManagerHelper
-			::get_config_manager(
-				'haddock',
-				'public-html'
-			);
+		#$ph_cm = Configuration_ConfigManagerHelper
+		#	::get_config_manager(
+		#		'haddock',
+		#		'public-html'
+		#	);
 		
-		if ($ph_cm->server_has_mod_rewrite()) {
+		#if ($ph_cm->server_has_mod_rewrite()) {
+		if (
+			PublicHTML_ServerCapabilitiesHelper
+				::has_mod_rewrite()
+		) {
 			$url->set_file('/');
 		} else {
 			$url->set_file('/haddock/public-html/public-html/index.php');

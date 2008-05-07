@@ -110,10 +110,10 @@ extends
 		return $this->get_config_value('verbosity/meta-pages/show-about-haddock-cms') == 'TRUE';
 	}
 	
-	public function
-		server_has_mod_rewrite()
-	{
-		return $this->get_config_value('server_capabilities/has_mod_rewrite') == 'TRUE';
-	}
+	#public function
+	#	server_has_mod_rewrite()
+	#{
+	#	return $this->get_config_value('server_capabilities/has_mod_rewrite') == 'TRUE';
+	#}
 }
 ?>
