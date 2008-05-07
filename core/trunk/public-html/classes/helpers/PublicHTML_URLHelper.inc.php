@@ -63,5 +63,28 @@ class
 		
 		return $url;
 	}
+	
+	public static function
+		get_pm_page_url(
+				$page,
+				$type = 'html',
+				$section = 'project-specific',
+				$module = NULL
+			)
+	{
+		$url = new HTMLTags_URL();
+		
+		$url->set_file('/haddock/public-html/public-html/index.php');
+		
+		$url->set_get_variable('page', $page);
+		$url->set_get_variable('type', $type);
+		$url->set_get_variable('section', $section);
+		
+		if (isset($module)) {
+			$url->set_get_variable('module', $module);
+		}
+		
+		return $url;
+	}
 }
 ?>

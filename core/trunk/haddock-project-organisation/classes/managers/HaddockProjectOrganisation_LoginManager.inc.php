@@ -2,7 +2,7 @@
 /**
  * HaddockProjectOrganisation_LoginManager
  *
- * @copyright Clear Line Web Design, 2007-08-06
+ * @copyright 2007-08-06, RFI
  */
 
 /**
@@ -98,6 +98,7 @@ abstract class
 		
 		$users = $admin_users_table->get_rows_where($conditions);
 		
+		#echo __METHOD__ . "\n";
 		#echo 'count($users): ' . count($users) . "\n";
 		#exit;
 		//echo 'print_r($users): ' . "\n";

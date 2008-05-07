@@ -131,19 +131,31 @@ extends
 	public function
 		get_login_script_url()
 	{
-		$login_url = new HTMLTags_URL();
+		#$login_url = new HTMLTags_URL();
 		
 		/*
 		 * Require HTTPS?
 		 */
 		
-		$login_url->set_file('/');
+		#$login_url->set_file('/');
+		#
+		#$login_url->set_get_variable('section', 'haddock');
+		#$login_url->set_get_variable('module', 'admin');
+		#$login_url->set_get_variable('page', 'login');
+		#$login_url->set_get_variable('type', 'redirect-script');
+		#
+		#$login_url->set_get_variable('login');
 		
-		$login_url->set_get_variable('section', 'haddock');
-		$login_url->set_get_variable('module', 'admin');
-		$login_url->set_get_variable('page', 'login');
-		$login_url->set_get_variable('type', 'redirect-script');
+		#return $login_url;
 		
+		$login_url = PublicHTML_URLHelper
+			::get_pm_page_url(
+				'login',
+				'redirect-script',
+				'haddock',
+				'admin'
+			);
+			
 		$login_url->set_get_variable('login');
 		
 		return $login_url;

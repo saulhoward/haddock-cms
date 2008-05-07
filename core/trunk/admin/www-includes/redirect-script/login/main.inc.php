@@ -5,11 +5,13 @@
  * @copyright Clear Line Web Design, 2007-08-06
  */
 
+#header('Content-type: text/plain');
+#
 #echo 'print_r($_GET)' . "\n";
 #print_r($_GET);
 #echo 'print_r($_POST)' . "\n";
 #print_r($_POST);
-#exit;
+##exit;
 #echo '$_SESSION[\'admin-login-data\']' . "\n";
 #print_r($_SESSION['admin-login-data']);
 #exit;
@@ -34,10 +36,10 @@ if (isset($_GET['login'])) {
                     $page_manager->set_return_to_url(new HTMLTags_URL('/hc/admin/navigation.html'));
                 }
             } catch (HaddockProjectOrganisation_LoginException $e) {
-#		echo 'print_r($e): ' . "\n";
-#		print_r($e);
-#		exit;
-		
+				#echo 'print_r($e): ' . "\n";
+				#print_r($e);
+				#exit;
+				
                 $_SESSION['admin-login-data']['error-message'] = $e->getMessage();
             }
         } else {
@@ -53,7 +55,11 @@ if (isset($_GET['clear-form'])) {
     unset($_SESSION['admin-login-data']['error-message']);
 }
 
-//echo '$_SESSION[\'admin-login-data\']' . "\n";
-//print_r($_SESSION['admin-login-data']);
-//exit;
+#echo '$_SESSION[\'admin-login-data\']' . "\n";
+#print_r($_SESSION['admin-login-data']);
+#
+#echo 'print_r($page_manager): ' . "\n";
+#print_r($page_manager);
+#
+#exit;
 ?>
