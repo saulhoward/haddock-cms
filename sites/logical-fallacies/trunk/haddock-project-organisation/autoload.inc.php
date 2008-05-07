@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-06
+ * Last Modified: 2008-05-07
  */
 
 function __autoload($class_name)
@@ -719,6 +719,10 @@ function __autoload($class_name)
 
 		case('DBPages_SPoE'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/DBPages_SPoE.inc.php';
+			break;
+
+		case('DPPages_URLsHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/helpers/DPPages_URLsHelper.inc.php';
 			break;
 
 		case('ErrorHandling_SprintfException'): 
@@ -1551,6 +1555,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_RedirectScript'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_RedirectScript.inc.php';
+			break;
+
+		case('PublicHTML_ServerCapabilitiesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ServerCapabilitiesHelper.inc.php';
 			break;
 
 		case('PublicHTML_URLFactory'): 
