@@ -14,9 +14,16 @@ class
 			$module
 		)
 	{
-		$config_manager_factory = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+		$config_manager_factory
+			= HaddockProjectOrganisation_ConfigManagerFactory
+				::get_instance();
 		
-		$config_manager = $config_manager_factory->get_config_manager($section, $module);
+		$config_manager
+			= $config_manager_factory
+				->get_config_manager(
+					$section,
+					$module
+				);
 		
 		return $config_manager;
 	}
