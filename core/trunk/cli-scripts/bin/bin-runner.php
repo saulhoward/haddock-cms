@@ -274,9 +274,14 @@ if (file_exists($inc_directory . '/args.inc.php')) {
 /*
  * Run the script.
  */
-if (file_exists($inc_directory . '/main.inc.php')) {
+$script_inc_file_name
+	= $inc_directory . '/main.inc.php';
+
+#echo "\$script_inc_file_name: $script_inc_file_name\n";
+
+if (file_exists($script_inc_file_name)) {	
 	try {
-		require $inc_directory . '/main.inc.php';
+		require $script_inc_file_name;
 	} catch (Exception $e) {
 		echo $e->getMessage() . "\n";
 		
