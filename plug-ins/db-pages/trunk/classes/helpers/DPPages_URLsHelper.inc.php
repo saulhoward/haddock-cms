@@ -11,13 +11,17 @@ class
 	public static function
 		get_db_page_url($page_name)
 	{
-		$ph_cm = Configuration_ConfigManagerHelper
-			::get_config_manager(
-				'haddock',
-				'public-html'
-			);
-		
-		if ($ph_cm->server_has_mod_rewrite()) {
+		#$ph_cm = Configuration_ConfigManagerHelper
+		#	::get_config_manager(
+		#		'haddock',
+		#		'public-html'
+		#	);
+		#
+		#if ($ph_cm->server_has_mod_rewrite()) {
+		if (
+			PublicHTML_ServerCapabilitiesHelper
+				::has_mod_rewrite()
+		) {
 			#echo "has mod_rewrite!\n";
 			
 			$url = new HTMLTags_URL();
