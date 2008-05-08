@@ -128,9 +128,15 @@ class
 		get_from()
 	{
 		if (!isset($this->from)) {
-			throw new Exception(
-				'The \'from\' field must be set in an EmailDelivery_Email!'
-			);
+			#throw new Exception(
+			#	'The \'from\' field must be set in an EmailDelivery_Email!'
+			#);
+			$this->from
+				= get_current_user()
+				. '@'
+				#. $_ENV['HOSTNAME']
+				. Environment_MachineHelper::get_real_host_name()
+			;
 		}
 		
 		return $this->from;
