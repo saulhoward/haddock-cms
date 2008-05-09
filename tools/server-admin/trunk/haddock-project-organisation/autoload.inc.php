@@ -2,15 +2,23 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-01-29
+ * Last Modified: 2008-05-09
  */
 
 function __autoload($class_name)
 {
-    switch ($class_name) {
-    
+	switch ($class_name) {
+	
 		case('Admin_AdminIncluderURLFactory'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_AdminIncluderURLFactory.inc.php';
+			break;
+
+		case('Admin_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_ConfigManager.inc.php';
+			break;
+
+		case('Admin_HTMLPage'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/pages/Admin_HTMLPage.inc.php';
 			break;
 
 		case('Admin_IncFileFinder'): 
@@ -19,6 +27,10 @@ function __autoload($class_name)
 
 		case('Admin_IncludesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_IncludesDirectory.inc.php';
+			break;
+
+		case('Admin_LogInHelper'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/helpers/Admin_LogInHelper.inc.php';
 			break;
 
 		case('Admin_LoginManager'): 
@@ -41,12 +53,24 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_NavigationXMLFile.inc.php';
 			break;
 
+		case('Admin_NXFPage'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_NXFPage.inc.php';
+			break;
+
 		case('Admin_PageDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_PageDirectory.inc.php';
 			break;
 
 		case('Admin_PagesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/Admin_PagesDirectory.inc.php';
+			break;
+
+		case('Admin_RestrictedHTMLPage'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/pages/Admin_RestrictedHTMLPage.inc.php';
+			break;
+
+		case('Admin_RestrictedRedirectScript'): 
+			require_once PROJECT_ROOT . '/haddock/admin/classes/pages/Admin_RestrictedRedirectScript.inc.php';
 			break;
 
 		case('Admin_SiteMapUL'): 
@@ -67,6 +91,10 @@ function __autoload($class_name)
 
 		case('Admin_UsersTableRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/admin/classes/database/renderers/table-renderers/Admin_UsersTableRenderer.inc.php';
+			break;
+
+		case('Caching_CacheDirectoryCreator'): 
+			require_once PROJECT_ROOT . '/haddock/caching/classes/Caching_CacheDirectoryCreator.inc.php';
 			break;
 
 		case('Caching_CacheManager'): 
@@ -93,6 +121,18 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_InputReader.inc.php';
 			break;
 
+		case('CLIScripts_LockFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_LockFile.inc.php';
+			break;
+
+		case('CLIScripts_LockFilesDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/directories/CLIScripts_LockFilesDirectory.inc.php';
+			break;
+
+		case('CLIScripts_LockFilesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_LockFilesHelper.inc.php';
+			break;
+
 		case('CLIScripts_ScriptDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptDirectory.inc.php';
 			break;
@@ -113,16 +153,24 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/CodeAnalysis_ExecutionTimer.inc.php';
 			break;
 
+		case('Configuration_ConfigManagerHelper'): 
+			require_once PROJECT_ROOT . '/haddock/configuration/classes/helpers/Configuration_ConfigManagerHelper.inc.php';
+			break;
+
 		case('Database_AddConditionsToWhereClauseBehaviour'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_AddConditionsToWhereClauseBehaviour.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_AddConditionsToWhereClauseBehaviour.inc.php';
 			break;
 
 		case('Database_AddKeyValuePairsToSetClauseBehaviour'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_AddKeyValuePairsToSetClauseBehaviour.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_AddKeyValuePairsToSetClauseBehaviour.inc.php';
 			break;
 
 		case('Database_AddRowOLForm'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/html-tags/Database_AddRowOLForm.inc.php';
+			break;
+
+		case('Database_AdminXMLPageManager'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/Database_AdminXMLPageManager.inc.php';
 			break;
 
 		case('Database_BlobField'): 
@@ -143,6 +191,26 @@ function __autoload($class_name)
 
 		case('Database_ChoiceFieldRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/field-renderers/Database_ChoiceFieldRenderer.inc.php';
+			break;
+
+		case('Database_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/managers/config/Database_ConfigManager.inc.php';
+			break;
+
+		case('Database_CRUDAdminManager'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/Database_CRUDAdminManager.inc.php';
+			break;
+
+		case('Database_CRUDAdminPage'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/pages/Database_CRUDAdminPage.inc.php';
+			break;
+
+		case('Database_CRUDAdminRedirectScript'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/pages/Database_CRUDAdminRedirectScript.inc.php';
+			break;
+
+		case('Database_CRUDException'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/exceptions/Database_CRUDException.inc.php';
 			break;
 
 		case('Database_Database'): 
@@ -217,6 +285,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/elements/field-subclasses/Database_EnumField.inc.php';
 			break;
 
+		case('Database_FetchingHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_FetchingHelper.inc.php';
+			break;
+
 		case('Database_Field'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/elements/Database_Field.inc.php';
 			break;
@@ -242,11 +314,11 @@ function __autoload($class_name)
 			break;
 
 		case('Database_GetSetClauseBehaviour'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_GetSetClauseBehaviour.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_GetSetClauseBehaviour.inc.php';
 			break;
 
 		case('Database_GetWhereClauseBehaviour'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_GetWhereClauseBehaviour.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_GetWhereClauseBehaviour.inc.php';
 			break;
 
 		case('Database_HTMLPreFieldRenderer'): 
@@ -265,12 +337,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/row-renderers/Database_ImageRowRenderer.inc.php';
 			break;
 
+		case('Database_ImagesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_ImagesHelper.inc.php';
+			break;
+
 		case('Database_ImagesTable'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/elements/table-subclasses/Database_ImagesTable.inc.php';
 			break;
 
 		case('Database_ImagesTableRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/table-renderers/Database_ImagesTableRenderer.inc.php';
+			break;
+
+		case('Database_InputSanitationHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_InputSanitationHelper.inc.php';
 			break;
 
 		case('Database_IntField'): 
@@ -287,6 +367,18 @@ function __autoload($class_name)
 
 		case('Database_LongTextFieldRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/field-renderers/Database_LongTextFieldRenderer.inc.php';
+			break;
+
+		case('Database_ManageSimpleCRUDAdminPage'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/pages/crud-pages/simple-crud/Database_ManageSimpleCRUDAdminPage.inc.php';
+			break;
+
+		case('Database_ManageSimpleCRUDAdminRedirectScript'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/pages/crud-pages/simple-crud/Database_ManageSimpleCRUDAdminRedirectScript.inc.php';
+			break;
+
+		case('Database_ModifyingStatementHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_ModifyingStatementHelper.inc.php';
 			break;
 
 		case('Database_MySQLException'): 
@@ -357,6 +449,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/Database_RowRenderer.inc.php';
 			break;
 
+		case('Database_SelectionHTMLDiv'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/html-tags/Database_SelectionHTMLDiv.inc.php';
+			break;
+
 		case('Database_SelectionManager'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/selection-managers/Database_SelectionManager.inc.php';
 			break;
@@ -371,6 +467,10 @@ function __autoload($class_name)
 
 		case('Database_ShortTextFieldRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php';
+			break;
+
+		case('Database_SimpleCRUDManager'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/pages/crud-pages/simple-crud/Database_SimpleCRUDManager.inc.php';
 			break;
 
 		case('Database_SortableHeadingTR'): 
@@ -401,68 +501,92 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/delegation/behaviours/row-behaviours/Database_SortableRowMoveUpBehaviour.inc.php';
 			break;
 
+		case('Database_SQLClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLClause.inc.php';
+			break;
+
 		case('Database_SQLDeleteStatement'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLDeleteStatement.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLDeleteStatement.inc.php';
 			break;
 
 		case('Database_SQLDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/Database_SQLDirectory.inc.php';
 			break;
 
+		case('Database_SQLFromClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLFromClause.inc.php';
+			break;
+
+		case('Database_SQLFromClauseJoinSubSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLFromClauseJoinSubSubClause.inc.php';
+			break;
+
+		case('Database_SQLFromClauseTableReference'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLFromClauseTableReference.inc.php';
+			break;
+
 		case('Database_SQLInsertStatement'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLInsertStatement.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLInsertStatement.inc.php';
+			break;
+
+		case('Database_SQLLimitClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLLimitClause.inc.php';
+			break;
+
+		case('Database_SQLOrderByClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLOrderByClause.inc.php';
+			break;
+
+		case('Database_SQLOrderByClauseFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLOrderByClauseFieldSubClause.inc.php';
+			break;
+
+		case('Database_SQLSelectClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSelectClause.inc.php';
+			break;
+
+		case('Database_SQLSelectClauseFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSelectClauseFieldSubClause.inc.php';
 			break;
 
 		case('Database_SQLSelectQuery'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLSelectQuery.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLSelectQuery.inc.php';
+			break;
+
+		case('Database_SQLSetClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSetClause.inc.php';
 			break;
 
 		case('Database_SQLStatement'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatement.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLStatement.inc.php';
 			break;
 
 		case('Database_SQLStatementBehaviour'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementBehaviour.inc.php';
-			break;
-
-		case('Database_SQLStatementClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementClause.inc.php';
-			break;
-
-		case('Database_SQLStatementConstraint'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementConstraint.inc.php';
-			break;
-
-		case('Database_SQLStatementLimitClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementLimitClause.inc.php';
-			break;
-
-		case('Database_SQLStatementOrderByClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementOrderByClause.inc.php';
-			break;
-
-		case('Database_SQLStatementSelectedItemsClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementSelectedItemsClause.inc.php';
-			break;
-
-		case('Database_SQLStatementSetClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementSetClause.inc.php';
-			break;
-
-		case('Database_SQLStatementWhereClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementWhereClause.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_SQLStatementBehaviour.inc.php';
 			break;
 
 		case('Database_SQLStatementWithSetClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementWithSetClause.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLStatementWithSetClause.inc.php';
 			break;
 
 		case('Database_SQLStatementWithWhereClause'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLStatementWithWhereClause.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLStatementWithWhereClause.inc.php';
+			break;
+
+		case('Database_SQLSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSubClause.inc.php';
 			break;
 
 		case('Database_SQLUpdateStatement'): 
-			require_once PROJECT_ROOT . '/haddock/database/classes/sql-statements/Database_SQLUpdateStatement.inc.php';
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLUpdateStatement.inc.php';
+			break;
+
+		case('Database_SQLWhereClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClause.inc.php';
+			break;
+
+		case('Database_SQLWhereClauseConditionSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseConditionSubClause.inc.php';
 			break;
 
 		case('Database_StringField'): 
@@ -471,6 +595,10 @@ function __autoload($class_name)
 
 		case('Database_Table'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/elements/Database_Table.inc.php';
+			break;
+
+		case('Database_TableHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_TableHelper.inc.php';
 			break;
 
 		case('Database_TableNameTranslator'): 
@@ -523,6 +651,22 @@ function __autoload($class_name)
 
 		case('DataStructures_BSTNode'): 
 			require_once PROJECT_ROOT . '/haddock/data-structures/classes/DataStructures_BSTNode.inc.php';
+			break;
+
+		case('DB'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/DB.inc.php';
+			break;
+
+		case('Environment_MachineHelper'): 
+			require_once PROJECT_ROOT . '/haddock/environment/classes/helpers/Environment_MachineHelper.inc.php';
+			break;
+
+		case('Environment_ProcessesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/environment/classes/helpers/Environment_ProcessesHelper.inc.php';
+			break;
+
+		case('ErrorHandling_SprintfException'): 
+			require_once PROJECT_ROOT . '/haddock/error-handling/classes/exceptions/ErrorHandling_SprintfException.inc.php';
 			break;
 
 		case('FileSystem_Bz2TextFile'): 
@@ -589,116 +733,168 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_ListOfWords.inc.php';
 			break;
 
+		case('Formatting_ListOfWordsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/formatting/classes/helpers/Formatting_ListOfWordsHelper.inc.php';
+			break;
+
 		case('Formatting_Number'): 
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_Number.inc.php';
+			break;
+
+		case('Formatting_NumbersHelper'): 
+			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_NumbersHelper.inc.php';
 			break;
 
 		case('Formatting_Word'): 
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_Word.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_AbstractModuleConfigXMLFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_AbstractPlugInModuleDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_AbstractPlugInModuleDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_AutoloadHelper'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_AutoloadHelper.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_AutoloadIncFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_AutoloadIncFile.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_AutoloadIncFile.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ClassesDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ClassesDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ClassesDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_CLIModuleDirectoryFinder'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_CLIModuleDirectoryFinder.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/finders/HaddockProjectOrganisation_CLIModuleDirectoryFinder.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_CLIScriptDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_CLIScriptDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_CLIScriptDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ConfigDBManager'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/managers/HaddockProjectOrganisation_ConfigDBManager.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ConfigFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ConfigFile.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_ConfigFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/managers/HaddockProjectOrganisation_ConfigManager.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ConfigManagerFactory'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/factories/HaddockProjectOrganisation_ConfigManagerFactory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_CoreModuleDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_CoreModuleDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_CoreModuleDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_CoreModulesDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_CoreModulesDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_HPOConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/managers/HaddockProjectOrganisation_HPOConfigManager.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_IncludesDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_IncludesDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_IncludesDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_LoginException'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_LoginException.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/exceptions/HaddockProjectOrganisation_LoginException.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_LoginManager'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_LoginManager.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/managers/HaddockProjectOrganisation_LoginManager.inc.php';
 			break;
 
-		case('HaddockProjectOrganisation_ModuleConfigFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ModuleConfigFile.inc.php';
+		case('HaddockProjectOrganisation_ModuleConfigException'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/exceptions/HaddockProjectOrganisation_ModuleConfigException.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ModuleConfigXMLFile'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_ModuleConfigXMLFile.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ModuleDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ModuleDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ModuleDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ModulesDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ModulesDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_NavigationLinksFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_NavigationLinksFile.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_NavigationLinksFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_OptionButtonsFactory'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/factories/HaddockProjectOrganisation_OptionButtonsFactory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PageConfigFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PageConfigFile.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_PageConfigFile.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PageDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PageDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_PageDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PagesDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PagesDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_PagesDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_PasswordResetException'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/exceptions/HaddockProjectOrganisation_PasswordResetException.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PHPIncFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PHPIncFile.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_PHPIncFile.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PlugInModuleDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PlugInModuleDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_PlugInModuleDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PlugInModulesDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PlugInModulesDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_PlugInModulesDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ProjectDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ProjectDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ProjectDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ProjectDirectoryFinder'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/finders/HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ProjectSpecificDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_ProjectSpecificDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ProjectSpecificDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PublicPageDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_PublicPageDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_PublicPageDirectory.inc.php';
 			break;
 
-		case('HaddockProjectOrganisation_RequiredPlugInsFile'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_RequiredPlugInsFile.inc.php';
+		case('HaddockProjectOrganisation_RequiredModulesFile'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_RequiredModulesFile.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_WWWIncludesDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_WWWIncludesDirectory.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_WWWIncludesDirectory.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_WWWPageDirectory'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HaddockProjectOrganisation_WWWPageDirectory.inc.php';
-			break;
-
-		case('HPO_ISCFileManager'): 
-			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/HPO_ISCFileManager.inc.php';
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_WWWPageDirectory.inc.php';
 			break;
 
 		case('HPO_NoISCFileException'): 
@@ -729,8 +925,16 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/factories/HTMLTags_BLSeparatedPFactory.inc.php';
 			break;
 
+		case('HTMLTags_BLSeparatedPsRenderer'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/renderers/HTMLTags_BLSeparatedPsRenderer.inc.php';
+			break;
+
 		case('HTMLTags_BR'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_BR.inc.php';
+			break;
+
+		case('HTMLTags_Button'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Button.inc.php';
 			break;
 
 		case('HTMLTags_Caption'): 
@@ -739,6 +943,10 @@ function __autoload($class_name)
 
 		case('HTMLTags_Code'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Code.inc.php';
+			break;
+
+		case('HTMLTags_ColGroup'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_ColGroup.inc.php';
 			break;
 
 		case('HTMLTags_ConfirmationP'): 
@@ -789,8 +997,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Form.inc.php';
 			break;
 
+		case('HTMLTags_FormActionAttribute'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/HTMLTags_FormActionAttribute.inc.php';
+			break;
+
+		case('HTMLTags_FormWithInputs'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_FormWithInputs.inc.php';
+			break;
+
 		case('HTMLTags_Heading'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Heading.inc.php';
+			break;
+
+		case('HTMLTags_HiddenInput'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_HiddenInput.inc.php';
 			break;
 
 		case('HTMLTags_HR'): 
@@ -827,6 +1047,18 @@ function __autoload($class_name)
 
 		case('HTMLTags_LI'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_LI.inc.php';
+			break;
+
+		case('HTMLTags_Link'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Link.inc.php';
+			break;
+
+		case('HTMLTags_LinkFactory'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/factories/HTMLTags_LinkFactory.inc.php';
+			break;
+
+		case('HTMLTags_LinkRenderer'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/renderers/HTMLTags_LinkRenderer.inc.php';
 			break;
 
 		case('HTMLTags_List'): 
@@ -873,8 +1105,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Script.inc.php';
 			break;
 
+		case('HTMLTags_ScriptRenderer'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/renderers/HTMLTags_ScriptRenderer.inc.php';
+			break;
+
 		case('HTMLTags_Select'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Select.inc.php';
+			break;
+
+		case('HTMLTags_SelectFactory'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/factories/HTMLTags_SelectFactory.inc.php';
+			break;
+
+		case('HTMLTags_SimpleForm'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_SimpleForm.inc.php';
 			break;
 
 		case('HTMLTags_SimpleOLForm'): 
@@ -883,6 +1127,10 @@ function __autoload($class_name)
 
 		case('HTMLTags_Span'): 
 			require_once PROJECT_ROOT . '/haddock/html-tags/classes/standard/HTMLTags_Span.inc.php';
+			break;
+
+		case('HTMLTags_StyleSheetLink'): 
+			require_once PROJECT_ROOT . '/haddock/html-tags/classes/extensions/HTMLTags_StyleSheetLink.inc.php';
 			break;
 
 		case('HTMLTags_Table'): 
@@ -957,16 +1205,32 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_CLIInterrogator.inc.php';
 			break;
 
+		case('InputValidation_EmailAddressValidator'): 
+			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_EmailAddressValidator.inc.php';
+			break;
+
 		case('InputValidation_InvalidInputException'): 
 			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_InvalidInputException.inc.php';
+			break;
+
+		case('InputValidation_NumberValidator'): 
+			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_NumberValidator.inc.php';
 			break;
 
 		case('InputValidation_StringValidator'): 
 			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_StringValidator.inc.php';
 			break;
 
+		case('InputValidation_Validator'): 
+			require_once PROJECT_ROOT . '/haddock/input-validation/classes/InputValidation_Validator.inc.php';
+			break;
+
 		case('Logging_Logger'): 
 			require_once PROJECT_ROOT . '/haddock/logging/classes/Logging_Logger.inc.php';
+			break;
+
+		case('Logging_LogsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/logging/classes/helpers/Logging_LogsHelper.inc.php';
 			break;
 
 		case('Logging_ServerLogsTable'): 
@@ -977,8 +1241,64 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/logging/classes/database/renderers/table-renderers/Logging_ServerLogsTableRenderer.inc.php';
 			break;
 
+		case('ModelViewController_Model'): 
+			require_once PROJECT_ROOT . '/haddock/model-view-controller/classes/ModelViewController_Model.inc.php';
+			break;
+
+		case('ObjectOrientation_NamedMethodCaller'): 
+			require_once PROJECT_ROOT . '/haddock/object-orientation/classes/ObjectOrientation_NamedMethodCaller.inc.php';
+			break;
+
+		case('PublicHTML_AboutHaddockCMS'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/html/PublicHTML_AboutHaddockCMS.inc.php';
+			break;
+
+		case('PublicHTML_AJAXFormHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_AJAXFormHelper.inc.php';
+			break;
+
+		case('PublicHTML_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_ConfigManager.inc.php';
+			break;
+
+		case('PublicHTML_Exception'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/exceptions/PublicHTML_Exception.inc.php';
+			break;
+
+		case('PublicHTML_ExceptionHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ExceptionHelper.inc.php';
+			break;
+
+		case('PublicHTML_ExceptionPage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_ExceptionPage.inc.php';
+			break;
+
+		case('PublicHTML_ExceptionRenderer'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/renderers/PublicHTML_ExceptionRenderer.inc.php';
+			break;
+
+		case('PublicHTML_HaddockHTTPResponse'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HaddockHTTPResponse.inc.php';
+			break;
+
+		case('PublicHTML_HTMLPage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HTMLPage.inc.php';
+			break;
+
+		case('PublicHTML_HTTPResponse'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_HTTPResponse.inc.php';
+			break;
+
+		case('PublicHTML_HTTPResponseWithMessageBody'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HTTPResponseWithMessageBody.inc.php';
+			break;
+
 		case('PublicHTML_IncludesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_IncludesDirectory.inc.php';
+			break;
+
+		case('PublicHTML_JavaScriptPage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_JavaScriptPage.inc.php';
 			break;
 
 		case('PublicHTML_PageDirectory'): 
@@ -989,12 +1309,44 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PageManager.inc.php';
 			break;
 
+		case('PublicHTML_PageNotFoundException'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/exceptions/PublicHTML_PageNotFoundException.inc.php';
+			break;
+
 		case('PublicHTML_PagesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PagesDirectory.inc.php';
 			break;
 
+		case('PublicHTML_PCROFactory'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PCROFactory.inc.php';
+			break;
+
+		case('PublicHTML_PublicURLFactory'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PublicURLFactory.inc.php';
+			break;
+
+		case('PublicHTML_RedirectionHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_RedirectionHelper.inc.php';
+			break;
+
 		case('PublicHTML_RedirectionManager'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_RedirectionManager.inc.php';
+			break;
+
+		case('PublicHTML_RedirectScript'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_RedirectScript.inc.php';
+			break;
+
+		case('PublicHTML_ServerCapabilitiesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ServerCapabilitiesHelper.inc.php';
+			break;
+
+		case('PublicHTML_URLFactory'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/url-factories/PublicHTML_URLFactory.inc.php';
+			break;
+
+		case('PublicHTML_URLHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_URLHelper.inc.php';
 			break;
 
 		case('Security_PasswordGenerator'): 
@@ -1073,6 +1425,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_Describer.inc.php';
 			break;
 
+		case('Strings_FilteringHelper'): 
+			require_once PROJECT_ROOT . '/haddock/strings/classes/helpers/Strings_FilteringHelper.inc.php';
+			break;
+
+		case('Strings_SimpleFilters'): 
+			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_SimpleFilters.inc.php';
+			break;
+
 		case('Strings_Splitter'): 
 			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_Splitter.inc.php';
 			break;
@@ -1084,8 +1444,8 @@ function __autoload($class_name)
 		case('UnitTests_UnitTestsPHPClassFile'): 
 			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/UnitTests_UnitTestsPHPClassFile.inc.php';
 			break;
-        
-    }
+		
+	}
 }
 
 ?>

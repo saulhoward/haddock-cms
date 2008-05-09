@@ -3,23 +3,23 @@
  * A script to dump the contents of the MySQL
  * databases on a server to a file.
  *
- * @copyright Clear Line Web Design, 2007-02-05
+ * @copyright 2007-02-05, RFI
  */
 
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-
-require_once PROJECT_ROOT
-    . '/project-specific/classes/'
-    . 'ServerAdminScripts_RemoteControlCentre.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUserFactory.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/project-specific/classes/'
+#    . 'ServerAdminScripts_RemoteControlCentre.inc.php';
 
 #/*
 # * Get the config data from the file.
@@ -149,51 +149,51 @@ require_once PROJECT_ROOT
  * Get the list of databases for this server.
  */
 $dbh = mysql_connect($host, $username, $password)
-    or die("Unable to connect to the DB!\n");
+	or die("Unable to connect to the DB!\n");
 
 $result = mysql_query("SHOW DATABASES", $dbh);
 
 while ($row = mysql_fetch_assoc($result)) {
-    /*
-     * Dump the contents of the database.
-     */
-    
-    $database = $row['Database'];
-    
-    $cmd = 'mysqldump'
-        . " --databases $database"
-        . " --user=$username"
-        . " --password=$password"
-        . " --host=$host"
-        . " --skip-extended-insert"
-        . " --order-by-primary";
-    
-    /*
-     * Do we need to create a directory for this DB?
-     */
-    #$db_dump_dir = $dump_directory->get_name() . "/$database";
-    $db_dump_dir = "$dump_directory_name/$database";
-    
-    if (!is_dir($db_dump_dir)) {
-        mkdir($db_dump_dir);
-    }
-    
-    $dump_filename = "$db_dump_dir/latest.dump";
-    
-    $dump_file = new FileSystem_File($dump_filename);
-    #$dump_file = $dump_directory->get_next_dump_file();
-    
-    #if ($_SERVER['OS'] == 'Windows_NT') {
-        $cmd .= ' > "' . $dump_file->get_name() . '"';
-    #} else {
-    #    $cmd .= " > $dump_filename";
-    #}
-    
-    if (!$silent) {
-        echo "The command: $cmd\n";
-    }
-    
-    system($cmd);
+	/*
+	 * Dump the contents of the database.
+	 */
+	
+	$database = $row['Database'];
+	
+	$cmd = 'mysqldump'
+		. " --databases $database"
+		. " --user=$username"
+		. " --password=$password"
+		. " --host=$host"
+		. " --skip-extended-insert"
+		. " --order-by-primary";
+	
+	/*
+	 * Do we need to create a directory for this DB?
+	 */
+	#$db_dump_dir = $dump_directory->get_name() . "/$database";
+	$db_dump_dir = "$dump_directory_name/$database";
+	
+	if (!is_dir($db_dump_dir)) {
+		mkdir($db_dump_dir);
+	}
+	
+	$dump_filename = "$db_dump_dir/latest.dump";
+	
+	$dump_file = new FileSystem_File($dump_filename);
+	#$dump_file = $dump_directory->get_next_dump_file();
+	
+	#if ($_SERVER['OS'] == 'Windows_NT') {
+		$cmd .= ' > "' . $dump_file->get_name() . '"';
+	#} else {
+	#    $cmd .= " > $dump_filename";
+	#}
+	
+	if (!$silent) {
+		echo "The command: $cmd\n";
+	}
+	
+	system($cmd);
 }
 
 /*
