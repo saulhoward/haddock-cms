@@ -2,7 +2,7 @@
 /**
  * HaddockProjectOrganisation_ConfigManagerFactory
  *
- * @copyright Clear Line Web Design, 2007-10-08
+ * @copyright 2007-10-08, RFI
  */
 
 /**
@@ -143,4 +143,3 @@ class
 #	}
 }
 ?>
-
