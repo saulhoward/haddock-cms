@@ -279,47 +279,88 @@ $script_inc_file_name
 
 #echo "\$script_inc_file_name: $script_inc_file_name\n";
 
-if (file_exists($script_inc_file_name)) {	
+if (file_exists($script_inc_file_name)) {
 	try {
 		require $script_inc_file_name;
 	} catch (Exception $e) {
-		echo $e->getMessage() . "\n";
+		fprintf(
+			STDERR,
+			$e->getMessage() . "\n"
+		);
 		
-		echo "Exception trace: \n\n";
+		fprintf(
+			STDERR,
+			'Thrown at ' . date('c') . "\n"
+		);
+		
+		fprintf(
+			STDERR,
+			"Exception trace: \n\n"
+		);
 		
 		foreach ($e->getTrace() as $data) {
-			echo "----------------------------------------\n";
+			fprintf(
+				STDERR,
+				"----------------------------------------\n"
+			);
+			
 			$keys = array_keys($data);
 			
 			sort($keys);
 			 
 			foreach ($keys as $key) {
-			echo "$key: ";
-			
-			if (is_array($data[$key])) {
-				foreach ($data[$key] as $datum) {
-				echo '    ';
-				
-				if (is_numeric($datum) || is_string($datum)) {
-					echo '"' . $datum . "\"";
-				}
-				
-				echo  "\n";
-				}
-			} else if (strtolower($key) == 'file') {
-				$formatted_filename = new Formatting_FileName(
-				$data[$key]
+				fprintf(
+					STDERR,
+					"$key: "
 				);
 				
-				echo $formatted_filename->get_pretty_name();
-			} else {
-				echo '    ';
-				
-				echo '' . $data[$key] . "\n";
+				if (is_array($data[$key])) {
+					foreach ($data[$key] as $datum) {
+						fprintf(
+							STDERR,
+							'    '
+						);
+						
+						if (is_numeric($datum) || is_string($datum)) {
+							fprintf(
+								STDERR,
+								'"' . $datum . "\""
+							);
+						}
+						
+						fprintf(
+							STDERR,
+							"\n"
+						);
+					}
+					
+				} else if (strtolower($key) == 'file') {
+						$formatted_filename
+							= new Formatting_FileName(
+								$data[$key]
+							);
+						
+						fprintf(
+							STDERR,
+							$formatted_filename->get_pretty_name()
+						);
+				} else {
+						fprintf(
+							STDERR,
+							'    '
+						);
+						
+						fprintf(
+							STDERR,
+							'' . $data[$key] . "\n"
+						);
+				}
 			}
-			}
-
-			echo "----------------------------------------\n";
+			
+			fprintf(
+				STDERR,
+				"----------------------------------------\n"
+			);
 		}
 	}
 } else {
