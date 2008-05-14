@@ -69,6 +69,8 @@ extends
 		$str .= ' ' . $this->get_operator() . ' ';
 		
 		$str .= $this->get_value();
+		
+		return $str;
 	}
 	
 	#public function
