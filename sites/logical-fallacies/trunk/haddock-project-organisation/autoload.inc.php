@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-07
+ * Last Modified: 2008-05-15
  */
 
 function __autoload($class_name)
@@ -133,6 +133,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_LockFile.inc.php';
 			break;
 
+		case('CLIScripts_LockFilesDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/directories/CLIScripts_LockFilesDirectory.inc.php';
+			break;
+
+		case('CLIScripts_LockFilesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_LockFilesHelper.inc.php';
+			break;
+
 		case('CLIScripts_ScriptDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptDirectory.inc.php';
 			break;
@@ -151,6 +159,10 @@ function __autoload($class_name)
 
 		case('CodeAnalysis_ExecutionTimer'): 
 			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/CodeAnalysis_ExecutionTimer.inc.php';
+			break;
+
+		case('CodeAnalysis_MemoryHelper'): 
+			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/helpers/CodeAnalysis_MemoryHelper.inc.php';
 			break;
 
 		case('Configuration_ConfigManagerHelper'): 
@@ -577,6 +589,18 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSubClause.inc.php';
 			break;
 
+		case('Database_SQLUpdateClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClause.inc.php';
+			break;
+
+		case('Database_SQLUpdateClauseFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClauseFieldSubClause.inc.php';
+			break;
+
+		case('Database_SQLUpdateClauseQuotedValueFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClauseQuotedValueFieldSubClause.inc.php';
+			break;
+
 		case('Database_SQLUpdateStatement'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLUpdateStatement.inc.php';
 			break;
@@ -585,8 +609,16 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClause.inc.php';
 			break;
 
+		case('Database_SQLWhereClauseBinaryOperatorConditionSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseBinaryOperatorConditionSubClause.inc.php';
+			break;
+
 		case('Database_SQLWhereClauseConditionSubClause'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseConditionSubClause.inc.php';
+			break;
+
+		case('Database_SQLWhereClauseFieldInListConditionSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseFieldInListConditionSubClause.inc.php';
 			break;
 
 		case('Database_StringField'): 
@@ -723,6 +755,14 @@ function __autoload($class_name)
 
 		case('DPPages_URLsHelper'): 
 			require_once PROJECT_ROOT . '/plug-ins/db-pages/classes/helpers/DPPages_URLsHelper.inc.php';
+			break;
+
+		case('Environment_MachineHelper'): 
+			require_once PROJECT_ROOT . '/haddock/environment/classes/helpers/Environment_MachineHelper.inc.php';
+			break;
+
+		case('Environment_ProcessesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/environment/classes/helpers/Environment_ProcessesHelper.inc.php';
 			break;
 
 		case('ErrorHandling_SprintfException'): 
@@ -1497,6 +1537,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/renderers/PublicHTML_ExceptionRenderer.inc.php';
 			break;
 
+		case('PublicHTML_GDPNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_GDPNGImage.inc.php';
+			break;
+
 		case('PublicHTML_HaddockHTTPResponse'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HaddockHTTPResponse.inc.php';
 			break;
@@ -1539,6 +1583,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_PCROFactory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PCROFactory.inc.php';
+			break;
+
+		case('PublicHTML_PNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_PNGImage.inc.php';
 			break;
 
 		case('PublicHTML_PublicURLFactory'): 
