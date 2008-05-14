@@ -23,8 +23,8 @@ class
 	{
 		$statement_as_string = $statement->get_as_string();
 		
-		echo __METHOD__ . "\n";
-		echo "\$statement_as_string:\n$statement_as_string\n";
+		#echo __METHOD__ . "\n";
+		#echo "\$statement_as_string:\n$statement_as_string\n";
 		
 		$dbh = DB::m();
 		
