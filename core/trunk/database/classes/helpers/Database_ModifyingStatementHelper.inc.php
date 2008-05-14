@@ -21,10 +21,16 @@ class
 			Database_SQLStatement $statement
 		)
 	{
+		echo __METHOD__ . "\n";
+		
+		#print_r($statement);
+		#exit;
+		
 		$statement_as_string = $statement->get_as_string();
 		
-		#echo __METHOD__ . "\n";
 		#echo "\$statement_as_string:\n$statement_as_string\n";
+		#echo 'strlen($statement_as_string): ' . strlen($statement_as_string) . "\n";
+		#exit;
 		
 		$dbh = DB::m();
 		

@@ -37,7 +37,7 @@ extends
 		)
 	{
 		$this->add_condition(
-			new Database_SQLWhereClauseConditionSubClause(
+			new Database_SQLWhereClauseBinaryOperatorConditionSubClause(
 				"'$literal_value'",
 				$field_name,
 				$table_name,
@@ -58,7 +58,7 @@ extends
 		)
 	{
 		$this->add_condition(
-			new Database_SQLWhereClauseConditionSubClause(
+			new Database_SQLWhereClauseBinaryOperatorConditionSubClause(
 				'NOW()',
 				$field_name,
 				$table_name,
@@ -75,7 +75,7 @@ extends
 		)
 	{
 		$this->add_condition(
-			new Database_SQLWhereClauseConditionSubClause(
+			new Database_SQLWhereClauseBinaryOperatorConditionSubClause(
 				'NOW()',
 				$field_name,
 				$table_name,

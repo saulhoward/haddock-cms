@@ -5,48 +5,97 @@
  * @copyright 2008-03-25, RFI
  */
 
-class
+abstract class
 	Database_SQLWhereClauseConditionSubClause
 extends
 	Database_SQLClause
 {
-	private $value;
 	private $field_name;
 	private $table_name;
-	private $operator;
 	private $conjunction;
 	private $negated;
 	
 	public function
 		__construct(
-			$value,
 			$field_name,
-			$table_name,
-			$operator = '=',
-			$conjunction = 'AND',
-			$negated = FALSE
+			$table_name = NULL,
+			$conjunction = NULL,
+			$negated = NULL
 		)
 	{
-		$this->value = $value;
 		$this->field_name = $field_name;
 		$this->table_name = $table_name;
-		$this->operator = $operator;
-		$this->conjunction = $conjunction;
-		$this->negated = $negated;
+		
+		if (isset($conjunction)) {
+			$this->conjunction = $conjunction;
+		} else {
+			$this->conjunction = 'AND';
+		}
+		
+		if (isset($negated)) {
+			$this->negated = $negated;
+		} else {
+			$this->negated = FALSE;
+		}
 	}
 	
-	public function
+	public function 
+		get_field_name()
+	{
+		return $this->field_name;
+	}
+
+	public function 
+		set_field_name($field_name)
+	{
+		$this->field_name = $field_name;
+	}
+
+	public function 
+		get_table_name()
+	{
+		return $this->table_name;
+	}
+
+	public function 
+		set_table_name($table_name)
+	{
+		$this->table_name = $table_name;
+	}
+
+	public function 
 		get_conjunction()
 	{
 		return $this->conjunction;
 	}
+
+	public function 
+		set_conjunction($conjunction)
+	{
+		$this->conjunction = $conjunction;
+	}
+
+	public function 
+		is_negated()
+	{
+		return $this->negated;
+	}
+
+	public function 
+		set_negated($negated)
+	{
+		$this->negated = $negated;
+	}
+	
+	abstract protected function
+		get_value_string();
 	
 	public function
 		get_as_string()
 	{
 		$str = '';
 		
-		if ($this->negated) {
+		if ($this->is_negated()) {
 			$str .= ' NOT( ';
 		}
 		
@@ -56,11 +105,9 @@ extends
 		
 		$str .= $this->field_name;
 		
-		$str .= ' ' . $this->operator . ' ';
+		$str .= $this->get_value_string();
 		
-		$str .= $this->value;
-		
-		if ($this->negated) {
+		if ($this->is_negated()) {
 			$str .= ' ) ';
 		}
 		
