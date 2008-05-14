@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-14
+ * Last Modified: 2008-05-15
  */
 
 function __autoload($class_name)
@@ -1541,6 +1541,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/renderers/PublicHTML_ExceptionRenderer.inc.php';
 			break;
 
+		case('PublicHTML_GDPNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_GDPNGImage.inc.php';
+			break;
+
 		case('PublicHTML_HaddockHTTPResponse'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HaddockHTTPResponse.inc.php';
 			break;
@@ -1583,6 +1587,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_PCROFactory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PCROFactory.inc.php';
+			break;
+
+		case('PublicHTML_PNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_PNGImage.inc.php';
 			break;
 
 		case('PublicHTML_PublicURLFactory'): 
