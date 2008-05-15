@@ -21,7 +21,7 @@ class
 			Database_SQLStatement $statement
 		)
 	{
-		echo __METHOD__ . "\n";
+		#echo __METHOD__ . "\n";
 		
 		#print_r($statement);
 		#exit;
