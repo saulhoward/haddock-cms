@@ -48,5 +48,13 @@ extends
 			)
 		);
 	}
+	
+	public function
+		unlock_all_lock_files()
+	{
+		foreach ($this->get_lock_files() as $lock_file) {
+			$lock_file->unlock();
+		}
+	}
 }
 ?>

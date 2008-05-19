@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>CLIScripts_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<exception_format_strings>
+		<script_locked value="The %s script is locked!" />
+	</exception_format_strings>
+</config>
