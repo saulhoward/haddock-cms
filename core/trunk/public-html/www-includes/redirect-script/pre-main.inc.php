@@ -2,7 +2,7 @@
 /**
  * The default pre-main section for redirect-scripts.
  *
- * @copyright Clear Line Web Design, 2007-07-17
+ * @copyright 2007-07-17, RFI
  */
 
 //echo '__FILE__: ' . __FILE__ . "\n";

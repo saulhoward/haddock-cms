@@ -2,33 +2,33 @@
 /**
  * PublicHTML_RedirectionManager
  *
- * @copyright Clear Line Web Design, 2007-08-19
+ * @copyright 2007-08-19, RFI
  */
 
 class
 	PublicHTML_RedirectionManager
 {
-    private $url;
-    
-    public function
-        __construct()
-    {
-        $this->url = new HTMLTags_URL();
-        
-        if ($_SERVER['HTTPS']) {
-            $this->url->set_scheme('https');
-        } else {
-            $this->url->set_scheme('http');            
-        }
-        
-        $this->url->set_domain($_SERVER['HTTP_HOST']);
-    }
-    
-    public function
-        get_url()
-    {
-        return $this->url;
-    }
+	private $url;
+	
+	public function
+		__construct()
+	{
+		$this->url = new HTMLTags_URL();
+		
+		if ($_SERVER['HTTPS']) {
+			$this->url->set_scheme('https');
+		} else {
+			$this->url->set_scheme('http');            
+		}
+		
+		$this->url->set_domain($_SERVER['HTTP_HOST']);
+	}
+	
+	public function
+		get_url()
+	{
+		return $this->url;
+	}
 	
 	public function
 		get_current_url()
@@ -36,10 +36,10 @@ class
 		$current_url = new HTMLTags_URL();
 		
 		if ($_SERVER['HTTPS']) {
-         		$current_url->set_scheme('https');
-	        } else {
-        		$current_url->set_scheme('http');
-        	}
+				$current_url->set_scheme('https');
+			} else {
+				$current_url->set_scheme('http');
+			}
 		
 		if (preg_match('/([-\w.]+):(\d+)/', $_SERVER['HTTP_HOST'], $matches)) {
 			$current_url->set_domain($matches[1]);

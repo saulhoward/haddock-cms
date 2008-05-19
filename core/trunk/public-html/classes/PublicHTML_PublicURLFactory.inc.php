@@ -2,7 +2,7 @@
 /**
  * PublicHTML_PublicURLFactory
  *
- * @copyright Clear Line Web Design, 2007-09-23
+ * @copyright 2007-09-23, RFI
  */
 
 /**
@@ -13,6 +13,11 @@
 class
 	PublicHTML_PublicURLFactory
 {
+	/**
+	 * DEPRECATED!
+	 *
+	 * Use PublicHTML_URLHelper::get_pm_page_url(...) instead!
+	 */
     public static function
 		get_url($section, $module, $page, $type)
 	{
