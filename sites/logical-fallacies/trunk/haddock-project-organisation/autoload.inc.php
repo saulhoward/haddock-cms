@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-15
+ * Last Modified: 2008-05-19
  */
 
 function __autoload($class_name)
@@ -125,6 +125,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_BinIncludesDirectory.inc.php';
 			break;
 
+		case('CLIScripts_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/managers/config/CLIScripts_ConfigManager.inc.php';
+			break;
+
 		case('CLIScripts_InputReader'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_InputReader.inc.php';
 			break;
@@ -145,6 +149,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptDirectory.inc.php';
 			break;
 
+		case('CLIScripts_ScriptLockedException'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/exceptions/CLIScripts_ScriptLockedException.inc.php';
+			break;
+
 		case('CLIScripts_ScriptsDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptsDirectory.inc.php';
 			break;
@@ -163,6 +171,10 @@ function __autoload($class_name)
 
 		case('CodeAnalysis_MemoryHelper'): 
 			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/helpers/CodeAnalysis_MemoryHelper.inc.php';
+			break;
+
+		case('Configuration_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/configuration/classes/managers/config/Configuration_ConfigManager.inc.php';
 			break;
 
 		case('Configuration_ConfigManagerHelper'): 
@@ -335,6 +347,10 @@ function __autoload($class_name)
 
 		case('Database_HTMLPreFieldRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/field-renderers/Database_HTMLPreFieldRenderer.inc.php';
+			break;
+
+		case('Database_ImageCacheHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_ImageCacheHelper.inc.php';
 			break;
 
 		case('Database_ImageFieldRenderer'): 
