@@ -117,6 +117,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_BinIncludesDirectory.inc.php';
 			break;
 
+		case('CLIScripts_CLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScripts_CLIScript.inc.php';
+			break;
+
 		case('CLIScripts_ConfigManager'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/managers/config/CLIScripts_ConfigManager.inc.php';
 			break;
@@ -791,6 +795,10 @@ function __autoload($class_name)
 
 		case('Formatting_Word'): 
 			require_once PROJECT_ROOT . '/haddock/formatting/classes/Formatting_Word.inc.php';
+			break;
+
+		case('FTPSynchronisation_ListServersCLIScript'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/FTPSynchronisation_ListServersCLIScript.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
