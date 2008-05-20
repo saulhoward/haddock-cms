@@ -109,6 +109,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/caching/classes/Caching_SessionVarManager.inc.php';
 			break;
 
+		case('CLIScripts_ArgsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ArgsHelper.inc.php';
+			break;
+
 		case('CLIScripts_BatWrapperScript'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_BatWrapperScript.inc.php';
 			break;
