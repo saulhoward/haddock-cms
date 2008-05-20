@@ -70,35 +70,39 @@ require PROJECT_ROOT
 /*
  * Get the command line args.
  */
-$args = array();
-#$help = FALSE;
-for ($i = 0; $i < count($_SERVER['argv']); $i++) {
-	#echo '$_SERVER[\'argv\'][$i]' . "\n";
-	#echo $_SERVER['argv'][$i] . "\n";
-	
-	if (
-		preg_match(
-			'/^--([\w-]+)(?:=(.+))?$/',
-			$_SERVER['argv'][$i],
-			$matches
-		)
-	) {
-		#print_r($matches);
-		
-		#$args[$matches[1]] = $_SERVER['argv'][$i + 1];
-		if (isset($matches[2])) {
-			$args[$matches[1]] = $matches[2];
-		} else {
-			$args[$matches[1]] = TRUE;
-		}
-#    } else {
-#		echo "No match!\n";
-	}
-	
-	#if ($_SERVER['argv'][$i] == '--help') {
-	#    $help = TRUE;
-	#}
-}
+#$args = array();
+##$help = FALSE;
+#for ($i = 0; $i < count($_SERVER['argv']); $i++) {
+#	#echo '$_SERVER[\'argv\'][$i]' . "\n";
+#	#echo $_SERVER['argv'][$i] . "\n";
+#	
+#	if (
+#		preg_match(
+#			'/^--([\w-]+)(?:=(.+))?$/',
+#			$_SERVER['argv'][$i],
+#			$matches
+#		)
+#	) {
+#		#print_r($matches);
+#		
+#		#$args[$matches[1]] = $_SERVER['argv'][$i + 1];
+#		if (isset($matches[2])) {
+#			$args[$matches[1]] = $matches[2];
+#		} else {
+#			$args[$matches[1]] = TRUE;
+#		}
+##    } else {
+##		echo "No match!\n";
+#	}
+#	
+#	#if ($_SERVER['argv'][$i] == '--help') {
+#	#    $help = TRUE;
+#	#}
+#}
+
+$args
+	= CLIScripts_ArgsHelper
+		::parse_argv($_SERVER['argv']);
 
 #echo "The args: \n";
 #print_r($args);
