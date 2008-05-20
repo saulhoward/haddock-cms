@@ -23,74 +23,78 @@ class
 			'Thrown at ' . date('c') . "\n"
 		);
 		
-		fprintf(
-			STDERR,
-			"Exception trace: \n\n"
-		);
+		$trace = $e->getTrace();
 		
-		foreach ($e->getTrace() as $data) {
+		if (count($trace) > 0) {
 			fprintf(
 				STDERR,
-				"----------------------------------------\n"
+				"Exception trace: \n\n"
 			);
 			
-			$keys = array_keys($data);
-			
-			sort($keys);
-			 
-			foreach ($keys as $key) {
+			foreach ($trace as $data) {
 				fprintf(
 					STDERR,
-					"$key: "
+					"----------------------------------------\n"
 				);
 				
-				if (is_array($data[$key])) {
-					foreach ($data[$key] as $datum) {
-						fprintf(
-							STDERR,
-							'    '
-						);
-						
-						if (is_numeric($datum) || is_string($datum)) {
+				$keys = array_keys($data);
+				
+				sort($keys);
+				 
+				foreach ($keys as $key) {
+					fprintf(
+						STDERR,
+						"$key: "
+					);
+					
+					if (is_array($data[$key])) {
+						foreach ($data[$key] as $datum) {
 							fprintf(
 								STDERR,
-								'"' . $datum . "\""
+								'    '
+							);
+							
+							if (is_numeric($datum) || is_string($datum)) {
+								fprintf(
+									STDERR,
+									'"' . $datum . "\""
+								);
+							}
+							
+							fprintf(
+								STDERR,
+								"\n"
 							);
 						}
 						
-						fprintf(
-							STDERR,
-							"\n"
-						);
-					}
-					
-				} else if (strtolower($key) == 'file') {
-						$formatted_filename
-							= new Formatting_FileName(
-								$data[$key]
+					} else if (strtolower($key) == 'file') {
+							$formatted_filename
+								= new Formatting_FileName(
+									$data[$key]
+								);
+							
+							fprintf(
+								STDERR,
+								$formatted_filename->get_pretty_name()
 							);
-						
-						fprintf(
-							STDERR,
-							$formatted_filename->get_pretty_name()
-						);
-				} else {
-						fprintf(
-							STDERR,
-							'    '
-						);
-						
-						fprintf(
-							STDERR,
-							'' . $data[$key] . "\n"
-						);
+					} else {
+							fprintf(
+								STDERR,
+								'    '
+							);
+							
+							fprintf(
+								STDERR,
+								'' . $data[$key] . "\n"
+							);
+					}
 				}
+				
+				fprintf(
+					STDERR,
+					"----------------------------------------\n"
+				);
 			}
-			
-			fprintf(
-				STDERR,
-				"----------------------------------------\n"
-			);
 		}
 	}
 }
