@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-09
+ * Last Modified: 2008-05-23
  */
 
 function __autoload($class_name)
@@ -109,12 +109,44 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/caching/classes/Caching_SessionVarManager.inc.php';
 			break;
 
+		case('CLIScipts_GenerateScriptObjectRunnersCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScipts_GenerateScriptObjectRunnersCLIScript.inc.php';
+			break;
+
+		case('CLIScripts_ArgsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ArgsHelper.inc.php';
+			break;
+
 		case('CLIScripts_BatWrapperScript'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_BatWrapperScript.inc.php';
 			break;
 
 		case('CLIScripts_BinIncludesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_BinIncludesDirectory.inc.php';
+			break;
+
+		case('CLIScripts_CLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScripts_CLIScript.inc.php';
+			break;
+
+		case('CLIScripts_CLIScriptFilesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_CLIScriptFilesHelper.inc.php';
+			break;
+
+		case('CLIScripts_CLIScriptPHPClassFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_CLIScriptPHPClassFile.inc.php';
+			break;
+
+		case('CLIScripts_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/managers/config/CLIScripts_ConfigManager.inc.php';
+			break;
+
+		case('CLIScripts_ExceptionsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ExceptionsHelper.inc.php';
+			break;
+
+		case('CLIScripts_ExecutablePHPFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_ExecutablePHPFile.inc.php';
 			break;
 
 		case('CLIScripts_InputReader'): 
@@ -137,6 +169,22 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptDirectory.inc.php';
 			break;
 
+		case('CLIScripts_ScriptLockedException'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/exceptions/CLIScripts_ScriptLockedException.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnerFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_ScriptObjectRunnerFile.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnersDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/directories/CLIScripts_ScriptObjectRunnersDirectory.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnersHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ScriptObjectRunnersHelper.inc.php';
+			break;
+
 		case('CLIScripts_ScriptsDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptsDirectory.inc.php';
 			break;
@@ -151,6 +199,14 @@ function __autoload($class_name)
 
 		case('CodeAnalysis_ExecutionTimer'): 
 			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/CodeAnalysis_ExecutionTimer.inc.php';
+			break;
+
+		case('CodeAnalysis_MemoryHelper'): 
+			require_once PROJECT_ROOT . '/haddock/code-analysis/classes/helpers/CodeAnalysis_MemoryHelper.inc.php';
+			break;
+
+		case('Configuration_ConfigManager'): 
+			require_once PROJECT_ROOT . '/haddock/configuration/classes/managers/config/Configuration_ConfigManager.inc.php';
 			break;
 
 		case('Configuration_ConfigManagerHelper'): 
@@ -323,6 +379,10 @@ function __autoload($class_name)
 
 		case('Database_HTMLPreFieldRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/field-renderers/Database_HTMLPreFieldRenderer.inc.php';
+			break;
+
+		case('Database_ImageCacheHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_ImageCacheHelper.inc.php';
 			break;
 
 		case('Database_ImageFieldRenderer'): 
@@ -577,6 +637,18 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLSubClause.inc.php';
 			break;
 
+		case('Database_SQLUpdateClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClause.inc.php';
+			break;
+
+		case('Database_SQLUpdateClauseFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClauseFieldSubClause.inc.php';
+			break;
+
+		case('Database_SQLUpdateClauseQuotedValueFieldSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLUpdateClauseQuotedValueFieldSubClause.inc.php';
+			break;
+
 		case('Database_SQLUpdateStatement'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/statements/Database_SQLUpdateStatement.inc.php';
 			break;
@@ -585,8 +657,16 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClause.inc.php';
 			break;
 
+		case('Database_SQLWhereClauseBinaryOperatorConditionSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseBinaryOperatorConditionSubClause.inc.php';
+			break;
+
 		case('Database_SQLWhereClauseConditionSubClause'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseConditionSubClause.inc.php';
+			break;
+
+		case('Database_SQLWhereClauseFieldInListConditionSubClause'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/sql/clauses/Database_SQLWhereClauseFieldInListConditionSubClause.inc.php';
 			break;
 
 		case('Database_StringField'): 
@@ -687,6 +767,10 @@ function __autoload($class_name)
 
 		case('FileSystem_PHPClassFile'): 
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_PHPClassFile.inc.php';
+			break;
+
+		case('FileSystem_PHPFile'): 
+			require_once PROJECT_ROOT . '/haddock/file-system/classes/files/FileSystem_PHPFile.inc.php';
 			break;
 
 		case('FileSystem_PHPIncFile'): 
@@ -1277,6 +1361,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/renderers/PublicHTML_ExceptionRenderer.inc.php';
 			break;
 
+		case('PublicHTML_GDPNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_GDPNGImage.inc.php';
+			break;
+
 		case('PublicHTML_HaddockHTTPResponse'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_HaddockHTTPResponse.inc.php';
 			break;
@@ -1319,6 +1407,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_PCROFactory'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_PCROFactory.inc.php';
+			break;
+
+		case('PublicHTML_PNGImage'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/png/PublicHTML_PNGImage.inc.php';
 			break;
 
 		case('PublicHTML_PublicURLFactory'): 
