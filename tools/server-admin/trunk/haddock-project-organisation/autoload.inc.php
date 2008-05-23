@@ -189,6 +189,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_ScriptsDirectory.inc.php';
 			break;
 
+		case('CLIScripts_ShowServerCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScripts_ShowServerCLIScript.inc.php';
+			break;
+
 		case('CLIScripts_SHWrapperScript'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_SHWrapperScript.inc.php';
 			break;
