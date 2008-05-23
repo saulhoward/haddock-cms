@@ -109,10 +109,6 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/caching/classes/Caching_SessionVarManager.inc.php';
 			break;
 
-		case('CLIScipts_GenerateScriptObjectRunnersCLIScript'): 
-			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScipts_GenerateScriptObjectRunnersCLIScript.inc.php';
-			break;
-
 		case('CLIScripts_ArgsHelper'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ArgsHelper.inc.php';
 			break;
@@ -147,6 +143,10 @@ function __autoload($class_name)
 
 		case('CLIScripts_ExecutablePHPFile'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_ExecutablePHPFile.inc.php';
+			break;
+
+		case('CLIScripts_GenerateScriptObjectRunnersCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScripts_GenerateScriptObjectRunnersCLIScript.inc.php';
 			break;
 
 		case('CLIScripts_InputReader'): 
