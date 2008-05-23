@@ -1345,6 +1345,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_AJAXFormHelper.inc.php';
 			break;
 
+		case('PublicHTML_AssembleHTAccessCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/cli-scripts/PublicHTML_AssembleHTAccessCLIScript.inc.php';
+			break;
+
 		case('PublicHTML_ConfigManager'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_ConfigManager.inc.php';
 			break;
