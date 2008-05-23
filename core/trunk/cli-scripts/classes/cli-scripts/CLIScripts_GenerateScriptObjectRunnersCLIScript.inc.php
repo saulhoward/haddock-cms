@@ -1,12 +1,12 @@
 <?php
 /**
- * CLIScipts_GenerateScriptObjectRunnersCLIScript
+ * CLIScripts_GenerateScriptObjectRunnersCLIScript
  *
  * @copyright 2008-05-20, RFI
  */
 
 class
-	CLIScipts_GenerateScriptObjectRunnersCLIScript
+	CLIScripts_GenerateScriptObjectRunnersCLIScript
 extends
 	CLIScripts_CLIScript
 {
