@@ -76,6 +76,11 @@ extends
 			fwrite($fh, $eol);
 			
 			/*
+			 * Check that the SAPI is 'cli'.
+			 */
+			fwrite($fh, "if (PHP_SAPI == 'cli') { $eol");
+			
+			/*
 			 * Define the project root.
 			 */
 			fwrite($fh, "define('PROJECT_ROOT', '" . PROJECT_ROOT . "');$eol");
@@ -119,6 +124,8 @@ try {
 "
 
 );
+			
+			fwrite($fh, "}$eol");
 			
 			fwrite($fh, "?>$eol");
 			
