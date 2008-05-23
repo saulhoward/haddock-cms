@@ -5,6 +5,12 @@
  * @copyright Clear Line Web Design, 2007-07-06
  */
 
+/*
+ * DEPRECATED!
+ *
+ * Use HaddockProjectOrganisation_AssembleAutoloadFileCLIScript instead.
+ */
+
 $project_directory_finder
     = HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
 
