@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-20
+ * Last Modified: 2008-05-23
  */
 
 function __autoload($class_name)
@@ -109,6 +109,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/caching/classes/Caching_SessionVarManager.inc.php';
 			break;
 
+		case('CLIScipts_GenerateScriptObjectRunnersCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScipts_GenerateScriptObjectRunnersCLIScript.inc.php';
+			break;
+
 		case('CLIScripts_ArgsHelper'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ArgsHelper.inc.php';
 			break;
@@ -125,12 +129,24 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/cli-scripts/CLIScripts_CLIScript.inc.php';
 			break;
 
+		case('CLIScripts_CLIScriptFilesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_CLIScriptFilesHelper.inc.php';
+			break;
+
+		case('CLIScripts_CLIScriptPHPClassFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_CLIScriptPHPClassFile.inc.php';
+			break;
+
 		case('CLIScripts_ConfigManager'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/managers/config/CLIScripts_ConfigManager.inc.php';
 			break;
 
 		case('CLIScripts_ExceptionsHelper'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ExceptionsHelper.inc.php';
+			break;
+
+		case('CLIScripts_ExecutablePHPFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_ExecutablePHPFile.inc.php';
 			break;
 
 		case('CLIScripts_InputReader'): 
@@ -155,6 +171,18 @@ function __autoload($class_name)
 
 		case('CLIScripts_ScriptLockedException'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/exceptions/CLIScripts_ScriptLockedException.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnerFile'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/files/CLIScripts_ScriptObjectRunnerFile.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnersDirectory'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/file-system/directories/CLIScripts_ScriptObjectRunnersDirectory.inc.php';
+			break;
+
+		case('CLIScripts_ScriptObjectRunnersHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ScriptObjectRunnersHelper.inc.php';
 			break;
 
 		case('CLIScripts_ScriptsDirectory'): 
@@ -739,6 +767,10 @@ function __autoload($class_name)
 
 		case('FileSystem_PHPClassFile'): 
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_PHPClassFile.inc.php';
+			break;
+
+		case('FileSystem_PHPFile'): 
+			require_once PROJECT_ROOT . '/haddock/file-system/classes/files/FileSystem_PHPFile.inc.php';
 			break;
 
 		case('FileSystem_PHPIncFile'): 
