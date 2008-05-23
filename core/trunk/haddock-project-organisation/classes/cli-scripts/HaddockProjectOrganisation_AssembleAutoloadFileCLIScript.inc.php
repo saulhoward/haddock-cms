@@ -13,13 +13,8 @@ extends
 	public function
 		do_actions()
 	{
-		$project_directory_finder
-			= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
-		
-		$project_directory
-			= $project_directory_finder->get_project_directory_for_this_project();
-		
-		$project_directory->refresh_autoload_file();
+		HaddockProjectOrganisation_AutoloadFilesHelper
+			::refresh_autoload_file();
 	}
 }
 ?>

@@ -1,4 +1,10 @@
 <?php
+/**
+ * HaddockProjectOrganisation_AutoloadHelper
+ *
+ * @copyright 2008-05-23, RFI
+ */
+
 class
 	HaddockProjectOrganisation_AutoloadHelper
 {
