@@ -849,6 +849,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/cli-scripts/HaddockProjectOrganisation_AssembleAutoloadFileCLIScript.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_AutoloadFilesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_AutoloadFilesHelper.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_AutoloadHelper'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_AutoloadHelper.inc.php';
 			break;
