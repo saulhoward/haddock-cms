@@ -37,7 +37,8 @@ if (
  * Define the debug constants.
  */
 require_once PROJECT_ROOT
-	. '/haddock/public-html/public-html/define-debug-constants.inc.php';
+	. '/haddock/public-html/public-html/'
+	. 'define-debug-constants.inc.php';
 
 //require_once PROJECT_ROOT
 //    . '/haddock/cli-scripts/classes/CLIScripts_InputReader.inc.php';
