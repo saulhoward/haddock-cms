@@ -71,7 +71,8 @@ extends
 	public function
 		get_eol()
 	{
-		return "\n";
+		#return "\n";
+		return PHP_EOL;
 	}
 }
 ?>
