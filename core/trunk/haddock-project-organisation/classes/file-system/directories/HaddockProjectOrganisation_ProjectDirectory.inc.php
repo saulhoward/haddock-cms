@@ -636,39 +636,84 @@ extends
 		#return $php_class_files;
 	}
 	
+	/**
+	 * Returns an array of <code>FileSystem_PHPClassFile</code> objects that extend
+	 * <code>$parent_class_name</code>.
+	 *
+	 * @param string $parent_class_name The name of the class that all the returned PHP classes files should extend.
+	 * @param boolean $include_parent_class Whether the parent class should go into the returned list or not.
+	 * @param boolean $include_abstract_classes Whether to include abstract classes in the list or not.
+	 * @return array The <code>FileSystem_PHPClassFile</code> objects.
+	 */
 	public function
-		get_php_subclass_files($parent_class_name)
+		get_php_subclass_files(
+			$parent_class_name,
+			$include_parent_class = TRUE,
+			$include_abstract_classes = TRUE
+		)
 	{
 		$php_subclass_files = array();
 		
 		$php_class_files = $this->get_php_class_files();
 		
-		foreach ($php_class_files as $p_c_f) {
+		/*
+		 * Loop through the classes to check that there is a class called
+		 * <code>$parent_class_name</code>.
+		 */
+		foreach (
+			$php_class_files
+			as
+			$p_c_f
+		) {
 			if ($p_c_f->get_php_class_name() == $parent_class_name) {
 				$parent_reflection_class = $p_c_f->get_reflection_class();
 				break;
 			}
 		}
-		
 		#print_r($parent_reflection_class);
 		
+		/*
+		 * Filter out the classes that are not subclasses of <code>$parent_class_name</code>.
+		 */
 		if (isset($parent_reflection_class)) {
-			foreach ($php_class_files as $p_c_f) {
+			foreach (
+				$php_class_files
+				as
+				$p_c_f
+			) {
 				$current_reflection_class = $p_c_f->get_reflection_class();
 				
 				if (
 					$current_reflection_class
-					->isSubclassOf($parent_reflection_class)
+						->isSubclassOf($parent_reflection_class)
 					||
 					(
-						$current_reflection_class->getName()
-						==
-						$parent_reflection_class->getName()
+						$include_parent_class
+						&&
+						(
+							$current_reflection_class->getName()
+							==
+							$parent_reflection_class->getName()
+						)
 					)
 				) {
 					$php_subclass_files[] = $p_c_f;
 				}
 			}
+		}
+		
+		/*
+		 * Filter out the abstract classes, if not requested.
+		 */
+		if (!$include_abstract_classes) {
+			$php_subclass_files
+				= array_filter(
+					$php_subclass_files,
+					create_function(
+						'$php_subclass_file',
+						'$reflection_class = $php_subclass_file->get_reflection_class(); return !$reflection_class->isAbstract();'
+					)
+				);
 		}
 		
 		usort(

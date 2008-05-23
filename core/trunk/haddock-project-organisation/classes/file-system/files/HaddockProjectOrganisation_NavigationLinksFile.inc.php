@@ -2,19 +2,19 @@
 /**
  * HaddockProjectOrganisation_NavigationLinksFile
  *
- * @copy Clear Line Web Design, 2007-01-24
+ * @copyright 2007-01-24, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_TextFileWithComments.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_TextFileWithComments.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
 
 /**
  * Represents a file called:
@@ -49,34 +49,34 @@ require_once PROJECT_ROOT
  * page-title="Autoload .INC File Creation"
  */
 abstract class
-    HaddockProjectOrganisation_NavigationLinksFile
+	HaddockProjectOrganisation_NavigationLinksFile
 extends
-    FileSystem_TextFileWithComments
+	FileSystem_TextFileWithComments
 {
-    /**
-     * The includes directory that this file
-     * is saved in.
-     */
-    private $includes_directory;
-    
-    public function
-        __construct(
-            $name,
-            HaddockProjectOrganisation_IncludesDirectory $includes_directory
-        )
-    {
-        parent::__construct($name);
-        
-        $this->includes_directory = $includes_directory;
-    }
-    
-    public function
-        get_includes_directory()
-    {
-        return $this->includes_directory;
-    }
-    
-    abstract public function
-        get_navigation_links();
+	/**
+	 * The includes directory that this file
+	 * is saved in.
+	 */
+	private $includes_directory;
+	
+	public function
+		__construct(
+			$name,
+			HaddockProjectOrganisation_IncludesDirectory $includes_directory
+		)
+	{
+		parent::__construct($name);
+		
+		$this->includes_directory = $includes_directory;
+	}
+	
+	public function
+		get_includes_directory()
+	{
+		return $this->includes_directory;
+	}
+	
+	abstract public function
+		get_navigation_links();
 }
 ?>

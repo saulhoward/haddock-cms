@@ -67,5 +67,11 @@ extends
 			fclose($handle);
 		}
 	}
+	
+	public function
+		get_eol()
+	{
+		return "\n";
+	}
 }
 ?>

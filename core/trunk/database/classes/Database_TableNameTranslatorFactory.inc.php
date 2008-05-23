@@ -2,19 +2,19 @@
 /**
  * Database_TableNameTranslatorFactory
  *
- * @copyright Clear Line Web Design, 2006-11-16
+ * @copyright 2006-11-16, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_TableNameTranslator.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
-    . 'HaddockProjectOrganisation_ModuleDirectory.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_TableNameTranslator.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/haddock-project-organisation/classes/'
+#    . 'HaddockProjectOrganisation_ModuleDirectory.inc.php';
 
 /**
  * Produces Database_TableNameTranslator objects for a given table name.
@@ -45,7 +45,8 @@ require_once PROJECT_ROOT
  *
  * 
  */
-class Database_TableNameTranslatorFactory
+class
+    Database_TableNameTranslatorFactory
 {
     private $clwd_svn_working_directory;
     
@@ -176,5 +177,4 @@ class Database_TableNameTranslatorFactory
         return $table_name_translator;
     }
 }
-
 ?>
