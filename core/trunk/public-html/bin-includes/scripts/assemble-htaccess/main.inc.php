@@ -6,6 +6,12 @@
  */
 
 /*
+ * DEPRECATED!
+ *
+ * Use PublicHTML_AssembleHTAccessCLIScript instead.
+ */
+
+/*
  * Backup the old file.
  */
 echo "Backing up the old .htaccess file:\n\n";
