@@ -13,6 +13,9 @@ extends
 	public function
 		generate_script_object_runners()
 	{
+		HaddockProjectOrganisation_AutoloadFilesHelper
+			::refresh_autoload_file();
+			
 		/*
 		 * Get rid of the old files.
 		 */
