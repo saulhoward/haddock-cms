@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-24
+ * Last Modified: 2008-05-26
  */
 
 function __autoload($class_name)
@@ -1543,10 +1543,6 @@ function __autoload($class_name)
 
 		case('Strings_Splitter'): 
 			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_Splitter.inc.php';
-			break;
-
-		case('UnitTests_RunAllTestsCLIScript'): 
-			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_RunAllTestsCLIScript.inc.php';
 			break;
 
 		case('UnitTests_UnitTests'): 
