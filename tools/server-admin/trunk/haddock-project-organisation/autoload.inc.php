@@ -201,6 +201,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_SHWrapperScript.inc.php';
 			break;
 
+		case('CLIScripts_UserInterrogationHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_UserInterrogationHelper.inc.php';
+			break;
+
 		case('CLIScripts_WrapperScript'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/CLIScripts_WrapperScript.inc.php';
 			break;
@@ -261,6 +265,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/managers/config/Database_ConfigManager.inc.php';
 			break;
 
+		case('Database_CreatePasswordsFileCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/cli-scripts/Database_CreatePasswordsFileCLIScript.inc.php';
+			break;
+
 		case('Database_CRUDAdminManager'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/Database_CRUDAdminManager.inc.php';
 			break;
@@ -309,6 +317,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/Database_DatabaseClassNameOverrideFile.inc.php';
 			break;
 
+		case('Database_DatabaseNameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/input-validation/Database_DatabaseNameValidator.inc.php';
+			break;
+
 		case('Database_DatabaseRenderer'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/renderers/Database_DatabaseRenderer.inc.php';
 			break;
@@ -343,6 +355,10 @@ function __autoload($class_name)
 
 		case('Database_EmailAddressVarCharField'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/elements/field-subclasses/Database_EmailAddressVarCharField.inc.php';
+			break;
+
+		case('Database_EntityNameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/input-validation/Database_EntityNameValidator.inc.php';
 			break;
 
 		case('Database_EnumField'): 
@@ -383,6 +399,10 @@ function __autoload($class_name)
 
 		case('Database_GetWhereClauseBehaviour'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/sql/behaviours/Database_GetWhereClauseBehaviour.inc.php';
+			break;
+
+		case('Database_HostNameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/input-validation/Database_HostNameValidator.inc.php';
 			break;
 
 		case('Database_HTMLPreFieldRenderer'): 
@@ -487,6 +507,14 @@ function __autoload($class_name)
 
 		case('Database_PasswordFile'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/Database_PasswordFile.inc.php';
+			break;
+
+		case('Database_PasswordsFileHelper'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/helpers/Database_PasswordsFileHelper.inc.php';
+			break;
+
+		case('Database_PasswordValidator'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/input-validation/Database_PasswordValidator.inc.php';
 			break;
 
 		case('Database_PreviousNextUL'): 
@@ -727,6 +755,10 @@ function __autoload($class_name)
 
 		case('Database_UserInputTooLongException'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/exceptions/Database_UserInputTooLongException.inc.php';
+			break;
+
+		case('Database_UsernameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/input-validation/Database_UsernameValidator.inc.php';
 			break;
 
 		case('Database_VarCharField'): 
