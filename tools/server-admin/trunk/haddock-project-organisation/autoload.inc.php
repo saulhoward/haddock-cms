@@ -137,6 +137,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/managers/config/CLIScripts_ConfigManager.inc.php';
 			break;
 
+		case('CLIScripts_DataRenderingHelper'): 
+			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_DataRenderingHelper.inc.php';
+			break;
+
 		case('CLIScripts_ExceptionsHelper'): 
 			require_once PROJECT_ROOT . '/haddock/cli-scripts/classes/helpers/CLIScripts_ExceptionsHelper.inc.php';
 			break;
@@ -1543,6 +1547,18 @@ function __autoload($class_name)
 
 		case('Strings_Splitter'): 
 			require_once PROJECT_ROOT . '/haddock/strings/classes/Strings_Splitter.inc.php';
+			break;
+
+		case('UnitTests_RunAllTestsCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_RunAllTestsCLIScript.inc.php';
+			break;
+
+		case('UnitTests_TestResultsSet'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/UnitTests_TestResultsSet.inc.php';
+			break;
+
+		case('UnitTests_TestsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/helpers/UnitTests_TestsHelper.inc.php';
 			break;
 
 		case('UnitTests_UnitTests'): 
