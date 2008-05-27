@@ -2,7 +2,7 @@
 /**
  * UnitTests_UnitTests
  *
- * @copyright Clear Line Web Design, 2007-03-21
+ * @copyright 2007-03-21, RFI
  */
 
 abstract class

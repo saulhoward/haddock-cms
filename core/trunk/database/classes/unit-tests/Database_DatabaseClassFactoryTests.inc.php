@@ -2,16 +2,16 @@
 /**
  * Database_DatabaseClassFactoryTests
  *
- * @copyright Clear Line Web Design, 2007-03-21
+ * @copyright 2007-03-21, RFI
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/unit-tests/classes/'
-    . 'UnitTests_UnitTests.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/unit-tests/classes/'
+#    . 'UnitTests_UnitTests.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUserFactory.inc.php';
     
 class
     Database_DatabaseClassFactoryTests

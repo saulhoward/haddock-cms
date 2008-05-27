@@ -94,20 +94,23 @@ class
 	private function
 		get_passwords_file_for_this_project()
 	{
-		$project_directory_finder
-			= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
-
-		$project_directory
-			= $project_directory_finder->get_project_directory_for_this_project();
+		#$project_directory_finder
+		#	= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
+		#
+		#$project_directory
+		#	= $project_directory_finder->get_project_directory_for_this_project();
+		#
+		#//$project_specific_directory
+		#//    = $project_directory->get_project_specific_directory();
+		#//
+		#//$passwords_file = $project_specific_directory->get_passwords_file();
+		#
+		#$passwords_file = $project_directory->get_passwords_file();
+		#
+		#return $passwords_file;
 		
-		//$project_specific_directory
-		//    = $project_directory->get_project_specific_directory();
-		//
-		//$passwords_file = $project_specific_directory->get_passwords_file();
-		
-		$passwords_file = $project_directory->get_passwords_file();
-		
-		return $passwords_file;
+		return Database_PasswordsFileHelper
+			::get_passwords_file();
 	}
 	
 	public function

@@ -11,6 +11,8 @@ class
 	/**
 	 * Runs all the tests in the project and returns an assoc
 	 * with data about the test results.
+	 *
+	 * @return UnitTests_TestResultsSet The test results set.
 	 */
 	public static function
 		run_all_tests()

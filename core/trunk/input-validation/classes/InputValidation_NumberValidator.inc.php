@@ -2,7 +2,7 @@
 /**
  * InputValidation_NumberValidator
  *
- * @copyright Clear Line Web Design, 2008-02-05
+ * @copyright 2008-02-05, RFI
  */
 
 class
