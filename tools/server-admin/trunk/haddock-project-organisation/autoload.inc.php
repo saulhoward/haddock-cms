@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-26
+ * Last Modified: 2008-05-27
  */
 
 function __autoload($class_name)
