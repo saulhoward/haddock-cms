@@ -6,8 +6,8 @@
  */
 
 /**
- * A wrapper around an array of assocs with data about
- * which tests passed and which ones failed.
+ * A wrapper around an array of <code>UnitTests_TestResult</code> objects
+ * with data about which tests passed and which ones failed.
  */
 class
 	UnitTests_TestResultsSet
@@ -28,7 +28,7 @@ class
 	
 	public function
 		add_test_result(
-			$test_result
+			UnitTests_TestResult $test_result
 		)
 	{
 		$this->test_results[] = $test_result;

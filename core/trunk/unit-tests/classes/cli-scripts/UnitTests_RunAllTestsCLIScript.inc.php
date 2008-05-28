@@ -17,38 +17,38 @@ extends
 			= UnitTests_TestsHelper
 				::run_all_tests();
 		
-		#print_r($test_results_set);
+		#print_r($test_results_set); exit;
 		
-		$test_results_summary
-			= $test_results_set->get_summary();
-		
-		#print_r($test_results_summary);
-		
-		echo 'Test Results Summary' . PHP_EOL;
-		echo PHP_EOL;
-		
-		$padding_chars = -25;
-		printf(
-			'%' . $padding_chars . 's: %d' . PHP_EOL,
-			'Total passed test',
-			$test_results_summary['total_passed_tests']
-		);
-		printf(
-			'%' . $padding_chars . 's: %d' . PHP_EOL,
-			'Total test functions',
-			$test_results_summary['total_test_functions']
-		);
-		printf(
-			'%' . $padding_chars . 's: %s' . PHP_EOL,
-			'All tests passed',
-			$test_results_summary['all_tests_passed'] ? 'Yes' : 'No'
-		);
-		printf(
-			'%' . $padding_chars . 's: %.3f s' . PHP_EOL,
-			'Total test time',
-			$test_results_summary['total_test_time']
-		);
-		echo PHP_EOL;
+		#$test_results_summary
+		#	= $test_results_set->get_summary();
+		#
+		##print_r($test_results_summary);
+		#
+		#echo 'Test Results Summary' . PHP_EOL;
+		#echo PHP_EOL;
+		#
+		#$padding_chars = -25;
+		#printf(
+		#	'%' . $padding_chars . 's: %d' . PHP_EOL,
+		#	'Total passed test',
+		#	$test_results_summary['total_passed_tests']
+		#);
+		#printf(
+		#	'%' . $padding_chars . 's: %d' . PHP_EOL,
+		#	'Total test functions',
+		#	$test_results_summary['total_test_functions']
+		#);
+		#printf(
+		#	'%' . $padding_chars . 's: %s' . PHP_EOL,
+		#	'All tests passed',
+		#	$test_results_summary['all_tests_passed'] ? 'Yes' : 'No'
+		#);
+		#printf(
+		#	'%' . $padding_chars . 's: %.3f s' . PHP_EOL,
+		#	'Total test time',
+		#	$test_results_summary['total_test_time']
+		#);
+		#echo PHP_EOL;
 		
 		/*
 		 * Print off the test results.
@@ -58,34 +58,34 @@ extends
 		
 		#print_r($test_results);
 		
-		echo 'Test Results' . PHP_EOL;
-		echo PHP_EOL;
-		
-		/*
-		 * Preformat some of the columns data.
-		 */
-		for (
-			$i = 0;
-			$i < count($test_results);
-			$i++
-		) {
-			$test_results[$i]['passes_all_tests']
-				= $test_results[$i]['passes_all_tests'] ? 'Yes' : 'No';
-				
-			$test_results[$i]['total_test_time']
-				= sprintf(
-					'%.3f',
-					$test_results[$i]['total_test_time']
-				);
-		}
-		
-		CLIScripts_DataRenderingHelper
-			::render_array_of_assocs_in_table(
-				$test_results,
-				array(
-					'total_test_time' => 'Total Test Time (s)'
-				)
-			);
+		#echo 'Test Results' . PHP_EOL;
+		#echo PHP_EOL;
+		#
+		#/*
+		# * Preformat some of the columns data.
+		# */
+		#for (
+		#	$i = 0;
+		#	$i < count($test_results);
+		#	$i++
+		#) {
+		#	$test_results[$i]['passes_all_tests']
+		#		= $test_results[$i]['passes_all_tests'] ? 'Yes' : 'No';
+		#		
+		#	$test_results[$i]['total_test_time']
+		#		= sprintf(
+		#			'%.3f',
+		#			$test_results[$i]['total_test_time']
+		#		);
+		#}
+		#
+		#CLIScripts_DataRenderingHelper
+		#	::render_array_of_assocs_in_table(
+		#		$test_results,
+		#		array(
+		#			'total_test_time' => 'Total Test Time (s)'
+		#		)
+		#	);
 		
 		#$titles = array(
 		#	'test_name' => 'Test Name',
@@ -136,6 +136,40 @@ extends
 		#}
 		#
 		#echo $hr;
+		
+		#echo 'Test Results' . PHP_EOL;
+		#echo PHP_EOL;
+
+		/*
+		 * Make the test results into an array of assocs
+		 * and reformat the data.
+		 */
+		$test_results_aoa = array();
+		foreach (
+			$test_results
+			as
+			$test_result
+		) {
+			$test_results_aoa[]
+				= array(
+					'class_name' => $test_result->get_class_name(),
+					'function_name' => $test_result->get_function_name(),
+					'passes' => $test_result->get_passes() ? 'Yes' : 'No',
+					'time'
+						=> sprintf(
+							'%.3f',
+							$test_result->get_time()
+						)
+				);
+		}
+
+		CLIScripts_DataRenderingHelper
+			::render_array_of_assocs_in_table(
+				$test_results_aoa,
+				array(
+					'time' => 'Time (s)'
+				)
+			);
 	}
 }
 ?>

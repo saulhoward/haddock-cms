@@ -5,13 +5,6 @@
  * @copyright 2007-03-21, RFI
  */
 
-#/**
-# * Define the necessary classes.
-# */
-#require_once PROJECT_ROOT
-#    . '/haddock/file-system/classes/'
-#    . 'FileSystem_PHPClassFile.inc.php';
-
 class
 	UnitTests_UnitTestsPHPClassFile
 extends
@@ -113,6 +106,51 @@ extends
 		get_test_name()
 	{
 		return $this->get_php_class_name();
+	}
+	
+	/**
+	 * Runs all the tests contained in this file and returns
+	 * an array of <code>UnitTests_TestResult</code> objects containing
+	 * the data about which tests passed and times.
+	 *
+	 * @return UnitTests_TestResult Data about the tests.
+	 */
+	public function
+		run_all_tests()
+	{
+		$test_results = array();
+		
+		$test_function_names
+			= $this->get_test_function_names();
+		
+		foreach ($test_function_names as $test_function_name) {
+			$start = microtime(TRUE);
+			
+			$call_back = array(
+				$this->get_php_class_name(),
+				$test_function_name
+			);
+			
+			#print_r($call_back);
+			
+			$passes = call_user_func(
+				$call_back
+			);
+			
+			$finish = microtime(TRUE);
+			
+			$time = $finish - $start;
+			
+			$test_results[]
+				= new UnitTests_TestResult(
+					$this->get_php_class_name(),
+					$test_function_name,
+					$passes,
+					$time
+				);
+		}
+		
+		return $test_results;
 	}
 }
 ?>
