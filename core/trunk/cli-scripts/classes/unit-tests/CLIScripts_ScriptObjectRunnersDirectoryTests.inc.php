@@ -43,7 +43,7 @@ extends
 				$matches
 			)
 		) {
-			print_r($matches);
+			#print_r($matches);
 			
 			$http_response_code = $matches[1];
 			
