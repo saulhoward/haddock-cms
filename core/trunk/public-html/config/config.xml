@@ -31,6 +31,7 @@
 		</meta-pages>
 	</verbosity>
 	<locations>
+		<server_address value="http://localhost/" />
 		<default value="/PublicHTML_AboutHaddockCMS" />
 	</locations>
 	<!--<server_capabilities>-->

@@ -115,5 +115,11 @@ extends
 	#{
 	#	return $this->get_config_value('server_capabilities/has_mod_rewrite') == 'TRUE';
 	#}
+	
+	public function
+		get_server_address()
+	{
+		return $this->get_config_value('locations/server_address');
+	}
 }
 ?>

@@ -8,6 +8,10 @@
 /**
  * Breaks a longer string into shorter strings
  * which are returned in arrays.
+ *
+ * DEPRECATED!
+ *
+ * Use Strings_SplittingHelper instead.
  */
 class
 	Strings_Splitter
@@ -15,9 +19,13 @@ class
 	public static function
 		line_separated($str)
 	{
-		$str = Strings_Converter::line_endings_to_unix($str);
+		#$str = Strings_Converter::line_endings_to_unix($str);
+		#
+		#return explode("\n", $str);
 		
-		return explode("\n", $str);
+		return
+			Strings_SplittingHelper
+				::split_by_eol($str);
 	}
 	
 	/**
