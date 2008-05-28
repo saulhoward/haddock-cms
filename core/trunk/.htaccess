@@ -1,7 +1,10 @@
 # Restrict Access to the Haddock CMS core folder.
 # © 2007-03-07, RFI
 
-<IfModule mod_access.c>
-	Order Deny,Allow
-	Deny from all
-</IfModule>
+#<IfModule mod_access.c>
+#	Order Deny,Allow
+#	Deny from all
+#</IfModule>
+
+Order Deny,Allow
+Deny from all
