@@ -3,7 +3,7 @@
  * Breaks the naming convention but it's used about a billion
  * times a day, so there.
  *
- * @copyright Clear Line Web Design, 2007-12-10
+ * @copyright 2007-12-10, RFI
  */
 
 class

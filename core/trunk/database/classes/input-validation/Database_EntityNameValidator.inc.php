@@ -15,8 +15,8 @@ extends
 	{
 		return $this->validate_pattern(
 			$string,
-			'/^[a-z_]+$/',
-			'The ' . $this->get_entity_name() . ' must be all lowercase letters or underscores!'
+			'/^[a-z0-9_]+$/',
+			'The ' . $this->get_entity_name() . ' must be all lowercase letters, digits or underscores!'
 		);
 	}
 	

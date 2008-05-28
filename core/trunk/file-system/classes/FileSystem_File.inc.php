@@ -201,5 +201,11 @@ class
 		
 		unlink($this->get_name());
 	}
+	
+	public function
+		exists()
+	{
+		return is_file($this->get_name());
+	}
 }
 ?>
