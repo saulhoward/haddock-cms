@@ -15,12 +15,12 @@ class
 	{
 		fprintf(
 			STDERR,
-			$e->getMessage() . "\n"
+			get_class($e) . ' thrown at ' . date('c') . PHP_EOL
 		);
 		
 		fprintf(
 			STDERR,
-			'Thrown at ' . date('c') . "\n"
+			$e->getMessage() . PHP_EOL
 		);
 		
 		$trace = $e->getTrace();
@@ -28,13 +28,13 @@ class
 		if (count($trace) > 0) {
 			fprintf(
 				STDERR,
-				"Exception trace: \n\n"
+				'Exception trace:' . PHP_EOL . PHP_EOL
 			);
 			
 			foreach ($trace as $data) {
 				fprintf(
 					STDERR,
-					"----------------------------------------\n"
+					'----------------------------------------' . PHP_EOL
 				);
 				
 				$keys = array_keys($data);
@@ -57,13 +57,13 @@ class
 							if (is_numeric($datum) || is_string($datum)) {
 								fprintf(
 									STDERR,
-									'"' . $datum . "\""
+									'"' . $datum . '"'
 								);
 							}
 							
 							fprintf(
 								STDERR,
-								"\n"
+								PHP_EOL
 							);
 						}
 						
@@ -85,14 +85,14 @@ class
 							
 							fprintf(
 								STDERR,
-								'' . $data[$key] . "\n"
+								'' . $data[$key] . PHP_EOL
 							);
 					}
 				}
 				
 				fprintf(
 					STDERR,
-					"----------------------------------------\n"
+					'----------------------------------------' . PHP_EOL
 				);
 			}
 		}

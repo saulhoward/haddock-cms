@@ -136,5 +136,39 @@ extends
 		
 		fclose($file_handle);
 	}
+	
+	/**
+	 * @return resource The MySQL handle for the values in this file.
+	 * @throws Database_UnableToMakeConnectionException If unable to connect with the values in this file.
+	 * @throws Database_MySQLException If unable to select the database of this file.
+	 */
+	public function
+		get_database_handle()
+	{
+		$dbh = @mysql_pconnect(
+			$this->get_host(),
+			$this->get_username(),
+			$this->get_password()
+		);
+		
+		if (!$dbh) {
+			throw
+				new Database_UnableToMakeConnectionException(
+					$this->get_username(),
+					$this->get_host()
+				);
+		}
+		
+		if (
+			mysql_select_db(
+				$this->get_database(),
+				$dbh
+			)
+		) {
+			return $dbh;
+		} else {
+			throw new Database_MySQLException($dbh);
+		}
+	}
 }
 ?>

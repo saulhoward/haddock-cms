@@ -2,21 +2,21 @@
 /**
  * ErrorHandling_SprintfException
  *
- * @copyright Clear Line Web Design, 2007-09-23
+ * @copyright 2007-09-23, RFI
  */
 
 class
 	ErrorHandling_SprintfException
 extends
-    Exception
+	Exception
 {
-    public function
-        __construct(
-            $format_string,
-            $args = array()
-        )
-    {
-        parent::__construct(vsprintf($format_string, $args));
-    }
+	public function
+		__construct(
+			$format_string,
+			$args = array()
+		)
+	{
+		parent::__construct(vsprintf($format_string, $args));
+	}
 }
 ?>

@@ -75,8 +75,14 @@ abstract class
 	{
 		fprintf(
 			STDERR,
-			'Help for ' . get_class($this) . "\n"
+			$this->get_help_message()
 		);
-	}	
+	}
+	
+	protected function
+		get_help_message()
+	{
+		return 'Help for ' . get_class($this) . PHP_EOL;
+	}
 }
 ?>
