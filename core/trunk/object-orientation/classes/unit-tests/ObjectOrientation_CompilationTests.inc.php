@@ -31,7 +31,7 @@ extends
 		$tmp_out_file = $temp_dir->get_name() . '/haddock-compilations-tests-out.txt';
 		$tmp_err_file = $temp_dir->get_name() . '/haddock-compilations-tests-err.txt';
 		
-		self::conditionally_unlink_tmp_files($tmp_out_file, $tmp_err_file);
+		
 		
 		$define_debug_constants_file = PROJECT_ROOT
 			. '/haddock/public-html/public-html/'
@@ -40,12 +40,18 @@ extends
 		$autoload_inc_file_name = PROJECT_ROOT
 			. '/haddock/haddock-project-organisation/includes/'
 			. 'autoload.inc.php';
-			
+		
+		$total_out_length = 0;
+		
 		foreach (
 			$php_class_files
 			as
 			$php_class_file
 		) {
+			$out_length = 0;
+			
+			self::conditionally_unlink_tmp_files($tmp_out_file, $tmp_err_file);
+			
 			$tmp_class_file_name = $temp_dir->get_name() . '/haddock-compilations-tests-tmp-' . $php_class_file->get_php_class_name() . '-class.php';
 			
 			$fh = fopen(
@@ -67,16 +73,20 @@ extends
 				
 				system($cmd);
 				
-				unlink($tmp_class_file_name);
+				$out_length
+					= strlen(file_get_contents($tmp_out_file)) + strlen(file_get_contents($tmp_err_file));
+				
+				if ($out_length == 0) {
+					unlink($tmp_class_file_name);
+				}
 			}
+			
+			$total_out_length += $out_length;
+			
+			self::conditionally_unlink_tmp_files($tmp_out_file, $tmp_err_file);
 		}
 		
-		$compile_and_out_file_files_string_length
-			= strlen(file_get_contents($tmp_out_file)) + strlen(file_get_contents($tmp_err_file));
-		
-		self::conditionally_unlink_tmp_files($tmp_out_file, $tmp_err_file);
-		
-		return $compile_and_out_file_files_string_length == 0;
+		return $total_out_length == 0;
 	}
 	
 	private static function
