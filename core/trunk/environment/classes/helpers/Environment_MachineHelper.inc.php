@@ -13,5 +13,11 @@ class
 	{
 		return trim(`hostname --fqdn`);
 	}
+	
+	public static function
+		get_temporary_directory()
+	{
+		return new FileSystem_Directory('/tmp');
+	}
 }
 ?>
