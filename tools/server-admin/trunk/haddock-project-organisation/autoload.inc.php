@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2008-05-29
+ * Last Modified: 2008-05-30
  */
 
 function __autoload($class_name)
@@ -1125,6 +1125,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ProjectInformationHelper.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_ProjectInformationSettingTests'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ProjectInformationSettingTests.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ProjectInformationTests'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ProjectInformationTests.inc.php';
 			break;
@@ -1155,6 +1159,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_RequiredModulesFile'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_RequiredModulesFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_SetProjectInformationCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/cli-scripts/HaddockProjectOrganisation_SetProjectInformationCLIScript.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ShowProjectInformationCLIScript'): 
@@ -1639,6 +1647,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_ServerAddressesHelper'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ServerAddressesHelper.inc.php';
+			break;
+
+		case('PublicHTML_ServerAddressTests'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/unit-tests/PublicHTML_ServerAddressTests.inc.php';
 			break;
 
 		case('PublicHTML_ServerAddressValidator'): 
