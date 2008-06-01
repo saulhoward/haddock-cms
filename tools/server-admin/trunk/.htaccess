@@ -1,0 +1,5 @@
+# Restrict Access to the instance specific config folder.
+# © 2008-05-29
+
+Order Deny,Allow
+Deny from all
