@@ -17,7 +17,7 @@ extends
 		)
 	{
 		if (!isset($error_message_format_string)) {
-			$error_message_format_string = '%f not found!';
+			$error_message_format_string = "'%s' not found!";
 		}
 		
 		parent

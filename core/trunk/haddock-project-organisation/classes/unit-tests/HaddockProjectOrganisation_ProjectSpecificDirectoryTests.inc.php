@@ -76,14 +76,19 @@ extends
 		return $project_specific_directory->exists();
 	}
 	
-	public static function
-		test_config_file_exists()
-	{
-		$project_specific_directory
-			= HaddockProjectOrganisation_ProjectSpecificDirectoryHelper
-				::get_project_specific_directory();
-		
-		return $project_specific_directory->has_config_file();
-	}
+	/**
+	 * Test that there is a config file for this project.
+	 *
+	 * Deprecated because the project information is stored in text files now.
+	 */
+	#public static function
+	#	test_config_file_exists()
+	#{
+	#	$project_specific_directory
+	#		= HaddockProjectOrganisation_ProjectSpecificDirectoryHelper
+	#			::get_project_specific_directory();
+	#	
+	#	return $project_specific_directory->has_config_file();
+	#}
 }
 ?>
