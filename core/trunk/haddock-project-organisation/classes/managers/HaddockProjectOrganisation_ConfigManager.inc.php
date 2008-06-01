@@ -273,5 +273,58 @@ abstract class
 
 		return isset($var);
 	}
+	
+	protected function
+		save_config_value(
+			$element_names_str,
+			$value,
+			$specificity = NULL
+		)
+	{
+		if (!isset($specificity)) {
+			$specificity = 'instance';
+		}
+		
+		$element_names = explode('/', $element_names_str);
+		
+		$module_directory = $this->get_module_directory();
+		
+		switch ($specificity) {
+			case 'instance':
+				if (!$module_directory->has_instance_specific_config_file()) {
+					$module_directory->create_instance_specific_config_file();
+				}
+				
+				$config_file = $module_directory->get_instance_specific_config_file();
+				break;
+			case 'project':
+				if (!$module_directory->has_project_specific_config_file()) {
+					$module_directory->create_project_specific_config_file();
+				}
+				
+				$config_file = $module_directory->get_project_specific_config_file();
+				break;
+			case 'module':
+				if (!$module_directory->has_config_file()) {
+					$module_directory->create_config_file();
+				}
+				
+				$config_file = $module_directory->get_config_file();
+				break;
+			default:
+				throw new Exception("The specificity must be 'instance', 'project' or 'module'!");
+		}
+		
+		$config_file->save_nested_value($element_names, $value);
+	}
+	
+	protected function
+		get_module_directory()
+	{
+		return HaddockProjectOrganisation_ModuleDirectoryHelper
+			::get_module_directory_of_object(
+				$this
+			);
+	}
 }
 ?>

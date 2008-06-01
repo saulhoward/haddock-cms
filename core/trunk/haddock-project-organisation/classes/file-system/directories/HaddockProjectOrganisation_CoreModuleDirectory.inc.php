@@ -45,26 +45,45 @@ extends
 		get_module_name()
 	{
 		if (!isset($this->module_name)) {            
-			# Does this module have a module name override file?
+			#/*
+			# * Does this module have a module name override file?
+			# */
 			#if ($this->has_module_name_override_file()) {
 			#    
 			#    $module_name_override_file = $this->get_module_name_override_file();
 			#    
 			#    $this->module_name = $module_name_override_file->get_module_name();
 			#} else {
-				# There isn't a module name override file,
-				# so we should work out the name algorithmically.
-		
+			/*
+			 * Does this module have a module config file?
+			 */
+			if ($this->has_module_config_file()) {
+			    
+			    $module_config_file = $this->get_module_config_file();
+			    
+				if ($module_config_file->has_module_name()) {
+					$this->module_name = $module_config_file->get_module_name();
+				}
+			}
+			
+			if (!isset($this->module_name)) {
+				/*
+				 * There isn't a module name set in the file,
+				 * so we should work out the name algorithmically.
+				 */
 				if (preg_match('{([^\\\\/]+)$}', $this->get_name(), $matches)) {
 					$c_c_m_n_l_o_ws
 						= Formatting_ListOfWordsHelper
 							::get_list_of_words_for_string($matches[1], '-');
 				
-					$this->module_name = $c_c_m_n_l_o_ws->get_words_as_camel_case_string();
+					$this->module_name
+						= $c_c_m_n_l_o_ws
+							#->get_words_as_camel_case_string();
+							->get_words_as_capitalised_string();
 				} else {
 					$this->module_name = '';
 				}
-			#}
+			}
 		}
 		
 		return $this->module_name;

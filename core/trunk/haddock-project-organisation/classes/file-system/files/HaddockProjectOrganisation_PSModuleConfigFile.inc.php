@@ -2,13 +2,13 @@
 /**
  * HaddockProjectOrganisation_PSModuleConfigFile
  *
- * @copyright Clear Line Web Design, 2007-09-29
+ * @copyright 2007-09-29, RFI
  */
 
 class
 	HaddockProjectOrganisation_PSModuleConfigFile
 extends
-    HaddockProjectOrganisation_AbstractModuleConfigXMLFile
+	HaddockProjectOrganisation_AbstractModuleConfigXMLFile
 {
 }
 ?>

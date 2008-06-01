@@ -297,14 +297,14 @@ extends
 	{
 		if ($this->has_module_config_file()) {
 			$module_config_file = $this->get_module_config_file();
-
+			
 			if ($module_config_file->has_camel_case_root()) {
 				return $module_config_file->get_camel_case_root();
 			}
 		}
-
+		
 		$name_as_l_o_w = $this->get_module_name_as_l_o_w();
-
+		
 		return $name_as_l_o_w->get_words_as_camel_case_string();
 	}
 
@@ -1177,6 +1177,43 @@ extends
 		);
 		
 		return isset($var);
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Methods to do with the config directory.
+	 * ----------------------------------------
+	 */
+	
+	private function
+		get_config_directory_name()
+	{
+		return $this->get_name() . '/config';
+	}
+	
+	public function
+		has_config_directory()
+	{
+		return is_dir($this->get_config_directory_name());
+	}
+	
+	public function
+		get_config_directory()
+	{
+		if ($this->has_config_directory()) {
+			return
+				new Configuration_ConfigDirectory(
+					$this->get_config_directory_name()
+					#,
+					#$this
+				);
+		} else {
+			throw
+				new HaddockProjectOrganisation_StandardModuleSubDirectoryNotFoundException(
+					'config',
+					$this->get_config_directory_name()
+				);
+		}
 	}
 }
 ?>

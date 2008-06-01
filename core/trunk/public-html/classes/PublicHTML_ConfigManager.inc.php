@@ -121,5 +121,19 @@ extends
 	{
 		return $this->get_config_value('locations/server_address');
 	}
+	
+	public function
+		save_server_address(
+			$server_address,
+			$specificity = NULL
+		)
+	{
+		return
+			$this->save_config_value(
+				'locations/server_address',
+				$server_address,
+				$specificity
+			);
+	}
 }
 ?>

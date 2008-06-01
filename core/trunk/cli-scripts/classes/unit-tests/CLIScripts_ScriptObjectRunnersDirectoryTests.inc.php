@@ -13,14 +13,18 @@ extends
 	public static function
 		test_bin_directory_is_not_accessible_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+		#$ph_cm
+		#	= Configuration_ConfigManagerHelper
+		#		::get_config_manager(
+		#			'haddock',
+		#			'public-html'
+		#		);
+		#
+		#$bin_directory_on_server = $ph_cm->get_server_address() . 'bin';
 		
-		$bin_directory_on_server = $ph_cm->get_server_address() . 'bin';
+		$bin_directory_on_server
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address() . 'bin';
 		
 		$ch = curl_init();
 		

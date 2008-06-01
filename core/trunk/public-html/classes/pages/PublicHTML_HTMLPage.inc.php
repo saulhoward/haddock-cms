@@ -216,13 +216,17 @@ extends
 	protected function
 		get_project_title()
 	{
-		/*
-		 * Find the module config manager.
-		 */
-		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-		$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
+		#/*
+		# * Find the module config manager.
+		# */
+		#$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+		#$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
+		#
+		#return $config_manager->get_project_name();
 		
-		return $config_manager->get_project_name();
+		return
+			HaddockProjectOrganisation_ProjectInformationHelper
+				::get_title();
 	}
 	
 	protected function

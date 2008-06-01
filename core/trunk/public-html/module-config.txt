@@ -3,3 +3,4 @@
 # © Clear Line Web Design, 2006-11-26
 
 camel-case-root=PublicHTML
+module-name=Public HTML

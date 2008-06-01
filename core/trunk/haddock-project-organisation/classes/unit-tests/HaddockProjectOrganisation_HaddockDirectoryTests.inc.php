@@ -13,14 +13,18 @@ extends
 	public static function
 		test_haddock_directory_is_not_accessible_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+		#$ph_cm
+		#	= Configuration_ConfigManagerHelper
+		#		::get_config_manager(
+		#			'haddock',
+		#			'public-html'
+		#		);
+		#
+		#$haddock_directory_on_server = $ph_cm->get_server_address() . 'haddock';
 		
-		$haddock_directory_on_server = $ph_cm->get_server_address() . 'haddock';
+		$haddock_directory_on_server
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address() . 'haddock';
 		
 		$ch = curl_init();
 		

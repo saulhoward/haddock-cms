@@ -3,3 +3,4 @@
 # © Clear Line Web Design, 2006-11-27
 
 camel-case-root=HTMLTags
+module-name=HTML Tags

@@ -13,14 +13,19 @@ extends
 	public static function
 		test_project_specific_directory_is_not_accessible_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+		#$ph_cm
+		#	= Configuration_ConfigManagerHelper
+		#		::get_config_manager(
+		#			'haddock',
+		#			'public-html'
+		#		);
+		#
+		#$project_specific_directory_on_server
+		#	= $ph_cm->get_server_address() . 'project-specific';
 		
-		$project_specific_directory_on_server = $ph_cm->get_server_address() . 'project-specific';
+		$project_specific_directory_on_server
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address() . 'project-specific';		
 		
 		$ch = curl_init();
 		
@@ -59,6 +64,26 @@ extends
 		}
 		
 		return FALSE;
+	}
+	
+	public static function
+		test_project_specific_directory_exists()
+	{
+		$project_specific_directory
+			= HaddockProjectOrganisation_ProjectSpecificDirectoryHelper
+				::get_project_specific_directory();
+		
+		return $project_specific_directory->exists();
+	}
+	
+	public static function
+		test_config_file_exists()
+	{
+		$project_specific_directory
+			= HaddockProjectOrganisation_ProjectSpecificDirectoryHelper
+				::get_project_specific_directory();
+		
+		return $project_specific_directory->has_config_file();
 	}
 }
 ?>

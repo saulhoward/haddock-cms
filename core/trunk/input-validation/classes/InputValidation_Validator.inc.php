@@ -11,7 +11,7 @@ abstract class
 	/**
 	 * Should return TRUE or throw an InputValidation_InvalidInputException.
 	 */
-	public abstract function
+	abstract public function
 		validate($string);
 	
 	protected function

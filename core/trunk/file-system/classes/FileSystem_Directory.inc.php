@@ -277,5 +277,11 @@ extends
 	#			);
 	#	}
 	#}
+	
+	public function
+		exists()
+	{
+		return is_dir($this->get_name());
+	}
 }
 ?>

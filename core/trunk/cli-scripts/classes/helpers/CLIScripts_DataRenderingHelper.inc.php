@@ -106,7 +106,8 @@ class
 				);
 			
 			$title_str = $title_str . PHP_EOL;
-			$hr = "|$hr|" . PHP_EOL;
+			#$hr = "|$hr|" . PHP_EOL;
+			$hr = "+$hr+" . PHP_EOL;
 			
 			echo $hr;
 			echo $title_str;
