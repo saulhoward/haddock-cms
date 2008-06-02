@@ -200,6 +200,25 @@ extends
 	}
 
 	public static function
+		test_project_name_is_not_settable_to_zero_length_string()
+	{
+		self::set_up();
+		
+		$test_name = '';
+		try {
+			HaddockProjectOrganisation_ProjectInformationHelper
+				::set_name($test_name);
+			$test_result = FALSE;
+		} catch (InputValidation_InvalidInputException $e) {
+			$test_result = TRUE;
+		}
+		
+		self::tear_down();
+		
+		return $test_result;
+	}
+
+	public static function
 		test_project_name_is_settable_to_name_with_numbers()
 	{
 		#self::back_up_project_config_file();
@@ -230,7 +249,6 @@ extends
 	public static function
 		test_project_title_is_settable()
 	{
-		#self::back_up_project_config_file();
 		self::set_up();
 		
 		$test_title = 'Foo Bar';
@@ -243,7 +261,6 @@ extends
 			==
 			$test_title;
 			
-		#self::restore_project_config_file();
 		self::tear_down();
 		
 		return $test_result;
@@ -376,7 +393,7 @@ extends
 		
 		$test_camel_case_root = 'FooBar';
 		HaddockProjectOrganisation_ProjectInformationHelper
-			::set_camel_case_root($camel_case_root);
+			::set_camel_case_root($test_camel_case_root);
 		
 		$test_result
 			= HaddockProjectOrganisation_ProjectInformationHelper

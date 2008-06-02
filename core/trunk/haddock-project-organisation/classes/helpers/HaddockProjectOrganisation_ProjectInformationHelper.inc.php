@@ -56,18 +56,23 @@ class
 	public static function
 		set_name($name)
 	{
-		$name_file_name = self::get_name_file_name();
+		$validator = new HaddockProjectOrganisation_ProjectNameValidator();
 		
-		$project_information_directory_name = self::get_project_information_directory_name();
-		
-		if (!is_dir($project_information_directory_name)) {
-			mkdir($project_information_directory_name);
-		}
-		
-		if ($fh = fopen($name_file_name, 'w')) {
-			fwrite($fh, $name . PHP_EOL);
+		if ($validator->validate($name)) {
+			$name_file_name = self::get_name_file_name();
 			
-			fclose($fh);
+			$project_information_directory_name
+				= self::get_project_information_directory_name();
+			
+			if (!is_dir($project_information_directory_name)) {
+				mkdir($project_information_directory_name);
+			}
+			
+			if ($fh = fopen($name_file_name, 'w')) {
+				fwrite($fh, $name . PHP_EOL);
+				
+				fclose($fh);
+			}
 		}
 	}
 	
@@ -117,7 +122,7 @@ class
 		}
 		
 		if ($fh = fopen($title_file_name, 'w')) {
-			fwrite($fh, $name . PHP_EOL);
+			fwrite($fh, $title . PHP_EOL);
 			
 			fclose($fh);
 		}
@@ -277,18 +282,23 @@ class
 	public static function
 		set_camel_case_root($camel_case_root)
 	{
-		$camel_case_root_file_name = self::get_camel_case_root_file_name();
+		$validator = new HaddockProjectOrganisation_CamelCaseRootValidator();
 		
-		$project_information_directory_name = self::get_project_information_directory_name();
-		
-		if (!is_dir($project_information_directory_name)) {
-			mkdir($project_information_directory_name);
-		}
-		
-		if ($fh = fopen($camel_case_root_file_name, 'w')) {
-			fwrite($fh, $camel_case_root . PHP_EOL);
+		if ($validator->validate($camel_case_root)) {
+			$camel_case_root_file_name = self::get_camel_case_root_file_name();
 			
-			fclose($fh);
+			$project_information_directory_name
+				= self::get_project_information_directory_name();
+			
+			if (!is_dir($project_information_directory_name)) {
+				mkdir($project_information_directory_name);
+			}
+			
+			if ($fh = fopen($camel_case_root_file_name, 'w')) {
+				fwrite($fh, $camel_case_root . PHP_EOL);
+				
+				fclose($fh);
+			}
 		}
 	}
 }
