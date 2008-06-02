@@ -104,7 +104,9 @@ class
 		} else {
 			$name = self::get_name();
 			
-			$name_low = Formatting_ListOfWordsHelper::get_list_of_words_for_string($name, '-');
+			$name_low
+				= Formatting_ListOfWordsHelper
+					::get_list_of_words_for_string($name, '-');
 			
 			return $name_low->get_words_as_capitalised_string();
 		}
