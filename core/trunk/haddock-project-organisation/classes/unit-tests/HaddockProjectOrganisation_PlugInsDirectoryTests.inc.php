@@ -13,14 +13,23 @@ extends
 	public static function
 		test_plug_ins_directory_is_not_accessible_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+		#$ph_cm
+		#	= Configuration_ConfigManagerHelper
+		#		::get_config_manager(
+		#			'haddock',
+		#			'public-html'
+		#		);
+		#
+		#$plug_ins_directory_on_server
+		#	= $ph_cm->get_server_address()
+		#	. 'plug-ins';
 		
-		$plug_ins_directory_on_server = $ph_cm->get_server_address() . 'plug-ins';
+		$plug_ins_directory_on_server
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address()
+			. 'plug-ins';
+		
+		#echo $plug_ins_directory_on_server . PHP_EOL;
 		
 		$ch = curl_init();
 		
