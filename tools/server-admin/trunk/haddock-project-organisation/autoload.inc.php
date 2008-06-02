@@ -985,6 +985,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_AutoloadIncFile.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_CamelCaseRootValidator'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/input-validation/HaddockProjectOrganisation_CamelCaseRootValidator.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ClassesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ClassesDirectory.inc.php';
 			break;
@@ -1131,6 +1135,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_ProjectInformationTests'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ProjectInformationTests.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ProjectNameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/input-validation/HaddockProjectOrganisation_ProjectNameValidator.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ProjectSpecificConfigFile'): 
