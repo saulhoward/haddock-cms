@@ -61,11 +61,13 @@ extends
 						'{([^\\\\/]+)$}', $this->get_name(), $matches
 					)
 				) {
-					$c_c_m_n_l_o_ws = Formatting_ListOfWords
+					$c_c_m_n_l_o_ws = Formatting_ListOfWordsHelper
 						::get_list_of_words_for_string($matches[1], '-');
 						
 					$this->module_name
-						= $c_c_m_n_l_o_ws->get_words_as_camel_case_string();
+						= $c_c_m_n_l_o_ws
+							#->get_words_as_camel_case_string();
+							->get_words_as_capitalised_string();
 				} else {
 					$this->module_name = '';
 				}
@@ -75,7 +77,8 @@ extends
 		return $this->module_name;
 	}
 	
-	public function get_module_name_as_l_o_w()
+	public function
+		get_module_name_as_l_o_w()
 	{
 		$module_name_as_l_o_w = null;
 		
