@@ -1713,6 +1713,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/security/classes/Security_PasswordGenerator.inc.php';
 			break;
 
+		case('ServerAdminScripts_AddMySQLDumpFilesRemoteServerCLIScript'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_AddMySQLDumpFilesRemoteServerCLIScript.inc.php';
+			break;
+
 		case('ServerAdminScripts_BranchesSVNWorkingDirectory'): 
 			require_once PROJECT_ROOT . '/project-specific/classes/ServerAdminScripts_BranchesSVNWorkingDirectory.inc.php';
 			break;
