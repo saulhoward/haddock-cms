@@ -1741,8 +1741,8 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/project-specific/classes/database/elements/table-subclasses/ServerAdminScripts_HostsTable.inc.php';
 			break;
 
-		case('ServerAdminScripts_ListServersFromWhichToDownloadMySQLDumpFilesCLIScript'): 
-			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_ListServersFromWhichToDownloadMySQLDumpFilesCLIScript.inc.php';
+		case('ServerAdminScripts_ListMySQLDumpFilesRemoteServersCLIScript'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_ListMySQLDumpFilesRemoteServersCLIScript.inc.php';
 			break;
 
 		case('ServerAdminScripts_LocalControlCentre'): 

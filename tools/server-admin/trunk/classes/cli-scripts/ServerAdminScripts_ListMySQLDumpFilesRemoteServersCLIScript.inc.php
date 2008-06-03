@@ -1,12 +1,12 @@
 <?php
 /**
- * ServerAdminScripts_ListServersFromWhichToDownloadMySQLDumpFilesCLIScript
+ * ServerAdminScripts_ListMySQLDumpFilesRemoteServersCLIScript
  *
  * @copyright 2008-06-03, RFI
  */
 
 class
-	ServerAdminScripts_ListServersFromWhichToDownloadMySQLDumpFilesCLIScript
+	ServerAdminScripts_ListMySQLDumpFilesRemoteServersCLIScript
 extends
 	CLIScripts_CLIScript
 {
