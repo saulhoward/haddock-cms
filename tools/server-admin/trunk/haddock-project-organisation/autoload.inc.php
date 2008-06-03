@@ -885,6 +885,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_Directory.inc.php';
 			break;
 
+		case('FileSystem_ExistingDirectoryRelativeToProjectRootValidator'): 
+			require_once PROJECT_ROOT . '/haddock/file-system/classes/input-validation/FileSystem_ExistingDirectoryRelativeToProjectRootValidator.inc.php';
+			break;
+
 		case('FileSystem_File'): 
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_File.inc.php';
 			break;
@@ -1069,6 +1073,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ModuleDirectoryHelper.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_ModuleNameTests'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ModuleNameTests.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ModulesDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ModulesDirectory.inc.php';
 			break;
@@ -1155,6 +1163,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_ProjectSpecificDirectoryTests'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ProjectSpecificDirectoryTests.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ProjectTitleInferenceTests'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ProjectTitleInferenceTests.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_PSModuleConfigFile'): 
@@ -1653,6 +1665,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/pages/PublicHTML_RedirectScript.inc.php';
 			break;
 
+		case('PublicHTML_RestrictAccessToDirectoryOnTheServerCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/cli-scripts/PublicHTML_RestrictAccessToDirectoryOnTheServerCLIScript.inc.php';
+			break;
+
+		case('PublicHTML_ServerAccessControlHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ServerAccessControlHelper.inc.php';
+			break;
+
 		case('PublicHTML_ServerAddressesHelper'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ServerAddressesHelper.inc.php';
 			break;
@@ -1721,8 +1741,24 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/project-specific/classes/database/elements/table-subclasses/ServerAdminScripts_HostsTable.inc.php';
 			break;
 
+		case('ServerAdminScripts_ListServersFromWhichToDownloadCLIScript'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_ListServersFromWhichToDownloadCLIScript.inc.php';
+			break;
+
 		case('ServerAdminScripts_LocalControlCentre'): 
 			require_once PROJECT_ROOT . '/project-specific/classes/ServerAdminScripts_LocalControlCentre.inc.php';
+			break;
+
+		case('ServerAdminScripts_MySQLDumpsDownloadingHelper'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/helpers/ServerAdminScripts_MySQLDumpsDownloadingHelper.inc.php';
+			break;
+
+		case('ServerAdminScripts_MySQLDumpsDownloadingRemoteServerValidator'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/input-validation/ServerAdminScripts_MySQLDumpsDownloadingRemoteServerValidator.inc.php';
+			break;
+
+		case('ServerAdminScripts_MySQLDumpsDownloadingTests'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/unit-tests/ServerAdminScripts_MySQLDumpsDownloadingTests.inc.php';
 			break;
 
 		case('ServerAdminScripts_ProjectRootSVNWorkingDirectory'): 
