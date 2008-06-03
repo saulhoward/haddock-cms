@@ -1737,6 +1737,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_DeleteAllMySQLDumpFilesRemoteServersCLIScript.inc.php';
 			break;
 
+		case('ServerAdminScripts_DeleteMySQLDumpFilesRemoteServerCLIScript'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/cli-scripts/ServerAdminScripts_DeleteMySQLDumpFilesRemoteServerCLIScript.inc.php';
+			break;
+
 		case('ServerAdminScripts_DumpDirectory'): 
 			require_once PROJECT_ROOT . '/project-specific/classes/ServerAdminScripts_DumpDirectory.inc.php';
 			break;
