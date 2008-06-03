@@ -79,5 +79,28 @@ HTA;
 			}
 		}
 	}
+	
+	public static function
+		make_sure_instance_specific_config_directory_for_project_exists()
+	{
+		self::make_sure_instance_specific_config_directory_exists();
+		
+		$instance_specific_config_directory_for_project_name
+			= self
+				::get_instance_specific_config_directory_for_project_name();
+		
+		is_dir($instance_specific_config_directory_for_project_name)
+			|| mkdir($instance_specific_config_directory_for_project_name);
+	}
+	
+	public static function
+		get_instance_specific_config_directory_for_project_name()
+	{
+		return
+			self::get_instance_specific_config_directory_name()
+			. DIRECTORY_SEPARATOR
+			. HaddockProjectOrganisation_ProjectInformationHelper
+				::get_name();
+	}
 }
 ?>

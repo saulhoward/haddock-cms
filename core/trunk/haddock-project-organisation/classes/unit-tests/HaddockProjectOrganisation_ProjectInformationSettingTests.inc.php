@@ -44,7 +44,8 @@ extends
 	#	}
 	#}
 	
-	private static function
+#	private static function
+	public static function
 		set_up()
 	{
 		$project_information_directory_name = PROJECT_ROOT . '/project-specific/config/haddock-project-organisation';
@@ -60,7 +61,8 @@ extends
 		}
 	}
 	
-	private static function
+#	private static function
+	public static function
 		tear_down()
 	{
 		$project_information_directory_name = PROJECT_ROOT . '/project-specific/config/haddock-project-organisation';
@@ -96,7 +98,7 @@ extends
 		test_project_name_is_settable()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'foo-bar';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -109,7 +111,7 @@ extends
 			$test_name;
 			
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -118,7 +120,7 @@ extends
 		test_project_name_is_settable_at_the_command_line()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'foo-bar';
 		
@@ -131,7 +133,7 @@ extends
 			$test_name;
 			
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -140,7 +142,7 @@ extends
 		test_project_name_is_not_settable_to_name_with_upper_case_letters()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'Foo-Bar';
 		try {
@@ -152,7 +154,7 @@ extends
 		}
 		
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -161,7 +163,7 @@ extends
 		test_project_name_is_not_settable_to_name_with_spaces()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'foo bar';
 		try {
@@ -173,7 +175,7 @@ extends
 		}
 		
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -182,7 +184,7 @@ extends
 		test_project_name_is_not_settable_to_name_with_underscores()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'foo_bar';
 		try {
@@ -194,7 +196,7 @@ extends
 		}
 		
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -202,7 +204,7 @@ extends
 	public static function
 		test_project_name_is_not_settable_to_zero_length_string()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = '';
 		try {
@@ -213,7 +215,7 @@ extends
 			$test_result = TRUE;
 		}
 		
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -222,7 +224,7 @@ extends
 		test_project_name_is_settable_to_name_with_numbers()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_name = 'f0o-b4r';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -235,7 +237,7 @@ extends
 			$test_name;
 			
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -249,7 +251,7 @@ extends
 	public static function
 		test_project_title_is_settable()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_title = 'Foo Bar';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -261,7 +263,7 @@ extends
 			==
 			$test_title;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -270,7 +272,7 @@ extends
 		test_project_title_is_settable_at_the_command_line()
 	{
 		#self::back_up_project_config_file();
-		self::set_up();
+		#self::set_up();
 		
 		$test_title = 'Foo Bar';
 		
@@ -283,7 +285,7 @@ extends
 			$test_title;
 			
 		#self::restore_project_config_file();
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -297,7 +299,7 @@ extends
 	public static function
 		test_project_copyright_holder_is_settable()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_copyright_holder = 'Foo Bar';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -309,7 +311,7 @@ extends
 			==
 			$test_copyright_holder;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -317,7 +319,7 @@ extends
 	public static function
 		test_project_copyright_holder_is_settable_at_the_command_line()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_copyright_holder = 'Foo Bar';
 		
@@ -329,7 +331,7 @@ extends
 			==
 			$test_copyright_holder;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -343,7 +345,7 @@ extends
 	public static function
 		test_project_version_code_is_settable()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_version_code = '1.2.3';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -355,7 +357,7 @@ extends
 			==
 			$test_version_code;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -363,7 +365,7 @@ extends
 	public static function
 		test_project_version_code_is_settable_at_the_command_line()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_version_code = 'Foo Bar';
 		
@@ -375,7 +377,7 @@ extends
 			==
 			$test_version_code;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -389,7 +391,7 @@ extends
 	public static function
 		test_project_camel_case_root_is_settable()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_camel_case_root = 'FooBar';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -401,7 +403,7 @@ extends
 			==
 			$test_camel_case_root;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -409,7 +411,7 @@ extends
 	public static function
 		test_project_camel_case_root_is_settable_at_the_command_line()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_camel_case_root = 'FooBar';
 		
@@ -421,7 +423,7 @@ extends
 			==
 			$test_camel_case_root;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -429,7 +431,7 @@ extends
 	public static function
 		test_project_camel_case_root_is_not_settable_with_spaces()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_camel_case_root = 'Foo Bar';
 		try {
@@ -440,7 +442,7 @@ extends
 			$test_result = TRUE;
 		}
 		
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -448,7 +450,7 @@ extends
 	public static function
 		test_project_camel_case_root_is_not_settable_with_underscores()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_camel_case_root = 'Foo_Bar';
 		try {
@@ -459,7 +461,7 @@ extends
 			$test_result = TRUE;
 		}
 		
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}
@@ -467,7 +469,7 @@ extends
 	public static function
 		test_project_camel_case_root_is_settable_with_numbers()
 	{
-		self::set_up();
+		#self::set_up();
 		
 		$test_camel_case_root = 'F0oB4r';
 		HaddockProjectOrganisation_ProjectInformationHelper
@@ -479,7 +481,7 @@ extends
 			==
 			$test_camel_case_root;
 			
-		self::tear_down();
+		#self::tear_down();
 		
 		return $test_result;
 	}

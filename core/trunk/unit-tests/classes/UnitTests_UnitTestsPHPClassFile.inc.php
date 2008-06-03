@@ -124,6 +124,21 @@ extends
 			= $this->get_test_function_names();
 		
 		foreach ($test_function_names as $test_function_name) {
+			/*
+			 * Is there a set_up function?
+			 */
+			
+			$reflection_class = $this->get_reflection_class();
+			
+			if ($reflection_class->hasMethod('set_up')) {
+				call_user_func(
+					array(
+						$this->get_php_class_name(),
+						'set_up'
+					)
+				);
+			}
+			
 			$start = microtime(TRUE);
 			
 			$call_back = array(
@@ -138,6 +153,15 @@ extends
 			);
 			
 			$finish = microtime(TRUE);
+			
+			if ($reflection_class->hasMethod('tear_down')) {
+				call_user_func(
+					array(
+						$this->get_php_class_name(),
+						'tear_down'
+					)
+				);
+			}
 			
 			$time = $finish - $start;
 			
