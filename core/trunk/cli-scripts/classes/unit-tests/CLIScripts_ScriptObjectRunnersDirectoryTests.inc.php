@@ -13,6 +13,8 @@ extends
 	public static function
 		test_bin_directory_is_not_accessible_on_server()
 	{
+//                echo (function_exists('curl_init') ? 'curl_init exists' : 'curl_init doesn\'t exist') . PHP_EOL;
+
 		#$ph_cm
 		#	= Configuration_ConfigManagerHelper
 		#		::get_config_manager(
@@ -31,12 +33,13 @@ extends
 		curl_setopt($ch, CURLOPT_URL, $bin_directory_on_server);
 		curl_setopt($ch, CURLOPT_HEADER, TRUE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		
+
+		# echo 'options set' . PHP_EOL;
+
 		$out = curl_exec($ch);
 		
 		curl_close($ch);
 		
-		#echo $out;
 		
 		$lines = Strings_SplittingHelper::split_by_eol($out);
 		

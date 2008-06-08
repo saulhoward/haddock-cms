@@ -13,26 +13,34 @@ extends
 	public static function
 		test_config_directory_is_not_accessible_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+//                $ph_cm
+//                        = Configuration_ConfigManagerHelper
+//                                ::get_config_manager(
+//                                        'haddock',
+//                                        'public-html'
+//                                );
 		
-		$config_directory_on_server = $ph_cm->get_server_address() . 'config';
+		#$config_directory_on_server = $ph_cm->get_server_address() . 'config';
+		$config_directory_on_server
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address() . 'config';
 		
+	
+		#echo $config_directory_on_server . PHP_EOL;
+
 		$ch = curl_init();
 		
 		curl_setopt($ch, CURLOPT_URL, $config_directory_on_server);
 		curl_setopt($ch, CURLOPT_HEADER, TRUE);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+//                echo 'options set' . PHP_EOL;
 		
 		$out = curl_exec($ch);
 		
 		curl_close($ch);
 		
-		#echo $out;
+//                echo $out;
 		
 		$lines = Strings_SplittingHelper::split_by_eol($out);
 		

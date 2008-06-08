@@ -13,15 +13,20 @@ extends
 	public static function
 		test_vhost_is_reachable_on_server()
 	{
-		$ph_cm
-			= Configuration_ConfigManagerHelper
-				::get_config_manager(
-					'haddock',
-					'public-html'
-				);
+//                $ph_cm
+//                        = Configuration_ConfigManagerHelper
+//                                ::get_config_manager(
+//                                        'haddock',
+//                                        'public-html'
+//                                );
+//                
+//                $server_address = $ph_cm->get_server_address();
+
+		$server_address
+			= PublicHTML_ServerAddressesHelper
+				::get_server_address();
 		
-		$server_address = $ph_cm->get_server_address();
-		
+	
 		$ch = curl_init();
 		
 		curl_setopt($ch, CURLOPT_URL, $server_address);

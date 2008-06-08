@@ -124,6 +124,7 @@ extends
 			= $this->get_test_function_names();
 		
 		foreach ($test_function_names as $test_function_name) {
+			echo $this->get_php_class_name() . '::' . $test_function_name . PHP_EOL;
 			/*
 			 * Is there a set_up function?
 			 */
