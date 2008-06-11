@@ -65,7 +65,9 @@ class
 				= self::get_project_information_directory_name();
 			
 			if (!is_dir($project_information_directory_name)) {
-				mkdir($project_information_directory_name);
+				#mkdir($project_information_directory_name);
+				FileSystem_DirectoryHelper
+					::mkdir_parents($project_information_directory_name);
 			}
 			
 			if ($fh = fopen($name_file_name, 'w')) {
