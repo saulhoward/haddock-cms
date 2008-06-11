@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admin_db_page>
+	<table name="hpi_trackit_stock_management_products" />
+	<display>
+		<pre_list_items>
+			<pre_list_item name="delete-all" />
+		</pre_list_items>
+		<selection_defaults
+			order_by="product_id"
+		/>
+			<!--
+			direction="ASC"
+			limit="10"
+			offset="0"
+			-->
+		<columns>
+			<column
+				name="product_id"
+				sortable="yes"
+				data_td_render_method="get_product_id_with_link_td"
+			/>
+			<column
+				name="supplier_code"
+				sortable="yes"
+			/>
+			<!--<column-->
+			<!--	name="size"-->
+			<!--	sortable="yes"-->
+			<!--/>-->
+			<column
+				name="unit_price"
+				sortable="yes"
+			/>
+			<!--<column-->
+			<!--	name="tax_rate"-->
+			<!--	sortable="yes"-->
+			<!--/>-->
+			<column
+				name="visible"
+				sortable="yes"
+			/>
+			<column
+				name="image"
+				sortable="no"
+				data_td_render_method="get_image_td"
+			/>
+			<column
+				name="description"
+				sortable="yes"
+			/>
+		</columns>
+		<actions>
+			<action
+				name="set_image"
+				td_render_method_name="get_set_image_link_td"
+			/>
+			<!--<action-->
+			<!--	name="toggle_visibility"-->
+			<!--	td_render_method_name="get_set_image_link"-->
+			<!--/>-->
+		</actions>
+	</display>
+</admin_db_page>

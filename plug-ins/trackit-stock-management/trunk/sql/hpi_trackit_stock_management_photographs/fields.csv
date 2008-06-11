@@ -1,0 +1,3 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"shop_photograph_id","int(10) unsigned","NO","","",""
+"trackit_feed_file_id","int(10) unsigned","NO","","",""

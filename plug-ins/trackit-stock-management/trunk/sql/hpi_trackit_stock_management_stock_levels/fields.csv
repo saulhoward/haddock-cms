@@ -1,0 +1,6 @@
+"colour","varchar(12)","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"product_id","varchar(15)","NO","MUL","",""
+"quantity","decimal(7,2) unsigned","NO","","",""
+"site_id","int(3) unsigned","NO","","",""
+"size","varchar(20)","NO","","",""

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<haddock-project-organisation>
+		<config-manager
+			value="TrackitStockManagement_ConfigManager"
+		/>
+	</haddock-project-organisation>
+	<ftp_server>
+		<webin value="webin" />
+	</ftp_server>
+	<cache>
+		<dir_name value="/tmp/tism-cache" />
+	</cache>
+	<lock_files>
+		<dir_name value="/tmp/tism-lock-files" />
+		<rffn_lock_file_name value="read-feed-file-names.txt" />
+		<dlntf_lock_file_name value="download-non-text-files.txt" />
+		<dltf_lock_file_name value="download-text-files.txt" />
+		<pptf_lock_file_name value="process-product-text-files.txt" />
+		<apfc_lock_file_name value="add-photographs-from-cache.txt" />
+		<pstf_lock_file_name value="process-stock-text-files.txt" />
+		<pitf_lock_file_name value="process-image-text-files.txt" />
+		<pdf_lock_file_name value="process-deletion-files.txt" />
+		<process_photographs_lock_file_name value="process-photographs.txt" />
+	</lock_files>
+	<photographs>
+		<full_size>
+			<x value="500" />
+			<y value="500"/>
+		</full_size>
+		<medium_size>
+			<x value="200" />
+			<y value="200"/>
+		</medium_size>
+		<thumbnail>
+			<x value="100" />
+			<y value="100"/>
+		</thumbnail>
+	</photographs>
+	<emails>
+		<dead_lock_file_removal>
+			<to
+				value="root@localhost.localdomain"
+			/>
+			<subject_template
+				value="Lock file removed"
+			/>
+			<body_template>
+<![CDATA[
+A dead lock file called:
+
+${lock_file_name}
+
+on
+
+${hostname}
+
+which had been created at:
+
+${lock_file_ctime}
+
+was removed at
+
+${current_time}
+
+The lock file had been for the process with PID:
+
+${process_id}
+
+]]>
+			</body_template>
+		</dead_lock_file_removal>
+	</emails>
+</config>

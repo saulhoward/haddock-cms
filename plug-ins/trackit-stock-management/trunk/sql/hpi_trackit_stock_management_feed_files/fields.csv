@@ -1,0 +1,8 @@
+"created","datetime","YES","","",""
+"detected","datetime","YES","","",""
+"downloaded","datetime","YES","","",""
+"file_type","enum('TXT','OTHER')","NO","","TXT",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"md5","varchar(255)","YES","","",""
+"name","varchar(255)","NO","UNI","",""
+"processed","datetime","YES","","",""
