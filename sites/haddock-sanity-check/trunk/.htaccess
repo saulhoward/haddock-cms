@@ -1,0 +1,5 @@
+# Restricting access to project-specific
+# (c) 2008-06-11, Robert Impey
+
+Order Deny,Allow
+Deny from all
