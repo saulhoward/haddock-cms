@@ -1,0 +1,8 @@
+"country_name","varchar(255)","NO","","",""
+"extended_address","varchar(255)","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"locality","varchar(255)","NO","","",""
+"post_office_box","varchar(255)","NO","","",""
+"postal_code","varchar(255)","NO","","",""
+"region","varchar(255)","NO","","",""
+"street_address","varchar(255)","NO","","",""

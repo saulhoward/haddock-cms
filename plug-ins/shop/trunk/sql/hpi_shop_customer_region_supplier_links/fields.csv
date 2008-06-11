@@ -1,0 +1,3 @@
+"customer_region_id","int(10) unsigned","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"supplier_id","int(10) unsigned","NO","","",""

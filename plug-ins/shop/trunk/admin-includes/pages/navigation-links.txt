@@ -1,0 +1,20 @@
+# List of the pages that should be linked to
+# in the shop admin section.
+#
+# © Clear Line Web Design, 2007-03-02
+
+products
+comments
+customers
+photographs
+#shipping-categories
+shopping-baskets
+orders
+supplier-shipping-prices
+product-categories
+customer-regions
+suppliers
+paypal-settings
+currencies
+languages
+

@@ -1,0 +1,30 @@
+/**
+ * Default styles for the shop plug-in.
+ *
+ * I've gone for a design that makes debugging code simple
+ * rather than something that looks good.
+ *
+ * You should use a different style sheet for an actual site.
+ *
+ * @copyright Clear Line Web Design, 2007-11-02
+ */
+
+div#shop_navigation {
+	background-color: yellowgreen;
+}
+
+div#mini_shop_accounts {
+        background-color: lightsalmon;
+}
+
+div#mini_payments_info {
+	background-color: lightcyan;
+}
+
+div#mini-shopping-basket {
+	background-color: lemonchiffon;
+}
+
+div#customer_regions_header {
+	background-color: palegreen;
+}

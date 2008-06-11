@@ -1,0 +1,8 @@
+"address_id","int(10) unsigned","NO","","",""
+"contact_name","varchar(255)","NO","","",""
+"currency_id","int(10) unsigned","NO","","",""
+"email_address_id","int(10) unsigned","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"name","varchar(255)","NO","","",""
+"notes","text","NO","","",""
+"telephone_number_id","int(10) unsigned","NO","","",""

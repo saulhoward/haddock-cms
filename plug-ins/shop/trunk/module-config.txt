@@ -1,0 +1,5 @@
+# Configuration for the Shop plug-in module.
+#
+# © Clear Line Web Design, 2007-02-16
+
+admin-section-title=Shop

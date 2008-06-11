@@ -1,0 +1,3 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"product_id","int(10) unsigned","NO","","",""
+"product_tag_id","int(10) unsigned","NO","","",""

@@ -1,0 +1,4 @@
+"description","varchar(255)","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"name","varchar(255)","NO","","",""
+"sort_order","int(10) unsigned","NO","","",""

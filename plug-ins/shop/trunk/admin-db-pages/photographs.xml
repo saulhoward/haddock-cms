@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admin_db_page>
+	<table name="hpi_shop_photographs" />
+	<display>
+		<pre_list_items>
+			<pre_list_item name="delete-all" />
+			<pre_list_item
+				name="add-new-row"
+				title="Add new photograph"
+				renderer="table"
+			/>
+		</pre_list_items>
+		<selection_defaults
+			order_by="name"
+		/>
+			<!--
+			direction="ASC"
+			limit="10"
+			offset="0"
+			-->
+		<columns>
+			<column
+				name="name"
+				sortable="yes"
+			/>
+			<column
+				name="photograph"
+				sortable="no"
+				data_td_render_method="get_thumbnail_image_td"
+			/>
+		</columns>
+		<actions>
+			<action name="edit" />
+			<action	name="delete" />
+		</actions>
+	</display>
+	<adding>
+		<fields>
+			<field
+				name="name"
+				required="yes"
+			/>
+		</fields>
+	</adding>
+	<!-- no need for editing section as it's the same as adding -->
+
+	<deleting>
+		<render_method name="get_thumbnail_img_with_drop_shadow_div" />
+	</deleting>
+</admin_db_page>

@@ -1,0 +1,4 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"photograph_id","int(10) unsigned","NO","","",""
+"product_id","int(10) unsigned","NO","","",""
+"type","enum('main','design','extra')","NO","","extra",""

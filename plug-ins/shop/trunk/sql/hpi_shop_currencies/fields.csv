@@ -1,0 +1,4 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"iso_4217_code","varchar(255)","NO","","",""
+"name","varchar(255)","NO","","",""
+"symbol","varchar(255)","NO","","",""

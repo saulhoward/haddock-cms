@@ -1,0 +1,159 @@
+<?php
+/**
+ * Shop_PSModuleConfigFile
+ *
+ * @copyright Clear Line Web Design, 2007-09-29
+ */
+
+class
+	Shop_PSModuleConfigFile
+extends
+	HaddockProjectOrganisation_PSModuleConfigFile
+{
+    private function
+        get_password_reset_node()
+    {
+        $dom_document = $this->get_dom_document();
+        
+        $password_reset_nodes
+            = $dom_document->getElementsByTagName('password-reset');
+        
+        if ($password_reset_nodes->length == 1) {
+            return $password_reset_nodes->item(0);
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 password-reset node, \'%d\' found!',
+                array($password_reset_nodes->length)
+            );
+        }
+    }
+    
+    public function
+        get_password_reset_email_reply_address()
+    {
+        $password_reset_node = $this->get_password_reset_node();
+        
+        $email_reply_address_nodes
+            = $password_reset_node->getElementsByTagName('email-reply-address');
+        
+        if ($email_reply_address_nodes->length == 1) {
+            $email_reply_address_node = $email_reply_address_nodes->item(0);
+            
+            if ($email_reply_address_node->hasAttribute('value')) {
+                return $email_reply_address_node->getAttribute('value');
+            } else {
+                throw new ErrorHandling_SprintfException(
+                    'Email reply address not set in \'%s\'!',
+                    array($this->get_name())
+                );
+            }
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 email-reply-address nodes, \'%d\' found!',
+                array($email_reply_address_nodes->length)
+            );
+        }
+    }
+    
+    public function
+        get_password_reset_email_subject()
+    {
+        $password_reset_node = $this->get_password_reset_node();
+        
+        $email_subject_nodes
+            = $password_reset_node->getElementsByTagName('email-subject');
+        
+        if ($email_subject_nodes->length == 1) {
+            $email_subject_node = $email_subject_nodes->item(0);
+            
+            if ($email_subject_node->hasAttribute('value')) {
+                return $email_subject_node->getAttribute('value');
+            } else {
+                throw new ErrorHandling_SprintfException(
+                    'Email subject not set in \'%s\'!',
+                    array($this->get_name())
+                );
+            }
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 email-subject nodes, \'%d\' found!',
+                array($email_reply_address_nodes->length)
+            );
+        }
+    }
+    
+    public function
+        get_password_reset_email_message($email, $new_password)
+    {
+        $password_reset_node = $this->get_password_reset_node();
+        
+        $email_message_nodes
+            = $password_reset_node->getElementsByTagName('email-message');
+        
+        if ($email_message_nodes->length == 1) {
+            $email_message_node = $email_message_nodes->item(0);
+            
+            $msg = $email_message_node->nodeValue;
+            
+            $msg = preg_replace('/(?<!\\\\)\\$email/', $email, $msg);
+            $msg = preg_replace('/(?<!\\\\)\\$new_password/', $new_password, $msg);
+            
+            $msg = preg_replace('/(?<!\\\\)\\\\(?=\\$)/', '', $msg);
+            $msg = preg_replace('/\\\\\\\\/', '\\', $msg);
+            
+            return $msg;
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 email-message nodes, \'%d\' found!',
+                array($email_message_nodes->length)
+            );
+        }
+    }
+ 
+    public function
+        get_order_confirmation_email_message($product_name, $address_string)
+    {
+        $order_confirmation_node = $this->get_order_confirmation_node();
+        
+        $email_message_nodes
+            = $order_confirmation_node->getElementsByTagName('email-message');
+        
+        if ($email_message_nodes->length == 1) {
+            $email_message_node = $email_message_nodes->item(0);
+            
+            $msg = $email_message_node->nodeValue;
+            
+            $msg = preg_replace('/(?<!\\\\)\\$product_name/', $product_name, $msg);
+            $msg = preg_replace('/(?<!\\\\)\\$address_string/', $address_string, $msg);
+            
+            $msg = preg_replace('/(?<!\\\\)\\\\(?=\\$)/', '', $msg);
+            $msg = preg_replace('/\\\\\\\\/', '\\', $msg);
+            
+            return $msg;
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 email-message nodes, \'%d\' found!',
+                array($email_message_nodes->length)
+            );
+        }
+    }
+
+    private function
+        get_order_confirmation_node()
+    {
+        $dom_document = $this->get_dom_document();
+        
+        $order_confirmation_nodes
+            = $dom_document->getElementsByTagName('order-confirmation-email-settings');
+        
+        if ($order_confirmation_nodes->length == 1) {
+            return $order_confirmation_nodes->item(0);
+        } else {
+            throw new ErrorHandling_SprintfException(
+                'There should be exactly 1 order-confirmation-email-settings node, \'%d\' found!',
+                array($order_confirmation_nodes->length)
+            );
+        }
+    }
+}
+?>

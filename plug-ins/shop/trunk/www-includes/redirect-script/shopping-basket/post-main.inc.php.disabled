@@ -1,0 +1,6 @@
+<?php
+$page_manager = PublicHTML_PageManager::get_instance();
+$return_to_url = $page_manager->get_return_to_url();
+
+echo '$return_to_url: ' . $return_to_url->get_as_string() . "\n";
+?>

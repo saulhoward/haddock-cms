@@ -1,0 +1,2 @@
+"email_address","varchar(255)","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"

@@ -1,0 +1,10 @@
+## The .htaccess file for the shop plug-in.
+## © Clear Line Web Design,  2007-07-26
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^hpi-shop-img-cache/(\d+).([a-z]+) /hpi/shop/images/$1.$2
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^hpi/shop/images/(\d+).([a-z]+) /?section=plug-ins&module=shop&page=db-image&type=$2&image_id=$1
+
+RewriteRule ^hpi/shop/payment\-confirmed\.html /haddock/public-html/public-html/index.php?section=plug-ins&module=shop&page=payment-confirmed&type=html [QSA]

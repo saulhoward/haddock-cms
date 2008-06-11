@@ -1,0 +1,6 @@
+"additional_price","int(10) unsigned","NO","","",""
+"customer_region_id","int(10) unsigned","NO","","",""
+"first_price","int(10) unsigned","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"product_category_id","int(10) unsigned","NO","","",""
+"supplier_id","int(10) unsigned","NO","","",""

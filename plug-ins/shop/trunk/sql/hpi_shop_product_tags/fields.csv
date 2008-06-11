@@ -1,0 +1,3 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"principal","enum('yes','no')","NO","","no",""
+"tag","varchar(255)","NO","UNI","",""

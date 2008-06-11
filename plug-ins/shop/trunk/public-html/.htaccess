@@ -1,0 +1,5 @@
+# We use mod_rewrite to make our URIs look nicer.
+# © Clear Line Web Design,  2006-09-19
+
+Order Allow,Deny
+Allow from all

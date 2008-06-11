@@ -1,0 +1,18 @@
+/*
+ * Styles for the products admin page.
+ *
+ * @copyright Clear Line Web Design, 2007-12-04
+ */
+
+ul#photographs {
+	list-style-type: none;
+	list-style-image: none;
+}
+
+ul#photographs li {
+	display: inline; 
+}
+
+a.set_image_button {
+	clear: left;
+}
