@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--<project-specific-config-file-->
+    <!--    class-name="ProtxPayments_PSModuleConfigFile"-->
+    <!--/>-->
+    <server-name
+        value="http://payments.paypal.com/"
+    />
+    <!--<module-directory-subclass-->
+    <!--    value="PaypalPayments_ModuleDirectory"-->
+    <!--/>-->
+</config>

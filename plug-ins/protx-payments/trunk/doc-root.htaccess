@@ -1,0 +1,8 @@
+## .htaccess fragment for the paypal-payments plug-in module.
+##
+## © Clear Line Web Design, 2007-10-02
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{QUERY_STRING} 
+RewriteRule ^hpi/paypal\-payments/paypal\-ipn\.txt /haddock/public-html/public-html/index.php?section=plug-ins&module=paypal-payments&page=paypal-ipn&type=txt [QSA]
+#RewriteRule ^hpi/paypal\-payments/paypal\-ipn\.txt /haddock/public-html/public-html/index.php?section=plug-ins&module=paypal-payments&page=paypal-ipn&type=txt 
