@@ -2773,6 +2773,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_CreateUnitTestsClassCLIScript.inc.php';
 			break;
 
+		case('UnitTests_ListAllUnitTestsCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_ListAllUnitTestsCLIScript.inc.php';
+			break;
+
 		case('UnitTests_RunAllTestsCLIScript'): 
 			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_RunAllTestsCLIScript.inc.php';
 			break;
