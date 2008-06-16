@@ -1,0 +1,9 @@
+-- Delta file for the Trackit Stock Management module
+-- (c) 2008-06-13, Robert Impey
+
+CREATE TABLE `hpi_trackit_stock_management_images` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM;
