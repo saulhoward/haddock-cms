@@ -61,7 +61,7 @@ class
  * @copyright $date, $copyright_holder
  */
 
-class
+abstract class
 	$project_specific_html_page_class_name
 extends
 	PublicHTML_HTMLPage
