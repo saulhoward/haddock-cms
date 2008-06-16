@@ -20,7 +20,7 @@ class
 			= $classes_directory->get_name()
 				. DIRECTORY_SEPARATOR . 'helpers';
 		
-		echo '$helpers_directory_name: ' . $helpers_directory_name . PHP_EOL;
+		#echo '$helpers_directory_name: ' . $helpers_directory_name . PHP_EOL;
 		
 		FileSystem_DirectoryHelper
 			::mkdir_parents($helpers_directory_name);
@@ -29,14 +29,14 @@ class
 			= $module_directory->get_camel_case_root()
 				. '_' . $new_helper_name . 'Helper';
 		
-		echo '$helper_class_name: ' . $helper_class_name . PHP_EOL;
+		#echo '$helper_class_name: ' . $helper_class_name . PHP_EOL;
 		
 		$helper_file_name
 			= $helpers_directory_name
 				. DIRECTORY_SEPARATOR
 				. $helper_class_name . '.inc.php';
 		
-		echo '$helper_file_name: ' . $helper_file_name . PHP_EOL;
+		#echo '$helper_file_name: ' . $helper_file_name . PHP_EOL;
 		
 		if (is_file($helper_file_name)) {
 			throw new ErrorHandling_SprintfException(

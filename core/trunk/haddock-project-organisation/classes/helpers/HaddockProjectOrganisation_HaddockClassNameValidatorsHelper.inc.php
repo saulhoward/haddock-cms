@@ -20,7 +20,7 @@ class
 			= $classes_directory->get_name()
 				. DIRECTORY_SEPARATOR . 'input-validation';
 		
-		echo '$input_validators_directory_name: ' . $input_validators_directory_name . PHP_EOL;
+		#echo '$input_validators_directory_name: ' . $input_validators_directory_name . PHP_EOL;
 		
 		FileSystem_DirectoryHelper
 			::mkdir_parents($input_validators_directory_name);
@@ -29,14 +29,14 @@ class
 			= $module_directory->get_camel_case_root()
 				. '_' . $new_haddock_class_name_validator_name . 'ClassNameValidator';
 		
-		echo '$input_validator_class_name: ' . $input_validator_class_name . PHP_EOL;
+		#echo '$input_validator_class_name: ' . $input_validator_class_name . PHP_EOL;
 		
 		$input_validator_file_name
 			= $input_validators_directory_name
 				. DIRECTORY_SEPARATOR
 				. $input_validator_class_name . '.inc.php';
 		
-		echo '$input_validator_file_name: ' . $input_validator_file_name . PHP_EOL;
+		#echo '$input_validator_file_name: ' . $input_validator_file_name . PHP_EOL;
 		
 		if (is_file($input_validator_file_name)) {
 			throw new ErrorHandling_SprintfException(
