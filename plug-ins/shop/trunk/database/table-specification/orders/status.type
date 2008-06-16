@@ -1,0 +1,1 @@
+enum('pending','paid','dispatched')
