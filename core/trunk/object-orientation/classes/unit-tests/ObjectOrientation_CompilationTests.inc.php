@@ -11,7 +11,7 @@ extends
 	UnitTests_UnitTests
 {
 	public static function
-		dtest_all_classes_compile_without_writing_to_stdout()
+		test_all_classes_compile_without_writing_to_stdout()
 	{
 		$project_directory
 			= HaddockProjectOrganisation_ProjectDirectoryHelper
