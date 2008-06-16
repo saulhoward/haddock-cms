@@ -200,7 +200,7 @@ extends
 	private function
 		get_classes_directory_name()
 	{
-		return $this->get_name() . '/classes';
+		return $this->get_name() . DIRECTORY_SEPARATOR . 'classes';
 	}
 
 	public function
@@ -228,7 +228,16 @@ extends
 			throw new Exception($msg);
 		}
 	}
-
+	
+	public function
+		make_sure_classes_directory_exists()
+	{
+		if (!$this->has_classes_directory()) {
+			FileSystem_DirectoryHelper
+				::mkdir_parents($this->get_classes_directory_name());
+		}
+	}
+	
 	public function
 		get_php_class_files()
 	{
