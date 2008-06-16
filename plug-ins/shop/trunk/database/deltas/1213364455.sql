@@ -1,6 +1,5 @@
--- 
--- Table structure for table `hpi_shop_email_addresses`
--- 
+-- Delta file for the Shop module
+-- (c) 2008-06-13, Robert Impey
 
 CREATE TABLE `hpi_shop_email_addresses` (
   `id` int(10) unsigned NOT NULL auto_increment,
