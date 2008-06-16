@@ -74,5 +74,26 @@ class
 			$project_directory
 				->get_all_unit_tests_php_class_files();
 	}
+	
+	public static function
+		list_all_unit_tests()
+	{
+		foreach (
+			self::get_all_unit_tests_php_class_files()
+			as
+			$unit_tests_php_class_file
+		) {
+			#echo $unit_tests_php_class_file->get_php_class_name() . PHP_EOL;
+			$php_class_name = $unit_tests_php_class_file->get_php_class_name();
+			
+			foreach (
+				$unit_tests_php_class_file->get_test_function_names()
+				as
+				$test_function_name
+			) {
+				echo $php_class_name . '::' . $test_function_name . PHP_EOL;
+			}
+		}
+	}
 }
 ?>

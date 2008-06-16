@@ -1,12 +1,12 @@
 <?php
 /**
- * Deltas
+ * Database_DeltasTests
  *
  * @copyright 2008-06-13, Robert Impey
  */
 
 class
-	Deltas
+	Database_DeltasTests
 extends
 	UnitTests_UnitTests
 {

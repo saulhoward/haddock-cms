@@ -52,13 +52,13 @@ class
 			$file_contents = <<<CNT
 <?php
 /**
- * $new_unit_tests_class_name
+ * $unit_tests_class_name
  *
  * @copyright $date, $copyright_holder
  */
 
 class
-	$new_unit_tests_class_name
+	$unit_tests_class_name
 extends
 	UnitTests_UnitTests
 {
