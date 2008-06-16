@@ -391,5 +391,19 @@ SQL;
 	{
 		return trim($delta_file->basename(), '.sql');
 	}
+	
+	/**
+	 * Is there a more efficient way of doing this?
+	 *
+	 * It's not pretty to generate the array and then
+	 * count the elements.
+	 */
+	public static function
+		count_unapplied_delta_files()
+	{
+		return count(
+			self::get_unapplied_delta_files()
+		);
+	}
 }
 ?>

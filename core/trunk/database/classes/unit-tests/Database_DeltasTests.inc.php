@@ -33,8 +33,10 @@ extends
 	 * ----------------------------------------
 	 */
 	
-	/*
-	 * Write public static test functions here.
-	 */
+	public static function
+		test_all_delta_files_have_been_applied()
+	{
+		return Database_DeltaFilesHelper::count_unapplied_delta_files() == 0;
+	}
 }
 ?>
