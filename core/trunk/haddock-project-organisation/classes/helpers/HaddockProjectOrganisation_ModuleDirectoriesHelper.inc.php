@@ -21,11 +21,20 @@ class
 	public static function
 		get_module_directory_from_cli_choice()
 	{
+		$module_directories = self::get_all_module_directories();
+		
+		usort(
+			$module_directories,
+			create_function(
+				'$a, $b',
+				'return strcmp($a->get_identifying_name(), $b->get_identifying_name());'
+			)
+		);
+		
 		$mds = array();
 		$first = TRUE;
 		foreach (
-			self
-				::get_all_module_directories()
+			$module_directories
 			as
 			$module_directory
 		) {
