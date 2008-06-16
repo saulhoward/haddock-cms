@@ -304,17 +304,30 @@ extends
 	public function
 		get_camel_case_root()
 	{
-		if ($this->has_module_config_file()) {
-			$module_config_file = $this->get_module_config_file();
-			
-			if ($module_config_file->has_camel_case_root()) {
-				return $module_config_file->get_camel_case_root();
-			}
-		}
+		#if ($this->has_module_config_file()) {
+		#	$module_config_file = $this->get_module_config_file();
+		#	
+		#	if ($module_config_file->has_camel_case_root()) {
+		#		return $module_config_file->get_camel_case_root();
+		#	}
+		#}
+		#
+		#$name_as_l_o_w = $this->get_module_name_as_l_o_w();
+		#
+		#return $name_as_l_o_w->get_words_as_camel_case_string();
 		
-		$name_as_l_o_w = $this->get_module_name_as_l_o_w();
-		
-		return $name_as_l_o_w->get_words_as_camel_case_string();
+		return
+			HaddockProjectOrganisation_ModuleDirectoriesCamelCaseRootsHelper
+				::get_camel_case_root($this);
+	}
+	
+	public function
+		set_camel_case_root(
+			$camel_case_root
+		)
+	{
+		HaddockProjectOrganisation_ModuleDirectoriesCamelCaseRootsHelper
+			::set_camel_case_root($camel_case_root, $this);
 	}
 
 	/**
@@ -1194,10 +1207,10 @@ extends
 	 * ----------------------------------------
 	 */
 	
-	private function
+	public function
 		get_config_directory_name()
 	{
-		return $this->get_name() . '/config';
+		return $this->get_name() . DIRECTORY_SEPARATOR . 'config';
 	}
 	
 	public function
@@ -1220,6 +1233,17 @@ extends
 			throw
 				new HaddockProjectOrganisation_StandardModuleSubDirectoryNotFoundException(
 					'config',
+					$this->get_config_directory_name()
+				);
+		}
+	}
+	
+	public function
+		make_sure_config_directory_exists()
+	{
+		if (!$this->has_classes_directory()) {
+			FileSystem_DirectoryHelper
+				::mkdir_parents(
 					$this->get_config_directory_name()
 				);
 		}

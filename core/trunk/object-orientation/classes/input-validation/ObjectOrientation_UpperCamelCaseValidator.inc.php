@@ -13,7 +13,7 @@ extends
 	protected function
 		get_regex()
 	{
-		return '/^(:?[A-Z0-9][A-Za-z0-9]*)*$/';
+		return '/^(:?[A-Z0-9][A-Za-z0-9]*)+$/';
 	}
 }
 ?>
