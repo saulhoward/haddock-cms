@@ -1215,5 +1215,23 @@ extends
 				);
 		}
 	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the database table name root.
+	 * ----------------------------------------
+	 */
+	
+	abstract public function
+		get_database_table_name_root();
+	
+	/**
+	 * Should this value be set for each module?
+	 */
+	public function
+		get_copyright_holder()
+	{
+		return HaddockProjectOrganisation_ProjectInformationHelper::get_copyright_holder();
+	}
 }
 ?>

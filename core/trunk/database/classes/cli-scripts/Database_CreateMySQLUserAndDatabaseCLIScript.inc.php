@@ -28,11 +28,15 @@ HLP;
 	public function
 		do_actions()
 	{
-		try {
-			$dbh = DB::m();
-			
-			echo 'MySQL User and Database already pingable, exiting.' . PHP_EOL;
-		} catch (Database_UnableToMakeConnectionException $e) {
+		if (
+			Database_ConnectionsHelper
+				::is_database_selectable()
+		) {
+			fwrite(
+				STDERR,
+				'MySQL User and Database are already online, exiting.' . PHP_EOL
+			);
+		} else {
 			$passwords_file
 				= Database_PasswordsFileHelper
 					::get_passwords_file();
@@ -44,14 +48,22 @@ HLP;
 				'Please enter the root password for \'%s\'' . PHP_EOL,
 				$passwords_file->get_host()
 			);
-			
+
 			$root_password = trim(fgets(STDIN));
-			
+
 			$root_dbh = mysql_connect(
 				$passwords_file->get_host(),
 				'root',
 				$root_password
 			);
+			
+			/*
+			 * Don't use this function - the
+			 * database hasn't been created yet!
+			 */
+			#$root_dbh
+			#	= Database_ConnectionsHelper
+			#		::get_root_connection_using_cli();
 			
 			$username = $passwords_file->get_username();
 			$password = $passwords_file->get_password();

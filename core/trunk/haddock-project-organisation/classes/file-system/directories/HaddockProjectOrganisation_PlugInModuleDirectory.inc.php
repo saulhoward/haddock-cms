@@ -193,5 +193,21 @@ extends
 		
 		return $missing_plug_in_module_names;
 	}
+	
+	public function
+		get_database_table_name_root()
+	{
+		$database_table_name_root = 'hpi_';
+		
+		$database_table_name_root .= str_replace(
+			'-',
+			'_',
+			$this->get_identifying_name()
+		);
+		
+		$database_table_name_root .= '_';
+		
+		return $database_table_name_root;
+	}
 }
 ?>

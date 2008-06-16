@@ -127,7 +127,8 @@ class
 		}
 	}
 	
-	public function get_database()
+	public function
+		get_database()
 	{       
 		if (!isset($this->database)) {
 			$password_file = $this->get_password_file();

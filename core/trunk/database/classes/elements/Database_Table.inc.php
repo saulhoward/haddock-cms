@@ -111,16 +111,17 @@ extends
                 $field_class
                     = $database_class_factory
                         ->get_field_class($table_name, $row['Field']);
-
-                $this->fields[] = $field_class->newInstance(
-                        $this,
-                        $row['Field'],
-                        $row['Type'],
-                        $row['Null'],
-                        $row['Key'],
-                        $row['Default'],
-                        $row['Extra']
-                    );
+                        
+                $this->fields[]
+                    = $field_class->newInstance(
+                            $this,
+                            $row['Field'],
+                            $row['Type'],
+                            $row['Null'],
+                            $row['Key'],
+                            $row['Default'],
+                            $row['Extra']
+                        );
             }
         }
 

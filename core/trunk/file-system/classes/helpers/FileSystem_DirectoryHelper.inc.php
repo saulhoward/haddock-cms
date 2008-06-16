@@ -13,5 +13,11 @@ class
     {
         system('mkdir -p ' . $directory_name);
     }
+    
+    public static function
+        delete_recursively($directory_name)
+    {
+        system('rm -rf ' . $directory_name);
+    }
 }
 ?>

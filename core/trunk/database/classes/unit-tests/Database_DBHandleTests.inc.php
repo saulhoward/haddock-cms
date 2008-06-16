@@ -17,5 +17,11 @@ extends
 		
 		return mysql_ping($dbh);
 	}
+	
+	public static function
+		test_database_is_selectable()
+	{
+		return Database_ConnectionsHelper::is_database_selectable();
+	}
 }
 ?>

@@ -428,5 +428,11 @@ extends
 		return HaddockProjectOrganisation_ProjectInformationHelper
 			::get_title();
 	}
+	
+	public function
+		get_database_table_name_root()
+	{
+		return 'ps_';
+	}
 }
 ?>

@@ -380,7 +380,11 @@ class
 	##################################################################
 	# These methods return classes to do with fields.
 	
-	public function get_field_class($table_name, $field_name)
+	public function
+		get_field_class(
+			$table_name,
+			$field_name
+		)
 	{
 		if (isset($_SESSION['database-class-names'][$table_name]['fields'][$field_name]['class']['class_file'])) {
 			require_once PROJECT_ROOT . $_SESSION['database-class-names'][$table_name]['fields'][$field_name]['class']['class_file'];

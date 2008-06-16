@@ -2,19 +2,19 @@
 /**
  * Database_EnumChoiceField
  *
- * @copyright Clear Line Web Design, 2006-09-21
+ * @copyright 2006-09-21, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/field-subclasses/'
-    . 'Database_StringField.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/field-subclasses/'
-    . 'Database_ChoiceField.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/field-subclasses/'
+#    . 'Database_StringField.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/field-subclasses/'
+#    . 'Database_ChoiceField.inc.php';
 
 /**
  * A class to represent an ENUM field in a database table.
