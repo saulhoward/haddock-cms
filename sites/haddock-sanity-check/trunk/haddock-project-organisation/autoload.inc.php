@@ -461,6 +461,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/database/classes/file-system/directories/Database_DeltasDirectory.inc.php';
 			break;
 
+		case('Database_DeltasTests'): 
+			require_once PROJECT_ROOT . '/haddock/database/classes/unit-tests/Database_DeltasTests.inc.php';
+			break;
+
 		case('Database_EditRowOLForm'): 
 			require_once PROJECT_ROOT . '/haddock/database/classes/html-tags/Database_EditRowOLForm.inc.php';
 			break;
@@ -2765,6 +2769,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/plug-ins/trackit-stock-management/classes/file-system/files/TrackitStockManagement_TextFeedFile.inc.php';
 			break;
 
+		case('UnitTests_CreateUnitTestsClassCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_CreateUnitTestsClassCLIScript.inc.php';
+			break;
+
 		case('UnitTests_RunAllTestsCLIScript'): 
 			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/cli-scripts/UnitTests_RunAllTestsCLIScript.inc.php';
 			break;
@@ -2783,6 +2791,14 @@ function __autoload($class_name)
 
 		case('UnitTests_UnitTests'): 
 			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/UnitTests_UnitTests.inc.php';
+			break;
+
+		case('UnitTests_UnitTestsClassesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/helpers/UnitTests_UnitTestsClassesHelper.inc.php';
+			break;
+
+		case('UnitTests_UnitTestsClassNameValidator'): 
+			require_once PROJECT_ROOT . '/haddock/unit-tests/classes/input-validation/UnitTests_UnitTestsClassNameValidator.inc.php';
 			break;
 
 		case('UnitTests_UnitTestsPHPClassFile'): 
