@@ -1453,6 +1453,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_WWWPageDirectory.inc.php';
 			break;
 
+		case('HaddockSanityCheck_HTMLPage'): 
+			require_once PROJECT_ROOT . '/project-specific/classes/pages/html/HaddockSanityCheck_HTMLPage.inc.php';
+			break;
+
 		case('HPO_NoISCFileException'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/exceptions/HPO_NoISCFileException.inc.php';
 			break;
@@ -2137,6 +2141,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/PublicHTML_ConfigManager.inc.php';
 			break;
 
+		case('PublicHTML_CreateProjectSpecificHTMLPageClassCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/cli-scripts/PublicHTML_CreateProjectSpecificHTMLPageClassCLIScript.inc.php';
+			break;
+
 		case('PublicHTML_Exception'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/exceptions/PublicHTML_Exception.inc.php';
 			break;
@@ -2207,6 +2215,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_ProjectRootDotHTAcessFileTests'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/unit-tests/PublicHTML_ProjectRootDotHTAcessFileTests.inc.php';
+			break;
+
+		case('PublicHTML_ProjectSpecificHTMLPageClassesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_ProjectSpecificHTMLPageClassesHelper.inc.php';
 			break;
 
 		case('PublicHTML_PublicURLFactory'): 
