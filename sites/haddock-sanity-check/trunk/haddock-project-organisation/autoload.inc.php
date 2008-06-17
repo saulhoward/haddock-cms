@@ -1313,12 +1313,20 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_ModuleConfigXMLFile.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_ModuleDirectoriesCamelCaseRootsHelper'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ModuleDirectoriesCamelCaseRootsHelper.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ModuleDirectoriesHelper'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ModuleDirectoriesHelper.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ModuleDirectory'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/directories/HaddockProjectOrganisation_ModuleDirectory.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_ModuleDirectoryCamelCaseRootValidator'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/input-validation/HaddockProjectOrganisation_ModuleDirectoryCamelCaseRootValidator.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_ModuleDirectoryHelper'): 
@@ -1431,6 +1439,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_RequiredModulesFile'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/file-system/files/HaddockProjectOrganisation_RequiredModulesFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_SetModuleDirectoryCamelCaseRootCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/cli-scripts/HaddockProjectOrganisation_SetModuleDirectoryCamelCaseRootCLIScript.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_SetProjectInformationCLIScript'): 
