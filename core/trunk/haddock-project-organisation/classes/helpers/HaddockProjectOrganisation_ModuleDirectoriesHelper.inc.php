@@ -49,5 +49,21 @@ class
 		
 		return $mds[$chosen_module_name];
 	}
+	
+	public static function
+		get_all_module_directories_sorted_by_identifying_name()
+	{
+		$module_directories = self::get_all_module_directories();
+		
+		usort(
+			$module_directories,
+			create_function(
+				'$a, $b',
+				'return strcmp($a->get_identifying_name(), $b->get_identifying_name());'
+			)
+		);
+		
+		return $module_directories;
+	}
 }
 ?>

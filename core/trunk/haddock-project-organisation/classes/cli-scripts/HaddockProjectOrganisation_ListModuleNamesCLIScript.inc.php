@@ -13,14 +13,16 @@ extends
 	public function
 		do_actions()
 	{
-		$project_directory
-			= HaddockProjectOrganisation_ProjectDirectoryHelper
-				::get_project_directory();
+		#$project_directory
+		#	= HaddockProjectOrganisation_ProjectDirectoryHelper
+		#		::get_project_directory();
 		
 		$module_names_aoa = array();
 		
 		foreach (
-			$project_directory->get_module_directories()
+			#$project_directory->get_module_directories()
+			HaddockProjectOrganisation_ModuleDirectoriesHelper
+				::get_all_module_directories_sorted_by_identifying_name()
 			as
 			$module_directory
 		) {
