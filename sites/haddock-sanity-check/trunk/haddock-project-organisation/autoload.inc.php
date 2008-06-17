@@ -1333,6 +1333,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ModuleDirectoryHelper.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_ModuleDirectoryNamesHelper'): 
+			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/helpers/HaddockProjectOrganisation_ModuleDirectoryNamesHelper.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ModuleNameTests'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation/classes/unit-tests/HaddockProjectOrganisation_ModuleNameTests.inc.php';
 			break;
