@@ -13,10 +13,14 @@ extends
 	public function
 		do_actions()
 	{
-		Database_TableSpecificationHelper
-			::sync_table_specification_with_database(
-				$this->get_root_password()
-			);
+		#Database_TableSpecificationHelper
+		#	::sync_table_specification_with_database(
+		#		$this->get_root_password()
+		#	);
+		fwrite(
+			STDERR,
+			'Currently disabled. Use Database_ApplyUnappliedDeltaFilesCLIScript instead.' . PHP_EOL
+		);
 	}
 	
 	protected function
