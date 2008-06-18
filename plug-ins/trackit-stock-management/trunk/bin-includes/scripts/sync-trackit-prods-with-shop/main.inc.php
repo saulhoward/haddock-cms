@@ -103,6 +103,16 @@ foreach ($trackit_products as $trackit_product) {
 	}
 	#exit;
 	
+	/*
+	 * Are we going to have to set the shop product ID in the
+	 * trackit products table?
+	 *
+	 * If this is the first time that the product has been synched
+	 * with the shop, the shop product ID will be the ID of the
+	 * last inserted row.
+	 *
+	 * That will be saved in the trackit system to store a link.
+	 */
 	$need_to_set_shop_product_id = FALSE;
 	if (strlen($shop_product_id) == 0) {
 		$shop_product_id = mysql_insert_id($dbh);
