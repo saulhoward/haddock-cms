@@ -1,12 +1,12 @@
 <?php
 /**
- * PublicHTML_RestrictAccessToDirectoryOnTheServerCLIScript
+ * PublicHTML_AllowAccessToDirectoryOnTheServerCLIScript
  *
- * @copyright 2008-06-02, RFI
+ * @copyright 2008-07-07, Robert Impey
  */
 
 class
-	PublicHTML_RestrictAccessToDirectoryOnTheServerCLIScript
+	PublicHTML_AllowAccessToDirectoryOnTheServerCLIScript
 extends
 	FileSystem_ExistingDirectoryRelativeToProjectRootCLIScript
 {
@@ -14,7 +14,7 @@ extends
 		do_actions()
 	{
 		PublicHTML_ServerAccessControlHelper
-			::restrict_access_to_directory(
+			::allow_access_to_directory(
 				$this->get_directory()
 			);
 	}
