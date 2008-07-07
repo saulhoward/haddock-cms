@@ -27,14 +27,14 @@ extends
 				= $this->get_arg('directory');
 		} else {
 			$directory
-				#= CLIScripts_UserInterrogationHelper
-				#	::get_validated_input(
-				#		'Please enter the name of the directory:',
-				#		new FileSystem_ExistingDirectoryRelativeToProjectRootValidator()
-				#	);
-				 = trim(fgets(STDIN));
+				= CLIScripts_UserInterrogationHelper
+					::get_validated_input(
+						'Please enter the name of the directory:' . PHP_EOL,
+						new FileSystem_ExistingDirectoryRelativeToProjectRootValidator()
+					);
+				#= trim(fgets(STDIN));
 				 
-			echo "The directory: $directory" . PHP_EOL;
+			#echo "The directory: $directory" . PHP_EOL;
 		}
 		
 		#$directory = PROJECT_ROOT . DIRECTORY_SEPARATOR . $directory;

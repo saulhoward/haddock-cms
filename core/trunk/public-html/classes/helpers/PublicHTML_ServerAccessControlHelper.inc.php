@@ -8,16 +8,29 @@
 class
 	PublicHTML_ServerAccessControlHelper
 {
+	/**
+	 * Restricts access to a directory on the server.
+	 *
+	 * Access to the directory is restricted using a .htaccess file.
+	 *
+	 * If there is already a .htaccess file in the directory, it is backed up first.
+	 *
+	 * @param string $directory The name of the directory, relative to PROJECT_ROOT.
+	 */
 	public static function
 		restrict_access_to_directory($directory)
 	{
 		$validator
 			= new FileSystem_ExistingDirectoryRelativeToProjectRootValidator();
+			
 		if ($validator->validate($directory)) {
 			$abs_directory = PROJECT_ROOT . DIRECTORY_SEPARATOR . $directory;
 			
 			$htaccess_file_name = $abs_directory . DIRECTORY_SEPARATOR . '.htaccess';
 			
+			/*
+			 * Back up the old file.
+			 */
 			if (file_exists($htaccess_file_name)) {
 				$back_up_htaccess_file_name = $htaccess_file_name . '_' . date('U');
 				

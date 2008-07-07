@@ -5,6 +5,10 @@
  * @copyright 2008-06-02, RFI
  */
 
+/**
+ * Used to check that a given string is the name of directory
+ * relative to the project root.
+ */
 class
 	FileSystem_ExistingDirectoryRelativeToProjectRootValidator
 extends
