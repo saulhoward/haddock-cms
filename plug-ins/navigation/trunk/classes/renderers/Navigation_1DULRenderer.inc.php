@@ -1,4 +1,10 @@
 <?php
+/**
+ * Navigation_1DULRenderer
+ *
+ * @copyright 2008-07-07, RFI
+ */
+
 class
 	Navigation_1DULRenderer
 {
