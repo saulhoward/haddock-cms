@@ -908,8 +908,8 @@ extends
 			 * infinitely.
 			 */
 			
-			#throw new Exception($error_message);
-			echo "$error_message\n"; exit;
+			throw new Exception($error_message);
+			#echo "$error_message\n"; exit;
 		}
 	}
 	

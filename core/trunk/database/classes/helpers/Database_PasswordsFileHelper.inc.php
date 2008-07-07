@@ -84,11 +84,14 @@ PWF;
 	public static function
 		get_passwords_file()
 	{
-		$project_directory_finder
-			= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
-			
+		#$project_directory_finder
+		#	= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
+		#	
+		#$project_directory
+		#	= $project_directory_finder->get_project_directory_for_this_project();
 		$project_directory
-			= $project_directory_finder->get_project_directory_for_this_project();
+			= HaddockProjectOrganisation_ProjectDirectoryHelper
+				::get_project_directory();
 		
 		$passwords_file = $project_directory->get_passwords_file();
 		
