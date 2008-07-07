@@ -1085,6 +1085,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/unit-tests/FileSystem_DirectoryHelperTests.inc.php';
 			break;
 
+		case('FileSystem_ExistingDirectoryRelativeToProjectRootCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/file-system/classes/cli-scripts/FileSystem_ExistingDirectoryRelativeToProjectRootCLIScript.inc.php';
+			break;
+
 		case('FileSystem_ExistingDirectoryRelativeToProjectRootValidator'): 
 			require_once PROJECT_ROOT . '/haddock/file-system/classes/input-validation/FileSystem_ExistingDirectoryRelativeToProjectRootValidator.inc.php';
 			break;
@@ -2011,6 +2015,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_AJAXFormHelper'): 
 			require_once PROJECT_ROOT . '/haddock/public-html/classes/helpers/PublicHTML_AJAXFormHelper.inc.php';
+			break;
+
+		case('PublicHTML_AllowAccessToDirectoryOnTheServerCLIScript'): 
+			require_once PROJECT_ROOT . '/haddock/public-html/classes/cli-scripts/PublicHTML_AllowAccessToDirectoryOnTheServerCLIScript.inc.php';
 			break;
 
 		case('PublicHTML_AssembleHTAccessCLIScript'): 
