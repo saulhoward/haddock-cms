@@ -1,4 +1,10 @@
 <?php
+/**
+ * HaddockCMS_DBPage
+ *
+ * @copyright 2008-07-07, RFI
+ */
+
 class
 	HaddockCMS_DBPage
 extends
@@ -7,7 +13,8 @@ extends
 	public function
 		content()
 	{
-		DBPages_PageRenderer::render_current_page_content();
+		DBPages_PageRenderer
+			::render_current_page_content();
 	}
 }
 ?>

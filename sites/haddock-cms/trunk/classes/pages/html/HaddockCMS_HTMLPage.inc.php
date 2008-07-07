@@ -130,8 +130,13 @@ extends
 		
 		$div->set_id('features_navigation');
 		
-		$ul = Navigation_HTMLListsHelper
-				::get_1d_ul(
+		$ul
+			#= Navigation_HTMLListsHelper
+			#	::get_1d_ul(
+			#		'features'
+			#	);
+			= Navigation_HTMLListsHelper
+				::get_project_specific_1d_ul(
 					'features'
 				);
 		
@@ -149,7 +154,12 @@ extends
 		
 		#Navigation_SPoE::render_tree('secondary');
 		
-		Navigation_1DULRenderer::render_ul('secondary');
+		#Navigation_1DULRenderer
+		#	::render_ul('secondary');
+		Navigation_HTMLListsHelper
+			::render_project_specific_1d_ul(
+				'secondary'
+			);
 		
 		echo "</div>\n";
 	}

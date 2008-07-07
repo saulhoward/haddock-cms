@@ -1901,6 +1901,38 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/renderers/Navigation_1DULRenderer.inc.php';
 			break;
 
+		case('Navigation_AddNodeToProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_AddNodeToProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_AddProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_AddProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_DeleteAllNodesFromProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_DeleteAllNodesFromProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_DeleteAllProjectSpecific1DTreesCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_DeleteAllProjectSpecific1DTreesCLIScript.inc.php';
+			break;
+
+		case('Navigation_DeleteNodeFromProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_DeleteNodeFromProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_DeleteProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_DeleteProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_EditNodeOfProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_EditNodeOfProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_EditProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_EditProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
 		case('Navigation_HTMLListsHelper'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/helpers/Navigation_HTMLListsHelper.inc.php';
 			break;
@@ -1911,6 +1943,18 @@ function __autoload($class_name)
 
 		case('Navigation_LinksTree'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/Navigation_LinksTree.inc.php';
+			break;
+
+		case('Navigation_ListNodesOfProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_ListNodesOfProjectSpecific1DTreeCLIScript.inc.php';
+			break;
+
+		case('Navigation_ListProjectSpecific1DTreesCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_ListProjectSpecific1DTreesCLIScript.inc.php';
+			break;
+
+		case('Navigation_ListsHelper'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/helpers/Navigation_ListsHelper.inc.php';
 			break;
 
 		case('Navigation_ManageNodesAdminPage'): 
@@ -1947,6 +1991,10 @@ function __autoload($class_name)
 
 		case('Navigation_NodesHelper'): 
 			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/helpers/Navigation_NodesHelper.inc.php';
+			break;
+
+		case('Navigation_ShiftNodeOfProjectSpecific1DTreeCLIScript'): 
+			require_once PROJECT_ROOT . '/plug-ins/navigation/classes/cli-scripts/Navigation_ShiftNodeOfProjectSpecific1DTreeCLIScript.inc.php';
 			break;
 
 		case('Navigation_SPoE'): 
