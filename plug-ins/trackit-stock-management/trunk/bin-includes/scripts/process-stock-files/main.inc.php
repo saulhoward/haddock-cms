@@ -92,6 +92,19 @@ if (
 	);
 
 	$fields[] = array(
+		'name' => 'site_suffix',
+		'chars' => 1,
+		'quotes' => 'y'
+	);
+
+	$fields[] = array(
+		'name' => 'style_id',
+		'chars' => 10,
+		'quotes' => 'n'
+	);
+
+
+	$fields[] = array(
 		'name' => 'product_id',
 		'chars' => 15,
 		'quotes' => 'y'
@@ -214,8 +227,8 @@ if (
 					}
 				}
 				
-				#echo "\$stmt\n$stmt\n";
-				#exit;
+//                                echo "\$stmt\n$stmt\n";
+//                                exit;
 				mysql_query($stmt, $dbh);
 			}
 

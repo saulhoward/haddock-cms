@@ -85,6 +85,8 @@ foreach ($trackit_products as $trackit_product) {
 	}
 	
 	$stmt .= ' name = \'' . $trackit_product['description'] . '\'';
+	$stmt .= ' , plu_code = \'' . $trackit_product['product_id'] . '\'';
+	$stmt .= ' , style_id = \'' . $trackit_product['style_id'] . '\'';
 	
 	if (strlen($trackit_product['meta_description'])) {
 		$stmt .= ' , description = \'' . $trackit_product['full_description'] . '\'';

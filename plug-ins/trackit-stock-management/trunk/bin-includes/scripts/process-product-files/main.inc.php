@@ -77,8 +77,20 @@ if (
 	);
 
 	$fields[] = array(
+		'name' => 'site_suffix',
+		'chars' => 1,
+		'quotes' => 'y'
+	);
+
+	$fields[] = array(
+		'name' => 'style_id',
+		'chars' => 10,
+		'quotes' => 'n'
+	);
+
+	$fields[] = array(
 		'name' => 'product_id',
-		'chars' => 15,
+		'chars' => 10,
 		'quotes' => 'n'
 	);
 
@@ -90,13 +102,13 @@ if (
 
 	$fields[] = array(
 		'name' => 'size',
-		'chars' => 100,
+		'chars' => 20,
 		'quotes' => 'y'
 	);
 
 	$fields[] = array(
 		'name' => 'colour',
-		'chars' => 100,
+		'chars' => 12,
 		'quotes' => 'y'
 	);
 
@@ -238,8 +250,8 @@ if (
 					$values[$name] = $value;
 				}
 				
-				#print_r($values);
-				#exit;
+//                                print_r($values);
+//                                exit;
 				
 				if (isset($values['product_id'])) {
 					/*
@@ -295,8 +307,8 @@ if (
 						$stmt .= " id = $id ";
 					}
 					
-					#echo "\$stmt\n$stmt\n";
-					#exit;
+//                                        echo "\$stmt\n$stmt\n";
+//                                        exit;
 					
 					mysql_query($stmt, $dbh);
 					#$products_table->add($values);
