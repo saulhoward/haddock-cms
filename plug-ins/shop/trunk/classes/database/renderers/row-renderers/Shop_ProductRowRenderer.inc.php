@@ -728,6 +728,14 @@ extends
 		/*
 		 * The data.
 		 */
+		$plu_code_field = $table->get_field('plu_code');
+		$plu_code_td = $this->get_data_html_table_td($plu_code_field);
+		$html_row->append_tag_to_content($plu_code_td);
+
+		$style_id_field = $table->get_field('style_id');
+		$style_id_td = $this->get_data_html_table_td($style_id_field);
+		$html_row->append_tag_to_content($style_id_td);
+
 		$added_field = $table->get_field('added');
 		$added_td = $this->get_data_html_table_td($added_field);
 		$html_row->append_tag_to_content($added_td);

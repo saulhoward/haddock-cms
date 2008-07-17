@@ -16,27 +16,27 @@ extends
 		$products_table = $this->get_element();
 		$database = $products_table->get_database();
 		$customer_regions_table = $database->get_table('hpi_shop_customer_regions');
-        
-        /*
-         * What happens if this isn't set?
-         */
+
+		/*
+		 * What happens if this isn't set?
+		 */
 		$customer_region
-            = $customer_regions_table
-                ->get_row_by_id($_SESSION['customer_region_id']);
-        
+			= $customer_regions_table
+			->get_row_by_id($_SESSION['customer_region_id']);
+
 		$products_ul = new HTMLTags_UL();
-        
+
 		$rows = $customer_region->get_active_products();
-		
-        #print_r($rows);
-		
-        foreach ($rows as $row) {
+
+		#print_r($rows);
+
+		foreach ($rows as $row) {
 			$row_renderer = $row->get_renderer();
-            
+
 			$product_description_li = $row_renderer->get_product_description_li();
 			$products_ul->append_tag_to_content($product_description_li);
 		}
-        
+
 		return $products_ul;
 	}
 
@@ -129,7 +129,13 @@ extends
 
 						foreach ($already_displayed_products as $already_displayed_product)
 						{
-							if ($product->get_id() == $already_displayed_product->get_id())
+							if (
+								($product->get_id() 
+								== $already_displayed_product->get_id())
+								||
+								($product->get_style_id() 
+								== $already_displayed_product->get_style_id())
+							)
 							{
 								$already_displayed = TRUE;
 							}

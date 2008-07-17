@@ -770,7 +770,16 @@ SQL;
 	) {
 		$just_displayed_products = FALSE;
 	}
+
+
+	if (isset($_GET['plu_code'])) {
+		// If PLU Code is set, unset everyhting else
+		$just_with_photos = FALSE;
+		$just_displayed_products = FALSE;
+	}
 	
+	$content_div->append_tag_to_content($this->get_enter_plu_code_form());
+
 	/*
 	 * -------------------------------------------------------------------------
 	 * The product selecting form.
@@ -961,6 +970,22 @@ SQL;
 
 	}
 	
+	if (
+		isset($_GET['plu_code'])
+	)
+	{
+		// If PLU_CODE is set, then nothing else should be
+		// (different form)
+		$plu_code = $_GET['plu_code'];
+		$from_and_where_clauses .= <<<SQL
+
+WHERE
+	hpi_shop_products.plu_code = $plu_code
+
+SQL;
+
+	}
+
 	if (
 		isset($product_category_id)
 		||
@@ -1211,7 +1236,12 @@ SQL;
 	} else {
 		$caption_str .= 'All Products';
 	}
-		
+			
+	if (isset($_GET['plu_code'])) {
+		$caption_str .= ' with PLU code ' . $_GET['plu_code'];
+	}
+
+	
 	if ($just_with_photos) {
 		$caption_str .= ' with photos';
 	}
@@ -1250,6 +1280,12 @@ SQL;
 	}
 	
 	$heading_row = new Database_SortableHeadingTR($sort_href, DIRECTION);
+
+	$plu_code_header = new HTMLTags_TH('PLU Code'); 
+	$heading_row->append_tag_to_content($plu_code_header);
+
+	$style_id_header = new HTMLTags_TH('Style ID'); 
+	$heading_row->append_tag_to_content($style_id_header);
 
 	$field_names = explode(' ', 'added name');
 
@@ -1388,6 +1424,67 @@ SQL;
 		echo $content_div->get_as_string();
 	}
 	
+	private function
+		get_enter_plu_code_form()
+	{
+		$enter_plu_code_form = new HTMLTags_Form();
+
+		$enter_plu_code_form->set_attribute_str('name', 'enter_plu_code');
+		$enter_plu_code_form->set_attribute_str('method', 'GET');
+		$enter_plu_code_form->set_attribute_str('class', 'table-select-form');
+
+		$enter_plu_code_form->set_action(new HTMLTags_URL('/'));
+
+		$inputs_ol = new HTMLTags_OL();
+
+		/*
+		 * Select whether you want all products or just those with status==display
+		 */
+		$li = new HTMLTags_LI();
+		$label = new HTMLTags_Label('PLU Code');
+		$label->set_attribute_str('for', 'plu_code');
+		$li->append_tag_to_content($label);
+
+		$input = new HTMLTags_Input();
+		$input->set_attribute_str('name', 'plu_code');
+		$li->append($input);
+
+		$inputs_ol->append($li);
+
+		/*
+		 * The submit button.
+		 */
+		$go_button_li = new HTMLTags_LI();
+		$go_button = new HTMLTags_Input();
+		$go_button->set_attribute_str('type', 'submit');
+		$go_button->set_attribute_str('value', 'Go');
+		$go_button->set_attribute_str('class', 'submit');
+		$go_button_li->append_tag_to_content($go_button);
+		$inputs_ol->add_li($go_button_li);
+
+		$enter_plu_code_form->append($inputs_ol);
+
+		/*
+		 * The hidden inputs.
+		 */
+		$current_page_url = $this->get_current_page_url();
+		$enter_plu_code_action = clone $current_page_url;
+		$enter_plu_code_action_get_vars = $enter_plu_code_action->get_get_variables();
+
+		foreach (array_keys($enter_plu_code_action_get_vars) as $key) {
+			$form_hidden_input = new HTMLTags_Input();
+
+			$form_hidden_input->set_attribute_str('type', 'hidden');
+			$form_hidden_input->set_attribute_str('name', $key);
+			$form_hidden_input->set_attribute_str('value', $enter_plu_code_action_get_vars[$key]);
+
+			$enter_plu_code_form->append_tag_to_content($form_hidden_input);
+		}
+
+		return $enter_plu_code_form;
+	}
+
+
 	/*
 	 * ----------------------------------------
 	 * Functions to do with returning to whence you came.
@@ -1430,5 +1527,21 @@ SQL;
 		
 		return self::$back_to_products_link_p;
 	}
+
+	private static function
+		get_current_page_url()
+	{
+	
+		$current_page_url = new HTMLTags_URL();
+		
+		$current_page_url->set_file('/haddock/public-html/public-html/index.php');
+		
+		$current_page_url->set_get_variable('oo-page');
+		$current_page_url->set_get_variable('page-class', 'Shop_AdminProductsPage');
+
+		return $current_page_url;
+	}
+		
+
 }
 ?>

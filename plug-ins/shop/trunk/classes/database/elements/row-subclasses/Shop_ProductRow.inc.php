@@ -23,6 +23,18 @@ extends
 	}
 
 	public function
+		get_plu_code()
+	{
+		return $this->get('plu_code');
+	}
+
+	public function
+		get_style_id()
+	{
+		return $this->get('style_id');
+	}
+
+	public function
 		get_description()
 	{
 		return $this->get('description');
