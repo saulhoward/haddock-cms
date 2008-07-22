@@ -1096,11 +1096,20 @@ SQL;
 	if ($just_displayed_products) {
 		$limit_form->add_hidden_input('just_displayed_products', 'yes');
 	}
-	
+	else
+	{
+		$limit_form->add_hidden_input('just_displayed_products', 'no');
+	}
 
 	if ($just_with_photos) {
 		$limit_form->add_hidden_input('just_with_photos', 'yes');
 	}
+	else
+	{
+		$limit_form->add_hidden_input('just_with_photos', 'no');
+	}
+
+
 	
 	$limit_previous_next_div->append_tag_to_content($limit_form);
 
@@ -1177,10 +1186,20 @@ SQL;
 	if ($just_displayed_products) {
 		$previous_next_url->set_get_variable('just_displayed_products', 'yes');
 	}
+	else
+	{
+		$previous_next_url->set_get_variable('just_displayed_products', 'no');
+	}
+
 
 	if ($just_with_photos) {
 		$previous_next_url->set_get_variable('just_with_photos', 'yes');
 	}
+	else
+	{
+		$previous_next_url->set_get_variable('just_with_photos', 'no');
+	}
+
 	
 	$limit_previous_next_div->append_tag_to_content($previous_next_ul);
 
