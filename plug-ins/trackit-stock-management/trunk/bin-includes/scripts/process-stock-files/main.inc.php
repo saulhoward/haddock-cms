@@ -106,10 +106,10 @@ if (
 
 	$fields[] = array(
 		'name' => 'product_id',
-		'chars' => 15,
+		'chars' => 10,
 		'quotes' => 'y'
 	);
-
+	
 	$fields[] = array(
 		'name' => 'size',
 		'chars' => 20,
@@ -118,7 +118,7 @@ if (
 
 	$fields[] = array(
 		'name' => 'colour',
-		'chars' => 12,
+		'chars' => 16,
 		'quotes' => 'y'
 	);
 
@@ -127,6 +127,20 @@ if (
 		'chars' => 8,
 		'quotes' => 'n'
 	);
+	
+
+	// removed size, extended space for qty
+//        $fields[] = array(
+//                'name' => 'colour',
+//                'chars' => 12,
+//                'quotes' => 'y'
+//        );
+
+//        $fields[] = array(
+//                'name' => 'quantity',
+//                'chars' => 8,
+//                'quotes' => 'n'
+//        );
 	
 	#$update_count = 0;
 	$processed_files_count = 0;
@@ -188,7 +202,7 @@ if (
 				
 				$query = "SELECT id, quantity FROM hpi_trackit_stock_management_stock_levels $where_clause";
 				
-				#echo "\$query: $query\n";exit;
+//                                echo "\$query: $query\n";exit;
 				
 				$result = mysql_query($query, $dbh);
 				

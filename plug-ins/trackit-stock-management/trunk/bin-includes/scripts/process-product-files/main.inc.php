@@ -91,7 +91,7 @@ if (
 	$fields[] = array(
 		'name' => 'product_id',
 		'chars' => 10,
-		'quotes' => 'n'
+		'quotes' => 'y'
 	);
 
 	$fields[] = array(
@@ -259,7 +259,12 @@ if (
 					 */
 					$query = 'SELECT id FROM hpi_trackit_stock_management_products WHERE ';
 					
-					$query .= ' product_id = \'' . $values['product_id'] . '\'';
+					$query .= ' product_id = ' . $values['product_id'];
+
+					// changed product_id to already include quotes
+//                                        $query .= ' product_id = \'' . $values['product_id'] . '\'';
+
+//                                        echo $query; exit;
 					
 					$result = mysql_query($query, $dbh);
 					
