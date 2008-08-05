@@ -234,12 +234,12 @@ SQL;
 			 * TAGS
 			 */
 			$product_tags_table = $database->get_table('hpi_shop_product_tags');
-			$product = $products_table->get_row_by_id($_GET['edit_id']);
+//                        $product = $products_table->get_row_by_id($_GET['edit_id']);
 
 			/*
 			 * REMOVE ALL PRINCIPAL TAGS FROM PRODUCT
 			 */
-			$products_table->remove_all_principal_tags($_GET['edit_id']);
+			$products_table->remove_all_principal_tags($product->get_id());
 
 			$principal_tags = $product_tags_table->get_principal_tags();
 
