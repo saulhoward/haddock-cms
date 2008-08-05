@@ -312,7 +312,7 @@ if (
 						$stmt .= " id = $id ";
 					}
 					
-//                                        echo "\$stmt\n$stmt\n";
+					echo "\$stmt\n$stmt\n";
 //                                        exit;
 					
 					mysql_query($stmt, $dbh);

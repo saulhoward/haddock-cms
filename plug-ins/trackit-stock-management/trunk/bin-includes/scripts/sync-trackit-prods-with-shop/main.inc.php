@@ -264,7 +264,8 @@ SQL;
 		
 		$stmt .= ' currency_id = 1, ';
 		
-		$stmt .= ' product_id = ' . $trackit_product['id'] . ' , ';
+//                $stmt .= ' product_id = ' . $trackit_product['id'] . ' , ';
+		$stmt .= ' product_id = ' . $shop_product_id . ' , ';
 		
 		$stmt .= ' price = ' . ($trackit_product['unit_price'] * 100);
 		
