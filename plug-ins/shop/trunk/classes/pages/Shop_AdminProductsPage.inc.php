@@ -1054,6 +1054,13 @@ SQL;
 SQL;
 
 	}
+
+	$from_and_where_clauses .= <<<SQL
+
+	GROUP BY hpi_shop_products.style_id
+	
+SQL;
+
 	/*
 	 * DIV for limits and previous and nexts.
 	 */

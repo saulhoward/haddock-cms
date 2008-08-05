@@ -1074,6 +1074,7 @@ SQL;
 		$this->commit();
 	}
 
+
     /**
      * A product is NOT displayable if:
      *  - No prices in any currency have been set.

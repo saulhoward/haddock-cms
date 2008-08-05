@@ -149,82 +149,10 @@ if (isset($_GET['edit_id'])) {
 	#print_r($_POST);exit;
 	//        print_r($_GET);exit;
 
-	$products_table->edit_product(
+	Shop_ProductsHelper::edit_all_products_with_this_products_style_id(
 		$_GET['edit_id'],
-		$_POST['name'],
-		$_POST['description'],
-		$_POST['product_category_id'],
-		$_POST['product_brand_id'],
-		$_POST['supplier_id'],
-		$_POST['use_stock_level'],
-		$_POST['sort_order']
+		$_POST
 	);
-
-	/*	 
-	 *	 PRICES
-	 */
-	$product_currency_prices_table = $database->get_table('hpi_shop_product_currency_prices');
-	$currencies_table = $database->get_table('hpi_shop_currencies');
-	$currencies = $currencies_table->get_all_rows();
-	foreach ($currencies as $currency)
-	{
-		$conditions = array();
-		$conditions['product_id'] = $_GET['edit_id'];
-		$conditions['currency_id'] = $currency->get_id();
-		$product_currency_prices_table->delete_where($conditions);
-
-		$product_currency_prices_table->add_product_currency_price(
-			$_GET['edit_id'],
-			$currency->get_id(),
-			$_POST['price_' . $currency->get_id()]		
-		);
-	}
-
-	/*
-	 * TAGS
-	 */
-	$product_tags_table = $database->get_table('hpi_shop_product_tags');
-	$product = $products_table->get_row_by_id($_GET['edit_id']);
-
-	/*
-	 * REMOVE ALL PRINCIPAL TAGS FROM PRODUCT
-	 */
-	$products_table->remove_all_principal_tags($_GET['edit_id']);
-
-	$principal_tags = $product_tags_table->get_principal_tags();
-
-	#print_r($principal_tags);exit;
-	foreach ($principal_tags as $principal_tag) {
-		if (isset($_POST['tag_' . $principal_tag->get_id()])) {
-			$product->add_tag($principal_tag);
-		}
-	}
-
-	/*
-	 * PHOTOGRAPHS
-	 */
-	# MAIN PHOTOGRAPH
-	if (isset($_POST['main_photograph_id'])) {
-		$product->add_photograph_by_id($_POST['main_photograph_id'], 'main');
-	}
-	
-	# DESIGN PHOTOGRAPH
-	if (isset($_POST['design_photograph_id'])) {
-		$product->add_photograph_by_id($_POST['design_photograph_id'], 'design');
-	}
-	
-	# EXTRAS PHOTOGRAPH
-//        $product->delete_photograph_product_link_of_type('extra');
-//        $photographs_table = $database->get_table('hpi_shop_photographs');
-//        $photographs = $photographs_table->get_all_rows();
-//        foreach ($photographs as $photograph)
-//        {
-//                if (isset($_POST['extra_photograph_id_' . $photograph->get_id()]))
-//                {
-//                        $product->add_photograph_by_id($photograph->get_id(), 'extra');
-//                }
-//        }
-
 	$return_to_url->set_get_variable('last_edited_id', $_GET['edit_id']);
 }
 
@@ -314,7 +242,10 @@ if (isset($_GET['toggle_status'])
 		isset($_GET['product_id'])
 	) {
 		$product = $products_table->get_row_by_id($_GET['product_id']);
-		$product->toggle_status();
+//                $product->toggle_status();
+		
+		Shop_ProductsHelper::toggle_status_for_all_products_with_this_products_style_id($product);
+
 		//    $return_to .= '&last_edited_id=' . $_GET['edit_id'];
 
 		$return_to_url->set_get_variable('last_edited_id', $_GET['product_id']);

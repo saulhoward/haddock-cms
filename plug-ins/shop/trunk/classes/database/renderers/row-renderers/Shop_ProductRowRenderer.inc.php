@@ -67,8 +67,8 @@ extends
 		/*
 		 * The extra_photograph_id
 		 */
-		$extra_photograph_li = $this->get_extra_photograph_form_checkbox_li();
-		$product_editing_form->add_input_li($extra_photograph_li);
+//                $extra_photograph_li = $this->get_extra_photograph_form_checkbox_li();
+//                $product_editing_form->add_input_li($extra_photograph_li);
 
 		/*
 		 * The product_category_id
@@ -85,8 +85,8 @@ extends
 		/*
 		 * The supplier_id
 		 */
-		$supplier_li = $this->get_supplier_form_select_li();
-		$product_editing_form->add_input_li($supplier_li);
+//                $supplier_li = $this->get_supplier_form_select_li();
+//                $product_editing_form->add_input_li($supplier_li);
 
 //                /*
 //                 * The status
@@ -103,17 +103,17 @@ extends
 		/*
 		 * The Price Lis
 		 */
-		$input_lis = $this->get_price_form_input_lis();
-		foreach ($input_lis as $input_li)
-		{
-			$product_editing_form->add_input_li($input_li);
-		}
+//                $input_lis = $this->get_price_form_input_lis();
+//                foreach ($input_lis as $input_li)
+//                {
+//                        $product_editing_form->add_input_li($input_li);
+//                }
 
 		/*
 		 * The use_stock_level
 		 */
-		$use_stock_level_li = $this->get_use_stock_level_form_select_li();
-		$product_editing_form->add_input_li($use_stock_level_li);
+//                $use_stock_level_li = $this->get_use_stock_level_form_select_li();
+//                $product_editing_form->add_input_li($use_stock_level_li);
 		
 		/*
 		 * The sort_order
