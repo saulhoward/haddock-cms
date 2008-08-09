@@ -2,7 +2,7 @@
 /**
  * HTMLTags_FormActionAttribute
  *
- * @copyright 2008-04-04, RFI
+ * @copyright 2008-04-04, Robert Impey
  */
 
 class

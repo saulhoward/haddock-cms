@@ -2,7 +2,7 @@
 /**
  * Database_EditRowOLForm
  *
- * @copyright 2006-12-02, RFI
+ * @copyright 2006-12-02, Robert Impey
  */
 
 class

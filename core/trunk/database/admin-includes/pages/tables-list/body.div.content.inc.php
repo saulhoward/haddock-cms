@@ -2,10 +2,10 @@
 /**
  * Lists the tables in the database for this site.
  *
- * RFI & SANH 2006-09-21
+ * @copyright 2006-09-21, Robert Impey
  */
 
-require_once PROJECT_ROOT . '/haddock/database/classes/Database_MySQLUserFactory.inc.php';
+#require_once PROJECT_ROOT . '/haddock/database/classes/Database_MySQLUserFactory.inc.php';
 
 $mysql_user_factory = Database_MySQLUserFactory::get_instance();
 #print_r($mysql_user_factory);
@@ -21,9 +21,9 @@ $database = $mysql_user->get_database();
 <h2>Tables in <?php echo $database->get_name(); ?></h2>
 
 <p>
-    <em>WARNING!</em>
-    Editing the values of the table directly may lead
-    to unforeseen consequences.
+	<em>WARNING!</em>
+	Editing the values of the table directly may lead
+	to unforeseen consequences.
 </p>
 <?php
 

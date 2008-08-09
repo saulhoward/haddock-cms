@@ -2,7 +2,7 @@
 /**
  * HTMLTags_BareAttribute
  *
- * @copyright 2006-11-27, RFI
+ * @copyright 2006-11-27, Robert Impey
  */
 
 class

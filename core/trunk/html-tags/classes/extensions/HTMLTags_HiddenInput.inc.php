@@ -2,7 +2,7 @@
 /**
  * HTMLTags_HiddenInput
  *
- * @copyright 2008-04-04, RFI
+ * @copyright 2008-04-04, Robert Impey
  */
 
 /**
@@ -21,7 +21,10 @@ extends
 		
 		$this->set_attribute_str('type', 'hidden');
 		$this->set_attribute_str('name', $name);
-		$this->set_attribute_str('value', $value);
+		
+		#echo __METHOD__ . PHP_EOL; exit;
+		#$this->set_attribute_str('value', $value);
+		$this->set_value($value);
 	}
 }
 ?>

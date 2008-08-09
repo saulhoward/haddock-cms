@@ -2,7 +2,7 @@
 /**
  * HTMLTags_Form
  *
- * @copyright 2006-11-27, RFI
+ * @copyright 2006-11-27, Robert Impey
  */
 
 class
@@ -72,21 +72,21 @@ extends
 	
 	## No! No! No!
 	## Use the delegate pattern?
-	public function
-		get_hidden_inputs()
-	{
-		return $this->hidden_inputs;
-	}
-	
-	public function
-		add_hidden_input($name, $value)
-	{
-		$this->hidden_inputs[$name] = new HTMLTags_Input();
-		
-		$this->hidden_inputs[$name]->set_attribute_str('type', 'hidden');
-		$this->hidden_inputs[$name]->set_attribute_str('name', $name);
-		$this->hidden_inputs[$name]->set_attribute_str('value', $value);
-	}
+	#public function
+	#	get_hidden_inputs()
+	#{
+	#	return $this->hidden_inputs;
+	#}
+	#
+	#public function
+	#	add_hidden_input($name, $value)
+	#{
+	#	$this->hidden_inputs[$name] = new HTMLTags_Input();
+	#	
+	#	$this->hidden_inputs[$name]->set_attribute_str('type', 'hidden');
+	#	$this->hidden_inputs[$name]->set_attribute_str('name', $name);
+	#	$this->hidden_inputs[$name]->set_attribute_str('value', $value);
+	#}
 	
 	/*
 	 * Functions to do with a JS script tag that goes after the form.

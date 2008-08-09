@@ -2,7 +2,7 @@
 /**
  * HTMLTags_FormWithInputs
  *
- * @copyright 2008-04-03, RFI
+ * @copyright 2008-04-03, Robert Impey
  */
 
 class
@@ -43,6 +43,8 @@ extends
 	public function
 		add_hidden_input($name, $value)
 	{
+		#echo __METHOD__ . PHP_EOL; exit;
+		
 		#$this->hidden_inputs[$name] = new HTMLTags_Input();
 		#
 		#$this->hidden_inputs[$name]->set_attribute_str('type', 'hidden');

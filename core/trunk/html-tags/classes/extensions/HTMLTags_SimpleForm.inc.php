@@ -2,7 +2,7 @@
 /**
  * HTMLTags_SimpleForm
  *
- * @copyright 2008-04-03, RFI
+ * @copyright 2008-04-03, Robert Impey
  */
 
 /**

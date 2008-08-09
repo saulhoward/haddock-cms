@@ -2,7 +2,7 @@
 /**
  * HTMLTags_Attribute
  *
- * @copyright 2006-11-27, RFI
+ * @copyright 2006-11-27, Robert Impey
  */
 
 abstract class

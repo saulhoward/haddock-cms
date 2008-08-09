@@ -3,19 +3,21 @@
  * A script to add, update and delete
  * rows in a database table.
  *
- * @copyright Clear Line Web Design, 2006-11-21
+ * @copyright 2006-11-21, Robert Impey
  */
 
+#header('Content-type: text/plain');
 #echo "The GET variables: \n";
 #print_r($_GET);
 #echo "The POST variables: \n";
 #print_r($_POST);
+#exit;
 
 /*
  * Check that the relevant GET vars have been set.
  */
 if (!isset($_GET['table'])) {
-    throw new Exception('No table set!');
+	throw new Exception('No table set!');
 }
 
 /*
@@ -64,56 +66,56 @@ $return_to_url = $page_manager->get_return_to_url();
  * Add to or update the table.
  */
 if (isset($_POST['add_image'])) {
-    #echo "Adding an image\n";
-    
-    if (isset($_FILES['user_file'])) {
-        $table->add_image_file($_FILES['user_file']);
-    }
-    
-    $return_to_url->unset_get_variable('add_row');
+	#echo "Adding an image\n";
+	
+	if (isset($_FILES['user_file'])) {
+		$table->add_image_file($_FILES['user_file']);
+	}
+	
+	$return_to_url->unset_get_variable('add_row');
 } else {
-    if (isset($_GET['add_row']) || isset($_GET['edit_id'])) {
-        $fields = $table->get_fields();
-        
-        $values = array();
-        
-        foreach ($fields as $field) {
-            #echo $field->get_name();
-            
-            if (isset($_POST[$field->get_name()])) {
-                $values[$field->get_name()] = $_POST[$field->get_name()];
-            }
-        }
-        
-        # Add a new row to the table.
-        if (isset($_GET['add_row'])) {
-            $id = $table->add($values);
-            
-            $return_to_url->unset_get_variable('add_row');
-        }
-        
-        # Update a project in the database.
-        if (isset($_GET['edit_id'])) {
-            $table->update_by_id($_GET['edit_id'], $values);
-            
-            $return_to_url->unset_get_variable('edit_id');
-        }
-    }
+	if (isset($_GET['add_row']) || isset($_GET['edit_id'])) {
+		$fields = $table->get_fields();
+		
+		$values = array();
+		
+		foreach ($fields as $field) {
+			#echo $field->get_name();
+			
+			if (isset($_POST[$field->get_name()])) {
+				$values[$field->get_name()] = $_POST[$field->get_name()];
+			}
+		}
+		
+		# Add a new row to the table.
+		if (isset($_GET['add_row'])) {
+			$id = $table->add($values);
+			
+			$return_to_url->unset_get_variable('add_row');
+		}
+		
+		# Update a project in the database.
+		if (isset($_GET['edit_id'])) {
+			$table->update_by_id($_GET['edit_id'], $values);
+			
+			$return_to_url->unset_get_variable('edit_id');
+		}
+	}
 }
 
 /*
  * Delete rows from the database.
  */
 if (isset($_GET['delete_id'])) {
-    $table->delete_by_id($_GET['delete_id']);
-    
-    $return_to_url->unset_get_variable('delete_id');
+	$table->delete_by_id($_GET['delete_id']);
+	
+	$return_to_url->unset_get_variable('delete_id');
 }
 
 if (isset($_GET['delete_all'])) {
-    $table->delete_all();
-    
-    $return_to_url->unset_get_variable('delete_all');
+	$table->delete_all();
+	
+	$return_to_url->unset_get_variable('delete_all');
 }
 
 /*

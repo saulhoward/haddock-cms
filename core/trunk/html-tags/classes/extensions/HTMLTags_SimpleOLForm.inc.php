@@ -2,7 +2,7 @@
 /**
  * HTMLTags_SimpleOLForm
  *
- * @copyright 2006-11-27, RFI
+ * @copyright 2006-11-27, Robert Impey
  */
 
 /**
