@@ -11,7 +11,12 @@ extends
 	HTMLTags_TagWithContent
 {
 	private $action;
-	#private $hidden_inputs;
+	
+	/*
+	 * See comments to do with the methods to do with
+	 * this field below.
+	 */
+	private $hidden_inputs;
 	
 	public function
 		__construct($content = NULL)
@@ -64,29 +69,41 @@ extends
 	 * ----------------------------------------
 	 * Functions to do with hidden inputs.
 	 *
-	 * Should these be moved to the HTMLTags_FormWithInputs
-	 * class?
-	 * What would be broken?
+	 * These methods have been overridden in
+	 * <code>HTMLTags_FormWithInputs</code>
+	 * 
+	 * These functions should be considered deprecated.
+	 *
+	 * If you want a form class to use this functionality,
+	 * you should extend the <code>HTMLTags_FormWithInputs</code> class.
+	 *
+	 * See
+	 * <code>HTMLTags_SimpleForm</code>
+	 * <code>HTMLTags_SimpleOLForm</code>
 	 * ----------------------------------------
 	 */
 	
-	## No! No! No!
-	## Use the delegate pattern?
-	#public function
-	#	get_hidden_inputs()
-	#{
-	#	return $this->hidden_inputs;
-	#}
-	#
-	#public function
-	#	add_hidden_input($name, $value)
-	#{
-	#	$this->hidden_inputs[$name] = new HTMLTags_Input();
-	#	
-	#	$this->hidden_inputs[$name]->set_attribute_str('type', 'hidden');
-	#	$this->hidden_inputs[$name]->set_attribute_str('name', $name);
-	#	$this->hidden_inputs[$name]->set_attribute_str('value', $value);
-	#}
+	/**
+	 * @deprecated 2008-08-09
+	 */
+	public function
+		get_hidden_inputs()
+	{
+		return $this->hidden_inputs;
+	}
+	
+	/**
+	 * @deprecated 2008-08-09
+	 */
+	public function
+		add_hidden_input($name, $value)
+	{
+		$this->hidden_inputs[$name] = new HTMLTags_Input();
+		
+		$this->hidden_inputs[$name]->set_attribute_str('type', 'hidden');
+		$this->hidden_inputs[$name]->set_attribute_str('name', $name);
+		$this->hidden_inputs[$name]->set_attribute_str('value', $value);
+	}
 	
 	/*
 	 * Functions to do with a JS script tag that goes after the form.
