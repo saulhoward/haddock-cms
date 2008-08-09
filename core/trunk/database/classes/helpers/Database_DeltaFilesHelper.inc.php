@@ -5,6 +5,11 @@
  * @copyright 2008-06-13, RFI
  */
 
+/**
+ * A collection of functions that help with
+ * the delta files that are used to handle
+ * changes to the RDBMS.
+ */
 class
 	Database_DeltaFilesHelper
 {
@@ -228,9 +233,10 @@ SQL;
 					::get_delta_files_database_file_directory_name()
 			);
 		
-		$delta_files_database = new SQLiteDatabase(
-			self::get_delta_files_database_file_name()
-		);
+		$delta_files_database
+			= new SQLiteDatabase(
+				self::get_delta_files_database_file_name()
+			);
 		
 		$stmt = <<<SQL
 CREATE TABLE

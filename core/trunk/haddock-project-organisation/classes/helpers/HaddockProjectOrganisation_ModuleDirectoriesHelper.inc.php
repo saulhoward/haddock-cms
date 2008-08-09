@@ -65,5 +65,34 @@ class
 		
 		return $module_directories;
 	}
+	
+	public static function
+		insist_module_directory_exists($module_name)
+	{
+		if (
+			!self
+				::is_module_directory_identyfying_name($module_name)
+		) {
+			throw new ErrorHandling_SprintfException('\'%\' is not a module!', array($module_name));
+		}
+		
+		return TRUE;
+	}
+	
+	public static function
+		is_module_directory_identyfying_name($module_name)
+	{
+		foreach (
+			self::get_all_module_directories()
+			as
+			$module_directory
+		) {
+			if ($module_directory->get_identifying_name() == $module_name) {
+				return TRUE;
+			}
+		}
+		
+		return FALSE;
+	}
 }
 ?>
