@@ -76,7 +76,24 @@ extends
 	public function
 		delete()
 	{
+		if (isset($this->id)) {
+			Database_TableHelper
+				::delete_row(
+					$this->id,
+					$this->get_table_name()
+				);
+		}
 		
+		unset($this);
 	}
+	
+	/**
+	 * Returns the name of the table.
+	 *
+	 * Isn't there a way that we can do this by
+	 * parsing the class name?
+	 */
+	abstract public function
+		get_table_name();
 }
 ?>

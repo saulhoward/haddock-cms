@@ -103,5 +103,11 @@ extends
 			'type' => $this->get_type()
 		);
 	}
+	
+	public function
+		get_table_name()
+	{
+		return 'hc_admin_users';
+	}
 }
 ?>
