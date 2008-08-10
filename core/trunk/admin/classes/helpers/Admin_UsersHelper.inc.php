@@ -20,6 +20,8 @@ class
 	
 	/**
 	 * Returns all the persistent user entries.
+	 *
+	 * @return array The user entries.
 	 */
 	public static function
 		get_all_user_entries()

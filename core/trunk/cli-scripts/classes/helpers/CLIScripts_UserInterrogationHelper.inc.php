@@ -2,9 +2,13 @@
 /**
  * CLIScripts_UserInterrogationHelper
  *
- * @copyright 2008-05-27, RFI
+ * @copyright 2008-05-27, Robert Impey
  */
 
+/**
+ * A collection of functons to do with interrogating a
+ * user at the command line.
+ */
 class
 	CLIScripts_UserInterrogationHelper
 {
@@ -31,6 +35,12 @@ class
 		}
 	}
 	
+	/**
+	 * A function to make getting a choice from a user at the CLI easy.
+	 *
+	 * @param array $choices An array of options for the user to choose from.
+	 * @return string The option that the user chose.
+	 */
 	public static function
 		get_choice_from_string_array(
 			$choices
