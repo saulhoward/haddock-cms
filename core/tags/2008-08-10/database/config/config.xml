@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>Database_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<pages>
+		<admin>
+			<crud>
+				<limits_string value="10 20 50" />
+			</crud>
+		</admin>
+	</pages>
+</config>

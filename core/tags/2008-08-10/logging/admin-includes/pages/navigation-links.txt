@@ -1,0 +1,8 @@
+# List of the pages that should be linked to
+# in the logging admin section.
+#
+# © Clear Line Web Design, 2007-04-01
+
+#traffic
+entrances
+add-log-file

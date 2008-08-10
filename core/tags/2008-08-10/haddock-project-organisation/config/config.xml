@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <release>
+        <version>
+            <major>0</major>
+            <minor>0</minor>
+            <internal
+                value="1"
+            />
+        </version>
+        <status>alpha</status>
+    </release>
+	<project>
+		<name value="Haddock Project" />
+		<copyright-holder value="Robert Impey" />
+	</project>
+	<haddock-project-organisation>
+		<config-manager
+			value="HaddockProjectOrganisation_HPOConfigManager"
+		/>
+	</haddock-project-organisation>
+</config>

@@ -1,0 +1,24 @@
+# Directory Specific Directives for the Admin
+# Section of a CLWD Project
+#
+# RFI & SANH 2006-11-20
+
+#Order Allow,Deny
+#Allow from all
+
+# We use the mod_rewrite to make addresses readable.
+RewriteEngine on
+
+RewriteBase /admin
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^([^/]+)/([^/]+)\.html$ index.php?module=$1&page=$2
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^([^/]+)/([^/]+)\.txt$ text-renderer.php?module=$1&page=$2
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^([^/]+)/([^/]+)\.js$ js-renderer.php?module=$1&page=$2
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^([^/]+)/([^/]+)\.xml$ xml-renderer.php?module=$1&page=$2

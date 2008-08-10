@@ -1,0 +1,6 @@
+# List of the pages that should be linked to
+# in the unit-tests admin section.
+#
+# © Clear Line Web Design, 2007-01-24
+
+run-all-tests

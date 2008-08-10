@@ -1,0 +1,60 @@
+/**
+ * CORE
+ * Style sheet for the Admin Section
+ *
+ * RFI & SANH 2006-11-20
+ */
+
+body {
+	margin: 0 30px;
+	padding: 0;
+}
+#header #admin_header_navigation_link{
+
+	/*        float: right;*/
+	text-align: right;
+
+	padding: 0.5em 1em 0 0;
+}
+#header #log-in-state {
+
+	/*        float: right;*/
+	text-align: right;
+}
+#header #log-in-state p{
+	padding: 0.2em 1em;
+	margin: 0;
+	display: inline;
+}
+
+
+
+#container {
+    }
+    #content {
+	    padding: 1em 0 40px 0;
+   }
+
+   #content #form-products table {
+	   padding: 1em;
+}
+
+#navigation {
+	float: left;
+	background:#EBF8FE;
+	margin: 0 0 0 20px;
+	padding: 20px;
+	width: 35%;
+    }
+
+    #footer {
+	    float: right;
+	    text-align: right;
+}
+#clear-footer {
+	clear: both;
+}
+#footer p {
+	padding: 20px 20px 0 0;
+    }
+
