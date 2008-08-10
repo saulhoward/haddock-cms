@@ -1,0 +1,62 @@
+/**
+ * The stylesheet for a lastActionBox
+ *
+ * @copyright Clear Line Web Design, 27 feb 2007
+ */
+
+#lastActionBox{
+    display: block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    height: auto;
+    width: 100%;
+    }
+#lastActionBox.noscript {
+    height: auto;
+    }
+
+    
+#lastActionBox p{
+    margin: 1em 0 0 0;
+    padding: 1em;
+    display: block;
+    float: right;
+    text-align: left;
+    width: 40%;
+    background: transparent url(/haddock/admin/public-html/images/corner_gradient_short.gif) top left no-repeat;
+    }
+#lastActionBox.error p{
+    margin: 0 auto 10px auto;
+    padding: 1em;
+    display: block;
+    float: none;
+    text-align: left;
+    width: 40em;
+    background: transparent url(/haddock/admin/public-html/images/corner_gradient_short.gif) top left no-repeat;
+    }
+    
+    
+#lastActionBox h4{
+    padding: 10px 0 5px 15px;
+    margin: 0;
+    font-size: 1.2em;
+    }
+#lastActionBox em {
+    font-weight: 900;
+    font-style: normal;
+    }
+/*background: transparent url('/images/error_bg.png') top left repeat-x;*/
+#lastActionBox a{
+    text-indent: -3000px;
+    display: block;
+    float: left;
+    width: 25px;
+    height:25px;
+    background: transparent url('/haddock/admin/public-html/images/close.png') top right no-repeat;
+    margin: 0 10px 0 0px;
+    }
+#lastActionBox a:hover{
+    background-position: 0% -25px;
+    }

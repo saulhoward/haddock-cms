@@ -1,0 +1,37 @@
+## .htaccess fragment for the admin core module.
+##
+## © 2007-08-03, RFI
+
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^admin.html /hc/admin/login.html
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^admin/hc/([a-z-]+)/([a-z-]+).([a-z-]+)$ /?section=haddock&module=admin&page=admin-includer&type=$3&admin-section=haddock&admin-module=$1&admin-page=$2
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^admin/hpi/([a-z-]+)/([a-z-]+).([a-z-]+)$ /?section=haddock&module=admin&page=admin&admin-section=plug-ins&admin-module=$1&admin-page=$2&admin-type=$3
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^admin/ps/([a-z-]+).([a-z-]+)$ /?section=haddock&module=admin&page=admin&admin-section=project-specific&admin-page=$1&admin-type=$2
+	
+	# Shouldn't this be deprecated and removed?
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^admin/?(.*) /haddock/admin/public-html/$1
+</IfModule>
+
+# Back up using mod_alias
+
+<IfModule !mod_rewrite.c>
+	RedirectMatch temp ^/admin.html /hc/admin/login.html
+	
+	RedirectMatch temp ^/admin/hc/([a-z-]+)/([a-z-]+).([a-z-]+)$ /haddock/public-html/public-html/index.php?section=haddock\&module=admin\&page=admin-includer\&type=$3\&admin-section=haddock\&admin-module=$1\&admin-page=$2
+	
+	RedirectMatch temp ^/admin/hpi/([a-z-]+)/([a-z-]+).([a-z-]+)$ /haddock/public-html/public-html/index.php?section=haddock\&module=admin\&page=admin\&admin-section=plug-ins\&admin-module=$1\&admin-page=$2\&admin-type=$3
+	
+	RedirectMatch temp ^/admin/ps/([a-z-]+).([a-z-]+)$ /haddock/public-html/public-html/index.php?section=haddock\&module=admin\&page=admin\&admin-section=project-specific\&admin-page=$1\&admin-type=$2
+	
+	# Shouldn't this be deprecated and removed?
+	RedirectMatch temp ^/admin/?(.*) /haddock/admin/public-html/$1
+</IfModule>
+

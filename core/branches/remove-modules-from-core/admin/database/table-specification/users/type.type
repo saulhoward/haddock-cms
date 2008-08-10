@@ -1,0 +1,1 @@
+enum('Developer','Admin','User')

@@ -1,0 +1,3 @@
+# © Clear Line Web Design, 2007-05-02
+
+page-title=AJAX DBC

@@ -1,0 +1,5 @@
+# Configuration for the Database module.
+#
+# © Clear Line Web Design, 2007-01-17
+
+admin-section-title=Unit Tests

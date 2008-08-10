@@ -1,0 +1,116 @@
+/**
+ * HIDDEN BOX
+ * Style sheet for the Hidden Box for the Admin Section
+ *
+ * RFI & SANH 2006-11-20
+ */
+
+#content h3 {
+font-size: 1em;
+	padding: 0;
+	margin: 0;
+}
+#hiddenBox, #visibleBox {
+	display: block;
+		margin: 0 3em;
+	padding:0;
+}
+
+#hiddenBoxTab, #visibleBoxTab {
+	display: block;
+   width: 350px;
+   height: 24px;
+	padding: 8px 0 10px 0;
+	margin: 0;
+	overflow: hidden;
+}
+#hiddenBoxTab h3, #visibleBoxTab h3 {
+	padding: 6px 0 20px 0;
+	margin: 0;
+   font-size: 1em;
+}
+#hiddenBoxTab h3.arrowdown, #hiddenBoxTab h3.arrowup{
+	cursor: pointer;
+	color: blue;
+	text-decoration: underline;
+}
+#hiddenBoxTab h3.arrowdown:hover, #hiddenBoxTab h3.arrowup:hover{
+      	background-position:100% -36px;
+}
+#hiddenBoxTab h3.arrowdown{
+	background: #FFFF99 url(/haddock/admin/public-html/images/hidden-box-tab-arrow-down.png) no-repeat right top;
+}
+#hiddenBoxTab h3.arrowup{
+	background: #FFFF99 url(/haddock/admin/public-html/images/hidden-box-tab-arrow-up.png) no-repeat right top;
+}
+#visibleBoxTab h3, #hiddenBoxTab h3.noarrow{
+   color: #333;
+	background: #FFFF99 url(/haddock/admin/public-html/images/hidden-box-tab-bg.jpg) no-repeat right top;
+}
+#hiddenBoxTab span, #visibleBoxTab span {
+	display: block;
+	float: left;
+    	width: 16px;
+    	height: 16px;
+    	padding: 2px 16px 0 0;
+    	margin: 0 8px 0 0;
+}
+#hiddenBoxMain, #visibleBoxMain {
+	background:#FFFF99 url(/haddock/admin/public-html/images/hidden-box-bg.jpg) no-repeat right top;
+	display: block;
+	position: relative;    	
+    	margin: 0;
+    	padding: 0;
+    	width: auto;
+	min-width: 450px;
+    	overflow:hidden;
+}
+#hiddenBoxMain form, #visibleBoxMain form{
+   padding:  0.6em 0 0 0;
+    	margin: 0;
+}
+#hiddenBoxMain p, #visibleBoxMain p{
+  	font-size: 1.1em;
+   padding:  1.2em 2em 1em 2em;
+    	margin: 0;
+}
+#hiddenBoxMain #img-space img, #visibleBoxMain #img-space img{
+   padding:  0 4em;
+}
+#hiddenBoxMain table, #visibleBoxMain table{
+    	padding:  0 1em;
+    	margin: 0 auto;
+    	text-align: center;
+}
+#hiddenBoxMain table th, #visibleBoxMain table th{
+    	background-color: #FFFFFF;
+}
+#hiddenBoxMain table tr td, #visibleBoxMain table tr td{
+    	background-color: #EBF8FE;
+}
+#hiddenBoxMain td, th, #visibleBoxMain td, th{
+    padding:10px;
+    }
+#hiddenBoxGradient {
+    	background:#FFFF99 url(/haddock/admin/public-html/images/hidden-box-gradient.jpg) repeat-x left bottom;
+    	width: 350px;
+    	padding: 0;
+    	margin: 0;
+    	overflow: hidden;
+    	height: 0;
+}
+#hiddenBoxGradient span{
+    	display: block;
+    	height:40px;
+}
+
+/* ADD NEW ICONS HERE */
+#hiddenBoxTab span.product-icon, #visibleBoxTab span.product-icon{   
+    	background:transparent url(/haddock/admin/public-html/images/tag_blue_add.png) no-repeat right top;
+}
+#hiddenBoxTab span.image-icon, #visibleBoxTab span.image-icon{   
+    	background:transparent url(/haddock/admin/public-html/images/picture_add.png) no-repeat right top;
+}
+#hiddenBoxTab span.delete-icon, #visibleBoxTab span.delete-icon{   
+    	background:transparent url(/haddock/admin/public-html/images/delete.png) no-repeat right top;
+}

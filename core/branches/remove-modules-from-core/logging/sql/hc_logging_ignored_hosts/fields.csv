@@ -1,0 +1,2 @@
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"referer_domain_id","int(10) unsigned","NO","","",""

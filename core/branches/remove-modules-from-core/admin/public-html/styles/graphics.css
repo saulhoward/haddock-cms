@@ -1,0 +1,192 @@
+/**
+ * GRAPHICS
+ * Style sheet for the Admin Section
+ *
+ * RFI & SANH 2006-11-20
+ */
+
+
+a:visited {
+color: blue;
+}
+
+#header {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    background: transparent url(/haddock/admin/public-html/images/logo.png) top left no-repeat;
+    background-position: 10px 5px;
+    height: 69px;
+    }
+#content {
+    border-bottom: 8px solid #EBF8FE;
+    }
+#content h2 {
+    color: #404040;
+    }
+#content h3 {
+    color: #333333;
+    }
+
+#content a.return-button {
+    font-size: 110%;
+    margin: 0 0 0 6em;
+    }
+#content a.return-button:before {
+    content: url(/haddock/admin/public-html/images/arrow_left.png);
+    padding-right: 5px;
+    }
+ 
+#content ul.buttons {
+    list-style:none;
+    }
+#content ul.buttons li{
+        display: inline;
+    }
+#content ul.yes-no {
+    list-style:none;
+    padding: 0 0 0.5em 2em;
+    }
+#content ul.yes-no input {
+    font-size: 1.2em;
+    }
+#content ul.yes-no li{
+        display: inline;
+        padding: 0 2em 0 0;
+    }
+#content #page-options {
+        /*width: 35%;*/
+        display: block;
+	padding: 0;
+	margin: 2em 2em;
+        background: transparent url(/haddock/admin/public-html/images/corner_gradient_tl.gif) top left no-repeat;
+    }
+ #page-options ul {
+	padding: 1.2em 2em;
+	list-style: none;
+        }
+	
+ #content #action-div {
+        display: block;
+	padding: 0.3em 2em;
+	margin: 2em 2em;
+        background: transparent url(/haddock/admin/public-html/images/corner_gradient_tl.gif) top left no-repeat;
+    }
+
+#content label.username{
+    font-weight: 500;        
+    }
+#content #form p.error{
+    font-weight: 600;
+    color: #FF0000;
+    }
+#content a.item {
+    font-size: 110%;
+    }
+#content a.item:before {
+    content: url(/haddock/admin/public-html/images/tag_blue.png);
+    padding-right: 5px;
+    }
+#content a.new-image {
+    font-size: 110%;
+    }
+#content a.new-image:before {
+    content: url(/haddock/admin/public-html/images/picture_add.png);
+    padding-right: 5px;
+    }
+    
+
+    /* LINK ICONS */
+    
+a.link-icon{
+    font-size: 110%;
+}
+a.link-icon span{
+	display: block;
+	float: left;
+    width: 16px;
+    height: 16px;
+    padding-right: 16px;
+    margin-right: 5px;
+}
+a.new-item span{
+
+	background: transparent url(/haddock/admin/public-html/images/tag_blue_add.png) top right no-repeat;
+}
+a.delete-all-items {
+float: right;
+padding-right: 15px;
+}
+a.delete-all-items span{
+	background: transparent url(/haddock/admin/public-html/images/tag_blue_delete.png) top right no-repeat;
+}
+a.bullet-go span{
+	background: transparent url(/haddock/admin/public-html/shop-admin/images/bullet_go.gif) top right no-repeat;
+}
+a.image-icon span{
+	background: transparent url(/haddock/admin/public-html/shop-admin/images/picture.png) top right no-repeat;
+}
+a.delete-all-images {
+float: right;
+padding-right: 15px;
+}
+a.delete-all-images span{
+	background: transparent url(/haddock/admin/public-html/images/picture_delete.png) top right no-repeat;
+}
+a.item-icon span{
+	background: transparent url(/haddock/admin/public-html/images/tag_blue.png) top right no-repeat;
+}
+
+/* COOL BUTTONS */
+input.submit
+{
+  margin: 0 0.1em;
+  border: 3px double #999999;
+  border-top-color: #CCCCCC;
+  border-left-color: #CCCCCC;
+  padding: 0.25em;
+  background: #FFFFFF url(/haddock/admin/public-html/images/button_bg.jpg) top left repeat-x; 
+  color: #333333;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+input.submit:active
+{
+  border: 3px double #CCCCCC;
+  border-top-color: #999999;
+  border-left-color: #999999;
+}
+form.basic-form input.submit {
+    
+    margin: 1em 0 0 0;
+    text-align: center;
+    
+    }
+a.cool_button {
+        display: block;
+        width: auto;
+        margin: 0 0.1em;
+        padding: 0.25em 0.5em;
+        
+        border: 3px double #999999;
+        border-top-color: #CCCCCC;
+        border-left-color: #CCCCCC;
+        background: #FFFFFF url(/haddock/admin/public-html/images/button_bg.jpg) top left repeat-x; 
+        color: #333333;
+        font-size: 0.9em;
+        font-weight: bold;
+        text-decoration: none;
+        }
+a.cool_button#inline {
+            display: inline;
+            }
+a.cool_button:active
+{
+        border: 3px double #CCCCCC;
+        border-top-color: #999999;
+        border-left-color: #999999;
+  }
+/* end of Buttons */
+

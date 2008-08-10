@@ -1,0 +1,21 @@
+# Translates img src to something that can be
+# used by the PHP script.
+#
+# RFI & SANH 2006-09-23
+
+RewriteEngine on
+
+RewriteBase   /database
+
+# Public pages should look like HTML files.
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^([-\w]+)\.html$ index.php?page=$1
+
+RewriteRule ^tables/(\w+)\.html$ index.php?page=table&table=$1
+
+RewriteRule ^tables/?$ index.php?page=tables-list
+
+# Images fetched from the database.
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule images/(\w+)/image-(\d+)\.(jpg|gif|png)$ image-renderer.php?table_name=$1&id=$2

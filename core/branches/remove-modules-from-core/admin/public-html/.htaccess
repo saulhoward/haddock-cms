@@ -1,0 +1,5 @@
+# Opens up access to the admin public-html folder.
+# © Clear Line Web Design,  2007-08-09
+
+Order Allow,Deny
+Allow from all
