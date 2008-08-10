@@ -34,6 +34,9 @@ extends
         return $this->get('type');
     }
 	
+	/**
+	 * @deprecated 2008-08-10
+	 */
 	public function
 		reset_password()
 	{

@@ -13,9 +13,7 @@ extends
 	public function
 		do_actions()
 	{
-		/*
-		 * Write code here.
-		 */
+		Admin_UsersHelper::reset_all_users_passwords();
 	}
 }
 ?>

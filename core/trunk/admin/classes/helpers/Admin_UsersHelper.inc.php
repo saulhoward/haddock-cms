@@ -48,5 +48,68 @@ class
 		
 		return $all_user_entries;
 	}
+	
+	public static function
+		reset_all_users_passwords()
+	{
+		$all_user_entries = self::get_all_user_entries();
+		
+		foreach ($all_user_entries as $user_entry) {
+			$user_entry->reset_password();
+		}
+	}
+	
+	public static function
+		reset_user_password(
+			Admin_UserEntry $user_entry
+		)
+	{
+		$real_name = $user_entry->get_real_name();
+		
+		/*
+		 * Check that the user has an email address to send the
+		 * new password to.
+		 */
+		if (strlen($user_entry->get_email()) == 0) {
+			throw new Exception(
+				'Unable to reset the password of ' 
+				. $user_entry->get_real_name() 
+				. ' as no email address has been set!'
+			);
+		}
+
+		/*
+		 * Generate the new password.
+		 */
+		$pwg = Security_PasswordGenerator::get_instance();
+		$pw = $pwg->get_password();
+		
+		/*
+ 		 * Check that there is an admin for this site.
+		 */		
+		$from_email = '';
+
+		/*
+		 * Compose an email.
+		 *
+		 * How can this be edited and overridden?
+		 */
+		$email_title = 'New password for ' . $user_entry->get_real_name();
+		$to_email = $user_entry->get_email();
+
+		$email_body = <<<EML
+Dear $real_name,
+
+Your password has been reset to '$pw'.
+EML;
+		
+		if (mail($to_email, $from_email, $email_body, "From: $from_email;\r\nReply-To: $from_email")) {
+			$alm = Admin_LoginManager::get_instance();
+
+			$alm->set_password($user_entry->get_name(), $pw);
+		} else {	
+			throw new Exception("Unable to send a password reset email to $to_email!");
+		}
+	}
 }
 ?>

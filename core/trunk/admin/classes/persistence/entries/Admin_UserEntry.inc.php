@@ -79,5 +79,11 @@ extends
 	{
 		$this->type = $type;
 	}
+	
+	public function 
+		reset_password()
+	{
+		Admin_UsersHelper::reset_user_password($this);
+	}
 }
 ?>
