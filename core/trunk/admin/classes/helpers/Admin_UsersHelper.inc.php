@@ -113,5 +113,64 @@ EML;
 			throw new Exception("Unable to send a password reset email to $to_email!");
 		}
 	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the CLI
+	 * ----------------------------------------
+	 */
+	
+	public static function
+		get_user_entry_from_cli_choice()
+	{
+		/*
+		 * Get the array of users.
+		 */
+		$all_user_entries = Admin_UsersHelper::get_all_user_entries();
+		
+		/*
+		 * Do a bit of array manipulation to put users
+		 * into a hash with the names as the key.
+		 */
+		$users_hash = array();
+		
+		foreach ($all_user_entries as $user_entry) {
+			$users_hash[$user_entry->get_name()] = $user_entry;
+		}
+		
+		/*
+		 * Get the user's choice of user.
+		 */
+		return
+			$users_hash[
+				CLIScripts_UserInterrogationHelper
+					::get_choice_from_string_array(
+						array_keys($users_hash)
+					)
+			];
+	}
+	
+	public static function
+		show_user_data_on_cli(
+			Admin_UserEntry $user_entry
+		)
+	{
+		/*
+		 * Preprocess the data into an assoc.
+		 */
+		$user_assoc = $user_entry->get_assoc();
+		#print_r($user_assoc);
+		
+		/*
+		 * Render the data.
+		 */
+		CLIScripts_DataRenderingHelper
+			::render_array_of_assocs_in_table(
+				array($user_assoc),
+				array(
+					'id' => 'ID'
+				)
+			);
+	}
 }
 ?>

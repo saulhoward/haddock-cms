@@ -85,5 +85,23 @@ extends
 	{
 		Admin_UsersHelper::reset_user_password($this);
 	}
+	
+	public function 
+		show_data_on_cli()
+	{
+		Admin_UsersHelper::show_user_data_on_cli($this);
+	}
+	
+	public function
+		get_assoc()
+	{
+		return array(
+			'id' => $this->get_id(),
+			'name' => $this->get_name(),
+			'email' => $this->get_email(),
+			'real_name' => $this->get_real_name(),
+			'type' => $this->get_type()
+		);
+	}
 }
 ?>

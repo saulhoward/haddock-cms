@@ -20,5 +20,13 @@ abstract class
 	
 	abstract function
 		delete();
+	
+	/**
+	 * This should be the data for an entry
+	 * as returned by its access statements
+	 * in an associative array.
+	 */
+	abstract function
+		get_assoc();
 }
 ?>
