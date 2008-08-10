@@ -2,7 +2,7 @@
 /**
  * The content of the admin page to manage users.
  *
- * @copyright Clear Line Web Design, 2007-08-26
+ * @copyright 2007-08-26, Robert Impey
  */
 
 /*
@@ -36,12 +36,12 @@ $add_new_user_li = new HTMLTags_LI();
 $add_new_user_a = new HTMLTags_A('Add new user');
 
 $add_new_user_href = Admin_AdminIncluderURLFactory
-    ::get_url(
-        'haddock',
-        'admin',
-        'add-new-user',
-        'html'
-    );
+	::get_url(
+		'haddock',
+		'admin',
+		'add-new-user',
+		'html'
+	);
 
 $add_new_user_a->set_href($add_new_user_href);
 
@@ -58,26 +58,26 @@ $content_div->append_tag_to_content($page_options_div);
  */
 
 $current_page_url = Admin_AdminIncluderURLFactory
-    ::get_url(
-        'haddock',
-        'admin',
-        'manage-users',
-        'html'
-    );
+	::get_url(
+		'haddock',
+		'admin',
+		'manage-users',
+		'html'
+	);
 
 #$actions_method_args[] = $current_page_url;
 
 $content_div->append_tag_to_content(
-    $users_table_renderer->get_admin_database_selection_html_table(
-        $gvm->get('order_by'),
-        $gvm->get('direction'),
-        $gvm->get('offset'),
-        $gvm->get('limit'),
-        $current_page_url,
-        'name email real_name type',
-        'Admin Users',
-        'get_admin_users_admin_actions'
-    )
+	$users_table_renderer->get_admin_database_selection_html_table(
+		$gvm->get('order_by'),
+		$gvm->get('direction'),
+		$gvm->get('offset'),
+		$gvm->get('limit'),
+		$current_page_url,
+		'name email real_name type',
+		'Admin Users',
+		'get_admin_users_admin_actions'
+	)
 );
 
 echo $content_div->get_as_string();

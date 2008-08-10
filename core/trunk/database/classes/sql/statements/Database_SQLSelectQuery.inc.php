@@ -283,6 +283,18 @@ extends
 		return $this->limit_clause;
 	}
 	
+	public function
+		set_offset_and_limit(
+			$offset,
+			$limit
+		)
+	{
+		$limit_clause = $this->get_limit_clause();
+		
+		$limit_clause->set_offset($offset);
+		$limit_clause->set_limit($limit);
+	}
+	
 	/*
 	 * -------------------------------------------------
 	 * Functions to do with putting it all together.

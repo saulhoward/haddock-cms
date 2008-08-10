@@ -2,7 +2,7 @@
 /**
  * Database_SQLLimitClause
  *
- * @copyright 2007-02-20, RFI
+ * @copyright 2007-02-20, Robert Impey
  */
 
 class

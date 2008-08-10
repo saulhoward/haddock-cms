@@ -2,19 +2,21 @@
 /**
  * Database_Element
  *
- * @copyright Clear Line Web Design, 2006-09-20
+ * @copyright 2006-09-20, Robert Impey
  */
 
 /**
  * Class to represent the elements of a database.
  *
- * All the database logic and much of the program logic
+ * Some of the database logic and much of the program logic
  * should be in subclasses of this.
- *
+ * 
+ * This approach to programming is being replaced in much of
+ * the Haddock CMS code with code using the persistence module.
+ * 
  * See also: Renderer.
  */
 class Database_Element
 {
 }
-
 ?>

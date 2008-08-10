@@ -48,10 +48,15 @@ extends
 	public function
 		get_as_string()
 	{
+		$str = 'SELECT ';
+		
 		if (count($this->fields) == 0) {
-			throw new Exception('Please add some fields to the select query!');
+			#throw new Exception('Please add some fields to the select query!');
+			
+			$str .= ' * ';
+			
 		} else {
-			$str = 'SELECT ';
+			#$str = 'SELECT ';
 			
 			$first = TRUE;
 			foreach ($this->fields as $field) {
@@ -64,8 +69,10 @@ extends
 				$str .= $field->get_as_string();
 			}
 			
-			return $str;
+			#return $str;
 		}
+		
+		return $str;
 	}
 }
 ?>

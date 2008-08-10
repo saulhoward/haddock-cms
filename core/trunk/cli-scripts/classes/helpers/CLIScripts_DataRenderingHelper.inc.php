@@ -2,9 +2,13 @@
 /**
  * CLIScripts_DataRenderingHelper
  *
- * @copyright 2008-05-27, RFI
+ * @copyright 2008-05-27, Robert Impey
  */
 
+/**
+ * A collection of functions for rendering data in
+ * a CLI script.
+ */
 class
 	CLIScripts_DataRenderingHelper
 {

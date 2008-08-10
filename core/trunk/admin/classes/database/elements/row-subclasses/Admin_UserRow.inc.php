@@ -2,12 +2,8 @@
 /**
  * Admin_UserRow
  *
- * @copyright Clear Line Web Design, 2007-08-27
+ * @copyright 2007-08-27, Robert Impey
  */
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Row.inc.php';
 
 class
 	Admin_UserRow

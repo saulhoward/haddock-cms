@@ -32,5 +32,45 @@ class
 		
 		return $rows;
 	}
+	
+	public static function
+		get_all_rows_in_table(
+			$table_name,
+			$order_by = NULL,
+			$sort_direction = NULL,
+			$offset = NULL,
+			$limit = NULL
+		)
+	{
+		$query = new Database_SQLSelectQuery();
+		
+		$query->set_from_clause_table_name($table_name);
+		
+		if (
+			isset($order_by)
+			&&
+			isset($sort_direction)
+		) {
+			$query
+				->add_order_by_clause_field(
+					$order_by,
+					$sort_direction
+				);
+		}
+		
+		if (
+			isset($offset)
+			&&
+			isset($limit)
+		) {
+			$query
+				->set_offset_and_limit(
+					$offset,
+					$limit
+				);
+		}
+		
+		return self::get_rows_for_query($query);
+	}
 }
 ?>
