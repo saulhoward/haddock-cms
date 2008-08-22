@@ -9,7 +9,7 @@
  * An Entry in the Persistence module is something
  * that can be saved.
  *
- * That might be a user, an image or a record of a visit
+ * For example, that might be a user, an image or a record of a visit
  * to the site.
  */
 abstract class
