@@ -1166,15 +1166,23 @@ SQL;
 	
 	$row_count = 0;
 	
+//        if (
+//                $result
+//                &&
+//                ($row = mysql_fetch_array($result))
+//        ) {
+//                $row_count = $row[0];
+//        }
+	//        mysql_num_rows was better since we added the GROUP BY bit
+		
 	if (
 		$result
-		&&
-		($row = mysql_fetch_array($result))
 	) {
-		$row_count = $row[0];
+		$row_count = mysql_num_rows($result);
 	}
 	
-	#echo "\$row_count: $row_count\n";
+//        echo "\$query: $query\n";
+//        echo "\$row_count: $row_count\n";
 
 	$previous_next_ul = new Database_PreviousNextUL(
 		$previous_next_url,
@@ -1422,6 +1430,7 @@ SQL;
 		echo DEBUG_DELIM_CLOSE;
 	}
 	
+//                echo "data \$query: \n$query\n";
 	$rows = $products_table->get_rows_for_select($query);
 	
 	/*

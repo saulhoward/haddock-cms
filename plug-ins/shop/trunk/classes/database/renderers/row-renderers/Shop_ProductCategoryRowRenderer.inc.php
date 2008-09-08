@@ -90,6 +90,18 @@ extends
 		$link->set_attribute_str('class', 'cool_button');
 		$link->set_attribute_str('id', $a_id);
 
+		// horrible bug fix where it seems to be passing the same location
+		// over and over again, with all previous get variables intact!
+		if ($location->is_get_variable_set('edit_id'))
+		{
+			$location->unset_get_variable('edit_id');
+		}
+		if ($location->is_get_variable_set('delete_id'))
+		{
+			$location->unset_get_variable('delete_id');
+		}
+
+
 		$location->set_get_variable($id_get_var_name, $row->get_id());
 
 		$link->set_href($location);

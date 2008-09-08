@@ -29,7 +29,9 @@ $page_manager = PublicHTML_PageManager::get_instance();
 # Delete the project from the database.
 
 if (isset($_GET['delete_id'])) {
-	$product_categories_table->delete_by_id($_GET['delete_id']);
+//        $product_categories_table->delete_by_id($_GET['delete_id']);
+	$product_categories_table->delete_product_category($_GET['delete_id']);
+//        print_r($_GET['delete_id']);exit;
 	$return_to_url->set_get_variable('last_deleted_id', $_GET['delete_id']);
 }
 # Delete the project from the database.

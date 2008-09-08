@@ -53,6 +53,26 @@ SQL;
 	}
 
 	public function
+		delete_product_category($id)
+	{
+		$dbh = $this->get_database_handle();
+		$query = <<<SQL
+UPDATE 
+	`hpi_shop_products` 
+SET 
+	product_category_id=NULL 
+	WHERE 
+	product_category_id='$id'
+SQL;
+
+		$result = mysql_query($query, $dbh);
+		if ($result)
+		{
+			$this->delete_by_id($id);
+		}
+	}
+
+	public function
 		edit_product_category(
 			$edit_id,
 			$name,
