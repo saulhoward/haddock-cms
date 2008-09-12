@@ -147,6 +147,8 @@ extends
 
 							$product_description_li = 
 								$product_renderer->get_product_description_li();
+
+							$product_description_li->set_attribute_str('id', 'product');
 							$products_ul->append_tag_to_content($product_description_li);
 							$already_displayed_products[] = $product;
 						}
