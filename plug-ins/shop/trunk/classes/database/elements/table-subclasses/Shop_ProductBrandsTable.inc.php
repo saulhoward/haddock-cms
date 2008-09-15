@@ -122,11 +122,31 @@ Database_Table
 	public function
 		get_active_product_brands()
 	{
+
 		/*
 		 * RFI 2008-01-18
 		 */
-		return $this->get_all_rows();
+//                return $this->get_all_rows();
+
+		/*
+		 * SANH 2008-09-15
+		 */
+		$brands = $this->get_all_rows();
+		$brands_with_stock = array();
+		foreach($brands as $brand)
+		{
+//                        print_r(MashShop_ProductsHelper::get_stock_level_for_product_brand($brand->get_id()));
+			if (MashShop_ProductsHelper::get_stock_level_for_product_brand($brand->get_id()) > 0)
+			{
+				$brands_with_stock[] = $brand;
+			}
+		}
+//                exit;
+//                print_r($brands_with_stock);exit;
+		return $brands_with_stock;
 		
+
+		/* OLDE CODE */
 		$database = $this->get_database();
 		$customer_regions_table = $database->get_table('hpi_shop_customer_regions');
 
@@ -177,10 +197,27 @@ Database_Table
 		/*
 		 * RFI 2008-01-18
 		 */
-		$active_product_brands = $this->get_active_product_brands();
+//                $active_product_brands = $this->get_active_product_brands();
+//                return $active_product_brands;
+
+		/*
+		 * SANH 2008-09-15
+		 */
+		$brands = $this->get_all_rows();
+		$brands_with_stock = array();
+		foreach($brands as $brand)
+		{
+//                        print_r(MashShop_ProductsHelper::get_stock_level_for_product_brand($brand->get_id()));
+			if (MashShop_ProductsHelper::get_stock_level_for_product_brand_and_tag($brand->get_id(), $product_tag->get_id()) > 0)
+			{
+				$brands_with_stock[] = $brand;
+			}
+		}
+//                exit;
+//                print_r($brands_with_stock);exit;
+		return $brands_with_stock;
 		
-		return $active_product_brands;
-		
+	
 		$active_product_brands_for_tag = array();
 
 		foreach ($active_product_brands as $active_product_brand)
