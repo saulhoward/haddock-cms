@@ -23,7 +23,7 @@ $strYourSiteFQDN="http://testing.mash-shop.ragnar.clearlinewebdesign.com/";
 $strVSPVendorName="mash"; /** Set this value to the VSPVendorName assigned to you by protx or chosen when you applied **/
 $strEncryptionPassword="XVt4b34U5J7DSnGF";  /** Set this value to the XOR Encryption password assigned to you by Protx **/
 $strCurrency="GBP"; /** Set this to indicate the currency in which you wish to trade. You will need a merchant number in this currency **/
-$strVendorEMail="mashclothing@hotmail.com";  /** Set this to the mail address which will receive order confirmations and failures **/
+$strVendorEMail="info@mashclothing.com";  /** Set this to the mail address which will receive order confirmations and failures **/
 $strTransactionType="PAYMENT"; /** This can be DEFERRED or AUTHENTICATE if your Protx account supports those payment types **/
 
 /**************************************************************************************************

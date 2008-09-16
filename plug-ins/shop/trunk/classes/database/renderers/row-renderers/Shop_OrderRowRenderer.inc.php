@@ -484,12 +484,12 @@ TXT;
 			'&nbsp;&gt;&gt;&nbsp;'
 			#.
 			#$product->get_name()
-			.
-			'&nbsp;(x' 
-			.
-			$order->get_quantity()
-			.
-			')&nbsp;&gt;&gt;&nbsp;'
+//                        .
+//                        '&nbsp;(x' 
+//                        .
+//                        $order->get_quantity()
+//                        .
+//                        ')&nbsp;&gt;&gt;&nbsp;'
 			.
 			$customer->get_first_name() 
 			.
@@ -498,6 +498,10 @@ TXT;
 			$customer->get_last_name() 
 			.
 			'&nbsp;(' 
+			.
+			$address->get_street_address() 
+			.
+			',&nbsp;'
 			.
 			$address->get_locality() 
 			.
