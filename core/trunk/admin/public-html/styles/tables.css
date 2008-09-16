@@ -92,7 +92,10 @@ form.basic-form em {
 	font-style: normal;
 	color: #f00;
 	}
-
+form.basic-form fieldset li input[type='checkbox'] {
+	margin: 0 0 0 2em;
+}
+	
 form.basic-form fieldset fieldset label { margin-left: 123px; } /* Width plus 3 (html space) */
 
 /*\*//*/ form.basic-form legend { display: inline-block; } /* IE Mac legend fix */
