@@ -67,8 +67,8 @@ extends
 		/*
 		 * The extra_photograph_id
 		 */
-//                $extra_photograph_li = $this->get_extra_photograph_form_checkbox_li();
-//                $product_editing_form->add_input_li($extra_photograph_li);
+		$extra_photograph_li = $this->get_extra_photograph_form_checkbox_li();
+		$product_editing_form->add_input_li($extra_photograph_li);
 
 		/*
 		 * The product_category_id
