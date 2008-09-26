@@ -36,7 +36,7 @@ SELECT
 FROM
 	hpi_trackit_stock_management_products
 WHERE
-	synched_with_shop = 'No'
+	synched_with_shop = 'Yes'
 SQL;
 
 $result = mysql_query($query, $dbh);
