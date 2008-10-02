@@ -10,7 +10,7 @@
 * Values for you to update
 **************************************************************************************************/
 
-$strConnectTo="TEST"; //Set to SIMULATOR for the VSP Simulator expert system, TEST for the Test Server and LIVE in the live environment
+$strConnectTo="LIVE"; //Set to SIMULATOR for the VSP Simulator expert system, TEST for the Test Server and LIVE in the live environment
 
 $strVirtualDir="VSPForm-Kit"; //Change if you have created a Virtual Directory in IIS with a different name
 
