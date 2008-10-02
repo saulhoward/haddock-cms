@@ -20,11 +20,12 @@ $strVirtualDir="VSPForm-Kit"; //Change if you have created a Virtual Directory i
 ** examples would be https://www.mysite.com or http://212.111.32.22/ **
 ** NOTE: You should leave the final / in place. **/
 
-$strYourSiteFQDN="http://testing.mash-shop.ragnar.clearlinewebdesign.com/";  
+//$strYourSiteFQDN="http://testing.mash-shop.ragnar.clearlinewebdesign.com/";  
+$strYourSiteFQDN="https://www.mashclothing.com/";  
 $strVSPVendorName="mash"; /** Set this value to the VSPVendorName assigned to you by protx or chosen when you applied **/
 $strEncryptionPassword="XVt4b34U5J7DSnGF";  /** Set this value to the XOR Encryption password assigned to you by Protx **/
 $strCurrency="GBP"; /** Set this to indicate the currency in which you wish to trade. You will need a merchant number in this currency **/
-$strVendorEMail="mashclothing@hotmail.com";  /** Set this to the mail address which will receive order confirmations and failures **/
+$strVendorEMail="info@mashclothing.com";  /** Set this to the mail address which will receive order confirmations and failures **/
 $strTransactionType="PAYMENT"; /** This can be DEFERRED or AUTHENTICATE if your Protx account supports those payment types **/
 
 /**************************************************************************************************
@@ -198,8 +199,8 @@ $protx_form_div->set_attribute_str('id', 'paypal_form_div');
 $protx_form = new HTMLTags_Form();
 
 $protx_form_action = new HTMLTags_URL();
-//$protx_form_action->set_file('https://www.protx.com/cgi-bin/webscr'); 	# The real thing
-$protx_form_action->set_file('https://ukvpstest.protx.com/vspgateway/service/vspform-register.vsp'); # The sandbox
+$protx_form_action->set_file('https://www.protx.com/cgi-bin/webscr'); 	# The real thing
+//$protx_form_action->set_file('https://ukvpstest.protx.com/vspgateway/service/vspform-register.vsp'); # The sandbox
 $protx_form->set_action($protx_form_action);
 $protx_form->set_attribute_str('method', 'POST');
  
