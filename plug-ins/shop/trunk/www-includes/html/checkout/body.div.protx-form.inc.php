@@ -199,7 +199,7 @@ $protx_form_div->set_attribute_str('id', 'paypal_form_div');
 $protx_form = new HTMLTags_Form();
 
 $protx_form_action = new HTMLTags_URL();
-$protx_form_action->set_file('https://www.protx.com/cgi-bin/webscr'); 	# The real thing
+$protx_form_action->set_file('https://ukvps.protx.com/vspgateway/service/vspform-register.vsp'); # The real thing
 //$protx_form_action->set_file('https://ukvpstest.protx.com/vspgateway/service/vspform-register.vsp'); # The sandbox
 $protx_form->set_action($protx_form_action);
 $protx_form->set_attribute_str('method', 'POST');
