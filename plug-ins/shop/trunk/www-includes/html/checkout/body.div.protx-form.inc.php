@@ -10,8 +10,8 @@
 * Values for you to update
 **************************************************************************************************/
 
-$strConnectTo="LIVE"; //Set to SIMULATOR for the VSP Simulator expert system, TEST for the Test Server and LIVE in the live environment
-
+//Set to SIMULATOR for the VSP Simulator expert system, TEST for the Test Server and LIVE in the live environment
+$strConnectTo = ProtxPayments_PaymentsManager::get_connect_to();
 $strVirtualDir="VSPForm-Kit"; //Change if you have created a Virtual Directory in IIS with a different name
 
 /** IMPORTANT.  Set the strYourSiteFQDN value to the Fully Qualified Domain Name of your server. **
@@ -19,14 +19,22 @@ $strVirtualDir="VSPForm-Kit"; //Change if you have created a Virtual Directory i
 ** i.e. it MUST be resolvable externally, and have access granted to the Protx servers **
 ** examples would be https://www.mysite.com or http://212.111.32.22/ **
 ** NOTE: You should leave the final / in place. **/
+$strYourSiteFQDN = ProtxPayments_PaymentsManager::get_site_FQDN();
 
-//$strYourSiteFQDN="http://testing.mash-shop.ragnar.clearlinewebdesign.com/";  
-$strYourSiteFQDN="https://www.mashclothing.com/";  
-$strVSPVendorName="mash"; /** Set this value to the VSPVendorName assigned to you by protx or chosen when you applied **/
-$strEncryptionPassword="XVt4b34U5J7DSnGF";  /** Set this value to the XOR Encryption password assigned to you by Protx **/
-$strCurrency="GBP"; /** Set this to indicate the currency in which you wish to trade. You will need a merchant number in this currency **/
-$strVendorEMail="info@mashclothing.com";  /** Set this to the mail address which will receive order confirmations and failures **/
-$strTransactionType="PAYMENT"; /** This can be DEFERRED or AUTHENTICATE if your Protx account supports those payment types **/
+/** Set this value to the VSPVendorName assigned to you by protx or chosen when you applied **/
+$strVSPVendorName = ProtxPayments_PaymentsManager::get_vendor_name();
+
+/** Set this value to the XOR Encryption password assigned to you by Protx **/
+$strEncryptionPassword = ProtxPayments_PaymentsManager::get_encryption_password();
+
+/** Set this to indicate the currency in which you wish to trade. You will need a merchant number in this currency **/
+$strCurrency = ProtxPayments_PaymentsManager::get_currency();
+
+ /** Set this to the mail address which will receive order confirmations and failures **/
+$strVendorEMail = ProtxPayments_PaymentsManager::get_vendor_email();
+
+/** This can be DEFERRED or AUTHENTICATE if your Protx account supports those payment types **/
+$strTransactionType = ProtxPayments_PaymentsManager::get_transaction_type();
 
 /**************************************************************************************************
 * Global Definitions for this site
@@ -150,7 +158,9 @@ $strPost=$strPost . "&Amount=" . $shopping_baskets_total->get_as_string(FALSE); 
 $strPost=$strPost . "&Currency=" . $currency->get_iso_4217_code();
 
 // Up to 100 chars of free format description
-$strPost=$strPost . "&Description=Clothes from Mash, London";
+$description_str = ProtxPayments_PaymentsManager::get_site_description();
+$strPost=$strPost . "&Description=" . $description_str;
+
 
 /* The SuccessURL is the page to which VSP Form returns the customer if the transaction is successful 
 ** You can change this for each transaction, perhaps passing a session ID or state flag if you wish */
@@ -162,11 +172,12 @@ $strPost=$strPost . "&FailureURL=" . $strYourSiteFQDN . "?section=plug-ins&modul
 
 $strPost=$strPost . "&CustomerName=" . $customer->get_first_name() . $customer->get_last_name();
 $strPost=$strPost . "&CustomerEMail=" . $customer->get_email_address();
-$strPost=$strPost . "&VendorEMail=info@mashclothing.com";
+$strPost=$strPost . "&VendorEMail=" . $strVendorEMail;
 
 /* You can specify any custom message to send to your customers in their confirmation e-mail here 
 ** The field can contain HTML if you wish, and be different for each order.  The field is optional */
-$strPost=$strPost . "&eMailMessage=Thank you very much for your order.";
+$email_message = ProtxPayments_PaymentsManager::get_email_message();
+$strPost=$strPost . "&eMailMessage=" . $email_message;
 
 $strPost=$strPost . "&BillingAddress=" . $address->get_street_address() . " " . $address->get_locality();
 $strPost=$strPost . "&BillingPostCode=" . $address->get_postal_code();
@@ -199,8 +210,11 @@ $protx_form_div->set_attribute_str('id', 'paypal_form_div');
 $protx_form = new HTMLTags_Form();
 
 $protx_form_action = new HTMLTags_URL();
-$protx_form_action->set_file('https://ukvps.protx.com/vspgateway/service/vspform-register.vsp'); # The real thing
+
+//$protx_form_action->set_file('https://ukvps.protx.com/vspgateway/service/vspform-register.vsp'); # The real thing
 //$protx_form_action->set_file('https://ukvpstest.protx.com/vspgateway/service/vspform-register.vsp'); # The sandbox
+$protx_form_action->set_file($strPurchaseURL); # The URL set above
+
 $protx_form->set_action($protx_form_action);
 $protx_form->set_attribute_str('method', 'POST');
  
