@@ -1,17 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+
+	<haddock-project-organisation>
+		<config-manager>ProtxPayments_ConfigManager</config-manager>
+	</haddock-project-organisation>
+
 	<!--<project-specific-config-file-->
 		<!--    class-name="ProtxPayments_PSModuleConfigFile"-->
 		<!--/>-->
-	<!--<encryption-password
-		value="xxx"
-		/>
-	-->
 
 	<!--<module-directory-subclass-->
 		<!--    value="PaypalPayments_ModuleDirectory"-->
 		<!--/>-->
-	<haddock-project-organisation>
-		<config-manager>ProtxPayments_ConfigManager</config-manager>
-	</haddock-project-organisation>
+
+	<!-- SANH 2008-10-03
+	These are the VSP form settings required for a ProTx form
+	the form is created in /plug-ins/shop/trunk/www-includes/html/checkout/body.div.protx-form.inc.php 
+	but should be moved, obviously-->
+
+	<!--Set to SIMULATOR for the VSP Simulator expert system, 
+	TEST for the Test Server and LIVE in the live environment-->
+	<connect-to
+		value="TEST"
+		/>
+
+	<!--IMPORTANT.  Set the strYourSiteFQDN value to the Fully Qualified Domain Name of your server.-->
+	<!--This should start http:// or https:// and should be the name by which our servers can call back to yours-->
+	<!--i.e. it MUST be resolvable externally, and have access granted to the Protx servers-->
+	<!--examples would be https://www.mysite.com or http://212.111.32.22/ **-->
+	<!--NOTE: You should leave the final / in place. **/-->
+	<site-FQDN
+		value="https://www.example.com/"
+		/>
+
+
+	<!--Set this value to the VSPVendorName assigned to you by protx or chosen when you applied -->
+	<vendor-name
+		value="yoursite"
+		/>
+
+
+	<!--Set this value to the XOR Encryption password assigned to you by Protx -->
+	<encryption-password
+		value="xxx"
+		/>
+
+	<!--Set this to indicate the currency in which you wish to trade. 
+	You will need a merchant number in this currency -->
+	<currency
+		value="GBP"
+		/>
+
+	<!--Set this to the mail address which will receive order confirmations and failures -->
+	<vendor-email
+		value="sales@example.com"
+		/>
+
+	<!--This can be DEFERRED or AUTHENTICATE if your Protx account supports those payment types -->
+	<transaction-type
+		value="PAYMENT"
+		/>
+
+	<!--Up to 100 chars of free format description-->
+	<site-description
+		value="Products from YourSite."
+		/>
+
+	<!--You can specify any custom message to send to your customers in their confirmation e-mail here -->
+	<!-- The field can contain HTML if you wish (acc. to ProTx - not tested with haddock) -->
+	<email-message
+		value="Thank you very much for your order."
+		/>
 </config>
