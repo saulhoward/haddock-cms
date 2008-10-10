@@ -21,5 +21,11 @@ extends
 	{
 		return $this->get_config_value('navigation/file-not-found-msg');
 	}
+
+	public function
+		get_logo_image_filename()
+	{
+		return $this->get_config_value('admin-style/logo-image-filename');
+	}
 }
 ?>

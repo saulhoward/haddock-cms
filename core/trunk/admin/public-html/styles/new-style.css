@@ -1,0 +1,165 @@
+/* 
+ *New Haddock Admin Stylesheet!
+ */
+html, body
+{
+	font-family: arial, sans-serif;
+
+	background: #efefef;
+}
+a, a:visited
+{
+	color: blue;
+}
+
+/*
+ * Header
+ */
+div#header
+{
+	height: 70px;
+	background: #ECF2FA;
+	border-bottom: 1px solid #C6D9E9;
+}
+div#header div#logo_image
+{
+
+	height: 70px;
+	line-height: 70px;
+	width: 100px;
+
+/*        vertical-align: middle;*/
+	display: inline;
+}
+div#header img
+{
+	vertical-align: middle;
+/*        display: inline-block;*/
+	margin: 0 0 0 10px;
+}
+div#header h1, div#header h2
+{
+	display: inline;
+	vertical-align: top;
+	line-height: 70px;
+	font-size: 2em;
+	padding: 0 0 0 10px;
+}
+div#header div#log-in-state
+{
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+}
+div#header div#admin_header_navigation_link
+{
+	position: absolute;
+	top: 2em;
+	right: 0.5em;
+}
+div#header div#log-in-state p
+{
+	display: inline;
+}
+
+div#header div#log-in-state em
+{
+	font-style: italic;
+}
+div#header h1 a
+{
+	text-decoration: none;
+}
+
+
+/*
+ * Content
+ */
+div#content
+{
+	margin: 0 0 0 13em;
+	padding: 10px 0 20px 10px;
+
+	min-height: 600px;
+	background: white;
+
+	border-left: 1px solid #ccc;
+}
+div#content div#page-options
+{
+	margin: 1em 0;
+}
+
+div#content div#page-options ul li
+{
+	margin: 0.4em 0;
+}
+div#content h3
+{
+	text-align: center;
+	font-size: 1.2em;
+	margin: 1em 0;
+}
+div#content p
+{
+	margin: 0.5em 0;
+}
+/*
+ * Navigation
+ */
+div#navigation
+{
+	position: absolute;
+	left: 0;
+	top: 71px;
+	width: 13em;
+
+	padding: 10px 0 0 0;
+	background: #efefef;
+}
+div#navigation a
+{
+	color: #3333FF;
+	text-decoration: none;
+}
+div#navigation ul li
+{
+	padding: 0.3em 0;
+}
+div#navigation h3
+{
+	text-transform: uppercase;
+}
+div#navigation h4
+{
+	font-weight: bold;
+}
+div#navigation ul li
+{
+	padding: 0.2em 0 0.2em 10px;
+}
+div#navigation h4
+{
+	padding: 0.2em 0 0.2em 2px;
+}
+
+/*
+ * Footer
+ */
+div#footer
+{
+	clear: both;
+	margin: 0 0 0 13em;
+	padding: 10px 0 0 10px;
+	background: white;
+
+	border-left: 1px solid #ccc;
+}
+div#footer p
+{
+	
+	text-align: right;
+	padding: 45px 10px 50px 0;
+	color: #333;
+	font-size: 80%;
+}

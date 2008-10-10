@@ -177,15 +177,13 @@ extends
 		 */
 		$div_header = new HTMLTags_Div();
 		$div_header->set_attribute_str('id', 'header');
-		
+
 		$h1_title = new HTMLTags_Heading(1);
-		
 		$h1_title->append_str_to_content(
 			$this->get_body_div_header_heading_content()
 		);
-		
 		$div_header->append_tag_to_content($h1_title);
-		
+
 		return $div_header;
 	}
 	
@@ -212,7 +210,8 @@ extends
 		
 		return $home_link->get_as_string();
 	}
-	
+
+
 	protected function
 		get_project_title()
 	{
