@@ -18,4 +18,9 @@ to create the necessary file.
 		<logo-image-filename
 			value="/haddock/admin/public-html/images/haddock-logos/haddock_logo_small_75x34.png" />
 	</admin-style>
+	<start-page>
+		<widget-classes>
+			HaddockProjectOrganisation_StartPageWidget
+		</widget-classes>
+	</start-page>
 </config>

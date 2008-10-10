@@ -163,3 +163,41 @@ div#footer p
 	color: #333;
 	font-size: 80%;
 }
+
+/*
+ * Start Page
+ */
+.StartPageWidget
+{
+	width: 40%;
+	background: #FAEBF9;
+	padding: 1em;
+	display: inline-block;
+	margin: 0 1em 1em 0;
+	border:1px solid #FA98C3;
+
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+
+	vertical-align: middle;
+}
+
+div#content div.StartPageWidget h3
+{
+	padding: 0 0 0.8em 0;
+	margin: 0;
+}
+
+div#content div.StartPageWidget dl
+{
+	width: 18em;
+	margin: 0 auto;
+}
+div#content div.StartPageWidget dl dd
+{
+	margin: -1em 0 0 0em;
+	float: right;
+	clear: both;
+}
