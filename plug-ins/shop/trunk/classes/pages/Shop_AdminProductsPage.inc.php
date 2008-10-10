@@ -28,21 +28,15 @@ extends
 	/**
 	 * We call in an extra style sheet for the products.
 	 */
-	protected function
-		render_head_link_stylesheet()
-	{
-		parent::render_head_link_stylesheet();
-//<link
-//    rel="stylesheet"
-//    href="/plug-ins/shop/public-html/styles/admin-products-styles.css"
-//    type="text/css"
-//    media="screen"
-///>
-		HTMLTags_LinkRenderer
-			::render_style_sheet_link(
-				'/plug-ins/shop/public-html/styles/admin-products-styles.css'
-			);
-	}
+//        protected function
+//                render_head_link_stylesheet()
+//        {
+//                parent::render_head_link_stylesheet();
+//                HTMLTags_LinkRenderer
+//                        ::render_style_sheet_link(
+//                                '/plug-ins/shop/public-html/styles/admin-products-styles.css'
+//                        );
+//        }
 	
 	protected function
 		get_body_div_header_heading_content()
