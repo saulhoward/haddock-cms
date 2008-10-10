@@ -104,7 +104,7 @@ MailingList_PeopleHelper
 		$rows_html_ul = new HTMLTags_UL();
 		$rows_html_ul->set_attribute_str('class', 'people');
 
-		$conditions['status'] = 'added';
+		$conditions['status'] = 'new';
 		$rows = $people_table->get_rows_where($conditions, 'added', 'DESC', 0, 5);
 		#$rows = $people_table->get_all_rows(ORDER_BY, DIRECTION, OFFSET, LIMIT);
 
