@@ -170,7 +170,7 @@ MailingList_PeopleHelper
 		$query = <<<SQL
 SELECT *
 FROM hpi_mailing_list_people
-WHERE status = 'new' OR 'accepted'
+WHERE status = 'new' OR status = 'accepted'
 ORDER BY `added` DESC
 LIMIT 0, 5
 SQL;
