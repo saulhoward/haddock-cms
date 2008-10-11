@@ -9,7 +9,10 @@ $page_manager = PublicHTML_PageManager::get_instance();
 
 $alm = Admin_LoginManager::get_instance();
 
-$alm->log_out();
+if ($alm->is_logged_in())
+{
+	$alm->log_out();
+}
 
 /*
  * The user should be taken to the home page.
