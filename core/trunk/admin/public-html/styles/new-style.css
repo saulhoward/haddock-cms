@@ -48,14 +48,36 @@ div#header h1, div#header h2
 div#header div#log-in-state
 {
 	position: absolute;
-	top: 0.5em;
+	top: 0em;
 	right: 0.5em;
+	padding: 5px 15px 10px 5px;
+
+	background: #efefef;
+
+	-moz-border-radius-bottomleft: 8px;
+	-khtml-border-radius-bottom-left: 8px;
+	-webkit-border-radius-bottom-left: 8px;
+	border-bottom-left-radius: 8px;
+
+	-moz-border-radius-bottomright: 8px;
+	-khtml-border-radius-bottom-right: 8px;
+	-webkit-border-radius-bottom-right: 8px;
+	border-bottom-right-radius: 8px;
+
+	border: 1px solid #ccc;
+	border-top: 0px;
+}
+
+div#header div#log_out
+{
+	display: inline;
+	padding: 0 0 0 10px;
 }
 div#header div#admin_header_navigation_link
 {
 	position: absolute;
-	top: 2em;
-	right: 0.5em;
+	top: 45px;
+	right: 20px;
 }
 div#header div#log-in-state p
 {
@@ -64,9 +86,12 @@ div#header div#log-in-state p
 
 div#header div#log-in-state em
 {
-	font-style: italic;
+	color: #666;
+/*        font-style: italic;*/
+	font-size: 90%;
+	padding: 0 0 0 10px;
 }
-div#header h1 a
+div#header a
 {
 	text-decoration: none;
 }
@@ -163,6 +188,11 @@ div#footer p
 	color: #333;
 	font-size: 80%;
 }
+div#footer a
+{
+	text-decoration: none;
+}
+
 
 /*
  * Start Page
@@ -171,7 +201,7 @@ div#footer p
 {
 	width: 40%;
 	background: #FAEBF9;
-	padding: 1em;
+	padding: 0.6em 1em 1em 1em;
 	display: inline-block;
 	margin: 0 1em 1em 0;
 	border:1px solid #FA98C3;

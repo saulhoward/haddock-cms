@@ -63,8 +63,53 @@ extends
 			$this->get_body_div_header_heading_content()
 		);
 		$div_header->append_tag_to_content($h2_title);
+
+		$div_header->append($this->get_log_in_state_div());
+		$div_header->append($this->get_admin_header_navigation_link_div());
 		
 		return $div_header;
+	}
+
+	public function
+		get_log_in_state_div()
+	{
+		$log_in_state_div = new HTMLTags_Div();
+		$log_in_state_div->set_attribute_str('id', 'log-in-state');
+
+		$logged_in_as_p = new HTMLTags_P();
+		$logged_in_as_p->set_attribute_str('id', 'logged_in_as');
+
+		$alm = Admin_LoginManager::get_instance();
+
+		$logged_in_as_p->append_str_to_content('<em>User:</em> ' . $alm->get_name());
+
+		$logged_in_as_p->append_str_to_content('&nbsp;');
+
+		$logged_in_as_p->append_str_to_content('<em>Type:</em> ' . $alm->get_type());
+
+		$log_in_state_div->append($logged_in_as_p);
+
+		$log_out_div = new HTMLTags_Div();
+		$log_out_div->set_attribute_str('id', 'log_out');
+		$log_out_div->append_tag_to_content($alm->get_log_out_a());
+
+		$log_in_state_div->append($log_out_div);
+		return $log_in_state_div;
+	}
+
+	protected function
+		get_admin_header_navigation_link_div()
+	{
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'admin_header_navigation_link');
+		$url = PublicHTML_URLHelper
+			::get_oo_page_url(
+				'Admin_StartPage'
+			);
+		$a = new HTMLTags_A('Start Page');
+		$a->set_href($url);
+		$div->append($a);
+		return $div;
 	}
 
 	protected function
