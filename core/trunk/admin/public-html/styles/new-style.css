@@ -251,12 +251,19 @@ div#content div.StartPageWidget ul.inline li
 }
 div#content div.StartPageWidget dl
 {
-	width: 18em;
 	margin: 0 auto;
+	padding: 0 1em;
+}
+
+div#content div.StartPageWidget dl dt
+{
+
+	width: 10em;
 }
 div#content div.StartPageWidget dl dd
 {
-	margin: -1em 0 0 0em;
-	float: right;
+	width: 12em;
+	margin: -1em 0 0 9em;
+/*        float: right;*/
 	clear: both;
 }
