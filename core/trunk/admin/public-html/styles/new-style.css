@@ -10,6 +10,7 @@ html, body
 a, a:visited
 {
 	color: blue;
+	text-decoration: none;
 }
 
 /*
@@ -229,6 +230,25 @@ div#content div.StartPageWidget h3
 	color: #666;
 }
 
+div#content div.StartPageWidget ul
+{
+	margin: 0.5em 0;
+}
+div#content div.StartPageWidget ul li
+{
+	line-height: 1.2em
+}
+
+div#content div.StartPageWidget ul.inline
+{
+	text-align: center;
+}
+div#content div.StartPageWidget ul.inline li
+{
+	display: inline;
+	margin: 0 1em;
+	text-align: center;
+}
 div#content div.StartPageWidget dl
 {
 	width: 18em;
