@@ -110,6 +110,13 @@ MailingList_PeopleHelper
 
 		if (count($rows) > 0)
 		{
+			$explanation_p = new HTMLTags_P();
+			$explanation_txt = <<<TXT
+The last five people to join the list:
+TXT;
+
+			$explanation_p->append($explanation_txt);
+			$short_people_div->append($explanation_p);
 			foreach ($rows as $row) {
 				//                        $row_renderer = $row->get_renderer();
 				//                        $data_tr = $row_renderer->get_public_people_tr();
