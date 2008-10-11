@@ -38,8 +38,72 @@ class PhotoGallery_GalleryHelper
 		return $content_div;
 	}
 
+	public static function
+		get_widget_content()
+	{
+		$latest_photo = self::get_latest_photograph();
+		$div = new HTMLTags_Div();
+
+		if (isset($latest_photo))
+		{
+			$img = $latest_photo->get_image_img();
+			$img->set_attribute_str('class', 'center');
+			$img->set_attribute_str('width', '300px');
+			$div->append($img);
+			$p = new HTMLTags_P(
+				'"' 
+				. $latest_photo->get_name() 
+				. '" is the latest photo in the gallery.'
+			);
+		}
+		else
+		{
+			$p = new HTMLTags_P(
+				'There are no photos in the gallery yet.'
+			);
+		}
+
+		$div->append($p);
+		return $div;
+	}
+
 
 	/* DB Functions */
+
+	public static function
+		get_latest_photograph()
+	{
+		$dbh = DB::m();
+
+		//                $product_id = mysql_real_escape_string($product_id, $dbh);
+
+		$query = <<<SQL
+SELECT
+	*
+	FROM
+	hpi_photo_gallery_photographs
+	ORDER BY
+	hpi_photo_gallery_photographs.added DESC
+	LIMIT 0, 1
+SQL;
+
+		#echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		while ($data = mysql_fetch_assoc($result)) 
+		{
+			//                        print_r($row);exit;
+			$event = new PhotoGallery_Photograph($data['id']);
+			$event->set_name($data['name']);
+			$event->set_added($data['added']);
+			$event->set_description($data['description']);
+			$event->set_image_url($data['image_url']);
+			$events[] = $event;
+		}
+
+		return $event;
+	}
 
 	public static function
 		get_all_photographs()
