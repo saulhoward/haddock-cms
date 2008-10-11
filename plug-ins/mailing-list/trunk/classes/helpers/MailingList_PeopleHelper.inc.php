@@ -91,6 +91,69 @@ MailingList_PeopleHelper
 		return $return_to_url;
 	}
 
+	public static function
+		get_list_addresses_div()
+	{
+
+		$mysql_user_factory = Database_MySQLUserFactory::get_instance();
+		$mysql_user = $mysql_user_factory->get_for_this_project();
+		$database = $mysql_user->get_database();
+
+		$people_table = $database->get_table('hpi_mailing_list_people');
+
+		#$conditions = array();
+		#$conditions['status'] = 'accepted';
+		#
+		#$people = $people_table->get_rows_where($conditions);
+
+		$people = $people_table->get_all_rows();
+
+		$div = new HTMLTags_Div();
+
+		$people_p = new HTMLTags_Pre();
+		$people_p->set_attribute_str('id', 'people-csv');
+
+		$first = TRUE;
+		$i = 0;
+		foreach ($people as $person) {
+			if ($first) {
+				$first = FALSE;
+			} else {
+				$people_p->append_str_to_content(', ' . "\n");
+			}
+			if (strlen($person->get_name()))
+			{
+				$name = self::sanitise_name($person->get_name());
+				$people_p->append_str_to_content('"');
+				$people_p->append_str_to_content($name);
+				$people_p->append_str_to_content('" ');
+			}
+
+			$email = self::sanitise_email($person->get_email());
+			$people_p->append_str_to_content('&lt;');
+			$people_p->append_str_to_content($email);
+			$people_p->append_str_to_content('&gt;');
+		}
+
+		$div->append($people_p);
+		return $div;
+	}
+
+	public static function
+		sanitise_name($name)
+	{
+		$name = str_replace('"', '', $name);
+		return $name;
+	}
+
+	public static function
+		sanitise_email($email)
+	{
+		$email = str_replace('yahoo.company', 'yahoo.com', $email);
+		return $email;
+	}
+
+
 	public function
 		get_widget_content()
 	{
@@ -164,7 +227,7 @@ TXT;
 	{
 		$links = array(
 			"Mailing List" => "/?section=haddock&module=admin&page=admin-includer&type=html&admin-section=plug-ins&admin-page=mailing-list&admin-module=mailing-list",
-			"People CSV" => "/?section=haddock&module=admin&page=admin-includer&type=html&admin-section=plug-ins&admin-page=list-people-csv&admin-module=mailing-list"
+			"People CSV" => "/MailingList_ListAddressesPage"
 		);
 
 		$ul = new HTMLTags_UL();
