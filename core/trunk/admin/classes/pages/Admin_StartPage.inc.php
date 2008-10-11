@@ -35,6 +35,7 @@ extends
 		$widget_classes= $config_manager->get_start_page_widget_classes();
 
 		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'StartPageWidgetContainer');
 		foreach ($widget_classes as $key => $value)
 		{
 			/* had to trim() $value to make it work

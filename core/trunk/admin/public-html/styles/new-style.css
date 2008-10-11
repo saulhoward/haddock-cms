@@ -198,9 +198,14 @@ div#footer a
 /*
  * Start Page
  */
+div#StartPageWidgetContainer
+{
+	text-align: center;
+}
 .StartPageWidget
 {
-	width: 40%;
+	text-align: left;
+	width: 42%;
 	background: #FAEBF9;
 	padding: 0.6em 1em 1em 1em;
 	display: inline-block;
