@@ -104,11 +104,17 @@ MailingList_PeopleHelper
 		$rows_html_ul = new HTMLTags_UL();
 		$rows_html_ul->set_attribute_str('class', 'people');
 
-		$conditions['hpi_mailing_list_people.status'] = '`new` OR `accepted`';
+		$query = <<<SQL
+SELECT *
+FROM hpi_mailing_list_people
+WHERE status = 'new'
+OR status = 'accepted'
+LIMIT 0, 5
+SQL;
+
 		try
 		{
-			$rows 
-			= $people_table->get_rows_where($conditions, '`added`', 'DESC', 0, 5);
+			$rows = $people_table->get_rows_for_select($query);
 		}
 		catch (Exception $e)
 		{
@@ -125,8 +131,6 @@ TXT;
 			$explanation_p->append($explanation_txt);
 			$short_people_div->append($explanation_p);
 			foreach ($rows as $row) {
-				//                        $row_renderer = $row->get_renderer();
-				//                        $data_tr = $row_renderer->get_public_people_tr();
 				$li = new HTMLTags_LI();
 				$li->append_str_to_content(
 					$row->get_name() 
@@ -141,7 +145,7 @@ TXT;
 		{
 			$no_people_p = new HTMLTags_P();
 			$no_people_txt = <<<TXT
-There are no new people in the Mailing List.
+There are no people in the Mailing List.
 TXT;
 
 			$no_people_p->append($no_people_txt);
