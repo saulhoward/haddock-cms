@@ -104,7 +104,7 @@ MailingList_PeopleHelper
 		$rows_html_ul = new HTMLTags_UL();
 		$rows_html_ul->set_attribute_str('class', 'people');
 
-		$conditions['hpi_mailing_list_people.status'] = '`new`';
+		$conditions['hpi_mailing_list_people.status'] = '`new` OR `accepted`';
 		try
 		{
 			$rows 
