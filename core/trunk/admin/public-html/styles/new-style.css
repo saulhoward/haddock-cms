@@ -220,6 +220,16 @@ div#StartPageWidgetContainer
 	vertical-align: middle;
 }
 
+div#content div.StartPageWidget div.thumbnails
+{
+	text-align: center;
+}
+
+div#content div.StartPageWidget div.thumbnails img
+{
+	padding: 5px;
+	border: 1px solid #999;
+}
 div#content div.StartPageWidget img.center
 {
 	margin: 0 auto;
