@@ -1,6 +1,10 @@
 <?php
 /**
  * Admin_StartPage
+ * Start Page Class
+ *
+ * Widgets are named in haddock/admin/config.xml
+ * comma separated list
  *
  * @copyright 2008-10-10, SANH
  */
@@ -25,10 +29,6 @@ extends
 	public function
 		content()
 	{
-		/*
-		 * Should retrieve an array of class names for widgets,
-		 * So I'll / separate them and explode em
-		 */
 		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
 		$config_manager = 
 			$cmf->get_config_manager('haddock', 'admin');
@@ -37,9 +37,15 @@ extends
 		$div = new HTMLTags_Div();
 		foreach ($widget_classes as $key => $value)
 		{
-			/* had to trim() this to make it work
+			/* had to trim() $value to make it work
 			 */
-			$content = call_user_func(array(trim($value), 'get_widget_div'));
+			// $content = call_user_func(array(trim($value), 'get_widget_div'));
+
+			/* Can't believe this works...
+			 */
+			$widget_class_str = trim($value);
+			$instance = new $widget_class_str();
+			$content = $instance->get_widget_div();
 			$div->append($content);
 		}
 
