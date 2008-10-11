@@ -33,7 +33,8 @@ if (isset($_GET['login'])) {
                 if (isset($_SESSION['admin-login-data']['desired-url'])) {
                     $page_manager->set_return_to_url($_SESSION['admin-login-data']['desired-url']);
                 } else {
-                    $page_manager->set_return_to_url(new HTMLTags_URL('/hc/admin/navigation.html'));
+//                    $page_manager->set_return_to_url(new HTMLTags_URL('/hc/admin/navigation.html'));
+                    $page_manager->set_return_to_url(new HTMLTags_URL('/Admin_StartPage'));
                 }
             } catch (HaddockProjectOrganisation_LoginException $e) {
 				#echo 'print_r($e): ' . "\n";

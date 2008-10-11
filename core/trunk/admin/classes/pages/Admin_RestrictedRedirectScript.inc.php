@@ -30,7 +30,8 @@ extends
 		if (!$alm->is_logged_in()) {
 			$_SESSION['admin-login-data']['desired-url'] = new HTMLTags_URL();
 			
-			$_SESSION['admin-login-data']['desired-url']->set_file('/hc/admin/navigation.html');
+//                        $_SESSION['admin-login-data']['desired-url']->set_file('/hc/admin/navigation.html');
+			$_SESSION['admin-login-data']['desired-url']->set_file('/Admin_StartPage');
 			
 			$redirection_manager = new PublicHTML_RedirectionManager();
 			$redirection_url = $redirection_manager->get_url();

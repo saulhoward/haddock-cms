@@ -189,6 +189,8 @@ div#content div.StartPageWidget img.center
 	margin: 0 auto;
 	display: block;
 	padding: 5px;
+	background: white;
+	border: 1px solid #999;
 }
 div#content div.StartPageWidget h3
 {
