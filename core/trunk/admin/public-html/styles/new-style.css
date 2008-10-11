@@ -253,17 +253,18 @@ div#content div.StartPageWidget dl
 {
 	margin: 0 auto;
 	padding: 0 1em;
+
+	line-height: 1.2em;
 }
 
 div#content div.StartPageWidget dl dt
 {
-
+	text-align: right;
 	width: 10em;
 }
 div#content div.StartPageWidget dl dd
 {
 	width: 12em;
-	margin: -1em 0 0 9em;
-/*        float: right;*/
-	clear: both;
+	margin: -1.2em 0 0 11em;
+	text-align: left;
 }
