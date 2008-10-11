@@ -99,7 +99,7 @@ MailingList_PeopleHelper
 		$database = $mysql_user->get_database();
 
 		$people_table = $database->get_table('hpi_mailing_list_people');
-		$short_people_div = new HTMLTags_Div();
+		$widget_div = new HTMLTags_Div();
 
 		$rows_html_ul = new HTMLTags_UL();
 		$rows_html_ul->set_attribute_str('class', 'people');
@@ -129,7 +129,7 @@ The last five people to join the list:
 TXT;
 
 			$explanation_p->append($explanation_txt);
-			$short_people_div->append($explanation_p);
+			$widget_div->append($explanation_p);
 			foreach ($rows as $row) {
 				$li = new HTMLTags_LI();
 				$li->append_str_to_content(
@@ -149,12 +149,40 @@ There are no people in the Mailing List.
 TXT;
 
 			$no_people_p->append($no_people_txt);
-			$short_people_div->append($no_people_p);
+			$widget_div->append($no_people_p);
 		}
 
-		$short_people_div->append_tag_to_content($rows_html_ul);
+		$widget_div->append_tag_to_content($rows_html_ul);
+		$widget_div->append(self::get_mailing_list_links_ul());
 
-		return $short_people_div;
+
+		return $widget_div;
+	}
+
+	public static function
+		get_mailing_list_links_ul()
+	{
+		$links = array(
+			"Mailing List" => "/?section=haddock&module=admin&page=admin-includer&type=html&admin-section=plug-ins&admin-page=mailing-list&admin-module=mailing-list",
+			"People CSV" => "/?section=haddock&module=admin&page=admin-includer&type=html&admin-section=plug-ins&admin-page=list-people-csv&admin-module=mailing-list"
+		);
+
+		$ul = new HTMLTags_UL();
+		$ul->set_attribute_str('class', 'inline');
+
+		foreach ($links as $key => $value)
+		{
+			$li = new HTMLTags_LI();
+
+			$url = new HTMLTags_URL();
+			$url->set_file($value);
+			$a = new HTMLTags_A($key);
+			$a->set_href($url);
+
+			$li->append($a);
+			$ul->append($li);
+		}
+		return $ul;
 	}
 }
 ?>
