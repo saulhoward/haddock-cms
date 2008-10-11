@@ -121,7 +121,12 @@ TXT;
 				//                        $row_renderer = $row->get_renderer();
 				//                        $data_tr = $row_renderer->get_public_people_tr();
 				$li = new HTMLTags_LI();
-				$li->append_str_to_content($row->get_name() . '(' . $row->get_email() . ')');
+				$li->append_str_to_content(
+					$row->get_name() 
+					. '&nbsp;(' 
+					. $row->get_email() 
+					. ')'
+				);
 				$rows_html_ul->append_tag_to_content($li);
 			}
 		}
