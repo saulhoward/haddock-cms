@@ -227,7 +227,7 @@ TXT;
 	{
 		$links = array(
 			"Mailing List" => "/?section=haddock&module=admin&page=admin-includer&type=html&admin-section=plug-ins&admin-page=mailing-list&admin-module=mailing-list",
-			"People CSV" => "/MailingList_ListAddressesPage"
+			"People CSV" => "/MailingList_ListAddressesAdminPage"
 		);
 
 		$ul = new HTMLTags_UL();
