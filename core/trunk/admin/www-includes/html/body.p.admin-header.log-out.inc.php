@@ -5,7 +5,7 @@
  * @copyright Clear Line Web Design, 2007-08-22
  */
 
-$log_out_p = new HTMLTags_P();
+$log_out_p = new HTMLTags_Div();
 $log_out_p->set_attribute_str('id', 'log_out');
 
 $alm = Admin_LoginManager::get_instance();
