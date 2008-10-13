@@ -534,6 +534,15 @@ extends
 		$shopping_baskets_table = $this->get_element();
 		$product_links_ul = new HTMLTags_UL();
 		$product_links_ul->set_attribute_str('id', 'shopping-basket-ul');
+		
+		$all_products_link = new HTMLTags_A('Continue Shopping');
+		$all_products_location = new HTMLTags_URL();
+		$all_products_location->set_file('/hpi/shop/products.html');
+		$all_products_link->set_href($all_products_location);
+		$all_products_li = new HTMLTags_LI();
+		$all_products_li->set_attribute_str('class', 'all-products');
+		$all_products_li->append_tag_to_content($all_products_link);
+		$product_links_ul->append_tag_to_content($all_products_li);
 
 		if ($shopping_baskets_table->check_for_current_session_in_shopping_baskets())
 		{
@@ -550,15 +559,6 @@ extends
 			$product_links_ul->append_tag_to_content($checkout_li);
 
 		}
-		$all_products_link = new HTMLTags_A('Continue Shopping');
-		$all_products_location = new HTMLTags_URL();
-		$all_products_location->set_file('/hpi/shop/products.html');
-		$all_products_link->set_href($all_products_location);
-		$all_products_li = new HTMLTags_LI();
-		$all_products_li->set_attribute_str('class', 'all-products');
-		$all_products_li->append_tag_to_content($all_products_link);
-
-		$product_links_ul->append_tag_to_content($all_products_li);
 
 		return $product_links_ul;
 	}
