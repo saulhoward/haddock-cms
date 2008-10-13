@@ -284,3 +284,11 @@ div#content div.StartPageWidget dl dd
 	margin: -1.2em 0 0 11em;
 	text-align: left;
 }
+div#content div.StartPageWidget ul.rss li
+{
+	background: #C6D9E9;
+}
+div#content div.StartPageWidget ul.rss li.odd
+{
+	background: white;
+}
