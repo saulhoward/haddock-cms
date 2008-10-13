@@ -284,11 +284,33 @@ div#content div.StartPageWidget dl dd
 	margin: -1.2em 0 0 11em;
 	text-align: left;
 }
+
+div#content div.StartPageWidget ul.rss
+{
+	margin: 0;
+	background: white;
+	border: 1px solid #ccc;
+}
 div#content div.StartPageWidget ul.rss li
 {
-	background: #C6D9E9;
+	padding: 0.2em 0.5em;
+	background: #ECF2FA;
 }
 div#content div.StartPageWidget ul.rss li.odd
 {
+	background: white;
+}
+
+div#content div.StartPageWidget div.graph h3
+{
+	font-size: 1.1em;
+}
+
+div#content div.StartPageWidget div.graph img
+{
+	margin: 0 auto;
+	display: block;
+	border: 1px solid #ccc;
+	padding: 5px;
 	background: white;
 }
