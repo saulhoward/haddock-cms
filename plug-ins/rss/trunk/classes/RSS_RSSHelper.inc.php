@@ -14,6 +14,7 @@ RSS_RSSHelper
 		get_widget_content(RSS_RSS $rss)
 	{
 		$div = new HTMLTags_Div();
+		$div->set_attribute_str('class', 'rss');
 
 		$div->append(self::get_rss_titles_ul($rss));
 
@@ -33,6 +34,7 @@ RSS_RSSHelper
 
 		$tempCounter = 0;
 		$ul = new HTMLTags_UL();
+		$ul->set_attribute_str('class', 'rss');
 
 		foreach ($xmlObj->entry as $item)
 		{                    
@@ -45,6 +47,10 @@ RSS_RSSHelper
 				$url_file = (string) $item->link->attributes()->href;
 
 				$li = new HTMLTags_LI();
+				if (($tempCounter%2) == 0)
+				{
+					$li->set_attribute_str('class', 'odd');
+				}
 				$a = new HTMLTags_A();
 				$url = new HTMLTags_URL();
 				$url->set_file($url_file);
