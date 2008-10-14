@@ -2,13 +2,12 @@
 /**
  * RSS_RSS
  *
- * @copyright 2006-11-27, RFI
- * @copyright 2008-04-06, RFI
- * @copyright 2008-04-25, SANH
- */
-
-/**
- *  RSS Feeds
+ * @copyright 2008-10-14, SANH
+ *
+ * RSS Feeds structure which grabs the xml file and 
+ * contains the resultant SimpleXMLElement class as 
+ * a private variable and exposes some of it's 
+ * functions as well.
  *
  */
 
@@ -19,29 +18,51 @@ class
 
 	public function
 		__construct(
-			$url
+			$url, // RSS absolute url
+			$version // 'Atom' or 'RSS2' so we know which class to use
 			)
 	{
-//                parent::__construct();
+		$timeout = 1;
+
 		# INSTANTIATE CURL.
 		$curl = curl_init();
 
 		# CURL SETTINGS.
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $timeout);
 
 		# GRAB THE XML FILE.
 		$xml_data = curl_exec($curl);
 
 		curl_close($curl);
 
-		# SET UP XML OBJECT.
-//                $xmlObj = simplexml_load_string($xmlTwitter);
-//                $xmlObj = new SimpleXMLElement($xml_data);
-		$this->xml = simplexml_load_string($xml_data, 'SimpleXMLElement', LIBXML_NOCDATA);
+		if (empty($xml_data))
+		{
+			throw new Exception('Curl returned empty file');
+		}
+		else
+		{
+			if (strtolower($version) == 'atom')
+			{
+				$class_to_return = 'RSS_AtomSimpleXMLElement';
+			}
+			elseif (strtolower($version) == 'rss2')
+			{
+				$class_to_return = 'RSS_RSSSimpleXMLElement';
 
-//                print_r($this->xml);exit;
+			}
+			# SET UP XML OBJECT.
+			$this->xml = simplexml_load_string(
+				$xml_data,
+				$class_to_return,
+				LIBXML_NOCDATA
+			);
+
+			// print_r($this->xml);exit;
+
+			return 1;
+		}
 	}
 
 	public function
@@ -51,10 +72,15 @@ class
 	}
 
 	public function
-		get_feed_title()
+		get_items()
 	{
-		return (string) $this->xml->title;
+		return $this->xml->get_items();
 	}
 
+	public function
+		get_feed_title()
+	{
+		return $this->xml->get_feed_title();
+	}
 }
 ?>

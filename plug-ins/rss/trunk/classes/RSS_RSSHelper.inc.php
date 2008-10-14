@@ -17,7 +17,6 @@ RSS_RSSHelper
 		$div->set_attribute_str('class', 'rss');
 
 		$div->append(self::get_rss_titles_ul($rss));
-
 		return $div;
 	}
 	
@@ -27,25 +26,21 @@ RSS_RSSHelper
 		return $rss->get_feed_title();
 	}
 
-	public static function
+	public function
 		get_rss_titles_ul(RSS_RSS $rss)
 	{
-		$xmlObj = $rss->get_xml();
+//                print_r($rss->get_xml());exit;
+		$items = $rss->get_items();
 
 		$tempCounter = 0;
 		$ul = new HTMLTags_UL();
 		$ul->set_attribute_str('class', 'rss');
 
-		foreach ($xmlObj->entry as $item)
+		foreach ($items as $item)
 		{                    
-			//                        print_r($item->link);exit;
-			//                        
 			# DISPLAY ONLY 10 ITEMS.
 			if ($tempCounter < 11)
 			{
-				$title = (string) $item->title;
-				$url_file = (string) $item->link->attributes()->href;
-
 				$li = new HTMLTags_LI();
 				if (($tempCounter%2) == 0)
 				{
@@ -53,9 +48,9 @@ RSS_RSSHelper
 				}
 				$a = new HTMLTags_A();
 				$url = new HTMLTags_URL();
-				$url->set_file($url_file);
+				$url->set_file($item->get_url_filename());
 				$a->set_href($url);
-				$a->append($title);
+				$a->append($item->get_title());
 				$li->append($a);
 				$ul->append($li);
 			}
@@ -64,6 +59,5 @@ RSS_RSSHelper
 		}
 		return $ul;
 	}
-	
 }
 ?>
