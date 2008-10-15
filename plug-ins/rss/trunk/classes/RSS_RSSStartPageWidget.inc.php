@@ -16,16 +16,15 @@ extends
 	Admin_StartPageWidget
 {
 	private $rss; // RSS_RSS Object initialised in get_rss()
-	private $rss_constructor_succeeded = TRUE; // In case $rss throws an exception
 
 	protected function
 		get_widget_title()
 	{
-		if ($this->rss_constructor_succeeded)
+		try
 		{
 			return RSS_RSSHelper::get_widget_title($this->get_rss());
 		}
-		else
+		catch (Exception $e) // if $this->rss isn't an RSS_RSS object, for example
 		{
 			return 'RSS Feed';
 		}
@@ -34,11 +33,11 @@ extends
 	protected function
 		get_widget_content()
 	{
-		if ($this->rss_constructor_succeeded)
+		try
 		{
 			return RSS_RSSHelper::get_widget_content($this->get_rss());
 		}
-		else
+		catch (Exception $e) // if $this->rss isn't an RSS_RSS object, for example
 		{
 			return '<p class="error">RSS feed not found</p>';
 		}
@@ -56,9 +55,9 @@ extends
 					$this->get_rss_version()
 				);
 			}
-			catch (Exception $e)
+			catch (Exception $e) // RSS_RSS constructor failed
 			{
-				$this->rss_constructor_succeeded = FALSE;
+				$this->rss = NULL;
 			}
 		}
 
