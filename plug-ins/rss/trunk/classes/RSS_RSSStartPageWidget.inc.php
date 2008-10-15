@@ -11,9 +11,9 @@
  * 2008-10-14 SANH
  */
 abstract class 
-	RSS_RSSStartPageWidget
+RSS_RSSStartPageWidget
 extends
-	Admin_StartPageWidget
+Admin_StartPageWidget
 {
 	private $rss; // RSS_RSS Object initialised in get_rss()
 
@@ -22,12 +22,14 @@ extends
 	{
 		try
 		{
-			return RSS_RSSHelper::get_widget_title($this->get_rss());
+			$rss = $this->get_rss();
 		}
 		catch (Exception $e) // if $this->rss isn't an RSS_RSS object, for example
 		{
 			return 'RSS Feed';
 		}
+
+		return RSS_RSSHelper::get_widget_title($rss);
 	}
 
 	protected function
@@ -35,12 +37,15 @@ extends
 	{
 		try
 		{
-			return RSS_RSSHelper::get_widget_content($this->get_rss());
+
+			$rss = $this->get_rss();
 		}
 		catch (Exception $e) // if $this->rss isn't an RSS_RSS object, for example
 		{
 			return '<p class="error">RSS feed not found</p>';
 		}
+
+		return RSS_RSSHelper::get_widget_content($rss);
 	}
 
 	protected function
@@ -58,6 +63,7 @@ extends
 			catch (Exception $e) // RSS_RSS constructor failed
 			{
 				$this->rss = NULL;
+				throw new Exception ('RSS_RSS object creation failed');
 			}
 		}
 

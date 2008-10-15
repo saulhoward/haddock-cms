@@ -52,12 +52,27 @@ class
 				$class_to_return = 'RSS_RSSSimpleXMLElement';
 
 			}
+
 			# SET UP XML OBJECT.
-			$this->xml = simplexml_load_string(
-				$xml_data,
-				$class_to_return,
-				LIBXML_NOCDATA
-			);
+//                        if (!$this->xml = simplexml_load_string(
+//                                $xml_data,
+//                                $class_to_return,
+//                                LIBXML_NOCDATA
+//                        ))
+//                        {
+//                                throw new Exception('Error reading XML');
+//                        }
+
+			try 
+			{
+				$this->xml = new $class_to_return(
+					$xml_data
+				);
+			}
+			catch (Exception $e)
+			{
+				throw new Exception('Error reading XML');
+			}
 
 			// print_r($this->xml);exit;
 
