@@ -27,7 +27,7 @@ RSS_RSSHelper
 	}
 
 	public function
-		get_rss_titles_ul(RSS_RSS $rss)
+		get_rss_titles_ul(RSS_RSS $rss, $limit = 10)
 	{
 //                print_r($rss->get_xml());exit;
 		$items = $rss->get_items();
@@ -39,7 +39,7 @@ RSS_RSSHelper
 		foreach ($items as $item)
 		{                    
 			# DISPLAY ONLY 10 ITEMS.
-			if ($tempCounter < 11)
+			if ($tempCounter < ($limit + 1))
 			{
 				$li = new HTMLTags_LI();
 				if (($tempCounter%2) == 0)
