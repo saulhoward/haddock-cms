@@ -82,7 +82,7 @@ extends
 		 * The edit td.
 		 */
 		$edit_td = new HTMLTags_TD();
-		$edit_link = new HTMLTags_A('Set Status');
+		$edit_link = new HTMLTags_A('View Order');
 		$edit_link->set_attribute_str('class', 'cool_button');
 		$edit_link->set_attribute_str('id', 'edit_table_button');
 		$edit_location = clone $current_page_url;
@@ -427,7 +427,7 @@ TXT;
 			$this->get_order_editing_form($redirect_script_url, $cancel_url)
 		);
 		
-		$order_editing_div->append_tag_to_content($this->get_order_description_p());
+		$order_editing_div->append_tag_to_content($this->get_order_description_div());
 		
 		$order_editing_div->append_str_to_content($this->get_products_table_as_str());
 		
@@ -465,31 +465,22 @@ TXT;
 	}
 
 	public function
-		get_order_description_p()
+		get_order_description_div()
 	{
 		$order = $this->get_element();
 		$customer = $order->get_customer();
 		#$product = $order->get_product();
 		$address = $customer->get_address();
 
-		$description_p = new HTMLTags_P();
-		$description_p->set_attribute_str('class', 'form_explanation');
-		$description_p->append_tag_to_content(new HTMLTags_Em('Order:&nbsp;'));
+		$description_div = new HTMLTags_Div();
+		$description_div->set_attribute_str('class', 'details');
 
-		$text = 
-			'#'
+		$html = 
+			'<h3>Order #'
 			.
 			$order->get_id()
 			.
-			'&nbsp;&gt;&gt;&nbsp;'
-			#.
-			#$product->get_name()
-//                        .
-//                        '&nbsp;(x' 
-//                        .
-//                        $order->get_quantity()
-//                        .
-//                        ')&nbsp;&gt;&gt;&nbsp;'
+			':</h3><dl><dt>Customer:</dt><dd>'
 			.
 			$customer->get_first_name() 
 			.
@@ -497,28 +488,36 @@ TXT;
 			.
 			$customer->get_last_name() 
 			.
-			'&nbsp;(' 
+			'</dd><dt>Address:</dt><dd>'
 			.
 			$address->get_street_address() 
 			.
-			',&nbsp;'
+			',<br />'
 			.
 			$address->get_locality() 
 			.
-			',&nbsp;'
+			',<br />'
 			.
 			$address->get_postal_code()
 			.
-			',&nbsp;'
+			',<br />'
 			.
 			$address->get_country_name() 
 			.
-			')&nbsp;&gt;&gt;&nbsp;'
+			'</dd><dt>Order received:</dt><dd>'
 			.
-			$order->get_added();
+			date('F j, Y, g:i a', strtotime($order->get_added()))
+			.
+			'</dd>'
+			.
+			'<dt>Transaction ref:</dt><dd>'
+			.
+			$order->get_txn_id()
+			.
+			'</dd></dl>';
 
-		$description_p->append_str_to_content($text);
-		return $description_p;
+		$description_div->append_str_to_content($html);
+		return $description_div;
 	}
 
 	public function
@@ -642,15 +641,18 @@ FROM
 			ON hpi_shop_products.id = hpi_shop_product_photograph_links.product_id
 WHERE
 	hpi_shop_shopping_baskets.txn_id = $txn_id
-	AND
-	(
-		hpi_shop_shopping_baskets.size = hpi_trackit_stock_management_stock_levels.size
-		AND
-		hpi_shop_shopping_baskets.colour = hpi_trackit_stock_management_stock_levels.colour
-	)
-	AND
-	hpi_shop_product_photograph_links.type = 'main'
 SQL;
+
+		/* Removed these last two AND clauses cos some products weren't showing! */
+//        AND
+//        (
+//                hpi_shop_shopping_baskets.size = hpi_trackit_stock_management_stock_levels.size
+//                AND
+//                hpi_shop_shopping_baskets.colour = hpi_trackit_stock_management_stock_levels.colour
+//        )
+//        AND
+//        hpi_shop_product_photograph_links.type = 'main'
+//SQL;
 
 		#echo "$query\n"; exit;
 		
