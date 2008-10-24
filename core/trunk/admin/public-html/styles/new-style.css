@@ -130,6 +130,33 @@ div#content p
 {
 	margin: 0.5em 0;
 }
+div#content p em
+{
+	font-weight: bold;
+}
+div#content dl
+{
+}
+
+div#content dt
+{
+	font-weight: 900;
+	font-size: 90%;
+	width: 4em;
+}
+
+div#content dd
+{
+	margin: -1em 0 1em 6em;
+}
+div#content div.details
+{
+	background: #efefef;
+
+	width: 40em;
+	margin: 0 auto;
+	padding: 0.5em 1em;
+}
 /*
  * Navigation
  */
