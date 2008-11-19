@@ -118,7 +118,7 @@ SELECT
 	FROM
 	hpi_photo_gallery_photographs
 	ORDER BY
-	hpi_photo_gallery_photographs.added DESC
+	hpi_photo_gallery_photographs.sort_order ASC
 SQL;
 
 		#echo $query; exit;
