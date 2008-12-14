@@ -37,7 +37,7 @@ if (
  * Define the debug constants.
  */
 require_once PROJECT_ROOT
-	. '/haddock/public-html/public-html/'
+	. '/haddock/configuration/includes/'
 	. 'define-debug-constants.inc.php';
 
 //require_once PROJECT_ROOT
