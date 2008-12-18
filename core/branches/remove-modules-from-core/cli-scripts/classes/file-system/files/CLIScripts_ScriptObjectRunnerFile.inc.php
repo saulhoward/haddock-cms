@@ -77,6 +77,9 @@ extends
 			
 			/*
 			 * Check that the SAPI is 'cli'.
+             *
+             * We don't want this scripts to be run on
+             * a web server!
 			 */
 			fwrite($fh, "if (PHP_SAPI == 'cli') { $eol");
 			
@@ -88,10 +91,10 @@ extends
 			/*
 			 * Define the debug constants.
 			 */
-			fwrite($fh, "require_once PROJECT_ROOT . '/haddock/public-html/public-html/define-debug-constants.inc.php';$eol");
+			fwrite($fh, "require_once PROJECT_ROOT . '/haddock/code-analysis/includes/define-debug-constants.inc.php';$eol");
 			
 			/*
-			 * Define the debug constants.
+			 * Define the __autoload function.
 			 */
 			fwrite($fh, "require PROJECT_ROOT . '/haddock/haddock-project-organisation/includes/autoload.inc.php';$eol");
 
