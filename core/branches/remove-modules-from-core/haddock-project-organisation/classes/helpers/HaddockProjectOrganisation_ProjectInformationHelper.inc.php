@@ -5,22 +5,60 @@
  * @copyright 2008-05-30, RFI
  */
 
+/*
+ * Procedures to do with the project's meta-information.
+ *
+ * Each project stores the following meta-information:
+ *  - name.
+ *  - title
+ *  - copyright holder
+ *  - version code
+ *  - camel-case root for class names.
+ *
+ * If the title or the camel-case root are not set, then they are generated
+ * using the name.
+ */
 class
 	HaddockProjectOrganisation_ProjectInformationHelper
 {
+    /*
+     * ----------------------------------------
+     * Functions to do with project information directory.
+     * ----------------------------------------
+     */
+
+     /**
+      * Gets the name of the project information directory.
+      *
+      * If the directory does not exist, then it can optionally be created.
+      * 
+      * @param bool $create_directory_if_not_exists Whether the function should create the directory if it does not exist.
+      * @return string The name of the directory containing the project information.
+      */
 	private static function
-		get_project_information_directory_name()
+		get_project_information_directory_name(
+            $create_directory_if_not_exists = FALSE
+        )
 	{
 		$project_specific_directory
 			= HaddockProjectOrganisation_ProjectSpecificDirectoryHelper
 				::get_project_specific_directory();
 		
-		return
+		$project_information_directory_name =
 			$project_specific_directory->get_name()
 			. DIRECTORY_SEPARATOR
 			. 'config'
 			. DIRECTORY_SEPARATOR
 			. 'haddock-project-organisation';
+
+            if ($create_directory_if_not_exists) {
+                if (!is_dir($project_information_directory_name)) {
+                    FileSystem_DirectoryHelper
+                        ::mkdir_parents($project_information_directory_name);
+                }
+            }
+
+            return $project_information_directory_name;
 	}
 	
 	/*
@@ -37,7 +75,15 @@ class
 			. DIRECTORY_SEPARATOR
 			. 'name.txt';
 	}
-	
+
+    /**
+     * Gets the name of the project.
+     *
+     * TO DO: If the name of the project has not been set, a more specific exception
+     * should be thrown.
+     *
+     * @return string The name of the project.
+     */
 	public static function
 		get_name()
 	{
@@ -62,13 +108,15 @@ class
 			$name_file_name = self::get_name_file_name();
 			
 			$project_information_directory_name
-				= self::get_project_information_directory_name();
+				= self::get_project_information_directory_name(
+                    $create_directory_if_not_exists = TRUE
+                );
 			
-			if (!is_dir($project_information_directory_name)) {
-				#mkdir($project_information_directory_name);
-				FileSystem_DirectoryHelper
-					::mkdir_parents($project_information_directory_name);
-			}
+//			if (!is_dir($project_information_directory_name)) {
+//				#mkdir($project_information_directory_name);
+//				FileSystem_DirectoryHelper
+//					::mkdir_parents($project_information_directory_name);
+//			}
 			
 			if ($fh = fopen($name_file_name, 'w')) {
 				fwrite($fh, $name . PHP_EOL);
@@ -119,11 +167,14 @@ class
 	{
 		$title_file_name = self::get_title_file_name();
 		
-		$project_information_directory_name = self::get_project_information_directory_name();
-		
-		if (!is_dir($project_information_directory_name)) {
-			mkdir($project_information_directory_name);
-		}
+		$project_information_directory_name
+				= self::get_project_information_directory_name(
+                    $create_directory_if_not_exists = TRUE
+                );
+
+//		if (!is_dir($project_information_directory_name)) {
+//			mkdir($project_information_directory_name);
+//		}
 		
 		if ($fh = fopen($title_file_name, 'w')) {
 			fwrite($fh, $title . PHP_EOL);
@@ -174,11 +225,14 @@ class
 	{
 		$copyright_holder_file_name = self::get_copyright_holder_file_name();
 		
-		$project_information_directory_name = self::get_project_information_directory_name();
-		
-		if (!is_dir($project_information_directory_name)) {
-			mkdir($project_information_directory_name);
-		}
+		$project_information_directory_name
+				= self::get_project_information_directory_name(
+                    $create_directory_if_not_exists = TRUE
+                );
+
+//		if (!is_dir($project_information_directory_name)) {
+//			mkdir($project_information_directory_name);
+//		}
 		
 		if ($fh = fopen($copyright_holder_file_name, 'w')) {
 			fwrite($fh, $copyright_holder . PHP_EOL);
@@ -229,11 +283,14 @@ class
 	{
 		$version_code_file_name = self::get_version_code_file_name();
 		
-		$project_information_directory_name = self::get_project_information_directory_name();
-		
-		if (!is_dir($project_information_directory_name)) {
-			mkdir($project_information_directory_name);
-		}
+		$project_information_directory_name
+				= self::get_project_information_directory_name(
+                    $create_directory_if_not_exists = TRUE
+                );
+
+//		if (!is_dir($project_information_directory_name)) {
+//			mkdir($project_information_directory_name);
+//		}
 		
 		if ($fh = fopen($version_code_file_name, 'w')) {
 			fwrite($fh, $version_code . PHP_EOL);
@@ -292,11 +349,13 @@ class
 			$camel_case_root_file_name = self::get_camel_case_root_file_name();
 			
 			$project_information_directory_name
-				= self::get_project_information_directory_name();
-			
-			if (!is_dir($project_information_directory_name)) {
-				mkdir($project_information_directory_name);
-			}
+				= self::get_project_information_directory_name(
+                    $create_directory_if_not_exists = TRUE
+                );
+
+//			if (!is_dir($project_information_directory_name)) {
+//				mkdir($project_information_directory_name);
+//			}
 			
 			if ($fh = fopen($camel_case_root_file_name, 'w')) {
 				fwrite($fh, $camel_case_root . PHP_EOL);
