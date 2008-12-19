@@ -5,6 +5,11 @@
  * @copyright 2008-06-11, RFI
  */
 
+/**
+ * Tests for the FileSystem_DirectoryHelper class.
+ *
+ * TODO Make this code more portable.
+ */
 class
     FileSystem_DirectoryHelperTests
 extends

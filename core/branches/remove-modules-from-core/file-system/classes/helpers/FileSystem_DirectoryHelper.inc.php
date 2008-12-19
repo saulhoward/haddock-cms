@@ -8,6 +8,13 @@
 class
     FileSystem_DirectoryHelper
 {
+    /**
+     * Creates directories nested to an arbitrary depth.
+     *
+     * TODO Make this portable.
+     *
+     * @param string $directory_name The name of the directory to create.
+     */
     public static function
         mkdir_parents($directory_name)
     {
