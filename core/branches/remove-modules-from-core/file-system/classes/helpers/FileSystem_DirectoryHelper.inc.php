@@ -18,7 +18,14 @@ class
     public static function
         mkdir_parents($directory_name)
     {
-        system('mkdir -p ' . $directory_name);
+        //system('mkdir -p ' . $directory_name);
+
+        $umask = umask();
+        //echo "\$umask: $umask\n";
+
+        $recursive = TRUE;
+
+        mkdir($directory_name, $umask, $recursive);
     }
     
     public static function
