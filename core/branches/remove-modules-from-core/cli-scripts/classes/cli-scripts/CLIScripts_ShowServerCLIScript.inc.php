@@ -15,11 +15,11 @@ extends
 	{
 		print_r($_SERVER);
 		
-		/*
-		 * Require a user response before exiting.
-		 */
-		echo "Press \"ENTER\" to exit.\n";
-		$reply = trim(fgets(STDIN));
+//		/*
+//		 * Require a user response before exiting.
+//		 */
+//		echo "Press \"ENTER\" to exit.\n";
+//		$reply = trim(fgets(STDIN));
 	}
 }
 ?>
