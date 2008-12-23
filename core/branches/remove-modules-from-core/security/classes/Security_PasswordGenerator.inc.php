@@ -29,8 +29,17 @@ class
 		
 		return self::$instance;
 	}
-	
-	public function get_password($length = 8)
+
+    /**
+     * Makes a password.
+     *
+     * @deprecated 2008-12-23 RFI Use Security_PasswordsHelper::make_password($length, $characters) instead.
+     *
+     * @param int $length The desired length of the password.
+     * @return string The new password.
+     */
+	public function
+        get_password($length = 8)
 	{
 		if ($length < 1) {
 			$msg = 'Passwords must have at least one chararcter!'
@@ -60,12 +69,14 @@ class
 		
 		#$characters .= '!?*&%$£{}[]+-~@:;.,';
 		
-		$max = strlen($characters) - 1;
-		for ($i = 0; $i < $length; $i++) {
-			$position = mt_rand(0, $max);
-			$password .= $characters[$position];
-		}
-		
+//		$max = strlen($characters) - 1;
+//		for ($i = 0; $i < $length; $i++) {
+//			$position = mt_rand(0, $max);
+//			$password .= $characters[$position];
+//		}
+
+        $password = Security_PasswordsHelper::make_password($length, $characters);
+
 		return $password;
 	}
 }
