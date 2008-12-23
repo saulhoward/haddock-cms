@@ -14,6 +14,13 @@ class
 			HaddockProjectOrganisation_ModuleDirectory $module_directory
 		)
 	{
+        /*
+         * TODO Make sure that the module directory has a classes directory first.
+         *
+         * If there is no classes directory, then such a directory should created.
+         */
+        $module_directory->make_sure_classes_directory_exists();
+        
 		$classes_directory = $module_directory->get_classes_directory();
 		
 		$cli_scripts_directory_name
