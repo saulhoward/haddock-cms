@@ -18,14 +18,18 @@ class
     public static function
         mkdir_parents($directory_name)
     {
+//        echo '__METHOD__: ' . __METHOD__ . "\n";
+//        echo "\$directory_name: $directory_name\n";
+        
         //system('mkdir -p ' . $directory_name);
 
-        $umask = umask();
-        //echo "\$umask: $umask\n";
-
+        /*
+         * TODO Make this settable in a config file somewhere.
+         */
+        $mode = 0755;
         $recursive = TRUE;
 
-        mkdir($directory_name, $umask, $recursive);
+        mkdir($directory_name, $mode, $recursive);
     }
     
     public static function
