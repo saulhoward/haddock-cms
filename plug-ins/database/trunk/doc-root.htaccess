@@ -1,4 +1,4 @@
-## .htaccess fragment for the DOC_ROOT for the database core module.
+## .htaccess fragment for the doc root .htaccess file from the Database plug-in.
 ##
 ## © 2007-08-03, RFI
 
@@ -17,10 +17,10 @@
 # Back up using mod_alias
 
 <IfModule !mod_rewrite.c>
-	RedirectMatch temp ^/hc-database-img-cache/(\d+).([a-z]+) /haddock/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
+	RedirectMatch temp ^/hc-database-img-cache/(\d+).([a-z]+) /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
 	
-	RedirectMatch temp ^/hc/database/images/(\d+).([a-z]+) /haddock/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
+	RedirectMatch temp ^/hc/database/images/(\d+).([a-z]+) /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
 	
-	RedirectMatch temp ^/hc/database/db-pages/([-a-z]+)\.html$ /haddock/public-html/public-html/index.php?section=haddock\&module=database\&page=db-page\&type=html\&page-name=$1
+	RedirectMatch temp ^/hc/database/db-pages/([-a-z]+)\.html$ /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-page\&type=html\&page-name=$1
 </IfModule>
 
