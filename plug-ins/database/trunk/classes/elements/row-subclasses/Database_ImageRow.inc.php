@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2006-09-23
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Row.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Row.inc.php';
 
 /**
  * A class to represent an image in a database table.

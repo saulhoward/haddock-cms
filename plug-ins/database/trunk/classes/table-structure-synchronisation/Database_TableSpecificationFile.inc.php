@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-02-02
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_TextFileWithComments.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_TextFileWithComments.inc.php';
 
 class
     Database_TableSpecificationFile

@@ -5,13 +5,13 @@
  * @copyright Clear Line Web Design, 2006-12-04
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Row.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/delegation/behaviours/'
-    . 'Database_RowBehaviour.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Row.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/delegation/behaviours/'
+#    . 'Database_RowBehaviour.inc.php';
 
 abstract class
     Database_DelegateRow

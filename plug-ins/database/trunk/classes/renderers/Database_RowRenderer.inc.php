@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2006-09-17
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_Renderer.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_Renderer.inc.php';
     
 /**
  * Renders rows from a database.

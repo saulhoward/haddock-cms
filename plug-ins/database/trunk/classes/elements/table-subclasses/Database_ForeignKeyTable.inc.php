@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2007-04-30
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Table.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Table.inc.php';
 
 abstract class
     Database_ForeignKeyTable

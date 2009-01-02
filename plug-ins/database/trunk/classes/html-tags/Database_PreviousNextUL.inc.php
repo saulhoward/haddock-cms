@@ -5,29 +5,29 @@
  * @copyright Clear Line Web Design, 2007-02-21
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Table.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_URL.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_UL.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_LI.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_A.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_CountingNumber.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Table.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/'
+#    . 'HTMLTags_URL.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_UL.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_LI.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_A.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_CountingNumber.inc.php';
 
 class
     Database_PreviousNextUL

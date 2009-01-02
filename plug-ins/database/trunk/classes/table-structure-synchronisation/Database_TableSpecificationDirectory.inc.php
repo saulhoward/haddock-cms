@@ -5,13 +5,13 @@
  * @copyright Clear Line Web Design, 2007-02-02
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/table-structure-synchronisation/'
-    . 'Database_TableSpecificationFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_Directory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/table-structure-synchronisation/'
+#    . 'Database_TableSpecificationFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_Directory.inc.php';
     
 class
     Database_TableSpecificationDirectory

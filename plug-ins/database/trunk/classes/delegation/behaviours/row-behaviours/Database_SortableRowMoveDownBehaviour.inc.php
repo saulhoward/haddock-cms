@@ -5,7 +5,7 @@
  * RFI & SANH 2006-12-04
  */
 
-require_once PROJECT_ROOT . '/haddock/database/classes/delegation/behaviours/row-behaviours/Database_SortableRowBehaviour.inc.php';
+#require_once PROJECT_ROOT . '/haddock/database/classes/delegation/behaviours/row-behaviours/Database_SortableRowBehaviour.inc.php';
 
 class Database_SortableRowMoveDownBehaviour extends Database_SortableRowBehaviour
 {

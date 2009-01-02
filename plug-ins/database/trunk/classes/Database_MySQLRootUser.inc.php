@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-01-28
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUser.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUser.inc.php';
 
 class
     Database_MySQLRootUser

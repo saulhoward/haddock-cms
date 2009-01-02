@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2007-07-18
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/field-subclasses/'
-    . 'Database_VarCharField.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/field-subclasses/'
+#    . 'Database_VarCharField.inc.php';
 
 /**
  * A class to represent an email address using a varchar in the database.

@@ -5,28 +5,28 @@
  * @copyright Clear Line Web Design, 2006-11-18
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_Renderer.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Input.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_TD.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_DT.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_DD.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_Renderer.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Input.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_TD.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_DT.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_DD.inc.php';
     
 /**
  * A class to provide methods for rendering

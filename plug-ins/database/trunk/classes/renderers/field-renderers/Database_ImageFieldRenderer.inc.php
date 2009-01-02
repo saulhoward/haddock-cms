@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2007-02-22
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/renderers/'
-    . 'Database_FieldRenderer.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/renderers/'
+#    . 'Database_FieldRenderer.inc.php';
 
 /**
  * A class to provide methods for rendering

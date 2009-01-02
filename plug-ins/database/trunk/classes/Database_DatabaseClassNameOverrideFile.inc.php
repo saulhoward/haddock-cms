@@ -5,39 +5,39 @@
  * RFI & SANH 2006-11-13
  */
 
-if (DEBUG) {
-    echo DEBUG_DELIM_OPEN;
-    
-    require_once CLWD_CORE_ROOT . '/formatting/classes/Formatting_FileName.inc.php';
-    require_once CLWD_CORE_ROOT . '/clwd-projects/classes/CLWDProjects_ExecutionTimer.inc.php';
-    
-    $file = new Formatting_FileName(__FILE__);
-    echo "Entering \n";
-    echo $file->get_pretty_name();
-    echo "\n";
-    
-    $execution_timer = CLWDProjects_ExecutionTimer::get_instance();
-    $execution_timer->mark();
-    
-    echo DEBUG_DELIM_CLOSE;
-}
-
-/**
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_DataFile.inc.php';
-
-require_once PROJECT_ROOT . '/haddock/database/classes/Database_DatabaseClassNameOverride.inc.php';
-
-if (DEBUG) {
-    echo DEBUG_DELIM_OPEN;
-    
-    echo "Defining: Database_DatabaseClassNameOverrideFile\n";
-    
-    $execution_timer->mark();
-    
-    echo DEBUG_DELIM_CLOSE;
-}
+#if (DEBUG) {
+#    echo DEBUG_DELIM_OPEN;
+#    
+#    require_once CLWD_CORE_ROOT . '/formatting/classes/Formatting_FileName.inc.php';
+#    require_once CLWD_CORE_ROOT . '/clwd-projects/classes/CLWDProjects_ExecutionTimer.inc.php';
+#    
+#    $file = new Formatting_FileName(__FILE__);
+#    echo "Entering \n";
+#    echo $file->get_pretty_name();
+#    echo "\n";
+#    
+#    $execution_timer = CLWDProjects_ExecutionTimer::get_instance();
+#    $execution_timer->mark();
+#    
+#    echo DEBUG_DELIM_CLOSE;
+#}
+#
+#/**
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT . '/haddock/file-system/classes/FileSystem_DataFile.inc.php';
+#
+#require_once PROJECT_ROOT . '/haddock/database/classes/Database_DatabaseClassNameOverride.inc.php';
+#
+#if (DEBUG) {
+#    echo DEBUG_DELIM_OPEN;
+#    
+#    echo "Defining: Database_DatabaseClassNameOverrideFile\n";
+#    
+#    $execution_timer->mark();
+#    
+#    echo DEBUG_DELIM_CLOSE;
+#}
 
 /**
  * Represents a file containing instructions
@@ -73,13 +73,13 @@ class Database_DatabaseClassNameOverrideFile extends FileSystem_DataFile
     }
 }
 
-if (DEBUG) {
-    echo DEBUG_DELIM_OPEN;
-    
-    echo "Finished defining: Database_DatabaseClassNameOverrideFile\n";
-    
-    $execution_timer->mark();
-    
-    echo DEBUG_DELIM_CLOSE;
-}
+#if (DEBUG) {
+#    echo DEBUG_DELIM_OPEN;
+#    
+#    echo "Finished defining: Database_DatabaseClassNameOverrideFile\n";
+#    
+#    $execution_timer->mark();
+#    
+#    echo DEBUG_DELIM_CLOSE;
+#}
 ?>

@@ -5,20 +5,20 @@
  * @copyright Clear Line Web Design, 2007-03-16
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/file-system/classes/'
-    . 'FileSystem_PHPClassFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/selection-managers/'
-    . 'Database_SelectionManagersFile.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/file-system/classes/'
+#    . 'FileSystem_PHPClassFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/selection-managers/'
+#    . 'Database_SelectionManagersFile.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUserFactory.inc.php';
     
 class
     Database_SelectionManagerFactory

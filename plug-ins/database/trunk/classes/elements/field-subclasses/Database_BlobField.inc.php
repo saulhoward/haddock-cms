@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2006-11-18
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/field-subclasses/'
-    . 'Database_StringField.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/field-subclasses/'
+#    . 'Database_StringField.inc.php';
 
 
 /**

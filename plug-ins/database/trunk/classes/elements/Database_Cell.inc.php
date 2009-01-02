@@ -5,12 +5,12 @@
  * @copyright Clear Line Web Design, 2007-03-15
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_Element.inc.php';
+#/*
+# * Define the necessary classes.
+# */
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_Element.inc.php';
 
 /**
  * A class to represent a single cell in a database table.
