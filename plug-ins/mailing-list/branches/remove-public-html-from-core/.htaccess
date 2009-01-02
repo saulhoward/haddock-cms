@@ -1,0 +1,5 @@
+# Restrict Access to the mailing-list plug-in folder.
+# © Clear Line Web Design,  2007-10-23
+
+Order Deny,Allow
+Deny from all
