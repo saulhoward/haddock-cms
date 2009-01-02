@@ -1,10 +1,10 @@
-## .htaccess fragment for the public-html core module.
+## .htaccess fragment for the public-html plug-in.
 ##
 ## © 2007-08-03, RFI
 
 <IfModule mod_rewrite.c>
 	#RewriteRule ^/?$ /haddock/public-html/public-html/
-	RewriteRule ^/?$ /haddock/public-html/public-html/index.php
+	RewriteRule ^/?$ /plug-ins/public-html/public-html/index.php
 	
 	#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
 	
@@ -32,7 +32,7 @@
 # Back up using mod_alias
 
 <IfModule !mod_rewrite.c>
-	RedirectMatch temp ^/?$ /haddock/public-html/public-html/index.php
+	RedirectMatch temp ^/?$ /plug-ins/public-html/public-html/index.php
 	
 	RedirectMatch temp ^/styles/(.*) /project-specific/public-html/styles/$1
 	

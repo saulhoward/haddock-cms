@@ -19,11 +19,16 @@
  * Define constants that are used throughout
  * the project.
  */
-require_once $_SERVER['DOCUMENT_ROOT']
-	. '/haddock/public-html/public-html/define-include-paths.inc.php';
+#require_once $_SERVER['DOCUMENT_ROOT']
+#	. '/haddock/public-html/public-html/define-include-paths.inc.php';
 	
-require_once $_SERVER['DOCUMENT_ROOT']
-	. '/haddock/public-html/public-html/define-debug-constants.inc.php';
+#require_once $_SERVER['DOCUMENT_ROOT']
+#	. '/haddock/public-html/public-html/define-debug-constants.inc.php';
+define('PROJECT_ROOT', realpath($_SERVER['DOCUMENT_ROOT']));
+
+require_once PROJECT_ROOT
+	. '/haddock/code-analysis/includes/'
+	. 'define-debug-constants.inc.php';
 
 //require_once PROJECT_ROOT
 //    . '/haddock/public-html/classes/'
@@ -108,7 +113,17 @@ if (isset($_GET['oo-page'])) {
 	 *
 	 * This probably won't be removed for quite a while, however.
 	 */
-	
+	if (DEBUG) {
+		echo DEBUG_DELIM_OPEN;
+		
+		echo __FILE__ . PHP_EOL;
+		echo 'Line: ' . __LINE__ . PHP_EOL;
+		
+		echo 'Rendering the page using PublicHTML_PageManager.' . PHP_EOL;
+		
+		echo DEBUG_DELIM_CLOSE;
+	}
+
 	$page_manager = PublicHTML_PageManager::get_instance();
 	
 	//echo 'print_r($page_manager)' . "\n";
@@ -135,6 +150,17 @@ if (isset($_GET['oo-page'])) {
 		isset($_GET['type'])
 			? $_GET['type'] : NULL
 	);
+	
+	if (DEBUG) {
+		echo DEBUG_DELIM_OPEN;
+		
+		echo __FILE__ . PHP_EOL;
+		echo 'Line: ' . __LINE__ . PHP_EOL;
+		
+		print_r($page_manager);
+		
+		echo DEBUG_DELIM_CLOSE;
+	}
 	
 	//echo 'print_r($page_manager)' . "\n";
 	//print_r($page_manager);
