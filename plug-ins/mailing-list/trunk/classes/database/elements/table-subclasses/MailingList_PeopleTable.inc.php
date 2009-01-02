@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-03-06
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/'
-    . 'Database_Table.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/'
+#    . 'Database_Table.inc.php';
 
 class
     MailingList_PeopleTable

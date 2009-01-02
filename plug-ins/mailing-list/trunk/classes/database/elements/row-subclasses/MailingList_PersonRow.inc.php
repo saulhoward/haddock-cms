@@ -5,25 +5,25 @@
  * @copyright Clear Line Web Design, 2007-02-16
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/elements/row-subclasses/'
-    . 'Database_DelegateRow.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
-    . 'Database_SortableRowMoveUpBehaviour.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
-    . 'Database_SortableRowMoveDownBehaviour.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
-    . 'Database_SortableRowMinSortOrderBehaviour.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
-    . 'Database_SortableRowMaxSortOrderBehaviour.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/elements/row-subclasses/'
+#    . 'Database_DelegateRow.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
+#    . 'Database_SortableRowMoveUpBehaviour.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
+#    . 'Database_SortableRowMoveDownBehaviour.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
+#    . 'Database_SortableRowMinSortOrderBehaviour.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/delegation/behaviours/row-behaviours/'
+#    . 'Database_SortableRowMaxSortOrderBehaviour.inc.php';
 
 class
     MailingList_PersonRow
