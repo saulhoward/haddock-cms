@@ -35,12 +35,14 @@ class
 		
 		$this->record_inc_files = FALSE;
 		
-		$this->debug = FALSE;
+		#$this->debug = FALSE;
 		#$this->debug = TRUE;
 		
-		if ($this->debug) {
-			header('Content-type: text/plain');
-		}
+		$this->debug = DEBUG;
+		
+		#if ($this->debug) {
+		#	header('Content-type: text/plain');
+		#}
 	}
 	
 	public static function
@@ -143,7 +145,28 @@ class
 	public function
 		is_page()
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
 		$module_directory = $this->get_module_directory();
+		
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo 'print_r($module_directory):' . PHP_EOL;
+			print_r($module_directory);
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
 		
 		$page = $this->get_page();
 		$type = $this->get_type();
@@ -612,22 +635,74 @@ class
 	public function
 		get_module_directory()
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
+		$module_directory = null;
+		
 		$pdf = HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
 		$pd = $pdf->get_project_directory_for_this_project();
 		
-		if ($this->get_section() == 'project-specific') {
-			return $pd->get_project_specific_directory();
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo 'print_r($pd):' . PHP_EOL;
+			print_r($pd);
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
+		$section = $this->get_section();
+		
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo '$section: '. $section . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
+		if ($section == 'project-specific') {
+			$module_directory = $pd->get_project_specific_directory();
 		} else {
 			if ($this->get_section() == 'plug-ins') {
-				return $pd->get_plug_in_module_directory($this->get_module());
+				$module_directory =  $pd->get_plug_in_module_directory($this->get_module());
 			}
 			
 			if ($this->get_section() == 'haddock') {
-				return $pd->get_core_module_directory($this->get_module());
+				$module_directory =  $pd->get_core_module_directory($this->get_module());
 			}
 		}
 		
-		throw new Exception('No module directory found!');
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __METHOD__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			
+			echo 'print_r($module_directory):' . PHP_EOL;
+			print_r($module_directory);
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
+		if (isset($module_directory)) {
+			return $module_directory;
+		} else {
+			throw new Exception('No module directory found!');
+		}
 	}
 //    
 //    public function 

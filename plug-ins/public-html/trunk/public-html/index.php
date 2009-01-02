@@ -30,6 +30,19 @@ require_once PROJECT_ROOT
 	. '/haddock/code-analysis/includes/'
 	. 'define-debug-constants.inc.php';
 
+if (DEBUG) {
+	header('Content-Type: text/plain');
+	
+	echo DEBUG_DELIM_OPEN;
+	
+	echo __FILE__ . PHP_EOL;
+	echo 'Line: ' . __LINE__ . PHP_EOL;
+	
+	echo 'In DEBUG mode.' . PHP_EOL;
+	
+	echo DEBUG_DELIM_CLOSE;
+}
+
 //require_once PROJECT_ROOT
 //    . '/haddock/public-html/classes/'
 //    . 'PublicHTML_PageManager.inc.php';
