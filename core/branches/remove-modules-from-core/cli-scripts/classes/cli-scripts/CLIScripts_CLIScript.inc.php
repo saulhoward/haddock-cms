@@ -10,6 +10,11 @@ abstract class
 {
 	private $args;
 	
+	/**
+	 * Constructs a new CLIScripts_CLIScript object.
+	 *
+	 * @param array $args An array as returned from CLIScripts_ArgsHelper::parse_argv(...)
+	 */
 	public function
 		__construct($args)
 	{
