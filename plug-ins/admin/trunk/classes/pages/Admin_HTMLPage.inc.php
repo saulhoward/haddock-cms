@@ -18,5 +18,122 @@ extends
 	{
 		HTMLTags_LinkRenderer::render_style_sheet_link('/admin/styles/styles.css');
 	}
+
+	public function
+		get_body_div_header()
+	{
+		/*
+		 * Create the HTML tags objects.
+		 */
+		$div_header = new HTMLTags_Div();
+		$div_header->set_attribute_str('id', 'header');
+		
+		/* 
+		 * Project Logo IMG,
+		 * for filename look in config, 
+		 * default should be some haddock fish
+		 */
+		$image_div = new HTMLTags_Div();
+		$image_div->set_attribute_str('id', 'logo_image');
+		$logo_img = new HTMLTags_IMG();
+		$logo_src_url = new HTMLTags_URL();
+
+		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+		$config_manager = 
+			$cmf->get_config_manager('haddock', 'admin');
+		$logo_config_filename = $config_manager->get_logo_image_filename();
+		$logo_src_url->set_file($logo_config_filename);
+		$logo_img->set_src($logo_src_url);
+		$image_div->append($logo_img);
+		$div_header->append($image_div);
+
+		/* 
+		 * There are two headers: 
+		 * Project Title Link (H1)
+		 * and Page Title (H2)
+		 */
+		$h1_title = new HTMLTags_Heading(1);
+		$h1_title->append_str_to_content(
+			$this->get_body_div_header_project_heading_content()
+		);
+		$div_header->append_tag_to_content($h1_title);
+
+		$h2_title = new HTMLTags_Heading(2);
+		$h2_title->append_str_to_content(
+			$this->get_body_div_header_heading_content()
+		);
+		$div_header->append_tag_to_content($h2_title);
+
+		$div_header->append($this->get_log_in_state_div());
+		$div_header->append($this->get_admin_header_navigation_link_div());
+		
+		return $div_header;
+	}
+
+	public function
+		get_log_in_state_div()
+	{
+		$log_in_state_div = new HTMLTags_Div();
+		$log_in_state_div->set_attribute_str('id', 'log-in-state');
+
+		$logged_in_as_p = new HTMLTags_P();
+		$logged_in_as_p->set_attribute_str('id', 'logged_in_as');
+
+		$alm = Admin_LoginManager::get_instance();
+
+		$logged_in_as_p->append_str_to_content('<em>User:</em> ' . $alm->get_name());
+
+		$logged_in_as_p->append_str_to_content('&nbsp;');
+
+		$logged_in_as_p->append_str_to_content('<em>Type:</em> ' . $alm->get_type());
+
+		$log_in_state_div->append($logged_in_as_p);
+
+		$log_out_div = new HTMLTags_Div();
+		$log_out_div->set_attribute_str('id', 'log_out');
+		$log_out_div->append_tag_to_content($alm->get_log_out_a());
+
+		$log_in_state_div->append($log_out_div);
+		return $log_in_state_div;
+	}
+
+	protected function
+		get_admin_header_navigation_link_div()
+	{
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'admin_header_navigation_link');
+		$url = PublicHTML_URLHelper
+			::get_oo_page_url(
+				'Admin_StartPage'
+			);
+		$a = new HTMLTags_A('Start Page');
+		$a->set_href($url);
+		$div->append($a);
+		return $div;
+	}
+
+	protected function
+		get_body_div_header_project_heading_content()
+	{
+		$home_link = new HTMLTags_A($this->get_body_div_header_link_content());
+		
+		$home_link->set_href(new HTMLTags_URl('/'));
+		
+		return $home_link->get_as_string();
+	}
+	
+	public function
+		render_body_div_footer()
+	{
+?>
+<div
+    id="footer"
+>
+<p>
+A <a href="http://haddock-cms.com/">Haddock CMS</a> Site.
+</p>
+</div>
+<?php
+	}
 }
 ?>

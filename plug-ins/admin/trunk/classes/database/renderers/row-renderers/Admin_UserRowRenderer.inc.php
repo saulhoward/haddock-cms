@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-08-27
  */
 
-#require_once PROJECT_ROOT
-#    . '/haddock/database/classes/renderers/'
-#    . 'Database_RowRenderer.inc.php';
+require_once PROJECT_ROOT
+    . '/haddock/database/classes/renderers/'
+    . 'Database_RowRenderer.inc.php';
 
 class
 	Admin_UserRowRenderer

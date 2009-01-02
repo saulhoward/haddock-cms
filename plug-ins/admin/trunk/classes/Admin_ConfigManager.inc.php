@@ -21,5 +21,18 @@ extends
 	{
 		return $this->get_config_value('navigation/file-not-found-msg');
 	}
+
+	public function
+		get_logo_image_filename()
+	{
+		return $this->get_config_value('admin-style/logo-image-filename');
+	}
+
+	public function
+		get_start_page_widget_classes()
+	{
+		$widget_classes_str = $this->get_config_value('start-page/widget-classes');
+		return explode(',', $widget_classes_str);
+	}
 }
 ?>
