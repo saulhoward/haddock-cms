@@ -5,6 +5,14 @@
  * @copyright 2008-03-20, RFI
  */
 
+if (DEBUG) {
+	echo DEBUG_DELIM_OPEN;
+	
+	echo __FILE__ . PHP_EOL;
+	
+	echo DEBUG_DELIM_CLOSE;
+}
+
 $autoload_filename = PROJECT_ROOT
 	. '/project-specific/haddock-project-organisation/'
 	. 'autoload.inc.php';
