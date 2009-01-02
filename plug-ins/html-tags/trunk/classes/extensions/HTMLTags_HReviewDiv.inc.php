@@ -5,21 +5,21 @@
  * @copyright Clear Line Web Design, 2006-11-29
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Div.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_BR.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Abbr.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_DateTime.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Div.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_BR.inc.php';
+#    
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Abbr.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/formatting/classes/'
+#    . 'Formatting_DateTime.inc.php';
 
 class
     HTMLTags_HReviewDiv

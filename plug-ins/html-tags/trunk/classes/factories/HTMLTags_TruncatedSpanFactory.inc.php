@@ -4,13 +4,13 @@
  *
  * @copyright Clear Line Web Design, 2007-03-15
  */
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/'
-    . 'HTMLTags_URL.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Span.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/'
+#    . 'HTMLTags_URL.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Span.inc.php';
     
 class
 	HTMLTags_TruncatedSpanFactory
