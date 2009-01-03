@@ -1,12 +1,12 @@
 <?php
 /**
- * PublicHTML_SetDefaultLocationCLIScript
+ * PublicHTML_UpdateDefaultLocationCLIScript
  *
- * @copyright 2009-01-03, Robert Impey
+ * @copyright 2008-12-16, Robert Impey
  */
 
 class
-	PublicHTML_SetDefaultLocationCLIScript
+	PublicHTML_UpdateDefaultLocationCLIScript
 extends
 	CLIScripts_CLIScript
 {
@@ -16,7 +16,7 @@ extends
 		$default_location = $this->get_default_location();
 		
 		PublicHTML_DefaultLocationHelper
-			::set_default_location($default_location);
+			::update_default_location($default_location);
 	}
 	
 	private function

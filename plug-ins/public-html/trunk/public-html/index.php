@@ -78,7 +78,7 @@ require PROJECT_ROOT
  */
 ob_start();
 
-if (isset($_GET['oo-page'])) {
+#if (isset($_GET['oo-page'])) {
 	try {		
 		if (isset($_GET['page-class'])) {
 			$pcrc = new ReflectionClass($_GET['page-class']);
@@ -97,7 +97,14 @@ if (isset($_GET['oo-page'])) {
 			
 			$pcro = $pcrof->get_page_class_reflection_object();
 		} else {
-			echo "No page class set!\n";
+			#echo "No page class set!\n";
+			
+			/*
+			 * Find the default location and redirect there.
+			 */
+			$default_location = PublicHTML_DefaultLocationHelper::get_default_location();
+			
+			PublicHTML_RedirectionHelper::redirect_to_absolute_location($default_location);
 		}
 	} catch (ReflectionException $re) {
 		#print_r($e);
@@ -114,104 +121,104 @@ if (isset($_GET['oo-page'])) {
 		header('Location: ' . $exception_page_url->get_as_string());
 		exit;
 	}
-} else {
-	/*
-	 * The "old-fashioned" way.
-	 *
-	 * It turns out that writing .INC files and relying on the
-	 * page manager to find them is incredibly difficult.
-	 *
-	 * My recommendation would be not to write any new code that
-	 * gets called from here and use the OO pages instead.
-	 *
-	 * This probably won't be removed for quite a while, however.
-	 */
-	if (DEBUG) {
-		echo DEBUG_DELIM_OPEN;
-		
-		echo __FILE__ . PHP_EOL;
-		echo 'Line: ' . __LINE__ . PHP_EOL;
-		
-		echo 'Rendering the page using PublicHTML_PageManager.' . PHP_EOL;
-		
-		echo DEBUG_DELIM_CLOSE;
-	}
-
-	$page_manager = PublicHTML_PageManager::get_instance();
-	
-	//echo 'print_r($page_manager)' . "\n";
-	//print_r($page_manager);
-	
-	$page_manager->set_section(
-		isset($_GET['section'])
-			? $_GET['section'] : NULL
-	);
-	
-	if ($page_manager->get_section() != 'project-specific') {
-		$page_manager->set_module(
-			isset($_GET['module'])
-				? $_GET['module'] : NULL
-		);
-	}
-	
-	$page_manager->set_page(
-		isset($_GET['page'])
-			? $_GET['page'] : NULL
-	);
-	
-	$page_manager->set_type(
-		isset($_GET['type'])
-			? $_GET['type'] : NULL
-	);
-	
-	if (DEBUG) {
-		echo DEBUG_DELIM_OPEN;
-		
-		echo __FILE__ . PHP_EOL;
-		echo 'Line: ' . __LINE__ . PHP_EOL;
-		
-		print_r($page_manager);
-		
-		echo DEBUG_DELIM_CLOSE;
-	}
-	
-	//echo 'print_r($page_manager)' . "\n";
-	//print_r($page_manager);
-	
-	//echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
-	//
-	//if ($page_manager->get_section() != 'project-specific') {
-	//    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
-	//}
-	//
-	//echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
-	//echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
-	//exit;
-	
-	if ($page_manager->is_page()) {
-		//echo "Page found!\n";
-		//exit;
-	} else {
-		#echo "Page not found!\n";
-		
-		$page_manager->set_section('haddock');
-		$page_manager->set_module('public-html');
-		$page_manager->set_page('page-not-found');
-		$page_manager->set_type('html');
-	}
-	
-	//echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
-	//
-	//if ($page_manager->get_section() != 'project-specific') {
-	//    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
-	//}
-	//
-	//echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
-	//echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
-	//exit;
-	
-	$page_manager->render_inc_file('complete-page');
-}
+#} else {
+#	/*
+#	 * The "old-fashioned" way.
+#	 *
+#	 * It turns out that writing .INC files and relying on the
+#	 * page manager to find them is incredibly difficult.
+#	 *
+#	 * My recommendation would be not to write any new code that
+#	 * gets called from here and use the OO pages instead.
+#	 *
+#	 * This probably won't be removed for quite a while, however.
+#	 */
+#	if (DEBUG) {
+#		echo DEBUG_DELIM_OPEN;
+#		
+#		echo __FILE__ . PHP_EOL;
+#		echo 'Line: ' . __LINE__ . PHP_EOL;
+#		
+#		echo 'Rendering the page using PublicHTML_PageManager.' . PHP_EOL;
+#		
+#		echo DEBUG_DELIM_CLOSE;
+#	}
+#
+#	$page_manager = PublicHTML_PageManager::get_instance();
+#	
+#	//echo 'print_r($page_manager)' . "\n";
+#	//print_r($page_manager);
+#	
+#	$page_manager->set_section(
+#		isset($_GET['section'])
+#			? $_GET['section'] : NULL
+#	);
+#	
+#	if ($page_manager->get_section() != 'project-specific') {
+#		$page_manager->set_module(
+#			isset($_GET['module'])
+#				? $_GET['module'] : NULL
+#		);
+#	}
+#	
+#	$page_manager->set_page(
+#		isset($_GET['page'])
+#			? $_GET['page'] : NULL
+#	);
+#	
+#	$page_manager->set_type(
+#		isset($_GET['type'])
+#			? $_GET['type'] : NULL
+#	);
+#	
+#	if (DEBUG) {
+#		echo DEBUG_DELIM_OPEN;
+#		
+#		echo __FILE__ . PHP_EOL;
+#		echo 'Line: ' . __LINE__ . PHP_EOL;
+#		
+#		print_r($page_manager);
+#		
+#		echo DEBUG_DELIM_CLOSE;
+#	}
+#	
+#	//echo 'print_r($page_manager)' . "\n";
+#	//print_r($page_manager);
+#	
+#	//echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
+#	//
+#	//if ($page_manager->get_section() != 'project-specific') {
+#	//    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
+#	//}
+#	//
+#	//echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
+#	//echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
+#	//exit;
+#	
+#	if ($page_manager->is_page()) {
+#		//echo "Page found!\n";
+#		//exit;
+#	} else {
+#		#echo "Page not found!\n";
+#		
+#		$page_manager->set_section('haddock');
+#		$page_manager->set_module('public-html');
+#		$page_manager->set_page('page-not-found');
+#		$page_manager->set_type('html');
+#	}
+#	
+#	//echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
+#	//
+#	//if ($page_manager->get_section() != 'project-specific') {
+#	//    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
+#	//}
+#	//
+#	//echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
+#	//echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
+#	//exit;
+#	
+#	$page_manager->render_inc_file('complete-page');
+#}
 
 ob_end_flush();
 ?>
