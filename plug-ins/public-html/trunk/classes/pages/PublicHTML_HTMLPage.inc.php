@@ -123,7 +123,7 @@ extends
 			);
 		HTMLTags_LinkRenderer
 			::render_style_sheet_link(
-				'/haddock/public-html/public-html/styles/styles.css'
+				'/plug-ins/public-html/public-html/styles/styles.css'
 			);
 	}
 	
