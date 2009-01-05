@@ -8,17 +8,17 @@
 /*
  * Define the necessary classes.
  */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/renderers/'
-    . 'Database_TableRenderer.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/extensions/'
-    . 'HTMLTags_SimpleOLForm.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_Input.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/renderers/'
+#    . 'Database_TableRenderer.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/extensions/'
+#    . 'HTMLTags_SimpleOLForm.inc.php';
+#
+#require_once PROJECT_ROOT
+#    . '/haddock/html-tags/classes/standard/'
+#    . 'HTMLTags_Input.inc.php';
     
 class
     Logging_ServerLogsTableRenderer

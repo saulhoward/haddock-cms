@@ -5,9 +5,9 @@
  * @copyright Clear Line Web Design, 2007-04-01
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
+#require_once PROJECT_ROOT
+#    . '/haddock/database/classes/'
+#    . 'Database_MySQLUserFactory.inc.php';
 
 class
     Logging_Logger
