@@ -16,7 +16,7 @@ extends
 		/*
 		 * Write the regex here.
 		 */
-		return '/^[\/\?#&\w]+$/';
+		return '/^[-\.\/\?#&\w]+$/';
 	}
 	
 	protected function
