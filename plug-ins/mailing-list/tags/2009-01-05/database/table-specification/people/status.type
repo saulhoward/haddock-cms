@@ -1,0 +1,1 @@
+enum('new','moderation','spam','accepted')
