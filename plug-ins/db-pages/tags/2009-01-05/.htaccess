@@ -1,0 +1,7 @@
+# Restrict Access to the db-pages plug-in folder.
+# © 2007-03-07, RFI
+
+<IfModule mod_access.c>
+	Order Deny,Allow
+	Deny from all
+</IfModule>
