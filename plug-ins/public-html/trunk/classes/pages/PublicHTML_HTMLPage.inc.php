@@ -208,7 +208,7 @@ extends
 	{
 		$home_link = new HTMLTags_A($this->get_body_div_header_link_content());
 		
-		$home_link->set_href(new HTMLTags_URl('/'));
+		$home_link->set_href(new HTMLTags_URL('/'));
 		
 		return $home_link->get_as_string();
 	}
