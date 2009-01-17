@@ -333,6 +333,14 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . '/haddock/formatting\classes/Formatting_Word.inc.php';
 			break;
 
+		case('HaddockCMSThemes_HomeHTMLPage'): 
+			require_once PROJECT_ROOT . '/project-specific\classes/pages/html/HaddockCMSThemes_HomeHTMLPage.inc.php';
+			break;
+
+		case('HaddockCMSThemes_HTMLPage'): 
+			require_once PROJECT_ROOT . '/project-specific\classes/pages/html/HaddockCMSThemes_HTMLPage.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
 			require_once PROJECT_ROOT . '/haddock/haddock-project-organisation\classes/file-system/files/HaddockProjectOrganisation_AbstractModuleConfigXMLFile.inc.php';
 			break;
