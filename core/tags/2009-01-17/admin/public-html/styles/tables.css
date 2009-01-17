@@ -1,0 +1,258 @@
+/**
+ * TABLES & FORMS
+ * Style sheet for the Admin Section
+ *
+ * RFI & SANH 2006-11-20
+ */
+ 
+ 
+/* FORM STYLINGS */
+form.basic-form {
+        width: 80%;
+	margin: 2em auto 0 auto;
+        }
+form.basic-form fieldset { 
+	padding: 2em 0;
+	margin: 0 auto;
+	width: auto;
+	border: none;
+        background: #f9f9f9;
+	border-top: 1px solid #C9DCA6;
+	border-bottom: 1px solid #C9DCA6;
+}
+	
+form.basic-form legend {
+	padding: 0 8px;
+        text-align:right;
+        font-size: 1.2em;
+	font-weight: 900;
+	color: #666;
+	_margin: 0 -7px; /* IE Win */
+	}
+	
+form.basic-form label {
+	width: 25%;
+	margin-right: 1em;
+	display: inline-block;
+	vertical-align: top;
+	float: left;
+	text-align: right;
+	}
+
+/*
+ * RFI 2008-01-14
+ */
+/*form.basic-form #name {*/
+/*	width: 20em;*/
+/*	font-size: 1.2em;*/
+/*}*/
+/*form.basic-form #description {*/
+/*	width: 25em;*/
+/*	height: 8em;*/
+/*	font-size: 1.15em;*/
+/*}*/
+/*form.basic-form #price {*/
+/*	font-size: 1.2em;*/
+/*	width: 5em;*/
+/*}*/
+
+form.basic-form fieldset ol.image-upload label {
+	width: 10em;
+	}
+form.basic-form fieldset ol.image-upload {
+	padding: 2em 0 2em 0;
+	}
+form.basic-form fieldset ol {
+	margin: 0.8em 0;
+	padding: 0;
+	}
+form.basic-form fieldset li {
+	list-style: none;
+	padding: 5px 10px 7px;
+	margin: 0;
+	}
+	
+form.basic-form fieldset fieldset {
+	border: none;
+	margin: 3px 0 0;
+	}
+	
+form.basic-form fieldset fieldset legend {
+	padding: 0 0 5px;
+	font-weight: normal;
+	}
+	
+form.basic-form fieldset fieldset label {
+	display: block;
+	width: auto;
+	}
+
+form.basic-form em {
+	font-weight: bold;
+	font-style: normal;
+	color: #f00;
+	}
+form.basic-form fieldset li input[type='checkbox'] {
+	margin: 0 0 0 2em;
+}
+	
+form.basic-form fieldset fieldset label { margin-left: 123px; } /* Width plus 3 (html space) */
+
+/*\*//*/ form.basic-form legend { display: inline-block; } /* IE Mac legend fix */
+
+
+
+/*--------==TABLES==-------*/
+
+#content caption {
+font-size: 1.2em;
+font-weight: 900;
+width: 100%;
+text-align: center;
+padding: 1em 0 0 0;
+
+}
+#content table{
+    margin: 0.3em auto 0 auto;
+    padding: 0;
+    width: auto;
+    height: auto;
+    border-spacing:1px;
+    font:100% 'Verdana', Arial, Helvetica, sans-serif;
+    background:#E7E7E7;
+    color:#666666;
+    }
+#content td, th{
+    padding:4px;
+    }
+#content table th{
+	 font-size: 80%;
+    text-align:center;
+    background:#F5F5F5;
+    color:#666666;
+    border:1px solid #ffffff;
+    text-transform:uppercase;
+    }
+#content table tr td{
+    height: 2.8em;
+    color: black;
+    text-align: center;
+    background:#ffffff;
+    border-top:1px solid #ffffff;
+        vertical-align: top;
+    }
+#content table tr.even td{
+    height: 2.5em;
+    background:#EBF8FE;
+    border:1px solid #ffffff;
+    }
+    
+/* INLINE LIST FOR FORM PAGES DISPLAY */
+#content div.table_pages_div {
+        position: relative;
+        padding: 0.5em 0;
+        margin: 0;
+        width: auto; 
+        height: 2.4em;
+        color: black;
+        /*background : #ccc url(/project-specific/images/nav_bg.png) top left repeat-x;*/
+       background : #f5f5f5;
+        clear: both;
+        }
+#content div.table_pages_div form {
+        margin: 0.2em  0 0 1em;
+        padding: 0;
+        float: left;
+        }
+#content div.table_pages_div ul {
+        list-style: none;
+        display: inline;
+        width: 85%;
+        float: right;
+        text-align: right;
+        padding: 0 0.5em;
+        margin: 0;
+        text-indent: 0px;
+        font-size: 80%;
+        }
+/*#content div.table_pages_div ul:before {*/
+/*                content: url(/project-specific/images/table_multiple.png);*/
+/*                display: inline;*/
+/*                }*/
+#content div.table_pages_div ul li {
+        padding: 0 5px;
+        margin: 0 5px;
+	list-style: none;
+	display: inline;
+        
+        }
+#content div.table_pages_div ul li a {
+         text-wrap: suppress; 
+        }
+
+/*END OF INLINE LIST */
+/* TABLE PAGES DISPLAY SPECIAL TABLE CLASS */
+#content table.table_pages caption {
+        padding: 0 0 0.2em 0;
+        margin: 0;
+        background: #f5f5f5;
+}
+#content table.table_pages {
+        width: 100%;
+        margin: 0;
+        background: #f5f5f5;
+}
+/* end of TABLE PAGES DISPLAY SPECIAL TABLE CLASS */
+/* aCTION DIV TABLE */
+ #action-div table {
+	margin: 0 1em;
+    }
+/* aCTION DIV TABLE */
+
+/*   .table-select-form */
+
+form.table-select-form {
+  background-color: #f5f5f5;
+/*  margin: 2.5em 50px 0 0;*/
+  margin: 0 0 20px 0;
+  padding: 5px 0;
+  /*max-width: 100%;*/
+  width: 100%;
+  /*  min-width: 400px;*/
+display: block;
+float: right;
+}
+form.table-select-form ol {
+  margin: 0;
+  padding: 0;
+    float: right;
+  /*display: block;*/
+}
+form.table-select-form ol li {
+  /*margin-left: 1em;*/
+  display: inline;
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+form.table-select-form label {
+
+	font-weight: 900;
+        margin: 0 1em 0 0;
+        padding: 0;
+        display: inline-block;
+}
+form.table-select-form select {
+
+  display: inline;
+  /*vertical-align: top;*/
+  /*float: left;*/
+
+}
+form.table-select-form input {
+  display: inline;
+  
+  }
+/*  .table-select-form  */
+
+

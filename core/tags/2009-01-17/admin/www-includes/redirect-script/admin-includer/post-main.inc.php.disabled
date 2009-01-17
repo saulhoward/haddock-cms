@@ -1,0 +1,43 @@
+<?php
+/**
+ * Code to take care of returning the user to their display pages.
+ *
+ * @copyright Clear Line Web Design, 2007-08-30
+ */
+
+/*
+ * Create the singleton objects.
+ */
+$gvm = Caching_GlobalVarManager::get_instance();
+
+if ($gvm->is_set('error-message')) {
+	$url = $gvm->get('failure-url');
+	
+	$url->set_get_variable('error_message', urlencode($gvm->get('error-message')));
+} else {
+	$url = $gvm->get('success-url');
+}
+
+/*
+ * Make sure that the URL has a remote part.
+ */
+if (!$url->has_remote_part()) {
+	$rm = new PublicHTML_RedirectionManager();
+	
+	$current_url = $rm->get_current_url();
+
+	$url->set_remote_part($current_url->get_remote_part());
+}
+
+/*
+ * Redirect the browser.
+ */
+//echo 'print_r($url): ' . "\n";
+//print_r($url);
+//echo '$url->get_as_string(): ' . "\n";
+//echo $url->get_as_string() . "\n";
+//exit;
+
+header('Location: ' . $url->get_as_string());
+exit;
+?>

@@ -1,0 +1,18 @@
+/**
+ * Style sheet for the Admin Section
+ *
+ * @copyright Clear Line Web Design, 2006-11-20
+ */
+
+@import "/haddock/admin/public-html/styles/reset.css";
+@import "/haddock/admin/public-html/styles/new-style.css";
+@import "/haddock/admin/public-html/styles/tables.css";
+
+/*
+ * Old styles for the Admin Section
+ */
+/*@import "/haddock/admin/public-html/styles/core.css";*/
+/*@import "/haddock/admin/public-html/styles/text.css";*/
+/*@import "/haddock/admin/public-html/styles/graphics.css";*/
+/*@import "/haddock/admin/public-html/styles/tabs.css";*/
+/*@import "/haddock/admin/public-html/styles/lastActionBox.css";*/

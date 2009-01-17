@@ -1,0 +1,41 @@
+<?php
+/**
+ * HPO_ISCFileManager
+ *
+ * @copyright Clear Line Web Design, 2007-07-27
+ */
+
+class
+    HPO_ISCFileManager
+{
+    private static $instance = NULL;
+    
+    private $isc_file;
+    
+    private function
+        __construct()
+    {
+        
+    }
+    
+    public static function
+        get_instance()
+    {
+        if (self::$instance == NULL) {
+            self::$instance = new HPO_ISCFileManager();
+        }
+        
+        return self::$instance;
+    }
+    
+    public function
+        get_isc_file()
+    {
+        if (!isset($this->isc_file)) {
+            
+        }
+        
+        return $this->isc_file;
+    }
+}
+?>

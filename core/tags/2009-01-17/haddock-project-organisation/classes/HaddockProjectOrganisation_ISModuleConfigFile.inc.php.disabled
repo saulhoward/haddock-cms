@@ -1,0 +1,22 @@
+<?php
+/**
+ * HaddockProjectOrganisation_ISModuleConfigFile
+ *
+ * @copyright Clear Line Web Design, 2007-10-01
+ */
+
+/**
+ * Represents an instance specific module config
+ * file.
+ *
+ * For example, if different versions of the program
+ * are installed in different vhosts (perhaps on different
+ * machines), they can have different configurations.
+ */
+class
+	HaddockProjectOrganisation_ISModuleConfigFile
+extends
+    HaddockProjectOrganisation_AbstractModuleConfigXMLFile
+{
+}
+?>

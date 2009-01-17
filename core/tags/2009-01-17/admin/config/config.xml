@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>Admin_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<navigation>
+		<file-not-found-msg>
+<![CDATA[
+Admin section navigation file not found!
+
+Please follow the instructions at 
+<a href="http://wiki.haddock-cms.com/index.php/Admin_NavigationXMLFile" target="_blank">http://wiki.haddock-cms.com/index.php/Admin_NavigationXMLFile</a>
+to create the necessary file.
+]]>
+		</file-not-found-msg>
+	</navigation>
+	<admin-style>
+		<logo-image-filename
+			value="/haddock/admin/public-html/images/haddock-logos/haddock_logo_small_75x34.png" />
+	</admin-style>
+	<start-page>
+		<widget-classes>
+			HaddockProjectOrganisation_StartPageWidget
+		</widget-classes>
+	</start-page>
+</config>

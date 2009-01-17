@@ -1,0 +1,13 @@
+# List of the pages that should be linked to
+# in the database admin section.
+#
+# © Clear Line Web Design, 2007-01-24
+
+#passwords-file-management
+#sign-in-as-root
+#database-creation
+#user-management
+#table-structure-synchronisation
+#database-class-finding
+#ajax-dbc
+tables-list

@@ -1,0 +1,343 @@
+/* 
+ *New Haddock Admin Stylesheet!
+ */
+html, body
+{
+	font-family: arial, sans-serif;
+
+	background: #efefef;
+}
+a, a:visited
+{
+	color: blue;
+	text-decoration: none;
+}
+
+/*
+ * Header
+ */
+div#header
+{
+	height: 70px;
+	background: #ECF2FA;
+	border-bottom: 1px solid #C6D9E9;
+}
+div#header div#logo_image
+{
+
+	height: 70px;
+	line-height: 70px;
+	width: 100px;
+
+/*        vertical-align: middle;*/
+	display: inline;
+}
+div#header img
+{
+	vertical-align: middle;
+/*        display: inline-block;*/
+	margin: 0 0 0 10px;
+}
+div#header h1, div#header h2
+{
+	display: inline;
+	vertical-align: top;
+	line-height: 70px;
+	font-size: 2em;
+	padding: 0 0 0 10px;
+}
+div#header div#log-in-state
+{
+	position: absolute;
+	top: 0em;
+	right: 0.5em;
+	padding: 5px 15px 10px 5px;
+
+	background: #efefef;
+
+	-moz-border-radius-bottomleft: 8px;
+	-khtml-border-radius-bottom-left: 8px;
+	-webkit-border-radius-bottom-left: 8px;
+	border-bottom-left-radius: 8px;
+
+	-moz-border-radius-bottomright: 8px;
+	-khtml-border-radius-bottom-right: 8px;
+	-webkit-border-radius-bottom-right: 8px;
+	border-bottom-right-radius: 8px;
+
+	border: 1px solid #ccc;
+	border-top: 0px;
+}
+
+div#header div#log_out
+{
+	display: inline;
+	padding: 0 0 0 10px;
+}
+div#header div#admin_header_navigation_link
+{
+	position: absolute;
+	top: 45px;
+	right: 20px;
+}
+div#header div#log-in-state p
+{
+	display: inline;
+}
+
+div#header div#log-in-state em
+{
+	color: #666;
+/*        font-style: italic;*/
+	font-size: 90%;
+	padding: 0 0 0 10px;
+}
+div#header a
+{
+	text-decoration: none;
+}
+
+
+/*
+ * Content
+ */
+div#content
+{
+	margin: 0 0 0 13em;
+	padding: 10px 0 20px 10px;
+
+	min-height: 600px;
+	background: white;
+
+	border-left: 1px solid #ccc;
+}
+div#content div#page-options
+{
+	margin: 1em 0;
+}
+
+div#content div#page-options ul li
+{
+	margin: 0.4em 0;
+}
+div#content h3
+{
+	text-align: center;
+	font-size: 1.2em;
+	margin: 1em 0;
+}
+div#content p
+{
+	margin: 0.5em 0;
+}
+div#content p em
+{
+	font-weight: bold;
+}
+div#content dl
+{
+}
+
+div#content dt
+{
+	font-weight: 900;
+	font-size: 90%;
+	width: 4em;
+}
+
+div#content dd
+{
+	margin: -1em 0 1em 6em;
+}
+div#content div.details
+{
+	background: #efefef;
+
+	width: 40em;
+	margin: 0 auto;
+	padding: 0.5em 1em;
+}
+/*
+ * Navigation
+ */
+div#navigation
+{
+	position: absolute;
+	left: 0;
+	top: 71px;
+	width: 13em;
+
+	padding: 10px 0 0 0;
+	background: #efefef;
+}
+div#navigation a
+{
+	color: #3333FF;
+	text-decoration: none;
+}
+div#navigation ul li
+{
+	padding: 0.3em 0;
+}
+div#navigation h3
+{
+	text-transform: uppercase;
+}
+div#navigation h4
+{
+	font-weight: bold;
+}
+div#navigation ul li
+{
+	padding: 0.2em 0 0.2em 10px;
+}
+div#navigation h4
+{
+	padding: 0.2em 0 0.2em 2px;
+}
+
+/*
+ * Footer
+ */
+div#footer
+{
+	clear: both;
+	margin: 0 0 0 13em;
+	padding: 10px 0 0 10px;
+	background: white;
+
+	border-left: 1px solid #ccc;
+}
+div#footer p
+{
+	
+	text-align: right;
+	padding: 45px 10px 50px 0;
+	color: #333;
+	font-size: 80%;
+}
+div#footer a
+{
+	text-decoration: none;
+}
+
+
+/*
+ * Start Page
+ */
+div#StartPageWidgetContainer
+{
+	text-align: center;
+}
+.StartPageWidget
+{
+	text-align: left;
+	width: 42%;
+	background: #FAEBF9;
+	padding: 0.6em 1em 1em 1em;
+	display: inline-block;
+	margin: 0 1em 1em 0;
+	border:1px solid #FA98C3;
+
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+
+	vertical-align: middle;
+}
+
+div#content div.StartPageWidget div.thumbnails
+{
+	text-align: center;
+}
+div#content div.StartPageWidget div.thumbnails img
+{
+	vertical-align: middle;
+	padding: 5px;
+	border: 1px solid #999;
+}
+div#content div.StartPageWidget img.center
+{
+	margin: 0 auto;
+	display: block;
+	padding: 5px;
+	background: white;
+	border: 1px solid #999;
+}
+div#content div.StartPageWidget h3
+{
+	padding: 0 0 0.8em 0;
+	margin: 0;
+	color: #666;
+}
+
+div#content div.StartPageWidget ul
+{
+	margin: 0.5em 0;
+}
+div#content div.StartPageWidget ul li
+{
+	line-height: 1.2em
+}
+
+div#content div.StartPageWidget ul.inline
+{
+	text-align: center;
+}
+div#content div.StartPageWidget ul.inline li
+{
+	display: inline;
+	margin: 0 1em;
+	text-align: center;
+}
+div#content div.StartPageWidget dl
+{
+	margin: 0 auto;
+	padding: 0 1em;
+
+	line-height: 1.2em;
+}
+
+div#content div.StartPageWidget dl dt
+{
+	text-align: right;
+	width: 10em;
+	color: #666;
+}
+div#content div.StartPageWidget dl dd
+{
+	width: 12em;
+	margin: -1.2em 0 0 11em;
+	text-align: left;
+}
+
+div#content div.StartPageWidget ul.rss
+{
+	margin: 0;
+	background: white;
+	border: 1px solid #ccc;
+}
+div#content div.StartPageWidget ul.rss li
+{
+	padding: 0.2em 0.5em;
+	background: #ECF2FA;
+}
+div#content div.StartPageWidget ul.rss li.odd
+{
+	background: white;
+}
+
+div#content div.StartPageWidget div.graph h3
+{
+	font-size: 1.1em;
+}
+
+div#content div.StartPageWidget div.graph img
+{
+	margin: 0 auto;
+	display: block;
+	border: 1px solid #ccc;
+	padding: 5px;
+	background: white;
+}

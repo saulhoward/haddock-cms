@@ -1,0 +1,8 @@
+"http_referer","text","NO","","",""
+"http_user_agent","text","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"referer_domain_id","int(10) unsigned","NO","","",""
+"remote_addr","varchar(255)","NO","","",""
+"request_uri","text","NO","","",""
+"session_id","varchar(255)","YES","","",""
+"visited","datetime","NO","","",""
