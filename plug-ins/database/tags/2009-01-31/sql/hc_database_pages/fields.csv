@@ -1,0 +1,7 @@
+"description","varchar(255)","NO","","",""
+"html_content","text","NO","","",""
+"id","int(10) unsigned","NO","PRI","","auto_increment"
+"keywords","varchar(255)","NO","","",""
+"name","varchar(255)","NO","UNI","",""
+"title","varchar(255)","NO","","",""
+"user_id","int(10) unsigned","NO","","",""

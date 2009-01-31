@@ -1,0 +1,26 @@
+## .htaccess fragment for the doc root .htaccess file from the Database plug-in.
+##
+## © 2007-08-03, RFI
+
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hc-database-img-cache/(\d+).([a-z]+) /hc/database/images/$1.$2
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hc/database/images/(\d+).([a-z]+) /?section=haddock&module=database&page=db-image&type=$2&image_id=$1
+	
+	# Hasn't this been superseded by the DB pages plug-in?
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hc/database/db-pages/([-a-z]+)\.html$ /?section=haddock&module=database&page=db-page&type=html&page-name=$1
+</IfModule>
+
+# Back up using mod_alias
+
+<IfModule !mod_rewrite.c>
+	RedirectMatch temp ^/hc-database-img-cache/(\d+).([a-z]+) /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
+	
+	RedirectMatch temp ^/hc/database/images/(\d+).([a-z]+) /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-image\&type=$2\&image_id=$1
+	
+	RedirectMatch temp ^/hc/database/db-pages/([-a-z]+)\.html$ /plug-ins/public-html/public-html/index.php?section=haddock\&module=database\&page=db-page\&type=html\&page-name=$1
+</IfModule>
+
