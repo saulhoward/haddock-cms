@@ -31,10 +31,8 @@ extends
 		$tmp_out_file = $temp_dir->get_name() . '/haddock-compilations-tests-out.txt';
 		$tmp_err_file = $temp_dir->get_name() . '/haddock-compilations-tests-err.txt';
 		
-		
-		
 		$define_debug_constants_file = PROJECT_ROOT
-			. '/haddock/public-html/public-html/'
+			. '/haddock/code-analysis/includes/'
 			. 'define-debug-constants.inc.php';
 		
 		$autoload_inc_file_name = PROJECT_ROOT

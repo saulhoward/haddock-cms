@@ -5,14 +5,6 @@
  * @copyright 2007-05-11, RFI
  */
 
-#require_once PROJECT_ROOT
-#	. '/haddock/file-system/classes/'
-#	. 'FileSystem_PHPIncFile.inc.php';
-#
-#require_once PROJECT_ROOT
-#	. '/haddock/haddock-project-organisation/classes/'
-#	. 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-	
 class
 	HaddockProjectOrganisation_AutoloadIncFile
 extends
@@ -61,7 +53,14 @@ CNT;
 		foreach ($php_class_files as $p_c_f) {
 			$contents .= "\n\t\tcase('" . $p_c_f->get_php_class_name() . "'): \n";
 			
-			$contents .= "\t\t\trequire_once PROJECT_ROOT . '" . $p_c_f->get_name_relative_to_dir(PROJECT_ROOT) . "';\n";
+			#$contents .= "\t\t\trequire_once PROJECT_ROOT . '" . $p_c_f->get_name_relative_to_dir(PROJECT_ROOT) . "';\n";
+			$contents
+				.= "\t\t\trequire_once PROJECT_ROOT . "
+					. FileSystem_FileNamesInPHPCodeHelper
+						::translate_file_name_to_php_code(
+							$p_c_f->get_name_relative_to_dir(PROJECT_ROOT)
+						)
+					. ";\n";
 			
 			$contents .= "\t\t\tbreak;\n";
 		}

@@ -5,13 +5,6 @@
  * @copyright 2006-09-17, RFI
  */
 
-/*
- * Define the necessary classes.
- */
-#require_once PROJECT_ROOT
-#	. '/haddock/formatting/classes/'
-#	. 'Formatting_FileName.inc.php';
-
 /**
  * A class to represent a file.
  */
