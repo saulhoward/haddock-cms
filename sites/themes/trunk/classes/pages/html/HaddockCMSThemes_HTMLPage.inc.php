@@ -10,5 +10,10 @@ abstract class
 extends
 	PublicHTML_HTMLPage
 {
+	protected function
+		get_navigation_pages()
+	{
+		return HaddockCMSThemes_NavigationPagesHelper::get_navigation_pages();
+	}
 }
 ?>

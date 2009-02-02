@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-02-01
+ * Last Modified: 2009-02-02
  */
 
 function __autoload($class_name)
@@ -347,6 +347,22 @@ function __autoload($class_name)
 
 		case('HaddockCMSThemes_HTMLPage'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_HTMLPage.inc.php';
+			break;
+
+		case('HaddockCMSThemes_LoremIpsumHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_LoremIpsumHelper.inc.php';
+			break;
+
+		case('HaddockCMSThemes_NavigationPagesHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_NavigationPagesHelper.inc.php';
+			break;
+
+		case('HaddockCMSThemes_NeonLoremIpsumHTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_NeonLoremIpsumHTMLPage.inc.php';
+			break;
+
+		case('HaddockCMSThemes_ThemesListHTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_ThemesListHTMLPage.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
@@ -1193,6 +1209,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'unit-tests' . DIRECTORY_SEPARATOR . 'PublicHTML_VHostTests.inc.php';
 			break;
 
+		case('PublicHTMLNeonTheme_HTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html-neon-theme' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'PublicHTMLNeonTheme_HTMLPage.inc.php';
+			break;
+
 		case('Security_PasswordGenerator'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'security' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Security_PasswordGenerator.inc.php';
 			break;
@@ -1223,6 +1243,10 @@ function __autoload($class_name)
 
 		case('Strings_SplittingHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'strings' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Strings_SplittingHelper.inc.php';
+			break;
+
+		case('Textile_Textile'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'textile' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Textile_Textile.inc.php';
 			break;
 
 		case('UnitTests_CreateUnitTestsClassCLIScript'): 
