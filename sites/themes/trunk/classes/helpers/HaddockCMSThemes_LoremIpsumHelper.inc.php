@@ -19,10 +19,10 @@ class
 	 * The standard content for all the different themes.
 	 */
 	public static function
-		render_lorem_ipsum_content()
+		render_lorem_ipsum_content($title)
 	{
 ?>
-<h2>Lorem Ipsum</h2>
+<h2><?php echo $title; ?> Lorem Ipsum</h2>
 <?php
 		self::render_lorem_ipsum_ps(5);
 	}

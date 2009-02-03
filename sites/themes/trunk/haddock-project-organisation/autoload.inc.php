@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-02-02
+ * Last Modified: 2009-02-03
  */
 
 function __autoload($class_name)
@@ -359,6 +359,10 @@ function __autoload($class_name)
 
 		case('HaddockCMSThemes_NeonLoremIpsumHTMLPage'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_NeonLoremIpsumHTMLPage.inc.php';
+			break;
+
+		case('HaddockCMSThemes_SkyLoremIpsumHTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_SkyLoremIpsumHTMLPage.inc.php';
 			break;
 
 		case('HaddockCMSThemes_ThemesListHTMLPage'): 
@@ -1211,6 +1215,10 @@ function __autoload($class_name)
 
 		case('PublicHTMLNeonTheme_HTMLPage'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html-neon-theme' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'PublicHTMLNeonTheme_HTMLPage.inc.php';
+			break;
+
+		case('PublicHTMLSkyTheme_HTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html-sky-theme' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'PublicHTMLSkyTheme_HTMLPage.inc.php';
 			break;
 
 		case('Security_PasswordGenerator'): 

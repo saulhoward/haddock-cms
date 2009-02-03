@@ -13,7 +13,7 @@ extends
 	public function
 		content()
 	{
-		HaddockCMSThemes_LoremIpsumHelper::render_lorem_ipsum_content();
+		HaddockCMSThemes_LoremIpsumHelper::render_lorem_ipsum_content('Neon');
 	}
 	
 	protected function

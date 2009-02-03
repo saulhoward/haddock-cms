@@ -17,6 +17,7 @@ extends
 h2. Themes for Haddock CMS
 
 * "Neon Lorem Ipsum":/HaddockCMSThemes_NeonLoremIpsumHTMLPage
+* "Sky Lorem Ipsum":/HaddockCMSThemes_SkyLoremIpsumHTMLPage
 TXT;
 
 		$textile = new Textile_Textile();
