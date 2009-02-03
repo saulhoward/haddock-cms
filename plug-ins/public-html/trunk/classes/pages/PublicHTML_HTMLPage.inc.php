@@ -279,13 +279,18 @@ extends
 	public function
 		render_body_div_navigation()
 	{
-?>
-<div id="navigation">
-<?php
+		echo '<div id="navigation">' . PHP_EOL;
+		$this->render_content_of_body_div_navigation();
+		echo '</div>' . PHP_EOL;
+	}
+	
+	public function
+		render_content_of_body_div_navigation()
+	{
 		$navigation_pages = $this->get_navigation_pages();
 		
 		# Render the links.
-		echo "<ul>\n";
+		echo '<ul class="navigation">' . PHP_EOL;
 		foreach ($navigation_pages as $navigation_page) {
 			echo '<li';
 			
@@ -308,9 +313,6 @@ extends
 			echo "</li>\n";
 		}
 		echo "</ul>\n";
-?>
-</div>
-<?php
 	}
 	
 	public function
