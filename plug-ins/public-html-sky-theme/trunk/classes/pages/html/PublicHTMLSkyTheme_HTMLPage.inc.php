@@ -29,7 +29,11 @@ extends
 		
 ?>
 <!--[if lt IE 7.]>
-<link href="/plug-ins/public-html-sky-theme/public-html/styles/gifs-for-ie6.css" rel="stylesheet" type="text/css" />
+<link
+	href="/plug-ins/public-html-sky-theme/public-html/styles/gifs-for-ie6.css"
+	rel="stylesheet"
+	type="text/css"
+/>
 <![endif]-->
 <?php
 	}
@@ -41,6 +45,26 @@ extends
 			::render_external_js_script(
 				'/plug-ins/public-html-sky-theme/public-html/scripts/rounded-corners.js'
 			);
+	}
+	
+	public function
+		render_body()
+	{
+		$this->render_body_tag_open();
+		
+		echo "<div id=\"container\">\n";
+		
+		$this->render_body_div_header();
+		
+		$this->render_body_div_content();
+		
+		$this->render_body_div_navigation();
+		
+		$this->render_body_div_footer();
+		
+		echo "</div>\n";
+		
+		echo "</body>\n";
 	}
 	
 	public function
@@ -64,6 +88,14 @@ extends
 </div>
 <!-- End of content div -->
 <?php
+	}
+	
+	public function
+		render_body_div_navigation()
+	{
+		echo '<div id="navigation" class="bw-rc">' . PHP_EOL;
+		$this->render_content_of_body_div_navigation();
+		echo '</div>' . PHP_EOL;
 	}
 	
 	public function

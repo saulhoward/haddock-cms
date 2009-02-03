@@ -1,7 +1,7 @@
 /**
  * Functions for wrapping a div with Round corners.
  *
- * @copyright RFI 2008-01-24
+ * @copyright 2008-01-24, Robert Impey
  */
 
 function round_all_corners(class_name)

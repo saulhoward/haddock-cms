@@ -52,7 +52,7 @@ div.bw-rc div.h div {
 }
 
 div.bw-rc div.h div.l {
-	background-image: url('/images/corner-icons/tl.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tl.png');
 	/*background-image: url('/images/corner-icons/tl.gif');*/
 
 	background-position: bottom left;
@@ -61,7 +61,7 @@ div.bw-rc div.h div.l {
 }
 
 div.bw-rc div.h div.c {
-	background-image: url('/images/corner-icons/t.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/t.png');
 	
 	background-position: bottom;
 	
@@ -69,7 +69,7 @@ div.bw-rc div.h div.c {
 }
 
 div.bw-rc div.h div.r {
-	background-image: url('/images/corner-icons/tr.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tr.png');
 	background-position: bottom right;
 	
 	/*display: none;*/
@@ -85,7 +85,7 @@ div.bw-rc div.m {
 }
 
 div.bw-rc div.m div.l {
-	background-image: url('/images/corner-icons/l.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/l.png');
 	
 	height: 100%;
 }
@@ -97,7 +97,7 @@ div.bw-rc div.m div.c {
 }
 
 div.bw-rc div.m div.r {
-	background-image: url('/images/corner-icons/r.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/r.png');
 	
 	height: 100%;
 }
@@ -107,15 +107,15 @@ div.bw-rc div.m div.r {
  */
 
 div.bw-rc div.f div.l {
-	background-image: url('/images/corner-icons/bl.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/bl.png');
 }
 
 div.bw-rc div.f div.c {
-	background-image: url('/images/corner-icons/b.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/b.png');
 }
 
 div.bw-rc div.f div.r {
-	background-image: url('/images/corner-icons/br.png');
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/br.png');
 	
 	background-position: top right;
 }
