@@ -8,7 +8,7 @@
 abstract class
 	HaddockCMSThemes_HTMLPage
 extends
-	PublicHTML_HTMLPage
+	PublicHTMLSkyTheme_HTMLPage
 {
 	protected function
 		get_navigation_pages()
