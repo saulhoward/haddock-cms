@@ -35,7 +35,7 @@ class
       * @param bool $create_directory_if_not_exists Whether the function should create the directory if it does not exist.
       * @return string The name of the directory containing the project information.
       */
-	private static function
+	public static function
 		get_project_information_directory_name(
             $create_directory_if_not_exists = FALSE
         )
@@ -363,6 +363,54 @@ class
 				fclose($fh);
 			}
 		}
+	}
+	
+	/*
+	 * ----------------------------------------
+	 * Functions to do with the project camel case root.
+	 * ----------------------------------------
+	 */
+	
+	/**
+	 * Returns a string that can be used for copyright notices.
+	 *
+	 * If the developer has set the initialisation date for the project
+	 * and the current date is in a different year, then the date range
+	 * is shown.
+	 * e.g. "2008-2009"
+	 *
+	 * If the initialisation date has not been set, then the current year
+	 * is returned.
+	 * 
+	 * @return string The copyright date string.
+	 */
+	public static function
+		get_copyright_date_string()
+	{
+		$copyright_date_string = '';
+		
+		$initial_year = NULL;
+		$current_year = date('Y');
+		
+		if (
+			HaddockProjectOrganisation_InitialTimeHelper::has_initial_date()
+		) {
+			$initial_year
+				= HaddockProjectOrganisation_InitialTimeHelper
+					::get_initial_date('Y');
+		}
+		
+		if (
+			isset($initial_year)
+			&&
+			(($current_year - $initial_year) > 0)
+		) {
+			$copyright_date_string .= $initial_year . ' &ndash; ';
+		}
+		
+		$copyright_date_string .= $current_year;
+		
+		return $copyright_date_string;
 	}
 }
 ?>
