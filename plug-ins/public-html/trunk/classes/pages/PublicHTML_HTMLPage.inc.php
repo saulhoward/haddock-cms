@@ -322,6 +322,13 @@ extends
 <div
     id="footer"
 >
+<?php
+echo '&copy; ';
+echo HaddockProjectOrganisation_ProjectInformationHelper::get_copyright_date_string();
+echo ', ';
+echo HaddockProjectOrganisation_ProjectInformationHelper::get_copyright_holder();
+echo PHP_EOL;
+?>
 </div>
 <?php
 	}
