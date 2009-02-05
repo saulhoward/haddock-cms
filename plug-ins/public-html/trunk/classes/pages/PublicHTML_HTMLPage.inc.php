@@ -289,30 +289,11 @@ extends
 	{
 		$navigation_pages = $this->get_navigation_pages();
 		
-		# Render the links.
-		echo '<ul class="navigation">' . PHP_EOL;
-		foreach ($navigation_pages as $navigation_page) {
-			echo '<li';
-			
-			if (isset($_GET['page-class'])) {
-				if ($_GET['page-class'] == $navigation_page['page-class']) {
-					echo ' class="selected"';
-				}
-			}
-			
-			echo ">\n";
-			
-			echo '<a ';
-			echo 'href="' . $navigation_page['href'] . '" ';
-			echo 'title="' . $navigation_page['title'] . '"';
-			echo '>';
-			
-			echo $navigation_page['text'];
-			echo "</a>\n";
-			
-			echo "</li>\n";
-		}
-		echo "</ul>\n";
+		PublicHTML_NavigationListsHelper
+			::render_navigation_ul(
+				$navigation_pages,
+				$_GET['page-class']
+			);
 	}
 	
 	public function
