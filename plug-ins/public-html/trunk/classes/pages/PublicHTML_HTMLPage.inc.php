@@ -39,6 +39,7 @@ extends
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
 		$this->render_head();
+		#exit;
 		$this->render_body();
 ?>
 </html>
@@ -94,7 +95,7 @@ extends
 	{
 		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
 		$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
-		
+
 		return $config_manager->get_copyright_holder();
 	}
 	
