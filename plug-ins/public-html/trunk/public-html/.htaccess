@@ -3,36 +3,3 @@
 
 Order Allow,Deny
 Allow from all
-
-#RewriteEngine on
-
-#RewriteBase /haddock/public-html/public-html
-
-#RewriteRule ^text-renderer.php\??(.*) /?type=txt&$1
-
-## Public pages should look like HTML files.
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^([-a-z]+)\.html$ /index.php?page=$1
-#
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^admin/(.*)$ /haddock/admin/admin-html/$1
-#
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^images/image-(\d+)\.(jpg|gif|png)$ /image-renderer.php?id=$1
-#
-#RewriteRule ^favicon.ico /project-specific/images/favicon.ico
-#
-## So that we can have fancy styles generated on the fly
-##RewriteCond %{REQUEST_FILENAME} !-s
-##RewriteRule ^styles/([-a-z]+)\.css$ /styles/styles-renderer.php?page=$1
-#
-## So that we can have text files generated on the fly
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^([-a-z]+).txt$ /text-renderer.php?page=$1
-#
-## So that we can have rtf files generated on the fly
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^([-a-z]+).rtf$ /rtf-renderer.php?page=$1
-#
-#RewriteCond %{REQUEST_FILENAME} !-s
-#RewriteRule ^([-a-z]+)/([-a-z]+).rtf$ /rtf-renderer.php?page=$1&sub_page=$2 [NC]
