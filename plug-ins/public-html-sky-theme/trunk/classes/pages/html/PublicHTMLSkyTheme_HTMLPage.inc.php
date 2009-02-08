@@ -10,7 +10,6 @@ abstract class
 extends
 	PublicHTML_HTMLPage
 {
-	
 	protected function
 		render_head_link_stylesheet()
 	{
