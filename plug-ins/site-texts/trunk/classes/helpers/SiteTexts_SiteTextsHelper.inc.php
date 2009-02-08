@@ -62,12 +62,8 @@ class
 			if (
 				!file_exists($site_text_file_name) 
 			) {
-				throw new ErrorHandling_SprintfException(
-					'No text for the \'%s\' page \'%s\' section.',
-					array(
-						$page_name,
-						$section_name
-					)
+				throw new Exception(
+					"No '$section_name' section for the '$page_name'."
 				);
 			}
 		}
