@@ -1,4 +1,4 @@
-# Allowing access to project-specific/public-html
+# Allowing access to the public-html directory of the sky theme plug-in.
 # (c) 2008-07-07, Robert Impey
 
 Order Allow,Deny
