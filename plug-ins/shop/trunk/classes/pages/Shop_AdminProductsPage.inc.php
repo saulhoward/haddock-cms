@@ -76,7 +76,7 @@ extends
 		if (isset($_GET['order_by'])) {
 			define('ORDER_BY', $_GET['order_by']);
 		} else {
-			define('ORDER_BY', 'status');
+			define('ORDER_BY', 'added');
 		}
 		
 		if (isset($_GET['direction'])) {
