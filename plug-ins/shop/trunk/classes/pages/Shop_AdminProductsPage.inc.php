@@ -252,6 +252,7 @@ extends
 			$row_editing_url = clone $redirect_script_url;
 			$row_editing_url->set_get_variable('edit_id', $_GET['edit_id']);
 			$product_row = $products_table->get_row_by_id($_GET['edit_id']);
+			$row_editing_url->set_get_variable('plu_code', $product_row->get_plu_code());
 			$product_row_renderer = $product_row->get_renderer();
 			$row_editing_form  = $product_row_renderer
 				->get_product_editing_form($row_editing_url, $cancel_href);

@@ -154,6 +154,10 @@ if (isset($_GET['edit_id'])) {
 		$_POST
 	);
 	$return_to_url->set_get_variable('last_edited_id', $_GET['edit_id']);
+
+	if (isset($_GET['plu_code'])) {
+		$return_to_url->set_get_variable('plu_code', $_GET['plu_code']);
+	}
 }
 
 
