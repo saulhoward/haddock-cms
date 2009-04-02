@@ -157,6 +157,9 @@ div#content div.details
 	margin: 0 auto;
 	padding: 0.5em 1em;
 }
+div#content ul#photographs li {
+	display: inline;
+}
 /*
  * Navigation
  */
