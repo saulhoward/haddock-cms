@@ -64,7 +64,7 @@ class
 		$pd = $pdf->get_project_directory_for_this_project();
 			
 		$md = $pd->get_module_directory($section, $module);
-		
+	
 		$iscf = NULL;
 		$pscf = NULL;
 		$mcf = NULL;

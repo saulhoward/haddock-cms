@@ -8,7 +8,8 @@
 class
 	HaddockProjectOrganisation_ProjectSpecificConfigFile
 extends
-	FileSystem_XMLFile
+	HaddockProjectOrganisation_ConfigFile // Changed by Saul 6/4/09
+	//FileSystem_XMLFile
 {
     protected function
         get_project_tag()
