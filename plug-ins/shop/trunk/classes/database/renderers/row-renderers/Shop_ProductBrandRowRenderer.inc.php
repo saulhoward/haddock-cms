@@ -72,13 +72,13 @@ class
 		$name_td = $this->get_data_html_table_td($name_field);
 		$html_row->append_tag_to_content($name_td);
 
-		$owner_field = $table->get_field('owner');
-		$owner_td = $this->get_data_html_table_td($owner_field);
-		$html_row->append_tag_to_content($owner_td);
+		//$owner_field = $table->get_field('owner');
+		//$owner_td = $this->get_data_html_table_td($owner_field);
+		//$html_row->append_tag_to_content($owner_td);
 
-		$description_field = $table->get_field('description');
-		$description_td = $this->get_data_html_table_td($description_field);
-		$html_row->append_tag_to_content($description_td);
+		//$description_field = $table->get_field('description');
+		//$description_td = $this->get_data_html_table_td($description_field);
+		//$html_row->append_tag_to_content($description_td);
 
 		$url_field = $table->get_field('url');
 		$url_td = $this->get_data_html_table_td($url_field);

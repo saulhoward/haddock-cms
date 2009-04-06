@@ -270,7 +270,7 @@ if (isset($_GET['delete_id'])) {
 
 	$heading_row = new Database_SortableHeadingTR($sort_href, DIRECTION);
 
-	$field_names = explode(' ', 'name owner description url');
+	$field_names = explode(' ', 'name url');
 
 	$product_brand_header = new HTMLTags_TH('Image'); 
 	$heading_row->append_tag_to_content($product_brand_header);

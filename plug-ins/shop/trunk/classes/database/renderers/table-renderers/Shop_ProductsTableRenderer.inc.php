@@ -756,5 +756,102 @@ if (isset($medium_size_image_id)) {
 </div>
 <?php
 	}
+	public static function
+		get_full_product_div(
+			$name,
+			$product_page_href,
+			$medium_size_image_id,
+			$medium_size_image_file_type,
+			$price,
+			$added,
+			$quantity
+		)
+	{
+		$html = '';
+		$html .= <<<HTML
+<div
+  class="hlisting offer-sale list-item"
+>
+	<div
+	  class="summary"
+	>
+		<a
+		  class="summary-link"
+		  href="$product_page_href"
+		>$name</a>
+	</div>
+	<div
+	  class="description"
+	>
+		<a
+			class="img-link"
+			href="$product_page_href"
+		>
+HTML;
+
+if (isset($medium_size_image_id)) {
+	$html .= Database_ImagesHelper::get_img($medium_size_image_id)->get_as_string();
+} else {
+		$html .= <<<HTML
+		<img src="/plug-ins/shop/public-html/images/no-image-available-medium.png" />
+HTML;
+
+}
+
+		$html .= <<<HTML
+		</a>
+	</div>
+	<div class="details">
+HTML;
+
+		$html .= self::get_product_details_ul($price, $added, $quantity);
+		$html .= <<<HTML
+	</div>
+</div>
+HTML;
+
+		return $html;
+	}
+	/**
+	 * Shows the details of a product:
+	 *
+	 * 	- Price
+	 * 	- Date added
+	 * 	- Available stock.
+	 */
+	public static function
+		get_product_details_ul(
+			$price,
+			$added,
+			$quantity
+		)
+	{
+		$html = '';
+		$html .= <<<HTML
+<ul>
+	<li>
+		<span class="price">
+			&pound;
+HTML;
+
+		$html .= sprintf("%.2f\n", $price / 100);
+		$html .= <<<HTML
+		</span>
+	</li>
+	<li><span class="availability" >
+HTML;
+
+		if ($quantity > 0) {
+			$html .= (int)$quantity . " in stock";
+		} else {
+			$html .= "Out of Stock\n";
+		}
+		$html .= <<<HTML
+</span></li>
+</ul>
+HTML;
+
+		return $html;
+	}
 }
 ?>
