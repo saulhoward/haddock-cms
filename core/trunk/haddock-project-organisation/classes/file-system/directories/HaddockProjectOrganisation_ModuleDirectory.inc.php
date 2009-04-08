@@ -821,6 +821,18 @@ extends
 	{
 		$pd = $this->get_project_directory();
 
+		/*
+		 *This added by Saul because I think project specfic instance
+		 *specific config files should be in PD/config/config.xml, not
+		 *PD/config/project-specific/mash-shop/config.xml (where mash-shop is the project
+		 *name)
+		 * Of course, I might be wrong...
+		 */
+		if ($this->get_section_name() == 'project-specfic') {
+			return
+				$pd->get_name() . '/config/'
+				. '/config.xml';
+		}
 		return
 			$pd->get_name() . '/config/'
 			. $this->get_section_name() . '/'
