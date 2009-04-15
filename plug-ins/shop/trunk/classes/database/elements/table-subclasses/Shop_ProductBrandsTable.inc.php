@@ -203,7 +203,7 @@ Database_Table
 		/*
 		 * SANH 2008-09-15
 		 */
-		$brands = $this->get_all_rows();
+		$brands = $this->get_all_rows('name', 'ASC'); // Changed to order by name
 		$brands_with_stock = array();
 		foreach($brands as $brand)
 		{
