@@ -9,6 +9,25 @@ class
 	Database_ImagesHelper
 {
 	public static function
+		get_img_src($image_id)
+	{
+		$mysql_user_factory = Database_MySQLUserFactory::get_instance();
+			
+		$mysql_user = $mysql_user_factory->get_for_this_project();
+		$database = $mysql_user->get_database();
+		
+		$images_table = $database->get_table('hc_database_images');
+		
+		$image_row = $images_table->get_row_by_id($image_id);
+		
+		$image_renderer = $image_row->get_renderer();
+		
+		$url = $image_renderer->get_html_url_in_public_images();
+		
+		return $url->get_file();
+	}
+	
+	public static function
 		get_img($image_id)
 	{
 		$mysql_user_factory = Database_MySQLUserFactory::get_instance();
