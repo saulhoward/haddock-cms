@@ -101,6 +101,30 @@ class
 			. '.txt';
 	}
 	
+	/**
+	 * Processes a site text file.
+	 *
+	 * The format of the file is as follows.
+	 *
+	 * The first line should be PHP code that can render a string variable called
+	 * $text.
+	 *
+	 * This renderering code should be followed by a blank line and then
+	 * text in the specified format.
+	 *
+	 * e.g.
+	 *
+	 * <code>
+	 * return Textile_TranslationHelper::translate_textile_to_html($text);
+	 *
+	 * h1. Some Textile!
+	 * </code>
+	 * 
+	 * If the file does not exists, the function silently does nothing.
+	 * Perhaps it should throw an exception instead.
+	 * 
+	 * @param string $site_text_file_name The name of the file to process.
+	 */
 	public static function
 		process_site_text_file(
 			$site_text_file_name
@@ -123,11 +147,21 @@ class
 			fclose($file_handle);
 		}
 		
+		#echo "\$rendering_code: $rendering_code\n";
+		#echo "\$text: $text\n";
+		
 		return eval(
 			$rendering_code
 		);
 	}
 	
+	/**
+	 * This should be settable on a project by project basis.
+	 *
+	 * @see http://code.google.com/p/haddock-cms/issues/detail?id=96
+	 * 
+	 * @return string The default language code for the project.
+	 */
 	public static function
 		get_default_language_code()
 	{
