@@ -144,5 +144,19 @@ class
 		
 		return $out;
 	}
+
+	public static function
+		textile($in)
+	{
+		try
+		{
+			return Textile_TranslationHelper::translate_textile_to_html($in);
+		}
+		catch (Exception $e)
+		{
+
+		}
+
+	}
 }
 ?>
