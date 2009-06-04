@@ -1,4 +1,10 @@
 <?php
+/**
+ * MailingList_ConfigManager
+ *
+ * @copyright 2009-06-04, Robert Impey
+ */
+
 class
 	MailingList_ConfigManager
 extends
