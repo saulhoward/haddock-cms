@@ -81,6 +81,14 @@ class
 		}
 	}
 	
+	/**
+	 * Is this function necessary?
+	 *
+	 * The set_default_location(...) function above is almost identical.
+	 *
+	 * Should this function (and the CLI script that calls it:
+	 * PublicHTML_UpdateDefaultLocationCLIScript) be deleted?
+	 */
 	public static function
 		update_default_location($default_location)
 	{
