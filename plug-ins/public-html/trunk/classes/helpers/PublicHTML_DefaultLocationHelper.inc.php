@@ -84,7 +84,6 @@ class
 	public static function
 		update_default_location($default_location)
 	{
-
 		$validator = new PublicHTML_DefaultLocationValidator();
 		
 		if ($validator->validate($default_location)) {
