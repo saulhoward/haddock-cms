@@ -4,6 +4,26 @@ class PhotoGallery_GalleryHelper
 	public static function
 		get_gallery_div()
 	{
+		return self::get_all_photos_gallery_div();
+	}
+
+	public static function
+		get_all_photos_gallery_div()
+	{
+		$images = self::get_all_photographs();
+		return self::get_gallery_div_for_images($images);
+	}
+
+	public static function
+		get_album_gallery_div($album_id)
+	{
+		$images = self::get_all_photographs_for_album_id($album_id);
+		return self::get_gallery_div_for_images($images);
+	}
+
+	public static function
+		get_gallery_div_for_images($images)
+	{
 		$content_div = new HTMLTags_Div();
 
 		$content_div->set_attribute_str('class', 'content');
@@ -21,7 +41,7 @@ class PhotoGallery_GalleryHelper
 
 		$first = TRUE;
 
-		foreach (self::get_all_photographs() as $image)
+		foreach ($images as $image)
 		{
 			$li = new HTMLTags_LI();
 			if ($first)
@@ -117,6 +137,49 @@ SELECT
 	*
 	FROM
 	hpi_photo_gallery_photographs
+	ORDER BY
+	hpi_photo_gallery_photographs.sort_order ASC
+SQL;
+
+		#echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$events = array();
+		$datas = array();
+
+		while ($row = mysql_fetch_assoc($result)) 
+		{
+			$datas[] = $row;
+		}
+		foreach ($datas as $data)
+		{
+			//                        print_r($row);exit;
+			$event = new PhotoGallery_Photograph($data['id']);
+			$event->set_name($data['name']);
+			$event->set_added($data['added']);
+			$event->set_description($data['description']);
+			$event->set_image_url($data['image_url']);
+			$events[] = $event;
+		}
+
+		return $events;
+	}
+
+	public static function
+		get_all_photographs_for_album_id($album_id)
+	{
+		$dbh = DB::m();
+
+		$album_id = mysql_real_escape_string($album_id, $dbh);
+
+		$query = <<<SQL
+SELECT
+	*
+	FROM
+	hpi_photo_gallery_photographs
+	WHERE
+	album_id = $album_id
 	ORDER BY
 	hpi_photo_gallery_photographs.sort_order ASC
 SQL;

@@ -17,7 +17,11 @@ PublicHTML_HTMLPage
 	public function
 		content()
 	{
-		echo PhotoGallery_GalleryHelper::get_gallery_div();
+		if (isset($_GET['album_id'])) {
+			echo PhotoGallery_GalleryHelper::get_album_gallery_div($_GET['album_id']);
+		} else {
+			echo PhotoGallery_GalleryHelper::get_all_photos_gallery_div();
+		}
 	}
 
 	public function 
