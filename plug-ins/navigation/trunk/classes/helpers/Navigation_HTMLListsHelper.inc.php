@@ -115,9 +115,9 @@ class
 		 * as the page we're currently on. Based on various guesses about
 		 * plug-ins and normal practices, it  seems to work so far...
                  */
-		//print_r($node);print_r($page_class_str);
-		//print_r($_GET);
-		//print_r($_SERVER['SCRIPT_NAME']);exit;
+		print_r($node);print_r($page_class_str);
+		print_r($_GET);
+		print_r($_SERVER['SCRIPT_NAME']);exit;
 		//print_r($node);print_r($page_class_str);exit;
 
                 /*
