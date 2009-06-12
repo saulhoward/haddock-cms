@@ -110,8 +110,15 @@ class
 			$page_class_str
 		)
 	{
-		//print_r($node);print_r($page_class_str);exit;
+                /**
+		 * This is a best guess attempt at whether this node is the same 
+		 * as the page we're currently on. Based on various guesses about
+		 * plug-ins and normal practices, it  seems to work so far...
+                 */
 		//print_r($node);print_r($page_class_str);
+		//print_r($_GET);
+		//print_r($_SERVER['SCRIPT_NAME']);exit;
+		//print_r($node);print_r($page_class_str);exit;
 
                 /*
 		 *Home Page, if it's the Default page and the href is '/'
@@ -121,6 +128,41 @@ class
 			$pm = $cmf->get_config_manager('haddock', 'public-html');
 			if ('/' . $page_class_str == $pm->get_default_url()) {
 				return TRUE;
+			}
+		}
+
+                /**
+		 * Site Texts plug in. 
+		 * At the mo, ['site-texts'] & ['language']
+		 * get info and the .htaccess rule which translates 
+		 * them from /en/home.html or /fr/home.html
+		 * is only set in one certain proj-spec,
+		 * but I wanna move it up so I included this code here
+                 */
+		if (isset($_GET['site-texts'])) {
+			if (
+				isset($_GET['language'])
+				&&
+				isset($_GET['page'])
+			) {
+				if (
+					'/' 
+					. $_GET['language'] 
+					. '/' 
+					. $_GET['page'] 
+					. '.html' 
+					== 
+					$node['url_href']
+				) {
+					return TRUE;
+				}
+				if (
+					($node['url_href'] == '/')
+					&&
+					($_GET['page'] == 'home')
+				) {
+					return TRUE;
+				}
 			}
 		}
 
