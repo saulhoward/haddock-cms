@@ -115,7 +115,7 @@ padding: 1em 0 0 0;
 #content table{
     margin: 0.3em auto 0 auto;
     padding: 0;
-    width: auto;
+    width: 100%;
     height: auto;
     border-spacing:1px;
     font:100% 'Verdana', Arial, Helvetica, sans-serif;

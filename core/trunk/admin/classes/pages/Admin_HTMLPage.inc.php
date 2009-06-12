@@ -16,6 +16,7 @@ extends
 	protected function
 		render_head_link_stylesheet()
 	{
+		echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
 		HTMLTags_LinkRenderer::render_style_sheet_link('/admin/styles/styles.css');
 	}
 

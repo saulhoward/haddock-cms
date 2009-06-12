@@ -3,6 +3,9 @@
 	<haddock-project-organisation>
 		<config-manager>Admin_ConfigManager</config-manager>
 	</haddock-project-organisation>
+	<oo-page-classes>
+		<exception value="Admin_ExceptionPage" />
+	</oo-page-classes>
 	<navigation>
 		<file-not-found-msg>
 <![CDATA[
