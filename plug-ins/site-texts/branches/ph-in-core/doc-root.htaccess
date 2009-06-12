@@ -1,0 +1,15 @@
+# Fragment of the doc root .htaccess file from the site-texts module.
+#
+# @copyright 2009-06-07, Robert Impey
+
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1&pcro-factory=SiteTexts_PCROFactory&page=$1
+</IfModule>
+
+# Back up using mod_alias
+
+<IfModule !mod_rewrite.c>
+	RedirectMatch temp ^/site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1\&pcro-factory=SiteTexts_PCROFactory\&page=$1
+</IfModule>
+
