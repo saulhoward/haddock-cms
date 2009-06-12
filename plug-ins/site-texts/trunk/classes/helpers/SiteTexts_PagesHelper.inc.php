@@ -34,14 +34,21 @@ class
 		get_content_for_current_page()
 	{
 		if (isset($_GET['page'])) {
+
 			$page_name = $_GET['page'];
+
+			if (isset($_GET['language'])) {
+				$language_code = $_GET['language'];
+			} else {
+				$language_code = NULL;
+			}
 			
 			/*
 			 * TO DO: Check that the page name is nice.
 			 */
 			
 			return SiteTexts_SiteTextsHelper
-				::get_site_text($page_name, 'content');
+				::get_site_text($page_name, 'content', $language_code);
 		} else {
 			throw Exception('The page name must be set!');
 		}
