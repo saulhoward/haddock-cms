@@ -14,8 +14,8 @@ class
 	 * If the user is logged in as an admin user,
 	 * then a link to the appropriate page in the admin section is provided.
 	 *
-	 * if the user is not logged in and the section required is 'content', then the exception
-	 * is propagated.
+	 * If the user is not logged in and the section required is 'content',
+	 * then the exception is propagated.
 	 *
 	 * Otherwise, the function does nothing.
 	 */
@@ -25,8 +25,23 @@ class
 			$section_name
 		)
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __FILE__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
 		try {
-			$filtered_page_section = DBPages_SPoE::get_filtered_page_section($page_name, $section_name);
+			$filtered_page_section
+				= DBPages_SPoE
+					::get_filtered_page_section(
+						$page_name,
+						$section_name
+					);
 			
 			if (Admin_LogInHelper::is_logged_id()) {
 				DBPages_AdminHelper
@@ -65,7 +80,11 @@ class
 		render_current_page_content()
 	{
 		if (isset($_GET['page'])) {
-			DBPages_PageRenderer::render_page_section($_GET['page'], 'content');
+			DBPages_PageRenderer
+				::render_page_section(
+					$_GET['page'],
+					'content'
+				);
 		} else {
 			echo "<p class=\"error\">Please set the page name!</p>\n";
 		}

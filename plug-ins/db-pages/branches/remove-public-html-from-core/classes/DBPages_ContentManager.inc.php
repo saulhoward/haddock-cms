@@ -60,6 +60,16 @@ class
 	public function
 		get_page($page_name)
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo 'File: ' . __FILE__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
 		$raw_page_sections = self::get_raw_page_sections($page_name);
 		
 		$first = TRUE;
@@ -90,6 +100,16 @@ class
 	private function
 		get_raw_page_sections($page_name)
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo 'File: ' . __FILE__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
 		#$dbh = DB::m();
 		
 		#$raw_page_sections = array();
@@ -132,7 +152,7 @@ class
 		
 		$query = new DBPages_FetchAllSectionsForPageSelectQuery($page_name);
 		
-		#print_r($query);
+		#echo "\$query:\n"; print_r($query); exit;
 		
 		#echo '$query->get_as_string(): ' . "\n";
 		#echo $query->get_as_string();
@@ -148,6 +168,8 @@ class
 		#}
 		
 		$raw_page_sections = Database_FetchingHelper::get_rows_for_query($query);
+		
+		#echo "\$raw_page_sections:\n"; print_r($raw_page_sections); exit;
 		
 		if (count($raw_page_sections) > 0) {
 			return $raw_page_sections;

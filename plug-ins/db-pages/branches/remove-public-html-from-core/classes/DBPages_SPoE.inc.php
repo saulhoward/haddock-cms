@@ -42,7 +42,18 @@ class
 	public static function
 		get_filtered_page_section($page_name, $section_name)
 	{
+		if (DEBUG) {
+			echo DEBUG_DELIM_OPEN;
+			
+			echo __FILE__ . PHP_EOL;
+			echo 'Line: ' . __LINE__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
+			
+			echo DEBUG_DELIM_CLOSE;
+		}
+		
 		$cm = DBPages_ContentManager::get_instance();
+		#echo "\$cm:\n"; print_r($cm); exit;
 		
 		$page = $cm->get_page($page_name);
 		#print_r($page);exit;
