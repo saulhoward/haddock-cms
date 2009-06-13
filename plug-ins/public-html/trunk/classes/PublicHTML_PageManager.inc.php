@@ -60,7 +60,8 @@ class
 	{
 		return isset($this->section)
 			#? $this->section : 'project-specific';
-			? $this->section : 'haddock';
+			#? $this->section : 'haddock';
+			? $this->section : 'plug-ins';
 	}
 
 	public function 
@@ -82,7 +83,8 @@ class
 			if (isset($this->module)) {
 				return $this->module;
 			} else {
-				if ($this->get_section() == 'haddock') {
+				#if ($this->get_section() == 'haddock') {
+				if ($this->get_section() == 'plug-ins') {
 					return 'public-html';
 				} else {
 					throw new Exception('Module not set in ' . $this->get_section() . ' section!');
@@ -148,7 +150,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo DEBUG_DELIM_CLOSE;
@@ -159,7 +161,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo 'print_r($module_directory):' . PHP_EOL;
@@ -638,7 +640,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo DEBUG_DELIM_CLOSE;
@@ -652,7 +654,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo 'print_r($pd):' . PHP_EOL;
@@ -666,7 +668,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo '$section: '. $section . PHP_EOL;
@@ -689,7 +691,7 @@ class
 		if (DEBUG) {
 			echo DEBUG_DELIM_OPEN;
 			
-			echo __METHOD__ . PHP_EOL;
+			echo 'Method: ' . __METHOD__ . PHP_EOL;
 			echo 'Line: ' . __LINE__ . PHP_EOL;
 			
 			echo 'print_r($module_directory):' . PHP_EOL;
