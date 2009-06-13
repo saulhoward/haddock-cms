@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-02-03
+ * Last Modified: 2009-06-13
  */
 
 function __autoload($class_name)
@@ -461,6 +461,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'directories' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_IncludesDirectory.inc.php';
 			break;
 
+		case('HaddockProjectOrganisation_InitialTimeHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_InitialTimeHelper.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_ListModuleNamesCLIScript'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_ListModuleNamesCLIScript.inc.php';
 			break;
@@ -619,6 +623,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_RequiredModulesFile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_RequiredModulesFile.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_SetInitalTimeCLIScript'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_SetInitalTimeCLIScript.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_SetModuleDirectoryCamelCaseRootCLIScript'): 
@@ -1109,6 +1117,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'PublicHTML_JavaScriptPage.inc.php';
 			break;
 
+		case('PublicHTML_NavigationListsHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'PublicHTML_NavigationListsHelper.inc.php';
+			break;
+
 		case('PublicHTML_PageDirectory'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'PublicHTML_PageDirectory.inc.php';
 			break;
@@ -1255,6 +1267,10 @@ function __autoload($class_name)
 
 		case('Textile_Textile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'textile' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Textile_Textile.inc.php';
+			break;
+
+		case('Textile_TranslationHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'textile' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Textile_TranslationHelper.inc.php';
 			break;
 
 		case('UnitTests_CreateUnitTestsClassCLIScript'): 
