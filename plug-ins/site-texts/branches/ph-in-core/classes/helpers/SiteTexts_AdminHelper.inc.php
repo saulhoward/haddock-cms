@@ -27,7 +27,10 @@ SiteTexts_AdminHelper
 		 * (/page/section/en.txt)
 		 */
 		$dirs = array();
-		$dir_handle = @opendir($path) or die("Unable to open $path");
+		//$dir_handle = @opendir($path) or die("Unable to open $path");
+		if (!$dir_handle = opendir($path)) {
+			throw new Admin_FileException("Unable to open $path");
+		}
 		while ($file = readdir($dir_handle)) {
 
 			if(
@@ -54,7 +57,10 @@ SiteTexts_AdminHelper
 	public static function
 		get_manage_site_texts_html_table()
 	{
-		$html = <<<HTML
+		$html = '';
+		try
+		{
+			$html .= <<<HTML
 <table>
 	<thead>
 		<tr>
@@ -66,27 +72,27 @@ SiteTexts_AdminHelper
 	<tbody>
 HTML;
 
-		$pages = self::get_site_text_pages();
+			$pages = self::get_site_text_pages();
 
-		foreach ($pages as $page_name => $sections) {
+			foreach ($pages as $page_name => $sections) {
 
-			foreach ($sections as $section_name => $should_be_null) {
+				foreach ($sections as $section_name => $should_be_null) {
 
-				$edit_link = self::get_admin_page_edit_section_url(
-					$page_name,
-					$section_name
-				)->get_as_string();
+					$edit_link = self::get_admin_page_edit_section_url(
+						$page_name,
+						$section_name
+					)->get_as_string();
 
-				if (
-					(isset($_GET['page']))
-					&&
-					(isset($_GET['section']))
-					&&
-					($_GET['page'] == $page_name)
-					&&
-					($_GET['section'] == $section_name)
-				) {
-					$html .= <<<HTML
+					if (
+						(isset($_GET['page']))
+						&&
+						(isset($_GET['section']))
+						&&
+						($_GET['page'] == $page_name)
+						&&
+						($_GET['section'] == $section_name)
+					) {
+						$html .= <<<HTML
 		<tr id="selected">
 			<td>$page_name</td>
 			<td>$section_name</td>
@@ -94,8 +100,8 @@ HTML;
 		</tr>
 HTML;
 
-				} else {
-					$html .= <<<HTML
+					} else {
+						$html .= <<<HTML
 		<tr>
 			<td>$page_name</td>
 			<td>$section_name</td>
@@ -103,14 +109,23 @@ HTML;
 		</tr>
 HTML;
 
+					}
 				}
 			}
-		}
 
-$html .= <<<HTML
+			$html .= <<<HTML
 	</tbody>
 </table>
 HTML;
+
+		}
+		catch (Admin_FileException $e)
+		{
+			$html .= '<div id="warning" class="error">'
+				. '<p><em>Please contact your Website Administrator</em></p><p>'
+				. $e->getMessage()
+				. '</p></div>';
+		}
 
 		return $html;
 	}
@@ -126,10 +141,31 @@ HTML;
 <h2>Edit text for the <em>$section</em> section on the <em>$page</em> page</h2>
 HTML;
 
-		$languages = self::get_languages_in_section($page, $section);
-		foreach ($languages as $language) {
-			$html .= self::get_edit_form_for_language($language);
+		try 
+		{
+			$languages = self::get_languages_in_section($page, $section);
+			foreach ($languages as $language) {
+				try
+				{
+					$html .= self::get_edit_form_for_language($language);
+				}
+				catch (Admin_FileException $e)
+				{
+					$html .= '<div id="warning" class="error">'
+						. '<p><em>Please contact your Website Administrator</em></p><p>'
+						. $e->getMessage()
+						. '</p></div>';
+				}
+			}
 		}
+		catch (Admin_FileException $e)
+		{
+			$html .= '<div id="warning" class="error">'
+				. '<p><em>Please contact your Website Administrator</em></p><p>'
+				. $e->getMessage()
+				. '</p></div>';
+		}
+
 		return $html;
 	}
 
@@ -143,7 +179,11 @@ HTML;
 		$post_url = self::get_admin_page_edit_language_post_url()->get_as_string();
 		$contents = '';
 		$filter_function = '';
-		$lines = file($path);
+		if (is_readable($path)) {
+			$lines = file($path);
+		} else {
+			throw new Admin_FileException('Could not read file ' . $path);
+		}
 
 		foreach ($lines as $line_num => $line) {
 			if ($line_num == 0) {
@@ -194,7 +234,11 @@ HTML;
 
 		$languages = array();
 
-		$dir_handle = @opendir($path) or die("Unable to open $path");
+		//$dir_handle = @opendir($path) or die;
+		if (!$dir_handle = opendir($path)) {
+
+			throw new Admin_FileException("Unable to open $path");
+		}
 
 		while ($file = readdir($dir_handle)) {
 			if(
