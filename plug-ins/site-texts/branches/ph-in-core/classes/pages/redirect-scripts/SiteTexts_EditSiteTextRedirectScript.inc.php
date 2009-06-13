@@ -47,7 +47,10 @@ PublicHTML_RedirectScript
 			(isset($_POST['path']))
 		) {
 			$path = $_POST['path'];
-			$contents = $_POST['filter_function'] .  $_POST['contents'];
+			//$contents = html_entity_decode($_POST['contents'], ENT_NOQUOTES, "UTF-8");
+
+			$contents = stripslashes($_POST['contents']);
+			$contents = $_POST['filter_function'] .  $contents;
 			//print_r($contents);exit;
 
 			/*

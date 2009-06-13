@@ -192,6 +192,9 @@ HTML;
 			}
 			$contents .= $line;
 		}
+		//$contents = htmlentities($contents);
+		//$contents = htmlspecialchars($contents);
+		$contents = htmlentities($contents, ENT_NOQUOTES, "UTF-8");
 
 		$html = '';
 		$html .= <<<HTML
