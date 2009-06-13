@@ -166,24 +166,38 @@ div#content div.details
 div#content ul#photographs li {
 	display: inline;
 }
+div#content div.language-form {
+text-align: center;
+margin: 0 0 40px 0;
+}
+div#content div.language-form input.submit {
+font-size: 1.2em;
+}
 div#content div.language-form textarea {
-width: 100%;
+width: 40em;
 height: 30em;
 }
 div#content table tbody tr#selected td {
 background-color: #FFFF66;
 }
-div#content div#last-action-div {
-background-color: #FF4040;
-padding: 0.5em;
+div#content div.last-action-div {
+background-color: #66FF66;
 width: 20em;
 float: right;
 text-align: center;
 margin-right: 10px;
 font-size:90%;
 }
+div#content div.last-action-div p {
+padding: 0.5em;
+}
+
+div#content div.last-action-div#error {
+background-color: #FF4040;
+}
 div.clear {
 clear:both;
+height: 0;
 }
 /*
  * Navigation
