@@ -4,12 +4,23 @@
 
 <IfModule mod_rewrite.c>
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1&pcro-factory=SiteTexts_PCROFactory&page=$1
+	RewriteRule ^site-texts-pages/([-\w]+)\.html /plug-ins/public-html/public-html/index.php?oo-page=1&pcro-factory=SiteTexts_PCROFactory&page=$1
+	# The rule rewrites the URL to use the index.php file in the plug-ins.
+	# If you are using a version of Haddock where the public-html module and the index.php
+	# file are in the core haddock folder, then you should use the branch of this
+	# plug-in at
+	# http://haddock-cms.googlecode.com/svn/plug-ins/site-texts/branches/ph-in-core/
+	# or, if you have write access,
+	# https://haddock-cms.googlecode.com/svn/plug-ins/site-texts/branches/ph-in-core/
+	#
+	#RewriteRule ^site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1&pcro-factory=SiteTexts_PCROFactory&page=$1
 </IfModule>
 
 # Back up using mod_alias
 
 <IfModule !mod_rewrite.c>
-	RedirectMatch temp ^/site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1\&pcro-factory=SiteTexts_PCROFactory\&page=$1
+	# See above.
+	#RedirectMatch temp ^/site-texts-pages/([-\w]+)\.html /haddock/public-html/public-html/index.php?oo-page=1\&pcro-factory=SiteTexts_PCROFactory\&page=$1
+	RedirectMatch temp ^/site-texts-pages/([-\w]+)\.html /plug-ins/public-html/public-html/index.php?oo-page=1\&pcro-factory=SiteTexts_PCROFactory\&page=$1
 </IfModule>
 
