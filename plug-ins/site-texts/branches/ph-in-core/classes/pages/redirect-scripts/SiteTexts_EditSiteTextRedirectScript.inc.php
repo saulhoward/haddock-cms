@@ -53,19 +53,27 @@ PublicHTML_RedirectScript
 			/*
 			 *Open the file and write over it
 			 */
-			if (is_writable($path)) {
+			try 
+			{
+				if (is_writable($path)) {
 
-				if (!$handle = fopen($path, 'w')) {
-					throw new Admin_FileException('Could not open file ' .$path);
+					if (!$handle = fopen($path, 'w')) {
+						throw new Admin_FileException('Could not open file ' .$path);
+					}
+					if (fwrite($handle, $contents) === FALSE) {
+						throw new Admin_FileException('Could not write to file ' .$path);
+					}
+
+					fclose($handle);
+
+				} else {
+					throw new Admin_FileException('File ' .$path . ' is not writable.');
 				}
-				if (fwrite($handle, $contents) === FALSE) {
-					throw new Admin_FileException('Could not write to file ' .$path);
-				}
+			}
+			catch (Admin_FileException $e)
+			{
+				$return_url->set_get_variable('error', urlencode($e->getMessage()));
 
-				fclose($handle);
-
-			} else {
-				throw new Admin_FileException('File ' .$path . ' is not writable.');
 			}
 			$return_url->set_get_variable('page', $_POST['page']);
 			$return_url->set_get_variable('section', $_POST['section']);
