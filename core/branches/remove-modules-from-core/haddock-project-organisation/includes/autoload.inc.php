@@ -8,7 +8,7 @@
 if (DEBUG) {
 	echo DEBUG_DELIM_OPEN;
 	
-	echo __FILE__ . PHP_EOL;
+	echo 'File: ' . __FILE__ . PHP_EOL;
 	
 	echo DEBUG_DELIM_CLOSE;
 }
