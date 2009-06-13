@@ -158,15 +158,21 @@ HTML;
 <div class="language-form">
 	<h3>Edit text in <em>$name</em></h3>
 	<form method="post" action="$post_url">
+<ol>
+<li>
 		<textarea name="contents">
 $contents
 		</textarea>
+</li>
+<li>
 		<input type="hidden" name="filter_function" value="$filter_function" />
 		<input type="hidden" name="page" value="$page" />
 		<input type="hidden" name="section" value="$section" />
 		<input type="hidden" name="language" value="$name" />
 		<input type="hidden" name="path" value="$path" />
-		<input type="submit" value="Edit" /> 
+		<input class="submit" type="submit" value="Edit" /> 
+</li>
+</ol>
 	</form>
 </div>
 HTML;
