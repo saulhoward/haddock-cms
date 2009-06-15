@@ -148,12 +148,17 @@ div#content dt
 {
 	font-weight: 900;
 	font-size: 90%;
-	width: 4em;
+	width: 40%;
 }
 
 div#content dd
 {
-	margin: -1em 0 1em 6em;
+	margin: -1em 0 1em 40%;
+}
+
+div#content dd span.not_set
+{
+color: red;
 }
 div#content div.details
 {
