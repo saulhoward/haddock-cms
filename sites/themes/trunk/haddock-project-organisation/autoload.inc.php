@@ -2,13 +2,29 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-06-13
+ * Last Modified: 2009-06-17
  */
 
 function __autoload($class_name)
 {
 	switch ($class_name) {
 	
+		case('Caching_CacheDirectoryCreator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'caching' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Caching_CacheDirectoryCreator.inc.php';
+			break;
+
+		case('Caching_CacheManager'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'caching' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Caching_CacheManager.inc.php';
+			break;
+
+		case('Caching_GlobalVarManager'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'caching' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Caching_GlobalVarManager.inc.php';
+			break;
+
+		case('Caching_SessionVarManager'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'caching' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Caching_SessionVarManager.inc.php';
+			break;
+
 		case('CLIScripts_ArgsHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'CLIScripts_ArgsHelper.inc.php';
 			break;
