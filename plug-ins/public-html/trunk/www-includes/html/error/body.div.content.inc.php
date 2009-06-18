@@ -12,7 +12,16 @@
 >
 <?php
 if (isset($_SESSION['exception'])) {
-    $div_exception = new HTMLTags_ExceptionDiv($_SESSION['exception']);
+    /*
+     * RFI 2009-06-18
+     */
+    #$div_exception = new HTMLTags_ExceptionDiv($_SESSION['exception']);
+    $div_exception
+        = new HTMLTags_ExceptionDiv(
+            $_SESSION['exception'],
+            $print_name = TRUE,
+			$print_trace = TRUE
+        );
     
     echo $div_exception->get_as_string();
 } else {

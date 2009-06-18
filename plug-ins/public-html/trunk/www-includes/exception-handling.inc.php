@@ -53,7 +53,11 @@ if (
    $url .= ':' . $_SERVER['SERVER_PORT'];
 }
 
-$url .= '/?section=haddock&module=public-html&page=error&type=html';
+/*
+ * RFI 2009-06-18
+ */
+#$url .= '/?section=haddock&module=public-html&page=error&type=html';
+$url .= '/?section=plug-ins&module=public-html&page=error&type=html';
 
 $_SESSION['exception'] = $e;
 
@@ -67,8 +71,14 @@ $url .= '&return_to=' . urlencode($return_to_url->get_as_string());
  * Redirect the browser to the page.
  */
 
-if ($debug) {
+#if ($debug) {
+if (DEBUG) {
+   echo DEBUG_DELIM_OPEN;
+   
+   echo "Redirecting!\n";
    echo "\$url: $url\n";
+   
+   echo DEBUG_DELIM_CLOSE;
 } else {
    header("Location: $url");
    exit;
