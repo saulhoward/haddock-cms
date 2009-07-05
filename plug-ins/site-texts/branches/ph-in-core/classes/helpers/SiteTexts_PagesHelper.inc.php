@@ -53,5 +53,31 @@ class
 			throw Exception('The page name must be set!');
 		}
 	}
+
+	public static function
+		get_current_language_code()
+	{
+		if (isset($_GET['language'])) {
+			return $_GET['language'];
+		} else {
+			return NULL;
+		}
+	}
+
+	public static function
+		get_current_page()
+	{
+		if (isset($_GET['page'])) {
+
+			$page_name = $_GET['page'];
+			/*
+			 * TO DO: Check that the page name is nice.
+			 */
+			
+			return $page_name;
+		} else {
+			throw Exception('The page name must be set!');
+		}
+	}
 }
 ?>
