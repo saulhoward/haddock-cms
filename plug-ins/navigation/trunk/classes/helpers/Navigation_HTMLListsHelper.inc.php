@@ -82,6 +82,10 @@ class
 			#Navigation_NodeRenderer::render_node($node);
 			
 			$li = new HTMLTags_LI();
+			$li->set_attribute_str(
+				'id',
+				self::get_line_css_id($node['url_href'])
+			);
 
 			if (
 				($page_class_str != NULL)
@@ -102,6 +106,27 @@ class
 		}
 		
 		return $ul;
+	}
+
+	public static function 
+		get_line_css_id(
+			$url_href
+		)
+	{
+                /**
+		 * Guess the most appropriate id attribute to give each line
+		 * of the ul -- they need to be unique, so we're gonna start
+		 * by using the url_href
+                 */
+		$url_href = strtolower(str_replace(' ', '', $url_href));
+		if ($url_href == '/') {
+		       	return 'home';
+		} elseif (strpos($url_href, '.html')) {
+			preg_match('/\/([^\/]*)\.html/', $url_href, $matches);
+			return $matches[1];
+		}
+
+		return 'home';
 	}
 
 	public static function 
