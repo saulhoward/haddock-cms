@@ -11,6 +11,7 @@ class
 	public static function
 		translate_textile_to_html($textile_text)
 	{
+		$textile_text = stripslashes($textile_text);
 		$textile = new Textile_Textile();
 		
 		return $textile->TextileThis($textile_text);
