@@ -11,24 +11,51 @@ class PhotoGallery_GalleryHelper
 		get_all_photos_gallery_div()
 	{
 		$images = self::get_all_photographs();
-		return self::get_gallery_div_for_images($images);
+		$content_div = self::get_content_div();
+		$content_div->append(self::get_gallery_div_for_images($images));
+		return $content_div;
 	}
 
 	public static function
-		get_album_gallery_div($album_id)
+		get_album_gallery_div(
+			$album_id,
+			$description = FALSE
+		)
 	{
 		$images = self::get_all_photographs_for_album_id($album_id);
-		return self::get_gallery_div_for_images($images);
+		$content_div = self::get_content_div();
+		if ($description) {
+			$content_div->append(self::get_album_description_div($album_id));
+		}
+		$content_div->append(self::get_gallery_div_for_images($images));
+		return $content_div;
 	}
 
 	public static function
-		get_gallery_div_for_images($images)
+		get_album_description_div($album_id)
+	{
+		$album_info = self::get_information_for_album_id($album_id);
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'album-details');
+		$div->append('<h2>' . $album_info['title'] . '</h2>');
+		//$div->append('<p class="description">' . $album_info['description'] . '</p>');
+		return $div;
+	}
+		
+	public static function
+		get_content_div()
 	{
 		$content_div = new HTMLTags_Div();
 
 		$content_div->set_attribute_str('class', 'content');
 		$content_div->set_attribute_str('id', 'GalleryPage');
+		return $content_div;
+	}
 
+
+	public static function
+		get_gallery_div_for_images($images)
+	{
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'gallery_div');
 
@@ -54,8 +81,7 @@ class PhotoGallery_GalleryHelper
 		}
 		$div->append($ul);
 
-		$content_div->append_tag_to_content($div);
-		return $content_div;
+		return $div;
 	}
 
 	public static function
@@ -207,6 +233,36 @@ SQL;
 		}
 
 		return $events;
+	}
+
+	public static function
+		get_information_for_album_id($album_id)
+	{
+		$dbh = DB::m();
+
+		$album_id = mysql_real_escape_string($album_id, $dbh);
+
+		$query = <<<SQL
+SELECT
+	*
+	FROM
+	hpi_photo_gallery_albums
+	WHERE
+	id = $album_id
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$datas = array();
+
+		while ($row = mysql_fetch_assoc($result)) 
+		{
+			$datas[] = $row;
+		}
+		//print_r($datas);exit;
+		return $datas[0];
 	}
 }
 ?>
