@@ -32,12 +32,34 @@ VideoLibrary_URLHelper
 		get_video_page_url($video_id)
 	{
 		$video_page_class_name 
-			= VideoLibrary_PagesHelper::get_video_page_class_name();
+			= VideoLibrary_PagesHelper
+			::get_video_page_class_name();
 		$get_variables = array(
-                        "video_id" => $video_id
-                );
-                return PublicHTML_URLHelper
-                        ::get_oo_page_url('DirtyDodo_VideoPage', $get_variables);
+			"video_id" => $video_id
+		);
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				$video_page_class_name,
+				$get_variables
+			);
+	}
+
+	public static function
+		get_external_video_provider_search_page_url(
+			$provider_id
+		)
+	{
+		$search_page_class_name 
+			= VideoLibrary_PagesHelper
+			::get_search_page_class_name();
+		$get_variables = array(
+			"external_video_provider_id" => $provider_id
+		);
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				$search_page_class_name,
+				$get_variables
+			);
 	}
 }
 ?>

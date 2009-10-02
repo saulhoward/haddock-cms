@@ -81,5 +81,32 @@ SQL;
 		//print_r($videos);exit;
 		return $videos;
 	}
+
+	public static function
+		get_external_video_providers()
+	{
+		$dbh = DB::m();
+
+		//$limit = mysql_real_escape_string($limit);
+                    
+                $query = <<<SQL
+SELECT
+	*
+FROM
+	hpi_video_library_external_video_providers
+SQL;
+                    
+                //echo $query; exit;
+                    
+                $result = mysql_query($query, $dbh);
+
+                $providers = array();
+                    
+                while ($row = mysql_fetch_assoc($result)) {
+                        $providers[] = $row;
+                }   
+		//print_r($videos);exit;
+		return $providers;
+	}
 }
 ?>

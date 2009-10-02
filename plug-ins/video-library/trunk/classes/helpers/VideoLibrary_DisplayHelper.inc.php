@@ -77,5 +77,28 @@ VideoLibrary_DisplayHelper
 		return $html;
 	}
 
+	public static function
+		get_external_video_provider_navigation_div($providers)
+	{
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'providers');
+		$ul = new HTMLTags_UL();
+		foreach ($providers as $provider) {
+			$li = new HTMLTags_LI();
+			$a = new HTMLTags_A();
+			$a->set_href(
+				VideoLibrary_URLHelper
+				::get_external_video_provider_search_page_url(
+					$provider['id']
+				)
+			);
+			$a->append($provider['name']);
+			$li->append($a);
+			$ul->append($li);
+		}
+		$div->append($ul);
+		return $div;
+	}
+
 }
 ?>
