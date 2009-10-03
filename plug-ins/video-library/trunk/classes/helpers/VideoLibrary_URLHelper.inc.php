@@ -45,6 +45,23 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
+		get_external_video_library_search_page_url(
+			$library_id
+		)
+	{
+		$search_page_class_name 
+			= VideoLibrary_PagesHelper
+			::get_search_page_class_name();
+		$get_variables = array(
+			"external_video_library_id" => $library_id
+		);
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				$search_page_class_name,
+				$get_variables
+			);
+	}
+	public static function
 		get_external_video_provider_search_page_url(
 			$provider_id
 		)
@@ -55,6 +72,33 @@ VideoLibrary_URLHelper
 		$get_variables = array(
 			"external_video_provider_id" => $provider_id
 		);
+		if (isset($_GET['external_video_library_id'])) {
+			$get_variables['external_video_library_id'] 
+				= $_GET['external_video_library_id'];
+		}
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				$search_page_class_name,
+				$get_variables
+			);
+	}
+
+	public static function
+		get_tags_search_page_url(
+			$tag_ids
+		)
+	{
+		$search_page_class_name 
+			= VideoLibrary_PagesHelper
+			::get_search_page_class_name();
+		$get_variables = array(
+			"tag_ids" => implode(',', $tag_ids)
+		);
+		if (isset($_GET['external_video_library_id'])) {
+			$get_variables['external_video_library_id'] 
+				= $_GET['external_video_library_id'];
+		}
+	
 		return PublicHTML_URLHelper
 			::get_oo_page_url(
 				$search_page_class_name,
