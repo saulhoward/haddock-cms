@@ -166,7 +166,9 @@ SQL;
 		return $videos;
 	}
 	public static function
-		get_external_video_libraries()
+		get_external_video_libraries(
+			$ignore_status = FALSE
+		)
 	{
 		$dbh = DB::m();
 
@@ -576,6 +578,34 @@ SQL;
 	}
 
 	public static function
+		get_enum_values(
+			$table_name,
+			$enum_name
+		)
+	{
+		$dbh = DB::m();
+		$table_name = mysql_real_escape_string($table_name);
+		$enum_name = mysql_real_escape_string($enum_name);
+
+		$query = <<<SQL
+SHOW COLUMNS 
+FROM 
+$table_name LIKE '$enum_name'
+
+SQL;
+                //echo $query; exit;
+                    
+                $result = mysql_query($query, $dbh);
+
+		if(mysql_num_rows($result)>0){
+			$row=mysql_fetch_row($result);
+			$options=explode("','",preg_replace("/(enum|set)\('(.+?)'\)/","\\2",$row[1]));
+		}
+
+		return $options;
+	}
+
+	public static function
 		get_from_sql_for_videos() 
 	{
 		return <<<SQL
@@ -604,6 +634,94 @@ SQL;
 
 	}
 
+	public static function
+		get_external_video_provider_name_for_id($id)
+	{
+		$dbh = DB::m();
 
+		$id = mysql_real_escape_string($id);
+
+		$query = <<<SQL
+SELECT
+	name
+FROM
+	hpi_video_library_external_video_providers
+WHERE
+id = $id
+
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$row = mysql_fetch_assoc($result);
+		return $row['name'];
+
+		//$libraries = array();
+		//while ($row = mysql_fetch_assoc($result)) {
+			//$libraries[] = $row;
+		//}   
+		////print_r($libraries);exit;
+		//return $libraries;
+	}
+public static function
+		get_external_video_library_id_for_external_video_id($id)
+	{
+		$dbh = DB::m();
+
+		$id = mysql_real_escape_string($id);
+
+		$query = <<<SQL
+SELECT
+	hpi_video_library_external_video_libraries.id
+FROM
+	hpi_video_library_external_videos,
+hpi_video_library_external_video_libraries,
+hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id = $id
+AND
+hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id = hpi_video_library_external_video_libraries.id
+
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$row = mysql_fetch_assoc($result);
+		return $row['id'];
+
+	}
+	public static function
+		get_external_video_library_name_for_external_video_id($id)
+	{
+		$dbh = DB::m();
+
+		$id = mysql_real_escape_string($id);
+
+		$query = <<<SQL
+SELECT
+	hpi_video_library_external_video_libraries.name
+FROM
+	hpi_video_library_external_videos,
+hpi_video_library_external_video_libraries,
+hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id = $id
+AND
+hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id = hpi_video_library_external_video_libraries.id
+
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$row = mysql_fetch_assoc($result);
+		return $row['name'];
+
+	}
 }
 ?>
