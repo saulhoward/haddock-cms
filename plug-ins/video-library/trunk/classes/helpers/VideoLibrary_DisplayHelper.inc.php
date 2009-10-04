@@ -33,7 +33,7 @@ VideoLibrary_DisplayHelper
 		get_thumbnail_div_for_video($video_data)
 	{
 		$div = new HTMLTags_Div();
-		$div->set_attribute_str('id', 'video');
+		$div->set_attribute_str('class', 'video');
 
 		$url = VideoLibrary_URLHelper::get_video_page_url($video_data['id']);
 
@@ -42,7 +42,7 @@ VideoLibrary_DisplayHelper
 		$img_a->append(self::get_thumbnail_img($video_data['thumbnail_url']));;
 
 		$text_a = new HTMLTags_A();
-$text_a->set_attribute_str('class', 'text');
+		$text_a->set_attribute_str('class', 'text');
 		$text_a->set_href($url);
 		$text_a->append($video_data['name']);
 
@@ -67,18 +67,86 @@ $text_a->set_attribute_str('class', 'text');
 	}
 
 	public static function
-		get_video_div_for_external_video_id($id)
+		get_related_videos_div($videos)
 	{
-		$video_data = VideoLibrary_DatabaseHelper
-			::get_external_video_data($id);
 		//print_r($video_data);exit;
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'related-videos');
+		$div->append(
+			self::get_thumbnails_div($videos)
+		);
 
+		return $div;
+	}
+
+	public static function
+		get_video_div_for_external_video_data($video_data)
+	{
+		//print_r($video_data);exit;
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'video');
+
+		/*
+		 *Embed Code
+		 */
+		$embed_div = new HTMLTags_Div();
+		$embed_div->set_attribute_str('id', 'embed');
+		$embed_div->append(
+			VideoLibrary_EmbedHelper
+			::get_video_embed_code_for_external_video($video_data)
+		);
+		$div->append($embed_div);
+
+		/*
+		 *Info
+		 */
+		$info_div = new HTMLTags_Div();
+		$info_div->set_attribute_str('id', 'info');
+		$info_div->append('<h2>' . $video_data['name'] . '</h2>');	
+
+		$length_min = ($video_data['length_seconds'] / 60);
+		$tags = self::get_tags_links_string(
+			$video_data['tags'],
+			$video_data['external_video_library_id']
+		);
+		$info_dl = <<<HTML
+<dl>
+	<dt>Length:</dt>
+		<dd>$length_min min</dd>
+
+	<dt>Tags:</dt>
+		<dd>$tags</dd>
+</dl>
+HTML;
+
+		$info_div->append($info_dl);
+		$div->append($info_div);
+
+		return $div;
+	}
+
+	public static function
+		get_tags_links_string(
+			$tags,
+			$external_video_library_id
+		)
+	{
 		$html = '';
-		$html .= '<div id="video">';
-		$html .= VideoLibrary_EmbedHelper
-			::get_video_embed_code_for_external_video($video_data);
-		$html .= '</div>';
-
+		$i = 0;
+		foreach ($tags as $tag) {
+			if ($i != 0) {
+				$html .= ', ';
+			}
+			$i++;
+			$html .= '<a href="' 
+				. VideoLibrary_URLHelper
+				::get_tags_search_page_url_for_tag_id(
+					$tag['id'],
+					$external_video_library_id
+				)->get_as_string()
+				. '">' . $tag['tag']
+				. '</a>';
+		}
 		return $html;
 	}
 
@@ -129,7 +197,10 @@ $div->append($html);
 	}
 
 	public static function
-		get_external_video_libraries_navigation_div($libraries)
+		get_external_video_libraries_navigation_div(
+			$libraries,
+			$current_library
+		)
 	{
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'libraries');
@@ -137,10 +208,8 @@ $div->append($html);
 		foreach ($libraries as $library) {
 			$li = new HTMLTags_LI();
 			if (
-				(isset($_GET['external_video_library_id']))
-				&&
-				($_GET['external_video_library_id'] == $library['id'])
-			) {
+					$current_library == $library['id']
+				) {
 				$li->set_attribute_str('class', 'selected');
 			}
 			$a = new HTMLTags_A();
@@ -159,7 +228,10 @@ $div->append($html);
 	}
 
 	public static function
-		get_tags_navigation_div($tags)
+		get_tags_navigation_div(
+			$tags,
+			$external_video_library_id
+		)
 	{
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'tags');
@@ -179,7 +251,8 @@ $div->append($html);
 			$a->set_href(
 				VideoLibrary_URLHelper
 				::get_tags_search_page_url(
-					$tags_array
+					$tags_array,
+					$external_video_library_id
 				)
 			);
 			$a->append($tag['tag']);

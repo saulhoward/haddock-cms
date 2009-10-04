@@ -84,20 +84,39 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
-		get_tags_search_page_url(
-			$tag_ids
+		get_tags_search_page_url_for_tag_id(
+			$tag_id,
+			$external_video_library_id
 		)
 	{
 		$search_page_class_name 
 			= VideoLibrary_PagesHelper
 			::get_search_page_class_name();
 		$get_variables = array(
-			"tag_ids" => implode(',', $tag_ids)
+			"tag_ids" => $tag_id,
+			"external_video_library_id" => $external_video_library_id
 		);
-		if (isset($_GET['external_video_library_id'])) {
-			$get_variables['external_video_library_id'] 
-				= $_GET['external_video_library_id'];
-		}
+	
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				$search_page_class_name,
+				$get_variables
+			);
+	}
+
+	public static function
+		get_tags_search_page_url(
+			$tag_ids,
+			$external_video_library_id
+		)
+	{
+		$search_page_class_name 
+			= VideoLibrary_PagesHelper
+			::get_search_page_class_name();
+		$get_variables = array(
+			"tag_ids" => implode(',', $tag_ids),
+			"external_video_library_id" => $external_video_library_id
+		);
 	
 		return PublicHTML_URLHelper
 			::get_oo_page_url(

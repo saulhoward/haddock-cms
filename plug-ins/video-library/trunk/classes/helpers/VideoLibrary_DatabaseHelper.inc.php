@@ -21,26 +21,31 @@ class
 		$query .= <<<SQL
 
 FROM
-	hpi_video_library_external_videos
-LEFT JOIN 
-	hpi_video_library_external_video_providers
-ON
-	hpi_video_library_external_videos.external_video_provider_id = hpi_video_library_external_video_providers.id
+        hpi_video_library_external_videos,
+        hpi_video_library_external_video_libraries,
+        hpi_video_library_ext_vid_to_ext_vid_lib_links,
+        hpi_video_library_external_video_providers
 WHERE
-	hpi_video_library_external_videos.id = $id          
+        hpi_video_library_external_videos.external_video_provider_id = hpi_video_library_external_video_providers
+.id
+AND
+        hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id = hpi_video_library_external_videos.id
+AND
+        hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id = hpi_video_library_external_video_libraries.id
+AND
+        hpi_video_library_external_videos.id = $id
+
 SQL;
 
 		#echo $query; exit;
 
 		$result = mysql_query($query, $dbh);
 
-		return mysql_fetch_assoc($result);
-
-		//$news_items = array();
-
-		//while ($row = mysql_fetch_assoc($result)) {
-		//$news_items[] = $row;
-		//}   
+		$video_data = mysql_fetch_assoc($result);
+		$video_data['tags'] 
+			= self::get_tags_for_external_video_id($video_data['id']);
+		//print_r($video_data);exit;
+		return $video_data;
 	}
 
 	public static function
@@ -261,6 +266,59 @@ SQL;
 		return $tags;
 	}
 	public static function
+		get_tags_for_external_video_id(
+			$video_id,
+			$principal = FALSE
+		)
+	{
+		$dbh = DB::m();
+
+		$video_id = mysql_real_escape_string($video_id);
+
+		$query = <<<SQL
+
+SELECT 
+	hpi_video_library_tags.id as id,
+	hpi_video_library_tags.tag as tag,
+	hpi_video_library_tags.principal as principal
+FROM 
+	`hpi_video_library_tags`,
+	hpi_video_library_tags_to_ext_vid_links,
+	hpi_video_library_external_videos
+WHERE 
+	hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
+AND 
+	hpi_video_library_external_videos.id 
+	= hpi_video_library_tags_to_ext_vid_links.external_video_id
+AND
+	hpi_video_library_external_videos.id = $video_id
+
+SQL;
+
+		if ($principal) {
+			$query .= <<<SQL
+AND
+	hpi_video_library_tags.principal = 'yes'
+
+SQL;
+
+		}
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$tags = array();
+
+		while ($row = mysql_fetch_assoc($result)) {
+			$tags[] = $row;
+		}   
+		//print_r($tags);exit;
+		return $tags;
+	}
+
+
+	public static function
 		get_tags(
 			$principal = FALSE
 		)
@@ -378,6 +436,41 @@ SQL;
 	}
 
 	public static function
+		get_related_videos_div_for_external_video_data(
+			$external_video_library_id,
+			$video_data,
+			$limit = NULL
+		)
+	{
+		/*
+		 * TODO:
+		 *        Surely a better way of extracting this data?
+		 */
+		$tag_ids = array();
+		foreach ($video_data['tags'] as $tag) {
+			$tag_ids[] = $tag['id'];
+		}
+
+		/******
+		 * TODO:
+		 *        This should
+		 *        1) Get vids with all matching tags (DONE)
+		 *        2) Get vids with some matching tags
+		 *        3) Get any vids
+		 *
+		 *        Until it's got the limit
+		 * 	  Also gonna need support for getting infinte related vids using  an
+		 *	  offset and limit
+		 */
+		return self::get_external_videos_for_tag_ids(
+			$external_video_library_id,
+			$tag_ids,
+			$video_data['id'],
+			$limit
+		);
+	}
+
+	public static function
 		get_external_videos_for_tag_ids(
 			$external_video_library_id,
 			$tag_ids,
@@ -417,37 +510,39 @@ AND
 	hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
 	AND
 	hpi_video_library_external_videos.status = 'display'
-	AND
 
 SQL;
 
-		$query .= <<<SQL
+		if (count($tag_ids) > 0) {
+			$query .= <<<SQL
+	AND
 (
 
 SQL;
 
 
-		$i = 1;
-		foreach ($tag_ids as $tag_id) {
-			$i++;
-			$tag_id = mysql_real_escape_string($tag_id);
-			if ($i % 2){
-				$query .= <<<SQL
+			$i = 0;
+			foreach ($tag_ids as $tag_id) {
+				$tag_id = mysql_real_escape_string($tag_id);
+				if ($i != 0){
+					$query .= <<<SQL
 	OR
+
+SQL;
+
+				}
+				$i++;
+				$query .= <<<SQL
+	hpi_video_library_tags.id = '$tag_id'
 
 SQL;
 
 			}
 			$query .= <<<SQL
-	hpi_video_library_tags.id = '$tag_id'
-
-SQL;
-
-		}
-		$query .= <<<SQL
 )
 
 SQL;
+		}
 
 
 		if ($ignore_video_id > 0) {
@@ -499,8 +594,10 @@ SQL;
 SELECT
 	hpi_video_library_external_videos.id AS id,
 	hpi_video_library_external_videos.name AS name,
-	hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
 	hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
+	hpi_video_library_external_videos.length_seconds AS length_seconds,
+	hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
+	hpi_video_library_external_video_libraries.id AS external_video_library_id,
 	hpi_video_library_external_video_providers.haddock_class_name AS haddock_class_name
 
 SQL;
