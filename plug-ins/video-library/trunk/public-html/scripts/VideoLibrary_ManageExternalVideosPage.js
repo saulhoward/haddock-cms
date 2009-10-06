@@ -5,8 +5,6 @@ $(function() {
 			 $( this ).bind (
 				 "click",
 				 function(){
-					 //alert( "Hottie index: " + intIndex );
-					 //alert( "Hottie index: " + $(this).html() );
 					if (toggle_tag_on_click($(this).html()) == 1 ) {
 						$(this).addClass('selected')
 					} else {
@@ -26,10 +24,14 @@ function toggle_tag_on_click(tag) {
 
 	var tag_str = $('input:#tags').val()
 
-	//var re = new RegExp('/\b' + tag + "\b/","i");
+/*
+ *Needs to be '(beginning of line) or (any amt of white space then a comma) then any
+ *amt of whitespc then a word' instead of \b
+ * and the same for the end
+ */
 	var re = new RegExp("\\b" + tag + "\\b","i");
+
 	if (tag_str.match(re)) {
-		//var re = new RegExp(tag,"gi");
 		tag_str = tag_str.replace(re, '')
 		$('input:#tags').val(tag_str)
 		clean_up_input();
@@ -40,18 +42,17 @@ function toggle_tag_on_click(tag) {
 		clean_up_input();
 		return 1;
 	}
-
-	//alert(tag_str);
-
 }
 
 function clean_up_input() {
 	var tag_str = $('input:#tags').val()
+
 	tag_str = tag_str.replace(/\s\s+/g, '')
 	tag_str = tag_str.replace(/,,+/g, '')
 	tag_str = tag_str.replace(/, ,/g, ',')
-	tag_str = tag_str.replace(/^\s/, '')
-	tag_str = tag_str.replace(/^,/g, '')
+	tag_str = tag_str.replace(/^\s+/, '')
+	tag_str = tag_str.replace(/^,/, '')
+	tag_str = tag_str.replace(/,\s*$/, '')
 
 	$('input:#tags').val(tag_str)
 }
