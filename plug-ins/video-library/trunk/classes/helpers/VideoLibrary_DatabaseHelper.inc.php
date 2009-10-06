@@ -665,7 +665,34 @@ SQL;
 		////print_r($libraries);exit;
 		//return $libraries;
 	}
-public static function
+
+	public static function
+		get_tag_id_for_tag_string($tag)
+	{
+		$dbh = DB::m();
+
+		$tag = mysql_real_escape_string($tag);
+
+		$query = <<<SQL
+SELECT
+	hpi_video_library_tags.id
+FROM
+	hpi_video_library_tags
+WHERE
+hpi_video_library_tags.tag = '$tag'
+
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$row = mysql_fetch_assoc($result);
+		return $row['id'];
+
+	}
+
+	public static function
 		get_external_video_library_id_for_external_video_id($id)
 	{
 		$dbh = DB::m();
@@ -722,6 +749,37 @@ SQL;
 		$row = mysql_fetch_assoc($result);
 		return $row['name'];
 
+	}
+
+	public static function
+		delete_orphaned_tags($include_principal_tags = FALSE)
+	{
+		$dbh = DB::m();
+		$query = <<<SQL
+DELETE FROM
+    hpi_video_library_tags
+WHERE
+    hpi_video_library_tags.id
+NOT IN (
+    SELECT DISTINCT (
+	hpi_video_library_tags_to_ext_vid_links.tag_id
+    )
+    FROM
+    hpi_video_library_tags_to_ext_vid_links
+)
+
+SQL;
+
+		if ($include_principal_tags == FALSE) {
+			$query .= <<<SQL
+AND
+	hpi_video_library_tags.principal = 'no'
+
+SQL;
+
+		}
+
+		return mysql_query($query, $dbh);
 	}
 }
 ?>

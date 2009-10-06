@@ -78,6 +78,23 @@ VideoLibrary_DisplayHelper
 
 		return $div;
 	}
+	public static function
+		get_admin_view_video_div($video_data)
+	{
+		$div = new HTMLTags_Div();
+		$div->set_attribute_str('id', 'admin-video');
+		$div->append('<h2>External Video Preview</h2>');
+		$div->append(self::get_video_div_for_external_video_data($video_data));
+$div->append('<br /><br /><br />');
+		return $div;
+	}
+
+	public static function 
+		get_minutes_from_seconds($seconds)
+	{
+		return sprintf( "%02.2d:%02.2d", floor( $seconds / 60 ), $seconds % 60 );
+	}
+	
 
 	public static function
 		get_video_div_for_external_video_data($video_data)
@@ -104,7 +121,7 @@ VideoLibrary_DisplayHelper
 		$info_div->set_attribute_str('id', 'info');
 		$info_div->append('<h2>' . $video_data['name'] . '</h2>');	
 
-		$length_min = ($video_data['length_seconds'] / 60);
+		$length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
 		$tags = self::get_tags_links_string(
 			$video_data['tags'],
 			$video_data['external_video_library_id']
@@ -123,6 +140,24 @@ HTML;
 		$div->append($info_div);
 
 		return $div;
+	}
+
+	public static function
+		get_tags_csv_string(
+			$tags
+		)
+	{
+//print_r($tags);exit;
+		$html = '';
+		$i = 0;
+		foreach ($tags as $tag) {
+			if ($i != 0) {
+				$html .= ', ';
+			}
+			$i++;
+			$html .= $tag['tag'];
+		}
+		return $html;
 	}
 
 	public static function
@@ -225,6 +260,21 @@ $div->append($html);
 		}
 		$div->append($ul);
 		return $div;
+	}
+
+	public static function
+		get_tags_empty_links_list(
+			$tags
+		)
+	{
+		$ul = new HTMLTags_UL();
+		$ul->set_attribute_str('class', 'tags-empty-links-list');
+		foreach ($tags as $tag) {
+			$li = new HTMLTags_LI();
+			$li->append($tag['tag']);
+			$ul->append($li);
+		}
+		return $ul;
 	}
 
 	public static function

@@ -35,7 +35,7 @@ extends
 			),
 			array(
 				'col_name' => 'length_seconds',
-				'filter' => 'return ($str / 60);',
+				'filter' => 'return VideoLibrary_DisplayHelper::get_minutes_from_seconds($str);',
 				'title' => 'Length (min)'
 			),
 			array(
@@ -47,7 +47,9 @@ extends
 				'col_name' => 'providers_internal_id'
 			),
 			array(
-				'col_name' => 'providers_url'
+				'col_name' => 'id',
+				'filter' => 'return VideoLibrary_DisplayHelper::get_tags_csv_string( VideoLibrary_DatabaseHelper::get_tags_for_external_video_id($str));',
+				'title' => 'Tags'
 			),
 			array(
 				'col_name' => 'status'
@@ -55,7 +57,7 @@ extends
 	
 	 	);
 	}
-	
+
 	protected function
 		get_matching_query_from_clause()
 	{
@@ -73,6 +75,13 @@ SQL;
 		$acm = $this->get_admin_crud_manager();
 		
 		echo "<ol>\n";
+		echo <<<HTML
+<script type="text/javascript" 
+		 src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" 
+		 src="/plug-ins/video-library/public-html/VideoLibrary_ManageExternalVideosPage.js"></script>
+HTML;
+
 		
 
 		$library_values = VideoLibrary_DatabaseHelper
@@ -96,10 +105,7 @@ SQL;
 		echo $provider_li;
 
 		$this->render_add_something_form_li_text_input('name');
-		$this->render_add_something_form_li_text_input('length_seconds');
-
 		$this->render_add_something_form_li_text_input('providers_internal_id');
-		$this->render_add_something_form_li_text_input('providers_url');
 
 		$status_values = VideoLibrary_DatabaseHelper
 			::get_enum_values(
@@ -111,8 +117,15 @@ SQL;
 			$status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
 		}
 		$status_li .= '</select></li>';
-
 		echo $status_li;
+
+		echo '<fieldset><legend>Tags</legend>';
+		$this->render_add_something_form_li_text_input('tags');
+		echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+			VideoLibrary_DatabaseHelper::get_tags(TRUE)
+		)->get_as_string();
+		echo '</fieldset>';
+
 
 		echo "</ol>\n";
 	}
@@ -156,9 +169,7 @@ SQL;
 		echo $provider_li;
 
 		$this->render_edit_something_form_li_text_input('name');
-		$this->render_edit_something_form_li_text_input('length_seconds');
 		$this->render_edit_something_form_li_text_input('providers_internal_id');
-		$this->render_edit_something_form_li_text_input('providers_url');
 
 		$status_values = VideoLibrary_DatabaseHelper
 			::get_enum_values(
@@ -177,8 +188,21 @@ SQL;
 		$status_li .= '</select></li>';
 
 		echo $status_li;
-		
 	
+		echo '<fieldset><legend>Tags</legend>';
+		echo '<li><label for="tags">Tags</label>';
+		echo '<input type="text" name="tags" id="tags" value ="';
+
+		echo VideoLibrary_DisplayHelper::get_tags_csv_string(
+			VideoLibrary_DatabaseHelper::get_tags_for_external_video_id($_GET['id'])
+		);
+		echo '" />';
+		echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+			VideoLibrary_DatabaseHelper::get_tags(TRUE)
+		)->get_as_string();
+	
+		echo '</fieldset>';
+
 		echo "</ol>\n";
 	}
 	
@@ -268,7 +292,11 @@ SQL;
 	{
 		echo $this->get_back_link_p();
 		if (isset($_GET['id'])) {
-			echo VideoLibrary_DisplayHelper::get_admin_view_video_div($_GET['id']);
+			echo VideoLibrary_DisplayHelper::get_admin_view_video_div(
+				VideoLibrary_DatabaseHelper::get_external_video_data(
+					$_GET['id']
+				)
+			);
 		} else {
 			echo '<p>Form ID not set!</p>';
 		}

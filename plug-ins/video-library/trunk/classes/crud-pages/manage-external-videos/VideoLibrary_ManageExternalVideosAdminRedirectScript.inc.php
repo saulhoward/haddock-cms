@@ -20,9 +20,11 @@ extends
 		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
 		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
 		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
-		$providers_url = mysql_real_escape_string($_POST['providers_url']);
 		$status = mysql_real_escape_string($_POST['status']);
-		$length_seconds = mysql_real_escape_string($_POST['length_seconds']);
+
+		$tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
+		//print_r($tags);exit;
+
 
 		$stmt = <<<SQL
 INSERT
@@ -32,8 +34,6 @@ SET
 	name = '$name',
 	external_video_provider_id = '$external_video_provider_id',
 	providers_internal_id = '$providers_internal_id',
-	providers_url = '$providers_url',
-	length_seconds = '$length_seconds',
 	status = '$status',
 	date_added = NOW()
 
@@ -58,6 +58,48 @@ SQL;
 		//print_r($stmt);exit;
 
 		$result = mysql_query($stmt_2, $dbh);
+
+		foreach ($tags as $tag) {
+			$tag = mysql_real_escape_string($tag);
+
+			$tag_query_1 = <<<SQL
+INSERT
+INTO
+	hpi_video_library_tags
+SET
+	tag = '$tag',
+	principal = 'no'
+
+SQL;
+			$result = mysql_query($tag_query_1, $dbh);
+			if ($result) {
+				$tag_id =  mysql_insert_id($dbh);
+			} else {
+				if (mysql_errno() == 1062) { #duplicate
+					$tag_id 
+						= VideoLibrary_DatabaseHelper
+						::get_tag_id_for_tag_string($tag); 
+				}
+			}
+
+			$tag_query_2 = <<<SQL
+INSERT
+INTO
+	hpi_video_library_tags_to_ext_vid_links
+SET
+	tag_id = '$tag_id',
+	external_video_id = '$id'
+
+SQL;
+
+			$result = mysql_query($tag_query_2, $dbh);
+			if (!$result) {
+				if (mysql_errno() == 1062) { #duplicate
+					# Do nothing, link already exists			
+				}
+			}
+		}
+
 		return $id;
 	}
 
@@ -73,9 +115,9 @@ SQL;
 		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
 		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
 		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
-		$providers_url = mysql_real_escape_string($_POST['providers_url']);
 		$status = mysql_real_escape_string($_POST['status']);
-		$length_seconds = mysql_real_escape_string($_POST['length_seconds']);
+
+		$tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
 
 		$stmt = <<<SQL
 UPDATE
@@ -84,8 +126,6 @@ SET
 	name = '$name',
 	external_video_provider_id = '$external_video_provider_id',
 	providers_internal_id = '$providers_internal_id',
-	providers_url = '$providers_url',
-	length_seconds = '$length_seconds',
 	status = '$status'
 WHERE
 	id = $id
@@ -109,6 +149,68 @@ SQL;
 		//print_r($stmt);exit;
 
 		$result = mysql_query($stmt_2, $dbh);
+
+		/*
+		 * TAGS
+		 */
+		$stmt_3 = <<<SQL
+DELETE
+FROM
+	hpi_video_library_tags_to_ext_vid_links
+WHERE
+	external_video_id = $id
+SQL;
+		
+		#echo $stmt; exit;
+		
+		mysql_query($stmt_3, $dbh);
+
+
+		foreach ($tags as $tag) {
+			$tag = mysql_real_escape_string($tag);
+
+			$tag_query_1 = <<<SQL
+INSERT
+INTO
+	hpi_video_library_tags
+SET
+	tag = '$tag',
+	principal = 'no'
+
+SQL;
+
+			//print_r($tag_query_1);exit;
+			$result = mysql_query($tag_query_1, $dbh);
+			if ($result) {
+				$tag_id =  mysql_insert_id($dbh);
+			} else {
+				if (mysql_errno() == 1062) { #duplicate
+					$tag_id 
+						= VideoLibrary_DatabaseHelper
+						::get_tag_id_for_tag_string($tag); 
+				}
+			}
+
+			$tag_query_2 = <<<SQL
+INSERT
+INTO
+	hpi_video_library_tags_to_ext_vid_links
+SET
+	tag_id = '$tag_id',
+	external_video_id = '$id'
+
+SQL;
+
+			$result = mysql_query($tag_query_2, $dbh);
+			if (!$result) {
+				if (mysql_errno() == 1062) { #duplicate
+					# Do nothing, link already exists			
+				}
+			}
+		}
+
+		VideoLibrary_DatabaseHelper::delete_orphaned_tags();
+
 		return $id;
 	}
 
@@ -155,6 +257,7 @@ SQL;
 		
 		mysql_query($stmt_3, $dbh);
 
+		VideoLibrary_DatabaseHelper::delete_orphaned_tags();
 	}
 		
 	public function
@@ -194,7 +297,7 @@ SQL;
 	protected function
 		get_required_fields()
 	{
-		return explode(' ', 'date_added name external_video_provider_id providers_internal_id providers_url length_seconds status');
+		return explode(' ', 'date_added name external_video_provider_id providers_internal_id length_seconds status');
 	}
 }
 ?>
