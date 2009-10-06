@@ -11,6 +11,23 @@ extends
 	Database_CRUDAdminPage
 {
 	protected function
+		render_head_link_stylesheet()
+	{
+		parent::render_head_link_stylesheet();
+		HTMLTags_LinkRenderer::render_style_sheet_link('/plug-ins/video-library/public-html/styles/admin-styles.css');
+
+		echo <<<HTML
+<script type="text/javascript" 
+		 src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+		 src="/plug-ins/video-library/public-html/scripts/VideoLibrary_ManageExternalVideosPage.js"></script>
+HTML;
+
+
+	}
+
+
+	protected function
 		get_admin_crud_manager_class_name()
 	{
 		return 'VideoLibrary_ExternalVideosCRUDManager';
@@ -75,15 +92,6 @@ SQL;
 		$acm = $this->get_admin_crud_manager();
 		
 		echo "<ol>\n";
-		echo <<<HTML
-<script type="text/javascript" 
-		 src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-<script type="text/javascript" 
-		 src="/plug-ins/video-library/public-html/VideoLibrary_ManageExternalVideosPage.js"></script>
-HTML;
-
-		
-
 		$library_values = VideoLibrary_DatabaseHelper
 			::get_external_video_libraries(TRUE);
 		$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
@@ -119,7 +127,7 @@ HTML;
 		$status_li .= '</select></li>';
 		echo $status_li;
 
-		echo '<fieldset><legend>Tags</legend>';
+		echo '<fieldset id="tags-fieldset"><legend>Tags</legend>';
 		$this->render_add_something_form_li_text_input('tags');
 		echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
 			VideoLibrary_DatabaseHelper::get_tags(TRUE)
@@ -189,7 +197,7 @@ HTML;
 
 		echo $status_li;
 	
-		echo '<fieldset><legend>Tags</legend>';
+		echo '<fieldset id="tags-fieldset"><legend>Tags</legend>';
 		echo '<li><label for="tags">Tags</label>';
 		echo '<input type="text" name="tags" id="tags" value ="';
 
