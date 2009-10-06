@@ -44,6 +44,8 @@ div#navigation {
 	/*width: 10em;*/
 	
 	/*float: left;*/
+	
+	text-align: center;
 }
 
 div#features_navigation ul.navigation {
@@ -61,7 +63,7 @@ ul.navigation li {
 	
 	display: inline;
 	
-	margin: 2px;
+	margin: 0.5em;
 }
 
 div#secondary_navigation ul.navigation li {
