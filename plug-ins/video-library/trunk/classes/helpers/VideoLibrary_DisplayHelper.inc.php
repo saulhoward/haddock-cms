@@ -30,6 +30,18 @@ VideoLibrary_DisplayHelper
 	}
 
 	public static function
+		get_admin_view_tag_div($videos)
+	{
+		return self::get_thumbnails_div($videos);
+	}
+
+	public static function
+		get_admin_view_library_div($videos)
+	{
+		return self::get_thumbnails_div($videos);
+	}
+
+	public static function
 		get_thumbnail_div_for_video($video_data)
 	{
 		$div = new HTMLTags_Div();

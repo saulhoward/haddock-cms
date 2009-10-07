@@ -473,6 +473,95 @@ SQL;
 	}
 
 	public static function
+		get_all_external_videos_for_tag_ids_on_admin_page(
+			$tag_ids,
+			$ignore_video_id = NULL,
+			$limit = NULL
+		)
+	{
+		$dbh = DB::m();
+
+
+		$query = <<<SQL
+SELECT
+	hpi_video_library_external_videos.id AS id,
+	hpi_video_library_external_videos.name AS name,
+	hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
+	hpi_video_library_external_videos.length_seconds AS length_seconds
+
+FROM
+	hpi_video_library_external_videos,
+	hpi_video_library_tags,
+	hpi_video_library_tags_to_ext_vid_links
+WHERE
+	hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
+	AND
+	hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
+
+SQL;
+
+		if (count($tag_ids) > 0) {
+			$query .= <<<SQL
+	AND
+(
+
+SQL;
+
+
+			$i = 0;
+			foreach ($tag_ids as $tag_id) {
+				$tag_id = mysql_real_escape_string($tag_id);
+				if ($i != 0){
+					$query .= <<<SQL
+	OR
+
+SQL;
+
+				}
+				$i++;
+				$query .= <<<SQL
+	hpi_video_library_tags.id = '$tag_id'
+
+SQL;
+
+			}
+			$query .= <<<SQL
+)
+
+SQL;
+		}
+
+
+		if ($ignore_video_id > 0) {
+			$ignore_video_id = mysql_real_escape_string($ignore_video_id);
+			$query .= <<<SQL
+	AND
+	hpi_video_library_external_videos.id <> $ignore_video_id
+
+SQL;
+
+		}
+
+		$query .= <<<SQL
+ORDER BY
+	hpi_video_library_external_videos.id
+SQL;
+
+                //echo $query; exit;
+                    
+                $result = mysql_query($query, $dbh);
+
+                $tags = array();
+                    
+                while ($row = mysql_fetch_assoc($result)) {
+                        $tags[] = $row;
+                }   
+		//print_r($tags);exit;
+		return $tags;
+	
+
+	}
+	public static function
 		get_external_videos_for_tag_ids(
 			$external_video_library_id,
 			$tag_ids,
@@ -781,5 +870,66 @@ SQL;
 
 		return mysql_query($query, $dbh);
 	}
+
+        public function
+                get_external_videos_count_for_tag_id($id)
+        {
+		$dbh = DB::m();
+		$id = mysql_real_escape_string($id);
+                $query = <<<SQL
+SELECT
+    count(distinct(hpi_video_library_external_videos.id)) AS 'video_count'
+FROM
+    hpi_video_library_external_videos,
+    hpi_video_library_tags,
+    hpi_video_library_tags_to_ext_vid_links
+WHERE
+    hpi_video_library_tags_to_ext_vid_links.external_video_id = hpi_video_library_external_videos.id
+    AND
+    hpi_video_library_tags_to_ext_vid_links.tag_id = hpi_video_library_tags.id
+    AND
+    hpi_video_library_tags.id = '$id' 
+GROUP BY
+    hpi_video_library_tags.id
+
+SQL;
+
+//print_r($query);exit;
+
+		$result = mysql_query($query, $dbh);
+		$row = mysql_fetch_assoc($result);
+		if ( $row['video_count'] == '' ) $row['video_count'] = 0;
+		return $row['video_count'];
+        }
+
+        public function
+                get_tags_with_counts(
+                        $order_by = 'product_count',
+                        $direction = 'DESC'
+                )
+        {
+                $query = <<<SQL
+SELECT
+    count(distinct(hpi_shop_products.id)) AS 'product_count',
+    hpi_shop_product_tags.*
+FROM
+    hpi_shop_products,
+    hpi_shop_product_tags,
+    hpi_shop_product_tag_links
+WHERE
+    hpi_shop_product_tag_links.product_id = hpi_shop_products.id
+    AND
+    hpi_shop_product_tag_links.product_tag_id = hpi_shop_product_tags.id
+GROUP BY
+    hpi_shop_product_tags.id
+ORDER BY
+    $order_by $direction
+SQL;
+
+                #$tags_table = $this->get_element();
+
+                return $this->get_rows_for_select($query);      
+        }
+
 }
 ?>

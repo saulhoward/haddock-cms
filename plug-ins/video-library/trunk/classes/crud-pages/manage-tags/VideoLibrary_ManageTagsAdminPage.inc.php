@@ -1,19 +1,19 @@
 <?php
 /**
- * VideoLibrary_ManageExternalVideoLibrariesAdminPage
+ * VideoLibrary_ManageTagsAdminPage
  *
  * @copyright RFI 2008-01-08
  */
 
 class
-	VideoLibrary_ManageExternalVideoLibrariesAdminPage
+	VideoLibrary_ManageTagsAdminPage
 extends
 	Database_CRUDAdminPage
 {
 	protected function
 		get_admin_crud_manager_class_name()
 	{
-		return 'VideoLibrary_ExternalVideoLibrariesCRUDManager';
+		return 'VideoLibrary_TagsCRUDManager';
 	}
 	
 	protected function
@@ -21,20 +21,15 @@ extends
 	{
 		return array(
 			array(
-				'col_name' => 'date_added',
-				'filter' => 'return date("F j, Y", strtotime($str));'
+				'col_name' => 'tag'
 			),
 			array(
-				'col_name' => 'name'
+				'col_name' => 'principal'
 			),
 			array(
-				'col_name' => 'description'
-			),
-			array(
-				'col_name' => 'status'
-			),
-			array(
-				'col_name' => 'sort_order'
+				'col_name' => 'id',
+				'filter' => 'return VideoLibrary_DatabaseHelper::get_external_videos_count_for_tag_id($str);',
+				'title' => 'No. of External Videos'
 			)
 	 	);
 	}
@@ -44,7 +39,7 @@ extends
 	{
 		return <<<SQL
 FROM
-	hpi_video_library_external_video_libraries
+	hpi_video_library_tags
 	
 SQL;
 
@@ -57,24 +52,20 @@ SQL;
 		
 		echo "<ol>\n";
 		
-		$this->render_add_something_form_li_text_input('name');
-		$this->render_add_something_form_li_text_input('description');
-		//$this->render_add_something_form_li_text_input('status');
+		$this->render_add_something_form_li_text_input('tag');
 
-		$status_values = VideoLibrary_DatabaseHelper
+		$principal_values = VideoLibrary_DatabaseHelper
 			::get_enum_values(
-				'hpi_video_library_external_video_libraries',
-				'status'
+				'hpi_video_library_tags',
+				'principal'
 			);
-		$status_li = '<li><label for="status">Status</label><select name="status">';
-		foreach ($status_values as $status_value) {
-			$status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
+		$principal_li = '<li><label for="principal">Principal</label><select name="principal">';
+		foreach ($principal_values as $principal_value) {
+			$principal_li .= '<option value="' . $principal_value . '">' . $principal_value . '</option>';
 		}
-		$status_li .= '</select></li>';
+		$principal_li .= '</select></li>';
 
-		echo $status_li;
-
-		$this->render_add_something_form_li_text_input('sort_order');
+		echo $principal_li;
 		
 		echo "</ol>\n";
 	}
@@ -86,43 +77,39 @@ SQL;
 		
 		echo "<ol>\n";
 		
-		$this->render_edit_something_form_li_text_input('name');
-		$this->render_edit_something_form_li_text_input('description');
+		$this->render_edit_something_form_li_text_input('tag');
 	
-		$status_values = VideoLibrary_DatabaseHelper
+		$principal_values = VideoLibrary_DatabaseHelper
 			::get_enum_values(
-				'hpi_video_library_external_video_libraries',
-				'status'
+				'hpi_video_library_tags',
+				'principal'
 			);
-		$status_li = '<li><label for="status">Status</label><select name="status">';
-		foreach ($status_values as $status_value) {
-			$status_li .= '<option value="' . $status_value . '"';
-			$cur_status_value = ($acm->has_current_var('status') ? $acm->get_current_var('status') : NULL);
-			if ($cur_status_value == $status_value) {
-				$status_li .= ' selected="selected"';
+		$principal_li = '<li><label for="principal">Principal</label><select name="principal">';
+		foreach ($principal_values as $principal_value) {
+			$principal_li .= '<option value="' . $principal_value . '"';
+			$cur_principal_value = ($acm->has_current_var('principal') ? $acm->get_current_var('principal') : NULL);
+			if ($cur_principal_value == $principal_value) {
+				$principal_li .= ' selected="selected"';
 			}
-			$status_li .= '>' . $status_value . '</option>';
+			$principal_li .= '>' . $principal_value . '</option>';
 		}
-		$status_li .= '</select></li>';
+		$principal_li .= '</select></li>';
 
-		echo $status_li;
+		echo $principal_li;
 
-		$this->render_edit_something_form_li_text_input('sort_order');
-		
-	
 		echo "</ol>\n";
 	}
 	
 	protected function
 		get_add_something_title()
 	{
-		return 'Add an External Video Library';
+		return 'Add a Tag';
 	}
 	
 	protected function
 		get_body_div_header_heading_content()
 	{
-		return 'External Video Libraries';
+		return 'Tags';
 	}
 
 	protected function
@@ -161,14 +148,14 @@ SQL;
 	protected function
 		get_delete_everything_title()
 	{
-		return 'Delete All Video Libraries';
+		return 'Delete All Tags';
 	}
 
 	protected function
 		get_content_render_method_map()
 	{
 		$crmm = parent::get_content_render_method_map();
-		$crmm['view_library'] = 'render_content_to_view_a_library';
+		$crmm['view_tag'] = 'render_content_to_view_a_tag';
 		
 		return $crmm;
 	}
@@ -181,7 +168,7 @@ SQL;
 		return array(
 			array(
 				'name' => 'view',
-				'filter' => sprintf($eval_template, 'view_library')
+				'filter' => sprintf($eval_template, 'view_tag')
 			),
 			array(
 				'name' => 'edit',
@@ -195,13 +182,13 @@ SQL;
 	}
 
 	public function
-		render_content_to_view_a_library()
+		render_content_to_view_a_tag()
 	{
 		echo $this->get_back_link_p();
 		if (isset($_GET['id'])) {
 			$tag_array = array();
 			$tag_array[] = $_GET['id'];
-			echo VideoLibrary_DisplayHelper::get_admin_view_library_div(
+			echo VideoLibrary_DisplayHelper::get_admin_view_tag_div(
 				VideoLibrary_DatabaseHelper
 				::get_all_external_videos_for_tag_ids_on_admin_page($tag_array)
 			)->get_as_string();
@@ -214,13 +201,13 @@ SQL;
 	protected function
 		get_data_table_caption_content_explanation_part()
 	{
-		return 'Video Libraries';
+		return 'Tags';
 	}
 
 	protected function
 		get_confirm_deleting_everything_question_object()
 	{
-		return 'all of the Video Libraries';
+		return 'all of the Tags';
 	}
 }
 ?>
