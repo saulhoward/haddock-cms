@@ -92,8 +92,10 @@ PWF;
 		$project_directory
 			= HaddockProjectOrganisation_ProjectDirectoryHelper
 				::get_project_directory();
+		#print_r($project_directory); exit;
 		
 		$passwords_file = $project_directory->get_passwords_file();
+		#print_r($passwords_file); exit;
 		
 		return $passwords_file;
 	}
