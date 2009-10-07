@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-06-17
+ * Last Modified: 2009-10-08
  */
 
 function __autoload($class_name)
@@ -145,6 +145,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CLIScripts_WrapperScript.inc.php';
 			break;
 
+		case('CodeAnalysis_DebugModeHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'code-analysis' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'CodeAnalysis_DebugModeHelper.inc.php';
+			break;
+
 		case('CodeAnalysis_ExecutionTimer'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'code-analysis' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CodeAnalysis_ExecutionTimer.inc.php';
 			break;
@@ -155,6 +159,14 @@ function __autoload($class_name)
 
 		case('CodeAnalysis_MemoryHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'code-analysis' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'CodeAnalysis_MemoryHelper.inc.php';
+			break;
+
+		case('CodeAnalysis_TurnOffDebugModeCLIScript'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'code-analysis' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'CodeAnalysis_TurnOffDebugModeCLIScript.inc.php';
+			break;
+
+		case('CodeAnalysis_TurnOnDebugModeCLIScript'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'code-analysis' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'CodeAnalysis_TurnOnDebugModeCLIScript.inc.php';
 			break;
 
 		case('Configuration_ConfigDirectoriesHelper'): 
