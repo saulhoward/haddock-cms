@@ -27,7 +27,7 @@ ul.tags-empty-links-list li {
 	cursor: pointer;
 	display: inline;
 	padding: 1px;
-	margin: 5px;
+	margin: 5px 10px;
 	font-weight: 900;
 	color: #666;
 	-moz-border-radius: 3px;
