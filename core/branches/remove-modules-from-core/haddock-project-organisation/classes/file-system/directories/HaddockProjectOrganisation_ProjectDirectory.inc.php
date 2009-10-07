@@ -817,8 +817,7 @@ extends
 		$passwords_file_name =
 			$this->get_name()
 			. '/passwords/passwords.inc.php';
-		
-		#echo "\$passwords_file_name: $passwords_file_name\n";
+		#echo "\$passwords_file_name: $passwords_file_name\n"; exit;
 		
 		return $passwords_file_name;
 	}
@@ -855,6 +854,7 @@ extends
 			
 			$passwords_file
 				= new Database_PasswordFile($this->get_passwords_filename());
+			#print_r($passwords_file); exit;
 			
 			return $passwords_file;
 		} else {
@@ -867,8 +867,8 @@ extends
 			 * infinitely.
 			 */
 			
-			throw new Exception($error_message);
 			#echo "$error_message\n"; exit;
+			throw new Exception($error_message);
 		}
 	}
 	
