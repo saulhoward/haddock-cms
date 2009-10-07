@@ -1,4 +1,10 @@
 <?php
+/**
+ * MailingList_SignUpRedirectScript
+ *
+ * @copyright 2009-10-06, Robert Impey
+ */
+
 class
 	MailingList_SignUpRedirectScript
 extends

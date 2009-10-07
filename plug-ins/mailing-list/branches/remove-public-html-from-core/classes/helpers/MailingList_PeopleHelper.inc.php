@@ -6,7 +6,7 @@
  */
 
 class
-MailingList_PeopleHelper
+	MailingList_PeopleHelper
 {
 	public static function
 		add_person(
@@ -33,24 +33,32 @@ MailingList_PeopleHelper
 	public static function
 		attemp_to_add_person()
 	{
-		echo 'print_r($_GET)' . "\n";
-		print_r($_GET);
-		echo 'print_r($_POST)' . "\n";
-		print_r($_POST);
+		#echo 'print_r($_GET)' . "\n"; print_r($_GET);
+		
+		#echo 'print_r($_POST)' . "\n"; print_r($_POST);
+		
 		//echo 'print_r($_SESSION)' . "\n";
 		//print_r($_SESSION);
-		echo '$_SESSION[\'name\']: ' . $_SESSION['name'] . "\n";
-		echo '$_SESSION[\'email\']: ' . $_SESSION['email'] . "\n";
-
+		
+		#echo '$_SESSION[\'name\']: ' . $_SESSION['name'] . "\n";
+		#echo '$_SESSION[\'email\']: ' . $_SESSION['email'] . "\n";
+		
 		$return_to_url = MailingList_SignUpURLFactory::get_email_adding_html_page();
-
+		#print_r($return_to_url); exit;
+		
 		if (isset($_GET['add_person'])) {
 			$mysql_user_factory = Database_MySQLUserFactory::get_instance();
+			#print_r($mysql_user_factory); exit;
+			
 			$mysql_user = $mysql_user_factory->get_for_this_project();
+			#print_r($mysql_user); exit;
+			
 			$database = $mysql_user->get_database();
-
+			#print_r($database); exit;
+			
 			$people_table = $database->get_table('hpi_mailing_list_people');
-
+			#print_r($people_table); exit;
+			
 			if (isset($_POST['name'])) {
 				$_SESSION['name'] = $_POST['name'];
 			}
@@ -85,9 +93,8 @@ MailingList_PeopleHelper
 			}
 		}
 
-		print_r($return_to_url);
-		#exit;
-
+		#print_r($return_to_url); exit;
+		
 		return $return_to_url;
 	}
 
@@ -145,14 +152,24 @@ MailingList_PeopleHelper
 		$name = str_replace('"', '', $name);
 		return $name;
 	}
-
+	
+	/**
+	 * Sanitises an email address.
+	 *
+	 * Should we check more mistakes?
+	 * Should we provide a list in a separate text file of replacements?
+	 * Might an individual project want to maintain their own list?
+	 *
+	 * @param string $email The email address to be sanitised.
+	 * @return string The sanitised email address.
+	 */
 	public static function
 		sanitise_email($email)
 	{
 		$email = str_replace('yahoo.company', 'yahoo.com', $email);
+		
 		return $email;
 	}
-
 
 	public function
 		get_widget_content()
@@ -233,8 +250,7 @@ TXT;
 		$ul = new HTMLTags_UL();
 		$ul->set_attribute_str('class', 'inline');
 
-		foreach ($links as $key => $value)
-		{
+		foreach ($links as $key => $value) {
 			$li = new HTMLTags_LI();
 
 			$url = new HTMLTags_URL();
@@ -245,6 +261,7 @@ TXT;
 			$li->append($a);
 			$ul->append($li);
 		}
+		
 		return $ul;
 	}
 }
