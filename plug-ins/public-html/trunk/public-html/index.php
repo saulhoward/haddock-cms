@@ -8,13 +8,6 @@
  * @copyright 2007-01-03, RFI
  */
 
-#header('Content-Type: text/plain');
-#echo 'print_r($_GET)' . "\n";
-#print_r($_GET);
-#echo 'print_r($_POST)' . "\n";
-#print_r($_POST);
-#exit;
-
 /*
  * Define constants that are used throughout
  * the project.
@@ -39,6 +32,29 @@ if (DEBUG) {
 	echo 'Line: ' . __LINE__ . PHP_EOL;
 	
 	echo 'In DEBUG mode.' . PHP_EOL;
+	
+	echo DEBUG_DELIM_CLOSE;
+}
+
+if (DEBUG) {
+	echo DEBUG_DELIM_OPEN;
+	
+	echo 'print_r($_GET)' . PHP_EOL;
+	print_r($_GET);
+	echo 'print_r($_POST)' . PHP_EOL;
+	print_r($_POST);
+	echo 'print_r($_SERVER);' . PHP_EOL;
+	print_r($_SERVER);
+	echo 'print_r($_SESSION);' . PHP_EOL;
+	print_r($_SESSION);
+	echo 'print_r($_COOKIE);' . PHP_EOL;
+	print_r($_COOKIE);
+	echo 'print_r($_ENV);' . PHP_EOL;
+	print_r($_ENV);
+	echo 'print_r($_FILES);' . PHP_EOL;
+	print_r($_FILES);
+	echo 'print_r($_REQUEST);' . PHP_EOL;
+	print_r($_REQUEST);
 	
 	echo DEBUG_DELIM_CLOSE;
 }
