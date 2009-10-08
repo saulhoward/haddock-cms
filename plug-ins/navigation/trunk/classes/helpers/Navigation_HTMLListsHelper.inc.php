@@ -56,6 +56,57 @@ class
 	}
 
 	public static function
+		get_1d_ul_with_spans_and_selected_lines(
+			$tree_name,
+			$class_name = NULL,
+			$page_class_str = NULL
+		)
+	{
+		if (!isset($class_name)) {
+			$class_name = 'navigation';
+		}
+		
+		$nodes
+			= Navigation_1DTreeRetriever
+				::get_tree_nodes($tree_name);
+				
+		#print_r($nodes);
+		
+		#echo "<ul class=\"$class_name\">\n";
+		
+		$ul = new HTMLTags_UL();
+		
+		$ul->set_class($class_name);
+		
+		foreach ($nodes as $node) {
+			#Navigation_NodeRenderer::render_node($node);
+			
+			$li = new HTMLTags_LI();
+			$li->set_attribute_str(
+				'id',
+				self::get_line_css_id($node['url_href'])
+			);
+
+			if (
+				($page_class_str != NULL)
+				&& 
+				(self::is_node_selected($node, $page_class_str))
+			)	{
+				$li->set_class('selected');
+			}
+			$li->append(
+				Navigation_NodesHelper
+					::get_link_a_with_span($node)
+			);
+			
+			$ul->add_li(
+				$li
+			);
+		}
+		
+		return $ul;
+	}
+	public static function
 		get_1d_ul_with_selected_lines(
 			$tree_name,
 			$class_name = NULL,
@@ -124,7 +175,11 @@ class
 		} elseif (strpos($url_href, '.html')) {
 			preg_match('/\/([^\/]*)\.html/', $url_href, $matches);
 			return $matches[1];
+		} else {
+			preg_match('/\/([^\/]*)$/', $url_href, $matches);
+			return $matches[1];
 		}
+
 
 		return 'home';
 	}
@@ -154,6 +209,13 @@ class
 			if ('/' . $page_class_str == $pm->get_default_url()) {
 				return TRUE;
 			}
+		}
+
+		$clean_url_str = str_replace('/', '', $node['url_href']);
+		if (
+			preg_match('/' . $clean_url_str . '/i', $page_class_str, $matches)
+		) {
+			return TRUE;
 		}
 
                 /**

@@ -50,5 +50,38 @@ class
 		
 		return $a;
 	}
+
+	public static function
+		get_link_a_with_span($node)
+	{
+
+		$span = new HTMLTags_Span();
+		$span->append($node['url_title']);
+		$a = new HTMLTags_A();
+		$a->append($span);
+		
+		$a->set_href(
+			HTMLTags_URL
+				::parse_and_make_url(
+					$node['url_href']
+				)
+		);
+		
+		$a->set_attribute_str(
+			'title',
+			$node['url_title']
+		);
+		
+		if ($node['open_in_new_window'] == 'Yes') {
+			#echo ' target="_blank" ';
+			
+			$a->set_attribute_str(
+				'target',
+				'_blank'
+			);
+		}
+		
+		return $a;
+	}
 }
 ?>
