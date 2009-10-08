@@ -34,8 +34,7 @@ ul.tags-empty-links-list li {
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-line-height:38px;
-
+	line-height:38px;
 }
 ul.tags-empty-links-list li.selected {
 	background: #4040FF;

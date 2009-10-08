@@ -165,6 +165,66 @@ SQL;
 		//print_r($videos);exit;
 		return $videos;
 	}
+
+	public static function
+		get_external_video_libraries_for_ids(
+			$library_ids,
+			$ignore_status = FALSE
+		)
+	{
+		$dbh = DB::m();
+
+		//$limit = mysql_real_escape_string($limit);
+
+		$query = <<<SQL
+SELECT
+	*
+FROM
+	hpi_video_library_external_video_libraries
+WHERE
+status = 'display'
+AND
+
+SQL;
+
+		$i = 0;
+		foreach ($library_ids as $library_id) {
+			$library_id = mysql_real_escape_string($library_id);
+			if ($i != 0) {
+
+				$query .= <<<SQL
+OR
+
+SQL;
+
+			}
+			$i++;
+			$query .= <<<SQL
+id = $library_id
+
+SQL;
+
+		}
+		$query .= <<<SQL
+
+ORDER BY
+sort_order
+
+SQL;
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$libraries = array();
+
+		while ($row = mysql_fetch_assoc($result)) {
+			$libraries[] = $row;
+		}   
+		//print_r($libraries);exit;
+		return $libraries;
+	}
+
 	public static function
 		get_external_video_libraries(
 			$ignore_status = FALSE
