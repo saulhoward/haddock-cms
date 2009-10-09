@@ -241,8 +241,8 @@ class
 		 */
 		if (isset($this->inc_files[$element])) {
 			return PROJECT_ROOT . $this->inc_files[$element];
-	}
-
+		}
+		
 		/*
 		 * Which of the optional arguments have been set?
 		 */
@@ -309,9 +309,18 @@ class
 			/*
 			 * Has this element been overridden for all pages of this type?
 			 */
+			
+			/*
+			 * See below for this date
+			 * RFI 2009-10-08
+			 */
+			#$possible_filenames = array();
+			#$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$type/$element.inc.php";
+			#$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$element.inc.php";
+			
 			$possible_filenames = array();
-			$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$type/$element.inc.php";
-			$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$element.inc.php";
+			$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/plug-ins/public-html/$type/$element.inc.php";
+			$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/plug-ins/public-html/$element.inc.php";
 			
 			foreach ($possible_filenames as $possible_filename) {
 				if ($this->debug) {
@@ -344,11 +353,26 @@ class
 		/*
 		 * Fall back to the defaults.
 		 */
+		
+		/*
+		 * The public-html module has been moved to the plug-ins directory.
+		 *
+		 * For this reason, the defaults are now in that directory, rather than
+		 * in the core.
+		 *
+		 * RFI 2009-10-08
+		 */
+		#$possible_filenames = array();
+		#$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$type/$element.inc.php";;
+		#$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$element.inc.php";;
+		#$possible_filenames[] = PROJECT_ROOT . "/haddock/public-html/www-includes/$type/$element.inc.php";;
+		#$possible_filenames[] = PROJECT_ROOT . "/haddock/public-html/www-includes/$element.inc.php";;
+		
 		$possible_filenames = array();
-		$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$type/$element.inc.php";;
-		$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/haddock/public-html/$element.inc.php";;
-		$possible_filenames[] = PROJECT_ROOT . "/haddock/public-html/www-includes/$type/$element.inc.php";;
-		$possible_filenames[] = PROJECT_ROOT . "/haddock/public-html/www-includes/$element.inc.php";;
+		$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/plug-ins/public-html/$type/$element.inc.php";
+		$possible_filenames[] = PROJECT_ROOT . "/project-specific/www-override-includes/plug-ins/public-html/$element.inc.php";
+		$possible_filenames[] = PROJECT_ROOT . "/plug-ins/public-html/www-includes/$type/$element.inc.php";
+		$possible_filenames[] = PROJECT_ROOT . "/plug-ins/public-html/www-includes/$element.inc.php";
 		
 		foreach ($possible_filenames as $possible_filename) {
 			if ($this->debug) {
