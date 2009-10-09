@@ -4,6 +4,7 @@
  * name and password have been entered and accepted.
  *
  * @copyright Clear Line Web Design, 2007-12-12
+ * @copyright 2009-10-08, Robert Impey
  */
 
 abstract class
@@ -33,7 +34,9 @@ extends
 			$redirection_manager = new PublicHTML_RedirectionManager();
 			$redirection_url = $redirection_manager->get_url();
 			
-			$redirection_url->set_file('/hc/admin/login.html');
+			# RFI 2009-10-08
+			#$redirection_url->set_file('/hc/admin/login.html');
+			$redirection_url->set_file('/admin.html');
 			
 			$location_header_line = 'Location: ' . $redirection_url->get_as_string();
 			
@@ -66,9 +69,17 @@ extends
 		#$navigation_div->append_tag_to_content($site_map_ul);
 		
 		ob_start();
-		require PROJECT_ROOT
-			. '/haddock/admin/www-includes/html/'
-			. 'body.div.nav-or-error-msg.inc.php';
+		
+		/*
+		 * The admin module has been moved from the core to the plug-ins.
+		 * RFI 2009-10-08
+		 */
+		#require PROJECT_ROOT
+		#	. '/haddock/admin/www-includes/html/'
+		#	. 'body.div.nav-or-error-msg.inc.php';
+		$page_manager = PublicHTML_PageManager::get_instance();
+		$page_manager->render_inc_file('body.div.nav-or-error-msg');
+		
 		$str = ob_get_clean();
 		$navigation_div->append_str_to_content($str);
 		

@@ -5,10 +5,6 @@
  * @copyright 2007-08-06, RFI
  */
 
-#require_once PROJECT_ROOT
-#	. '/haddock/haddock-project-organisation/classes/'
-#	. 'HaddockProjectOrganisation_LoginManager.inc.php';
-
 class
 	Admin_LoginManager
 extends
@@ -111,6 +107,11 @@ extends
 	
 	/*
 	 * Functions to do with URLs of pages and scripts.
+	 *
+	 * The admin module has been moved from the core to the plug-ins.
+	 *
+	 * The 'section' fields have be updated accordingly.
+	 * RFI 2009-10-08
 	 */
 	
 	public function
@@ -120,7 +121,10 @@ extends
 		
 		$login_url->set_file('/');
 		
-		$login_url->set_get_variable('section', 'haddock');
+		# RFI 2009-10-08
+		#$login_url->set_get_variable('section', 'haddock');
+		$login_url->set_get_variable('section', 'plug-ins');
+		
 		$login_url->set_get_variable('module', 'admin');
 		$login_url->set_get_variable('page', 'login');
 		$login_url->set_get_variable('type', 'html');
@@ -148,17 +152,25 @@ extends
 		
 		#return $login_url;
 		
-		$login_url = PublicHTML_URLHelper
+		# RFI 2009-10-08
+		#$login_url = PublicHTML_URLHelper
+		#	::get_pm_page_url(
+		#		'login',
+		#		'redirect-script',
+		#		'haddock',
+		#		'admin'
+		#	);
+		$login_script_url = PublicHTML_URLHelper
 			::get_pm_page_url(
 				'login',
 				'redirect-script',
-				'haddock',
+				'plug-ins',
 				'admin'
 			);
 			
-		$login_url->set_get_variable('login');
+		$login_script_url->set_get_variable('login');
 		
-		return $login_url;
+		return $login_script_url;
 	}
 	
 	public function
@@ -168,7 +180,10 @@ extends
 		
 		$login_cancel_url->set_file('/');
 		
-		$login_cancel_url->set_get_variable('section', 'haddock');
+		# RFI 2009-10-08
+		#$login_url->set_get_variable('section', 'haddock');
+		$login_cancel_url->set_get_variable('section', 'plug-ins');
+		
 		$login_cancel_url->set_get_variable('module', 'admin');
 		$login_cancel_url->set_get_variable('page', 'login');
 		$login_cancel_url->set_get_variable('type', 'redirect-script');
@@ -185,7 +200,10 @@ extends
 		
 		$password_reset_confirmation_url->set_file('/');
 		
-		$password_reset_confirmation_url->set_get_variable('section', 'haddock');
+		# RFI 2009-10-08
+		#$login_url->set_get_variable('section', 'haddock');
+		$password_reset_confirmation_url->set_get_variable('section', 'plug-ins');
+		
 		$password_reset_confirmation_url->set_get_variable('module', 'admin');
 		$password_reset_confirmation_url->set_get_variable('page', 'password-reset-confirmation');
 		$password_reset_confirmation_url->set_get_variable('type', 'html');
@@ -200,7 +218,10 @@ extends
 		
 		$password_reset_script_url->set_file('/');
 		
-		$password_reset_script_url->set_get_variable('section', 'haddock');
+		# RFI 2009-10-08
+		#$login_url->set_get_variable('section', 'haddock');
+		$password_reset_script_url->set_get_variable('section', 'plug-ins');
+		
 		$password_reset_script_url->set_get_variable('module', 'admin');
 		$password_reset_script_url->set_get_variable('page', 'password-reset');
 		$password_reset_script_url->set_get_variable('type', 'redirect-script');
@@ -215,7 +236,10 @@ extends
 		
 		$log_out_url->set_file('/');
 		
-		$log_out_url->set_get_variable('section', 'haddock');
+		# RFI 2009-10-08
+		#$login_url->set_get_variable('section', 'haddock');
+		$log_out_url->set_get_variable('section', 'plug-ins');
+		
 		$log_out_url->set_get_variable('module', 'admin');
 		$log_out_url->set_get_variable('page', 'log-out');
 		$log_out_url->set_get_variable('type', 'redirect-script');
@@ -256,13 +280,13 @@ extends
 		
 		return $psd->get_config_file('haddock', 'admin');
 	}
-
 	
 	/*
 	 * ----------------------------------------
 	 * Methods to do with data for resetting the users's password
 	 * ----------------------------------------
 	 */
+	
 	protected function
 		get_password_reset_email_reply_address()
 	{
