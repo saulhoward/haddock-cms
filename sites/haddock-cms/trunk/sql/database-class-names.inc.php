@@ -2,43 +2,43 @@
 /**
  * The database class names.
  *
- * @copyright Clear Line Web Design, 2008-02-23
+ * @copyright Clear Line Web Design, 2009-10-09
  */
 
 $_SESSION['database-class-names'] = array();
 $_SESSION['database-class-names']['hc_admin_users'] = array();
 $_SESSION['database-class-names']['hc_admin_users']['table_class']['class_name'] = "Admin_UsersTable";
-$_SESSION['database-class-names']['hc_admin_users']['table_class']['class_file'] = "/haddock/admin/classes/database/elements/table-subclasses/Admin_UsersTable.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['table_class']['class_file'] = "/plug-ins/admin/classes/database/elements/table-subclasses/Admin_UsersTable.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['table_renderer']['class_name'] = "Admin_UsersTableRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['table_renderer']['class_file'] = "/haddock/admin/classes/database/renderers/table-renderers/Admin_UsersTableRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['table_renderer']['class_file'] = "/plug-ins/admin/classes/database/renderers/table-renderers/Admin_UsersTableRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['row_class']['class_name'] = "Admin_UserRow";
-$_SESSION['database-class-names']['hc_admin_users']['row_class']['class_file'] = "/haddock/admin/classes/database/elements/row-subclasses/Admin_UserRow.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['row_class']['class_file'] = "/plug-ins/admin/classes/database/elements/row-subclasses/Admin_UserRow.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['row_renderer']['class_name'] = "Admin_UserRowRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['row_renderer']['class_file'] = "/haddock/admin/classes/database/renderers/row-renderers/Admin_UserRowRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['row_renderer']['class_file'] = "/plug-ins/admin/classes/database/renderers/row-renderers/Admin_UserRowRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['email']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['email']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['email']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['email']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['email']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['email']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['id']['class']['class_name'] = "Database_IntField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['id']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_IntField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['id']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_IntField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['id']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['id']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['id']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['name']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['name']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['name']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['name']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['name']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['name']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['password']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['password']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['password']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['password']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['password']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['password']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['real_name']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['type']['class']['class_name'] = "Database_EnumField";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['type']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_EnumField.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['type']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_EnumField.inc.php";
 $_SESSION['database-class-names']['hc_admin_users']['fields']['type']['renderer']['class_name'] = "Database_ChoiceFieldRenderer";
-$_SESSION['database-class-names']['hc_admin_users']['fields']['type']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ChoiceFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hc_admin_users']['fields']['type']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ChoiceFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hc_database_images'] = array();
 $_SESSION['database-class-names']['hc_database_images']['table_class']['class_name'] = "Database_ImagesTable";
 $_SESSION['database-class-names']['hc_database_images']['table_class']['class_file'] = "/haddock/database/classes/elements/table-subclasses/Database_ImagesTable.inc.php";
@@ -186,27 +186,27 @@ $_SESSION['database-class-names']['hpi_mailing_list_people']['row_class']['class
 $_SESSION['database-class-names']['hpi_mailing_list_people']['row_renderer']['class_name'] = "MailingList_PersonRowRenderer";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['row_renderer']['class_file'] = "/plug-ins/mailing-list/classes/database/renderers/row-renderers/MailingList_PersonRowRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['class']['class_name'] = "Database_DateTimeField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_DateTimeField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_DateTimeField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['renderer']['class_name'] = "Database_TimeFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_TimeFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['added']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_TimeFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['email']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['class']['class_name'] = "Database_IntField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_IntField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_IntField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['id']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['class']['class_name'] = "Database_VarCharField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_VarCharField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['name']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['class']['class_name'] = "Database_IntField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_IntField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_IntField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['renderer']['class_name'] = "Database_ShortTextFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['sort_order']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ShortTextFieldRenderer.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['class']['class_name'] = "Database_EnumField";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['class']['class_file'] = "/haddock/database/classes/elements/field-subclasses/Database_EnumField.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['class']['class_file'] = "/plug-ins/database/classes/elements/field-subclasses/Database_EnumField.inc.php";
 $_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['renderer']['class_name'] = "Database_ChoiceFieldRenderer";
-$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['renderer']['class_file'] = "/haddock/database/classes/renderers/field-renderers/Database_ChoiceFieldRenderer.inc.php";
+$_SESSION['database-class-names']['hpi_mailing_list_people']['fields']['status']['renderer']['class_file'] = "/plug-ins/database/classes/renderers/field-renderers/Database_ChoiceFieldRenderer.inc.php";
 ?>
