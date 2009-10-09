@@ -20,7 +20,7 @@ to create the necessary file.
 	</admin-style>
 	<start-page>
 		<widget-classes>
-			HaddockProjectOrganisation_StartPageWidget
+			Admin_ModuleSpecificStartPageWidget
 		</widget-classes>
 	</start-page>
 </config>

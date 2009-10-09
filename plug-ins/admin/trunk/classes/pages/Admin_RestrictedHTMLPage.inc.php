@@ -74,11 +74,9 @@ extends
 		 * The admin module has been moved from the core to the plug-ins.
 		 * RFI 2009-10-08
 		 */
-		#require PROJECT_ROOT
-		#	. '/haddock/admin/www-includes/html/'
-		#	. 'body.div.nav-or-error-msg.inc.php';
-		$page_manager = PublicHTML_PageManager::get_instance();
-		$page_manager->render_inc_file('body.div.nav-or-error-msg');
+		require PROJECT_ROOT
+			. '/plug-ins/admin/www-includes/html/'
+			. 'body.div.nav-or-error-msg.inc.php';
 		
 		$str = ob_get_clean();
 		$navigation_div->append_str_to_content($str);

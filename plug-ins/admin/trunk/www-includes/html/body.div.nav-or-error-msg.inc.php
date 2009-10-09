@@ -4,6 +4,7 @@
  * and on each page in the navigation div.
  * 
  * @copyright Clear Line Web Design, 2007-10-21
+ * @copyright 2009-10-10, Robert Impey
  */
 
 $nav_or_error_msg_div = new HTMLTags_Div();
@@ -32,8 +33,14 @@ if ($psd->has_admin_navigation_xml_file()) {
 	$nav_or_error_msg_div->append_tag_to_content($site_map_ul);
 } else {
 	$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-	$cm = $cmf->get_config_manager('haddock', 'admin');
-
+	
+	/*
+	 * The admin module has been moved from the core to the plug-ins.
+	 * RFI 2009-10-10
+	 */
+	#$cm = $cmf->get_config_manager('haddock', 'admin');
+	$cm = $cmf->get_config_manager('plug-ins', 'admin');
+	
 	/*
 	 * Get the file not found message and turn it into paragraphs.
 	 * 
