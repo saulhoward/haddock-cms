@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-10-09
+ * Last Modified: 2009-10-10
  */
 
 function __autoload($class_name)
@@ -61,6 +61,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'html-tags' . DIRECTORY_SEPARATOR . 'Admin_ModuleLinksUL.inc.php';
 			break;
 
+		case('Admin_ModuleSpecificStartPageWidget'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Admin_ModuleSpecificStartPageWidget.inc.php';
+			break;
+
 		case('Admin_ModuleTitleFile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Admin_ModuleTitleFile.inc.php';
 			break;
@@ -83,6 +87,10 @@ function __autoload($class_name)
 
 		case('Admin_PagesDirectory'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Admin_PagesDirectory.inc.php';
+			break;
+
+		case('Admin_ProjectInformationHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Admin_ProjectInformationHelper.inc.php';
 			break;
 
 		case('Admin_ResetAllUsersPasswordsCLIScript'): 

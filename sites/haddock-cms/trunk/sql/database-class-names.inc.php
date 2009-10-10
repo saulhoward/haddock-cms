@@ -2,7 +2,7 @@
 /**
  * The database class names.
  *
- * @copyright Clear Line Web Design, 2009-10-09
+ * @copyright Clear Line Web Design, 2009-10-10
  */
 
 $_SESSION['database-class-names'] = array();
