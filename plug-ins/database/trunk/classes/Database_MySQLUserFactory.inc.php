@@ -5,25 +5,6 @@
  * @copyright 2006-09-17, RFI
  */
 
-#/*
-# * Define the necessary classes.
-# */
-#require_once PROJECT_ROOT
-#    . '/haddock/database/classes/'
-#    . 'Database_MySQLUser.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/database/classes/'
-#    . 'Database_PasswordFile.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/database/classes/'
-#    . 'Database_MySQLRootUser.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/haddock-project-organisation/classes/'
-#    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-
 /**
  * Produces MySQL users.
  *

@@ -84,16 +84,6 @@ PWF;
 	public static function
 		get_passwords_file()
 	{
-		if (DEBUG) {
-			echo DEBUG_DELIM_OPEN;
-			
-			echo 'File: ' . __FILE__ . PHP_EOL;
-			echo 'Line: ' . __LINE__ . PHP_EOL;
-			echo 'Method: ' . __METHOD__ . PHP_EOL;
-			
-			echo DEBUG_DELIM_CLOSE;
-		}
-		
 		#$project_directory_finder
 		#	= HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
 		#	
@@ -102,8 +92,10 @@ PWF;
 		$project_directory
 			= HaddockProjectOrganisation_ProjectDirectoryHelper
 				::get_project_directory();
+		#print_r($project_directory); exit;
 		
 		$passwords_file = $project_directory->get_passwords_file();
+		#print_r($passwords_file); exit;
 		
 		return $passwords_file;
 	}

@@ -13,16 +13,6 @@ class
 	public static function
 		get_database_handle()
 	{
-		if (DEBUG) {
-			echo DEBUG_DELIM_OPEN;
-			
-			echo 'File: ' . __FILE__ . PHP_EOL;
-			echo 'Line: ' . __LINE__ . PHP_EOL;
-			echo 'Method: ' . __METHOD__ . PHP_EOL;
-			
-			echo DEBUG_DELIM_CLOSE;
-		}
-		
 		#$mysql_user_factory = Database_MySQLUserFactory::get_instance();
 		#$mysql_user = $mysql_user_factory->get_for_this_project();
 		#$database = $mysql_user->get_database();

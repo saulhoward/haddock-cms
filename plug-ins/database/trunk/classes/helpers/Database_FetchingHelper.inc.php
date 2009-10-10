@@ -13,16 +13,6 @@ class
 			Database_SQLSelectQuery $query
 		)
 	{
-		if (DEBUG) {
-			echo DEBUG_DELIM_OPEN;
-			
-			echo 'File: ' . __FILE__ . PHP_EOL;
-			echo 'Line: ' . __LINE__ . PHP_EOL;
-			echo 'Method: ' . __METHOD__ . PHP_EOL;
-			
-			echo DEBUG_DELIM_CLOSE;
-		}
-		
 		$rows = array();
 		
 		$dbh = DB::m();
@@ -31,14 +21,6 @@ class
 		
 		#echo "\$str_query: $str_query\n";
 		#exit;
-		
-		if (DEBUG) {
-			echo DEBUG_DELIM_OPEN;
-			
-			echo "\$str_query: $str_query\n";
-			
-			echo DEBUG_DELIM_CLOSE;
-		}
 		
 		$result = mysql_query($str_query, $dbh);
 		

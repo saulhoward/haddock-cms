@@ -5,17 +5,6 @@
  * @copyright 2006-09-18, RFI
  */
 
-#/**
-# * Define the necessary classes.
-# */
-#require_once PROJECT_ROOT
-#    . '/haddock/file-system/classes/'
-#    . 'FileSystem_PHPClassFile.inc.php';
-#
-#require_once PROJECT_ROOT
-#    . '/haddock/haddock-project-organisation/classes/'
-#    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-
 /**
  * An instance of this class chooses the correct subclass of Element to
  * instantiate.
@@ -133,7 +122,7 @@ class
 				$database_class_file
 					= new FileSystem_PHPClassFile(
 						PROJECT_ROOT
-						. '/haddock/database/classes/elements/'
+						. '/plug-ins/database/classes/elements/'
 						. 'Database_Database.inc.php');
 			}
 			
@@ -176,7 +165,7 @@ class
 				$database_renderer_class_file
 					= new FileSystem_PHPClassFile(
 						PROJECT_ROOT
-							. '/haddock/database/classes/renderers/'
+							. '/plug-ins/database/classes/renderers/'
 							. 'Database_DatabaseRenderer.inc.php'
 					);
 			}
@@ -242,7 +231,7 @@ class
 				$table_class_file
 					= new FileSystem_PHPClassFile(
 						PROJECT_ROOT
-							. '/haddock/database/classes/elements/'
+							. '/plug-ins/database/classes/elements/'
 							. 'Database_Table.inc.php');
 			}
 			
@@ -283,7 +272,10 @@ class
 			
 			# Fallback.
 			if (!isset($table_renderer_class_file)) {
-				$table_renderer_class_file = new FileSystem_PHPClassFile(PROJECT_ROOT . '/haddock/database/classes/renderers/Database_TableRenderer.inc.php');
+				$table_renderer_class_file
+					= new FileSystem_PHPClassFile(
+						PROJECT_ROOT . '/plug-ins/database/classes/renderers/Database_TableRenderer.inc.php'
+					);
 			}
 			
 			$table_renderer_class_file->declare_class();
@@ -327,7 +319,10 @@ class
 			
 			# Fallback.
 			if (!isset($row_class_file)) {
-				$row_class_file = new FileSystem_PHPClassFile(PROJECT_ROOT . '/haddock/database/classes/elements/Database_Row.inc.php');
+				$row_class_file
+					= new FileSystem_PHPClassFile(
+						PROJECT_ROOT . '/plug-ins/database/classes/elements/Database_Row.inc.php'
+					);
 			}
 			
 			$row_class_file->declare_class();
@@ -366,7 +361,10 @@ class
 			
 			# Fallback.
 			if (!isset($row_renderer_class_file)) {
-				$row_renderer_class_file = new FileSystem_PHPClassFile(PROJECT_ROOT . '/haddock/database/classes/renderers/Database_RowRenderer.inc.php');
+				$row_renderer_class_file
+					= new FileSystem_PHPClassFile(
+						PROJECT_ROOT . '/plug-ins/database/classes/renderers/Database_RowRenderer.inc.php'
+					);
 			}
 			
 			$row_renderer_class_file->declare_class();
@@ -412,7 +410,10 @@ class
 			
 			# Fallback.
 			if (!isset($field_class_file)) {
-				$field_class_file = new FileSystem_PHPClassFile(PROJECT_ROOT . '/haddock/database/classes/elements/Database_Field.inc.php');
+				$field_class_file
+					= new FileSystem_PHPClassFile(
+						PROJECT_ROOT . '/plug-ins/database/classes/elements/Database_Field.inc.php'
+					);
 			}
 			
 			$field_class_file->declare_class();
@@ -474,7 +475,10 @@ class
 			
 			# Fallback.
 			if (!isset($field_renderer_class_file)) {
-				$field_renderer_class_file = new FileSystem_PHPClassFile(PROJECT_ROOT . '/haddock/database/classes/renderers/Database_FieldRenderer.inc.php');
+				$field_renderer_class_file
+					= new FileSystem_PHPClassFile(
+						PROJECT_ROOT . '/plug-ins/database/classes/renderers/Database_FieldRenderer.inc.php'
+					);
 			}
 			
 			$field_renderer_class_file->declare_class();

@@ -5,13 +5,6 @@
  * @copyright Clear Line Web Design, 2006-09-17
  */
 
-/*
- * Define the necessary classes.
- */
-#require_once PROJECT_ROOT
-#    . '/haddock/database/classes/'
-#    . 'Database_DatabaseClassFactory.inc.php';
-
 /**
  * Every server, project and purpose has its own MySQL user.
  *
@@ -63,7 +56,8 @@ class
 		return $dbh;
 	}
 	
-	public function get_database_handle()
+	public function
+		get_database_handle()
 	{
 		#return $this->get_dbh_private_member();
 		return $this->get_dbh_new_instance();
