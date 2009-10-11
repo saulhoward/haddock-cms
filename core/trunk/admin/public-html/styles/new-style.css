@@ -142,6 +142,8 @@ div#content em
 }
 div#content dl
 {
+margin: 0 5px 25px 0;
+clear: both;
 }
 
 div#content dt
@@ -159,6 +161,10 @@ div#content dd
 div#content dd span.not_set
 {
 color: red;
+}
+
+div#content dl div.odd {
+padding: 10px 0 5px 0;margin: 5px 0;background-color:#EFEFEF;
 }
 div#content div.details
 {
