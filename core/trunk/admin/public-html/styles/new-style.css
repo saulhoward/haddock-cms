@@ -163,6 +163,7 @@ div#content dd span.not_set
 color: red;
 }
 
+div#content dl span.odd,
 div#content dl div.odd {
 padding: 10px 0 5px 0;margin: 5px 0;background-color:#EFEFEF;
 }
