@@ -219,6 +219,14 @@ $div->append($html);
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'providers');
 		$ul = new HTMLTags_UL();
+
+		$all_li = new HTMLTags_LI();
+		if ( !isset($_GET['external_video_provider_id'])) {
+			$all_li->set_attribute_str('class', 'selected');
+		}
+		$all_li->append('<a href="/">All</a>');
+		$ul->append($all_li);
+
 		foreach ($providers as $provider) {
 			$li = new HTMLTags_LI();
 			if (
@@ -298,6 +306,22 @@ $div->append($html);
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'tags');
 		$ul = new HTMLTags_UL();
+
+		$all_li = new HTMLTags_LI();
+		if (
+			(!isset($_GET['tag_ids']))
+			&&
+			(
+				(isset($_GET['page-class']))
+				&&
+				($_GET['page-class'] != 'DirtyDodo_TagsPage')
+			)
+		) {
+			$all_li->set_attribute_str('class', 'selected');
+		}
+		$all_li->append('<a href="/">All</a>');
+		$ul->append($all_li);
+
 		foreach ($tags as $tag) {
 			$li = new HTMLTags_LI();
 			if (
