@@ -308,7 +308,7 @@ SQL;
 
 		if ($principal) {
 			$query .= <<<SQL
-WHERE
+AND
 	principal = 'yes'
 
 SQL;
