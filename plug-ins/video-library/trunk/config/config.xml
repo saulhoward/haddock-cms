@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>VideoLibrary_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<page-building>
+		<page-builder-class value="VideoLibrary_PageBuilder" />
+	</page-building>
+	<page-classes>
+		<video-page-class value="VideoLibrary_VideoPage" />
+		<search-page-class value="VideoLibrary_SearchPage" />
+	</page-classes>
+
+	<thumbnails>
+		<default-thumbnail-url value="/images/video-library/default-thumbnail.png" />
+	</thumbnails>
+</config>

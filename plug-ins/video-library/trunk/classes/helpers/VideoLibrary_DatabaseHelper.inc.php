@@ -381,6 +381,55 @@ SQL;
 
 
 	public static function
+		get_tags_for_tag_ids(
+			$tag_ids
+		)
+	{
+		$dbh = DB::m();
+
+		//$limit = mysql_real_escape_string($limit);
+
+		$query = <<<SQL
+SELECT
+	*
+FROM
+	hpi_video_library_tags
+WHERE
+
+SQL;
+
+		$i = 0;
+		foreach ($tag_ids as $tag_id) {
+			$tag_id = mysql_real_escape_string($tag_id);
+			if ($i != 0){
+				$query .= <<<SQL
+	OR
+
+SQL;
+
+			}
+			$i++;
+			$query .= <<<SQL
+	hpi_video_library_tags.id = '$tag_id'
+
+SQL;
+
+		}
+		
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$tags = array();
+
+		while ($row = mysql_fetch_assoc($result)) {
+			$tags[] = $row;
+		}   
+		//print_r($tags);exit;
+		return $tags;
+	}
+
+	public static function
 		get_tags(
 			$principal = FALSE
 		)
@@ -470,6 +519,32 @@ SQL;
 		//print_r($videos);exit;
 		return $providers;
 	}
+
+	public static function
+		get_external_video_provider_for_id($id)
+	{
+		$dbh = DB::m();
+
+		$id = mysql_real_escape_string($id);
+                    
+                $query = <<<SQL
+SELECT
+	*
+FROM
+	hpi_video_library_external_video_providers
+WHERE
+	id = '$id'
+SQL;
+                    
+                //echo $query; exit;
+                    
+                $result = mysql_query($query, $dbh);
+
+		$provider = mysql_fetch_assoc($result);
+		//print_r($videos);exit;
+		return $provider;
+	}
+
 	public static function
 		get_external_video_providers()
 	{

@@ -224,7 +224,18 @@ $div->append($html);
 		if ( !isset($_GET['external_video_provider_id'])) {
 			$all_li->set_attribute_str('class', 'selected');
 		}
-		$all_li->append('<a href="/">All</a>');
+		$all_a = new HTMLTags_A('All');
+		$href = '';
+		if (isset($_GET['external_video_provider_id'])) {
+			$href = VideoLibrary_URLHelper::get_all_external_video_providers_url(
+				$_GET['external_video_provider_id']
+			);
+		} else {
+			$href = VideoLibrary_URLHelper::get_all_external_video_providers_url();
+		}
+		$all_a->set_href($href);
+		$all_li->append($all_a);
+
 		$ul->append($all_li);
 
 		foreach ($providers as $provider) {
@@ -237,12 +248,20 @@ $div->append($html);
 				$li->set_attribute_str('class', 'selected');
 			}
 			$a = new HTMLTags_A();
-			$a->set_href(
-				VideoLibrary_URLHelper
-				::get_external_video_provider_search_page_url(
-					$provider['id']
-				)
-			);
+			$href = '';
+			if (isset($_GET['tag_ids'])) {
+				$href = VideoLibrary_URLHelper
+					::get_tags_and_external_video_provider_search_page_url(
+						$_GET['tag_ids'],
+						$provider['id']
+					);
+			} else {
+				$href = VideoLibrary_URLHelper
+					::get_external_video_provider_search_page_url(
+						$provider['id']
+					);
+			}
+			$a->set_href($href);
 			$a->append($provider['name']);
 			$li->append($a);
 			$ul->append($li);
@@ -319,7 +338,18 @@ $div->append($html);
 		) {
 			$all_li->set_attribute_str('class', 'selected');
 		}
-		$all_li->append('<a href="/">All</a>');
+		$all_a = new HTMLTags_A('All');
+		$href = '';
+		if (isset($_GET['external_video_provider_id'])) {
+			$href = VideoLibrary_URLHelper::get_all_tags_url(
+				$_GET['external_video_provider_id']
+			);
+		} else {
+			$href = VideoLibrary_URLHelper::get_all_tags_url();
+		}
+		$all_a->set_href($href);
+		$all_li->append($all_a);
+
 		$ul->append($all_li);
 
 		foreach ($tags as $tag) {
@@ -334,19 +364,103 @@ $div->append($html);
 			$a = new HTMLTags_A();
 			$tags_array = array();
 			$tags_array[] = $tag['id'];
-			$a->set_href(
-				VideoLibrary_URLHelper
-				::get_tags_search_page_url(
-					$tags_array,
-					$external_video_library_id
-				)
-			);
+			$href='';
+			if (isset($_GET['external_video_provider_id'])) {
+				$href = VideoLibrary_URLHelper
+					::get_tags_and_external_video_provider_search_page_url(
+						$tags_array,
+						$_GET['external_video_provider_id']
+					);
+			} else {
+				$href = VideoLibrary_URLHelper
+					::get_tags_search_page_url(
+						$tags_array,
+						$external_video_library_id
+					);
+			}
+			$a->set_href($href);
 			$a->append($tag['tag']);
 			$li->append($a);
 			$ul->append($li);
 		}
 		$div->append($ul);
 		return $div;
+	}
+
+	public static function
+		get_search_page_videos_description_div(
+				$tags,
+				$external_video_provider
+			)
+	{
+		$div = new HTMLTags_Div();
+
+		$images_div = new HTMLTags_Div();
+		$images_div->set_attribute_str('id', 'images');
+		if ($tags) {
+			foreach ($tags as $tag) {
+				$images_div->append(
+					self::get_img_for_tag_name($tag['tag'])
+				);
+			}
+		}
+		if ($external_video_provider) {
+			$images_div->append(
+				self::get_img_for_external_provider_name($external_video_provider['name'])
+			);
+		}
+		$div->append($images_div);
+
+		$text_div = new HTMLTags_Div();
+		$text_div->set_attribute_str('id', 'text');
+		$text_str = '';
+		if ($tags) {
+			$i = 0;
+			foreach ($tags as $tag) {
+				if ($i != 0) $text_str .= ', '; $i++;
+				$text_str .= $tag['tag'];
+			}
+		}
+		$text_str .= ' Videos ';
+		if ($external_video_provider) {
+			$text_str .= 'in ' . $external_video_provider['name'];
+		}
+		$text_div->append('<p>' . $text_str . '</p>');
+		$div->append($text_div);
+
+		return $div;
+	}
+
+	public static function
+		get_img_for_external_provider_name(
+			$name,
+			$size = '50'
+		)
+	{
+		$name = preg_replace('([^a-zA-Z,\s])', '', $name);
+		$name = strtolower($name);
+		$name = preg_replace('/ /', '-', $name);
+
+		$img = new HTMLTags_IMG();
+		$url = new HTMLTags_URL();
+		$url->set_file('/images/external-video-providers/' . $size . '/' . $name . '.png');
+		$img->set_src($url);
+		return $img;
+	}
+
+	public static function
+		get_img_for_tag_name(
+			$name,
+			$size = '50'
+		)
+	{
+		$name = preg_replace('/ /', '-', $name);
+
+		$img = new HTMLTags_IMG();
+		$url = new HTMLTags_URL();
+		$url->set_file('/images/tags/' . $size . '/' . $name . '.png');
+		$img->set_src($url);
+		return $img;
 	}
 }
 ?>
