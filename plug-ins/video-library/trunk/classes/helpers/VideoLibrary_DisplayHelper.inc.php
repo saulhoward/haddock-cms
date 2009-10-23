@@ -115,6 +115,11 @@ $div->append('<br /><br /><br />');
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('id', 'video');
 
+		$name_div = new HTMLTags_Div();
+		$name_div->set_attribute_str('id', 'name');
+		$name_div->append('<h2>' . $video_data['name'] . '</h2>');	
+		$div->append($name_div);
+
 		/*
 		 *Embed Code
 		 */
@@ -131,7 +136,6 @@ $div->append('<br /><br /><br />');
 		 */
 		$info_div = new HTMLTags_Div();
 		$info_div->set_attribute_str('id', 'info');
-		$info_div->append('<h2>' . $video_data['name'] . '</h2>');	
 
 		$length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
 		$tags = self::get_tags_links_string(

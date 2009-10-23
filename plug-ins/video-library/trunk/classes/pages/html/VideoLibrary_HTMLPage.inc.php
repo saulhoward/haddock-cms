@@ -130,9 +130,16 @@ HTML;
 		render_body_div_footer()
 	{
 		echo '<div id="footer">';
-		$tags_div = $this->get_tags_navigation_div();
-		$tags_div->set_attribute_str('id', 'bottom-nav');
-		echo $tags_div->get_as_string();
+
+		/*
+		 *Second Tier Nav - libraries and search
+		 */
+		$footer_nav_div = new HTMLTags_Div();
+		$footer_nav_div->set_attribute_str('id', 'bottom-nav');
+		$footer_nav_div->append($this->get_second_tier_navigation_div());
+		$footer_nav_div->append(VideoLibrary_DisplayHelper::get_external_video_search_div());
+		echo $footer_nav_div->get_as_string();
+
 		DBPages_PageRenderer::render_page_section('all', 'copyright-notice');
 		echo '</div>';
 	}
@@ -150,7 +157,6 @@ HTML;
 				$this->get_external_video_library_id()
 			);
 	}
-
 
 	protected function
 		get_libraries_navigation_div()

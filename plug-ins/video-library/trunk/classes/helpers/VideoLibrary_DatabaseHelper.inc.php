@@ -315,6 +315,14 @@ SQL;
 
 		}
 
+		$query .= <<<SQL
+ORDER BY
+hpi_video_library_tags.tag ASC
+
+SQL;
+
+
+
 		//echo $query; exit;
 
 		$result = mysql_query($query, $dbh);
