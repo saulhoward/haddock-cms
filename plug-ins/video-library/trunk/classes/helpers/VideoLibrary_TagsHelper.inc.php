@@ -51,5 +51,24 @@ VideoLibrary_TagsHelper
 
 		return $tags;
 	}
+
+	public static function
+		filter_tag(
+			$tag
+		)
+	{
+                /*
+		 *Get rid of anything that's not A-Z, a-z and spaces
+                 */
+		$tag = preg_replace('([^a-zA-Z,\s])', '', $tag);
+
+		/*
+		 *Make more than one space into one space
+		 */
+		$tag = preg_replace('/\s\s+/', ' ', $tag);
+		
+		$tag = strtolower($tag);
+		return $tag;
+	}
 }
 ?>

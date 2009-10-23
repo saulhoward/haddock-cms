@@ -379,7 +379,7 @@ $div->append($html);
 					);
 			}
 			$a->set_href($href);
-			$a->append($tag['tag']);
+			$a->append(ucwords($tag['tag']));
 			$li->append($a);
 			$ul->append($li);
 		}

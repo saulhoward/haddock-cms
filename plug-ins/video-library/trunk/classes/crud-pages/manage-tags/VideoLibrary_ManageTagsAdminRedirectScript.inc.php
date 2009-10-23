@@ -16,7 +16,8 @@ extends
 		//print_r($_POST);exit;
 
 		$dbh = DB::m();
-		$tag = mysql_real_escape_string($_POST['tag']);
+		$tag = VideoLibrary_TagsHelper::filter_tag($_POST['tag']);
+		$tag = mysql_real_escape_string($tag);
 		$principal = mysql_real_escape_string($_POST['principal']);
 
 		$stmt = <<<SQL
@@ -44,7 +45,10 @@ SQL;
 
 		$dbh = DB::m();
 		$id = mysql_real_escape_string($_GET['id']);
-		$tag = mysql_real_escape_string($_POST['tag']);
+
+		$tag = VideoLibrary_TagsHelper::filter_tag($_POST['tag']);
+		$tag = mysql_real_escape_string($tag);
+
 		$principal = mysql_real_escape_string($_POST['principal']);
 
 		$stmt = <<<SQL
