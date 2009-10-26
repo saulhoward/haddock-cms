@@ -41,9 +41,9 @@ VideoLibrary_ExternalVideoLibraryPage
 
 		$provider_wrapper = new HTMLTags_Div();
 		$provider_wrapper->set_attribute_str('id','providers-wrapper');
-		$provider_wrapper->append('<h3>Channels</h3>');
+		$provider_wrapper->append('<h3 id="channels">Channels</h3>');
 		$provider_wrapper->append($this->get_provider_navigation_div());
-		$provider_wrapper->append('<h3>Categories</h3>');
+		$provider_wrapper->append('<h3 id="categories">Categories</h3>');
 		$tags_nav = $this->get_tags_navigation_div();
 		$tags_nav->set_attribute_str('id', 'sidebar-tags');
 		$provider_wrapper->append($tags_nav);
