@@ -40,3 +40,15 @@ ul.tags-empty-links-list li.selected {
 	background: #4040FF;
 	color: white;
 }
+
+
+form div.radio-inputs {
+        margin-left: 30%;
+}
+
+form div.radio-inputs label{
+        padding: 0;
+        margin: 0;
+        float: none;
+        display: inline;
+}

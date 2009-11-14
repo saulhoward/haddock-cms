@@ -94,21 +94,45 @@ SQL;
 		echo "<ol>\n";
 		$library_values = VideoLibrary_DatabaseHelper
 			::get_external_video_libraries(TRUE);
-		$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
-		foreach ($library_values as $library_value) {
-			$library_li .= '<option value="' . $library_value['id'] . '">' . $library_value['name'] . '</option>';
-		}
-		$library_li .= '</select></li>';
+		//$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
+		//foreach ($library_values as $library_value) {
+			//$library_li .= '<option value="' . $library_value['id'] . '">' . $library_value['name'] . '</option>';
+		//}
+		//$library_li .= '</select></li>';
+
+		$library_li = '<li><label for="external_video_library_id">Library</label><div class="radio-inputs">';
+                $i = 0;
+                foreach ($library_values as $library_value) {
+                        $library_li .= '<label><input type="radio" name="external_video_library_id" value="' . $library_value['id'] . '"';
+                        if ($i == 0) $library_li .= ' checked="checked"';
+                        $i++; 
+                        $library_li .= '>';
+                        $library_li .= $library_value['name'] . '<br />';
+                }
+		$library_li .= '</label></div></li>';
+
 
 		echo $library_li;
 
 		$provider_values = VideoLibrary_DatabaseHelper
 			::get_external_video_providers();
-		$provider_li = '<li><label for="external_video_provider_id">Provider</label><select name="external_video_provider_id">';
-		foreach ($provider_values as $provider_value) {
-			$provider_li .= '<option value="' . $provider_value['id'] . '">' . $provider_value['name'] . '</option>';
-		}
-		$provider_li .= '</select></li>';
+		//$provider_li = '<li><label for="external_video_provider_id">Provider</label><select name="external_video_provider_id">';
+		//foreach ($provider_values as $provider_value) {
+			//$provider_li .= '<option value="' . $provider_value['id'] . '">' . $provider_value['name'] . '</option>';
+		//}
+		//$provider_li .= '</select></li>';
+
+		$provider_li = '<li><label for="external_video_provider_id">Provider</label><div class="radio-inputs">';
+                $i = 0;
+                foreach ($provider_values as $provider_value) {
+                        $provider_li .= '<label><input type="radio" name="external_video_provider_id" value="' . $provider_value['id'] . '"';
+                        if ($i == 0) $provider_li .= ' checked="checked"';
+                        $i++; 
+                        $provider_li .= '>';
+                        $provider_li .= $provider_value['name'] . '<br />';
+                }
+		$provider_li .= '</label></div></li>';
+
 
 		echo $provider_li;
 
@@ -147,33 +171,61 @@ SQL;
 		
 		$library_values = VideoLibrary_DatabaseHelper
 			::get_external_video_libraries(TRUE);
-		$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
-		foreach ($library_values as $library_value) {
-			$library_li .= '<option value="' . $library_value['id'] . '"';
-			$cur_library_value = VideoLibrary_DatabaseHelper
-				::get_external_video_library_id_for_external_video_id($_GET['id']);
-			//print_r($cur_library_value);exit;
-			if ($cur_library_value == $library_value['id']) {
-				$library_li .= ' selected="selected"';
-			}
-			$library_li .= '>' . $library_value['name'] . '</option>';
-		}
-		$library_li .= '</select></li>';
+		//$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
+		//foreach ($library_values as $library_value) {
+			//$library_li .= '<option value="' . $library_value['id'] . '"';
+			//$cur_library_value = VideoLibrary_DatabaseHelper
+				//::get_external_video_library_id_for_external_video_id($_GET['id']);
+			//if ($cur_library_value == $library_value['id']) {
+				//$library_li .= ' selected="selected"';
+			//}
+			//$library_li .= '>' . $library_value['name'] . '</option>';
+		//}
+		//$library_li .= '</select></li>';
+
+		$library_li = '<li><label for="external_video_library_id">Library</label><div class="radio-inputs">';
+                foreach ($library_values as $library_value) {
+                        $library_li .= '<label><input type="radio" name="external_video_library_id" value="' . $library_value['id'] . '"';
+                        $cur_library_value = VideoLibrary_DatabaseHelper
+                                ::get_external_video_library_id_for_external_video_id($_GET['id']);
+                        if ($cur_library_value == $library_value['id']) {
+                                $library_li .= ' checked="checked"';
+                        }
+                        $library_li .= '>';
+                        $library_li .= $library_value['name'] . '<br />';
+                }
+		$library_li .= '</label></div></li>';
+
+
 		echo $library_li;
 
 	
 		$provider_values = VideoLibrary_DatabaseHelper
 			::get_external_video_providers();
-		$provider_li = '<li><label for="external_video_provider_id">Provider</label><select name="external_video_provider_id">';
-		foreach ($provider_values as $provider_value) {
-			$provider_li .= '<option value="' . $provider_value['id'] . '"';
-			$cur_provider_value = ($acm->has_current_var('external_video_provider_id') ? $acm->get_current_var('external_video_provider_id') : NULL);
-			if ($cur_provider_value == $provider_value['id']) {
-				$provider_li .= ' selected="selected"';
-			}
-			$provider_li .= '>' . $provider_value['name'] . '</option>';
-		}
-		$provider_li .= '</select></li>';
+		//$provider_li = '<li><label for="external_video_provider_id">Provider</label><select name="external_video_provider_id">';
+		//foreach ($provider_values as $provider_value) {
+			//$provider_li .= '<option value="' . $provider_value['id'] . '"';
+			//$cur_provider_value = ($acm->has_current_var('external_video_provider_id') ? $acm->get_current_var('external_video_provider_id') : NULL);
+			//if ($cur_provider_value == $provider_value['id']) {
+				//$provider_li .= ' selected="selected"';
+			//}
+			//$provider_li .= '>' . $provider_value['name'] . '</option>';
+		//}
+		//$provider_li .= '</select></li>';
+
+		$provider_li = '<li><label for="external_video_provider_id">Provider</label><div class="radio-inputs">';
+                foreach ($provider_values as $provider_value) {
+                        $provider_li .= '<label><input type="radio" name="external_video_provider_id" value="' . $provider_value['id'] . '"';
+                        $cur_provider_value = ($acm->has_current_var('external_video_provider_id') ? $acm->get_current_var('external_video_provider_id') : NULL);
+                        if ($cur_provider_value == $provider_value['id']) {
+                                $provider_li .= ' checked="checked"';
+                        }
+                        $provider_li .= '>';
+                        $provider_li .= $provider_value['name'] . '<br />';
+                }
+		$provider_li .= '</label></div></li>';
+
+
 		echo $provider_li;
 
 		$this->render_edit_something_form_li_text_input('name');
