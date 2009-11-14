@@ -199,7 +199,11 @@ HTML;
 			);
 		$this->provider_navigation_div 
 			= VideoLibrary_DisplayHelper
-			::get_external_video_provider_navigation_div($providers);
+                        ::get_external_video_provider_navigation_div(
+                                $providers,
+                                VideoLibrary_URLHelper::get_search_page_url()
+                        );
+                
 	}
 
 	protected function

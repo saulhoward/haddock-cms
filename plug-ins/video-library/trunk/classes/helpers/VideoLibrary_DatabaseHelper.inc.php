@@ -581,9 +581,26 @@ SQL;
 	}
 
 	public static function
-		get_related_videos_div_for_external_video_data(
+		get_external_video_providers_for_videos(
+                        $videos
+                )
+        {
+                //print_r($videos);exit;
+                $providers = array();
+                foreach ($videos as $video) {
+                        $provider = self::get_external_video_provider_for_id(
+                                $video['external_video_provider_id']
+                        );
+                        if (!in_array($provider, $providers)) $providers[] = $provider;
+                }
+                return $providers;
+        }
+
+	public static function
+		get_related_videos_for_external_video_data(
 			$external_video_library_id,
 			$video_data,
+                        $external_video_provider_id = NULL,
 			$limit = NULL
 		)
 	{
@@ -607,12 +624,22 @@ SQL;
 		 * 	  Also gonna need support for getting infinte related vids using  an
 		 *	  offset and limit
 		 */
-		return self::get_external_videos_for_tag_ids(
-			$external_video_library_id,
-			$tag_ids,
-			$video_data['id'],
-			$limit
-		);
+                if (isset($external_video_provider_id)) {
+                        return self::get_external_videos_for_tag_ids_and_external_video_provider_id(
+                                $external_video_library_id,
+                                $tag_ids,
+                                $external_video_provider_id,
+                                $video_data['id'],
+                                $limit
+                        );
+                } else {
+                        return self::get_external_videos_for_tag_ids(
+                                $external_video_library_id,
+                                $tag_ids,
+                                $video_data['id'],
+                                $limit
+                        );
+                }
 	}
 
 	public static function
@@ -704,6 +731,7 @@ SQL;
 	
 
 	}
+
 	public static function
 		get_external_videos_for_tag_ids(
 			$external_video_library_id,
@@ -733,6 +761,115 @@ WHERE
 AND
 	hpi_video_library_external_videos.id 
 	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+	hpi_video_library_external_video_libraries.id = '$external_video_library_id'
+AND
+	hpi_video_library_external_videos.external_video_provider_id 
+	= hpi_video_library_external_video_providers.id
+	AND
+	hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
+	AND
+	hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
+	AND
+	hpi_video_library_external_videos.status = 'display'
+
+SQL;
+
+		if (count($tag_ids) > 0) {
+			$query .= <<<SQL
+	AND
+(
+
+SQL;
+
+
+			$i = 0;
+			foreach ($tag_ids as $tag_id) {
+				$tag_id = mysql_real_escape_string($tag_id);
+				if ($i != 0){
+					$query .= <<<SQL
+	OR
+
+SQL;
+
+				}
+				$i++;
+				$query .= <<<SQL
+	hpi_video_library_tags.id = '$tag_id'
+
+SQL;
+
+			}
+			$query .= <<<SQL
+)
+
+SQL;
+		}
+
+
+		if ($ignore_video_id > 0) {
+			$ignore_video_id = mysql_real_escape_string($ignore_video_id);
+			$query .= <<<SQL
+	AND
+	hpi_video_library_external_videos.id <> $ignore_video_id
+
+SQL;
+
+		}
+
+		$query .= <<<SQL
+ORDER BY
+	hpi_video_library_external_videos.id
+SQL;
+
+                //echo $query; exit;
+                    
+                $result = mysql_query($query, $dbh);
+
+                $tags = array();
+                    
+                while ($row = mysql_fetch_assoc($result)) {
+                        $tags[] = $row;
+                }   
+		//print_r($tags);exit;
+		return $tags;
+	
+
+	}
+
+	public static function
+		get_external_videos_for_tag_ids_and_external_video_provider_id(
+			$external_video_library_id,
+			$tag_ids,
+			$external_video_provider_id,
+			$ignore_video_id = NULL,
+			$limit = NULL
+		)
+	{
+		$dbh = DB::m();
+		$external_video_library_id = mysql_real_escape_string($external_video_library_id);
+		$external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
+
+		$query = '';
+		$query .= self::get_select_sql_for_videos();
+
+		$query .= <<<SQL
+
+FROM
+	hpi_video_library_external_videos,
+	hpi_video_library_external_video_providers,
+	hpi_video_library_tags,
+	hpi_video_library_tags_to_ext_vid_links,
+	hpi_video_library_external_video_libraries,
+	hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+	hpi_video_library_external_video_libraries.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
+AND
+	hpi_video_library_external_videos.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+	hpi_video_library_external_video_providers.id = '$external_video_provider_id'
 AND
 	hpi_video_library_external_video_libraries.id = '$external_video_library_id'
 AND
@@ -853,13 +990,14 @@ SQL;
 		get_select_sql_for_videos() 
 	{
 		return <<<SQL
-SELECT
+SELECT DISTINCT
 	hpi_video_library_external_videos.id AS id,
 	hpi_video_library_external_videos.name AS name,
 	hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
 	hpi_video_library_external_videos.length_seconds AS length_seconds,
 	hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
 	hpi_video_library_external_video_libraries.id AS external_video_library_id,
+	hpi_video_library_external_video_providers.id AS external_video_provider_id,
 	hpi_video_library_external_video_providers.haddock_class_name AS haddock_class_name
 
 SQL;
