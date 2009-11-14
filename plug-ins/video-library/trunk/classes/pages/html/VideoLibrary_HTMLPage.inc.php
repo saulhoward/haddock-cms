@@ -33,6 +33,7 @@ PublicHTML_HTMLPage
 	{
 		$this->page_builder 
 			= VideoLibrary_PageBuildingHelper::get_page_builder();
+                $this->page_builder->set_current_page_class(get_class($this));
 	}
 
 	public function

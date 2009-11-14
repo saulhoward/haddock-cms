@@ -254,6 +254,12 @@ HTML;
                 $all_a = new HTMLTags_A('All');
 
                 $href = $results_page_url;
+                if (isset($_GET['tag_ids'])) {
+                        $href->set_get_variable(
+                                'tag_ids',
+                                $_GET['tag_ids']
+                        );
+                }
                 if (isset($_GET['external_video_library_id'])) {
                         $href->set_get_variable(
                                 "external_video_library_id", 
@@ -423,8 +429,8 @@ HTML;
 
         public static function
                 get_search_page_videos_description_div(
-                        $tags,
-                        $external_video_provider
+                        $tags = NULL,
+                        $external_video_provider = NULL
                 )
         {
                 $div = new HTMLTags_Div();
@@ -437,7 +443,10 @@ HTML;
                                         self::get_img_for_tag_name($tag['tag'])
                                 );
                         }
-                }
+                } 
+                //else {
+                        //$images_div->append('<img src="/images/tags/50/all.png" />');
+                //}
                 if ($external_video_provider) {
                         $images_div->append(
                                 self::get_img_for_external_provider_name($external_video_provider['name'])
@@ -452,12 +461,16 @@ HTML;
                         $i = 0;
                         foreach ($tags as $tag) {
                                 if ($i != 0) $text_str .= ', '; $i++;
-                                $text_str .= $tag['tag'];
+                                $text_str .= ucwords($tag['tag']);
                         }
+                } else {
+                        $text_str .= 'All ';
                 }
                 $text_str .= ' Videos ';
                 if ($external_video_provider) {
-                        $text_str .= 'in ' . $external_video_provider['name'];
+                        $text_str .= 'from ' . $external_video_provider['name'];
+                } else {
+                        $text_str .= 'on Dirty Dodo';
                 }
                 $text_div->append('<p>' . $text_str . '</p>');
                 $div->append($text_div);

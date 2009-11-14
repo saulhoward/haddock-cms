@@ -77,12 +77,7 @@ HTML;
 	protected function
 		get_videos_description_div()
 	{
-		return <<<HTML
-<div>
-<p>Dirty Dodo Videos</p>
-</div>
-HTML;
-
+                return VideoLibrary_DisplayHelper::get_search_page_videos_description_div();
 	}
 
 	private function
