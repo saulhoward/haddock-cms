@@ -1,14 +1,14 @@
 <?php
 /**
- * VideoGallery_VideoNotSetException
+ * VideoLibrary_VideoNotSetException
  *
  * @copyright 2009-10-02, SANH
  */
 
 class
-VideoGallery_VideoNotSetException
+VideoLibrary_VideoNotSetException
 extends
-VideoGallery_Exception
+VideoLibrary_Exception
 {
 	public function
 		__construct()

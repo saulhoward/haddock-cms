@@ -25,5 +25,8 @@ abstract class
 	abstract function
 		get_video_embed_code();
 
+	//abstract function
+		//get_video_page_url_schema();
+
 }
 ?>

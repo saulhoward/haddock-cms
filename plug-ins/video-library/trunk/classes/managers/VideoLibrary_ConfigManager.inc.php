@@ -39,5 +39,55 @@ extends
 	{
 		return trim($this->get_config_value('thumbnails/default-thumbnail-url'));
 	}
+
+	public function
+		get_thumbnails_original_directory()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'thumbnails/original-directory'
+                        )
+                );
+        }
+
+	public function
+		get_thumbnails_medium_directory()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'thumbnails/medium/directory'
+                        )
+                );
+        }
+
+	public function
+		get_thumbnails_medium_web_directory()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'thumbnails/medium/web-directory'
+                        )
+                );
+        }
+
+	public function
+		get_thumbnails_medium_width()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'thumbnails/medium/width'
+                        )
+                );
+        }
+
+        public function
+		get_thumbnails_medium_height()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'thumbnails/medium/height'
+                        )
+                );
+        }
 }
 ?>

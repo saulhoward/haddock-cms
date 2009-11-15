@@ -1,19 +1,19 @@
 <?php
 /**
- * VideoGallery_Exception
+ * VideoLibrary_Exception
  *
  * @copyright 2009-10-02, SANH
  */
 
 class
-VideoGallery_Exception
+VideoLibrary_Exception
 extends
 Exception
 {
 	public function
-		__construct()
+		__construct($msg)
 	{
-		parent::__construct();
+		parent::__construct($msg);
 	}
 
 }

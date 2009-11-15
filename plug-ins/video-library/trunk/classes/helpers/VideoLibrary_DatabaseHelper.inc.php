@@ -1210,7 +1210,83 @@ SQL;
                 #$tags_table = $this->get_element();
 
                 return $this->get_rows_for_select($query);      
+
         }
 
+	public static function
+                get_external_videos_frame_grabbing_queue(
+                        $where_clause
+                )
+	{
+		$dbh = DB::m();
+
+		$query = '';
+		$query .= <<<SQL
+SELECT *
+FROM
+        hpi_video_library_external_videos_frame_grabbing_queue
+WHERE
+        $where_clause
+SQL;
+
+		//print_r($query); exit;
+
+		$result = mysql_query($query, $dbh);
+                $videos = array();
+                while ($row = mysql_fetch_assoc($result)) {
+                        $videos[] = $row;
+                } 
+		return $videos;
+	}
+
+        public static function
+                set_external_video_thumbnail_url(
+                        $video_id,
+                        $thumbnail_url
+                )
+        {
+		$dbh = DB::m();
+		$video_id = mysql_real_escape_string($video_id);
+		$thumbnail_url = mysql_real_escape_string($thumbnail_url);
+
+		$stmt = <<<SQL
+UPDATE
+	hpi_video_library_external_videos
+SET
+	thumbnail_url = '$thumbnail_url'
+WHERE
+	id = $video_id
+
+SQL;
+
+                //print_r($stmt);exit;
+
+                $result = mysql_query($stmt, $dbh);
+                return $video_id;
+        }
+
+        public static function
+                update_external_video_frame_grabbing_queue_for_video(
+                        $queue_id
+                )
+        {
+		$dbh = DB::m();
+		$queue_id = mysql_real_escape_string($queue_id);
+
+		$stmt = <<<SQL
+UPDATE
+	hpi_video_library_external_videos_frame_grabbing_queue
+SET
+	last_downloaded = 'NOW()'
+WHERE
+	id = $queue_id
+
+SQL;
+
+                //print_r($stmt);exit;
+
+                $result = mysql_query($stmt, $dbh);
+                return $queue_id;
+        }
 }
 ?>

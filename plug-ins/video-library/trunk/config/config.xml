@@ -13,5 +13,16 @@
 
 	<thumbnails>
 		<default-thumbnail-url value="/images/video-library/default-thumbnail.png" />
-	</thumbnails>
+		<original-directory 
+                        value="DIR_TO_STORE_ORIGINAL_FILES" />
+                <medium>
+                        <directory 
+                                value="ABSOLUTE_PATH_OF_DIR_FOR_WEB_THUMBNAILS" />
+                        <web-directory 
+                                value="RELATIVE_PATH_OF_DIR_FOR_WEB_THUMBNAILS" />
+                        <width value="180" />
+                        <height value="100" />
+                </medium>
+        </thumbnails>
+
 </config>
