@@ -1277,7 +1277,7 @@ SQL;
 UPDATE
 	hpi_video_library_external_videos_frame_grabbing_queue
 SET
-	last_downloaded = 'NOW()'
+	last_processed = NOW()
 WHERE
 	id = $queue_id
 
@@ -1288,5 +1288,26 @@ SQL;
                 $result = mysql_query($stmt, $dbh);
                 return $queue_id;
         }
+
+	public function
+		reset_external_videos_frame_grabbing_queue()
+	{
+		//print_r($_POST);exit;
+		//print_r($_GET);exit;
+
+		$dbh = DB::m();
+		$stmt = <<<SQL
+UPDATE
+	hpi_video_library_external_videos_frame_grabbing_queue
+SET
+	last_processed = NULL
+SQL;
+
+		//print_r($stmt);exit;
+
+		$result = mysql_query($stmt, $dbh);
+
+		//return $id;
+	}
 }
 ?>

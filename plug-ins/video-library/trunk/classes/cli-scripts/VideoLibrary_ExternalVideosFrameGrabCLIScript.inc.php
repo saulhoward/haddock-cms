@@ -21,7 +21,7 @@ extends
                          */
                         $queued_videos = VideoLibrary_DatabaseHelper::
                                 get_external_videos_frame_grabbing_queue(
-                                        'last_downloaded IS NULL'
+                                        'last_processed IS NULL'
                                 );
                         //print_r($queued_videos);exit;
 

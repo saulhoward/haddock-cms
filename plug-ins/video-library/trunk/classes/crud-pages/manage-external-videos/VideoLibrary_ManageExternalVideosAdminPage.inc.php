@@ -46,7 +46,12 @@ HTML;
 				'filter' => 'return VideoLibrary_DatabaseHelper::get_external_video_library_name_for_external_video_id($str);',
 				'title' => 'Library'
 			),
-	
+                        array(
+				'col_name' => 'thumbnail_url',
+                                'filter' => 'return VideoLibrary_DisplayHelper::get_thumbnail_img($str)->get_as_string();',
+                                'title' => 'Thumbnail'
+			),
+
 			array(
 				'col_name' => 'name'
 			),
