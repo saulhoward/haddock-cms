@@ -53,6 +53,12 @@ SQL;
 	}
 
 	protected function
+		get_default_order_by()
+	{
+		return 'last_processed';
+	}
+	
+	protected function
 		get_body_div_header_heading_content()
 	{
 		return 'External Videos Frame Grabbing Queue';
@@ -108,9 +114,11 @@ SQL;
         All videos have been re-queued and will be processed again on 
         the next running of the frame grabbing script.
 </p>
-<p>
+<ul>
+        <li>
         $back_a_str
-</p>
+        </li>
+</ul>
 HTML;
 
         }
