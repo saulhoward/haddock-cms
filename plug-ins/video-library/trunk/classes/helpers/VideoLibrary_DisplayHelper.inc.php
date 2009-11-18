@@ -509,5 +509,29 @@ HTML;
                 $img->set_src($url);
                 return $img;
         }
+
+        public static function
+                get_pager_div(
+                        $start,
+                        $duration,
+                        $total_videos_count
+                )
+        {
+                $div = new HTMLTags_Div();
+                $div->set_attribute_str('class', 'pager');
+
+                /*
+                 *Find how many pages, anything over has to count as a new page
+                 */
+                $pages = $total_videos_count / $duration;
+                if (($total_videos_count % $duration) > 0) { $pages++;}
+
+                /*
+                 *Find current page
+                 */
+                $current_page = 
+
+                return $div;
+        }
 }
 ?>

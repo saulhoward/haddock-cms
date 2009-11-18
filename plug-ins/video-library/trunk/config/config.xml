@@ -10,6 +10,9 @@
 		<video-page-class value="VideoLibrary_VideoPage" />
 		<search-page-class value="VideoLibrary_SearchPage" />
 	</page-classes>
+        <search-results>
+		<duration value="16" />
+        </search-results>
 
 	<thumbnails>
 		<default-thumbnail-url value="/images/video-library/default-thumbnail.png" />
@@ -19,7 +22,7 @@
                         <directory 
                                 value="ABSOLUTE_PATH_OF_DIR_FOR_WEB_THUMBNAILS" />
                         <web-directory 
-                                value="RELATIVE_PATH_OF_DIR_FOR_WEB_THUMBNAILS" />
+                                value="WEB_ACCESSIBLE_PATH_OF_DIR_FOR_WEB_THUMBNAILS" />
                         <width value="180" />
                         <height value="100" />
                 </medium>

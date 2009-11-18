@@ -89,5 +89,15 @@ extends
                         )
                 );
         }
+
+        public function
+		get_search_results_duration()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'search-results/duration'
+                        )
+                );
+        }
 }
 ?>

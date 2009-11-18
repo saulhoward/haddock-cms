@@ -48,10 +48,63 @@ SQL;
 		return $video_data;
 	}
 
+
+	public static function
+		get_external_videos_count(
+			$external_video_library_id
+		)
+	{
+		//print_r($external_video_library_id);exit;
+		//print_r($external_video_provider_id);exit;
+
+		$dbh = DB::m();
+		$external_video_library_id 
+			= mysql_real_escape_string($external_video_library_id);
+
+		$query = '';
+		$query .= self::get_select_sql_for_external_videos_count();
+		$query .= <<<SQL
+FROM
+	hpi_video_library_external_videos,
+	hpi_video_library_external_video_providers,
+	hpi_video_library_external_video_libraries,
+	hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+	hpi_video_library_external_video_libraries.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
+AND
+	hpi_video_library_external_videos.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+	hpi_video_library_external_video_libraries.id = '$external_video_library_id'
+AND
+	hpi_video_library_external_videos.external_video_provider_id 
+	= hpi_video_library_external_video_providers.id
+AND
+        status = 'display'
+
+SQL;
+
+
+		//echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$videos = array();
+
+		while ($row = mysql_fetch_assoc($result)) {
+			$videos[] = $row;
+		}   
+		//print_r($videos);exit;
+		return $videos;
+	}
+
+
 	public static function
 		get_external_videos(
 			$external_video_library_id,
-			$limit = NULL
+			$start = NULL,
+			$duration = NULL
 		)
 	{
 		//print_r($external_video_library_id);exit;
@@ -80,18 +133,26 @@ AND
 AND
 	hpi_video_library_external_videos.external_video_provider_id 
 	= hpi_video_library_external_video_providers.id
+AND
+        status = 'display'
 
 SQL;
 
-		if ($limit != NULL) {
-			$limit = mysql_real_escape_string($limit);
+                if (
+                        ($start != NULL)
+                        &&
+                        ($duration != NULL) 
+                ){
+			$start = mysql_real_escape_string($start);
+			$duration = mysql_real_escape_string($duration);
 			$query .= <<<SQL
 
 LIMIT
-	0, $limit
+	$start, $duration
 SQL;
 
 		}
+	
 		//echo $query; exit;
 
 		$result = mysql_query($query, $dbh);
@@ -106,10 +167,60 @@ SQL;
 	}
 
 	public static function
+		get_external_videos_count_for_provider_id(
+			$external_video_library_id,
+			$external_video_provider_id
+		)
+	{
+		//print_r($external_video_library_id);exit;
+		//print_r($external_video_provider_id);exit;
+
+		$dbh = DB::m();
+		$external_video_library_id 
+			= mysql_real_escape_string($external_video_library_id);
+		$external_video_provider_id 
+			= mysql_real_escape_string($external_video_provider_id);
+
+		$query = '';
+		$query .= self::get_select_sql_for_external_videos_count();
+		$query .= <<<SQL
+FROM
+	hpi_video_library_external_videos,
+	hpi_video_library_external_video_providers,
+	hpi_video_library_external_video_libraries,
+	hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+	hpi_video_library_external_video_libraries.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
+AND
+	hpi_video_library_external_videos.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+	hpi_video_library_external_video_libraries.id = '$external_video_library_id'
+AND
+	hpi_video_library_external_videos.external_video_provider_id 
+	= hpi_video_library_external_video_providers.id
+AND
+	hpi_video_library_external_video_providers.id = '$external_video_provider_id'
+SQL;
+
+                //echo $query; exit;
+
+		$result = mysql_query($query, $dbh);
+
+		$videos = array();
+
+		$row = mysql_fetch_assoc($result);
+
+                return $row['count'];
+	}
+
+	public static function
 		get_external_videos_for_provider_id(
 			$external_video_library_id,
 			$external_video_provider_id,
-			$limit = NULL
+                        $start = NULL,
+                        $duration = NULL
 		)
 	{
 		//print_r($external_video_library_id);exit;
@@ -144,12 +255,17 @@ AND
 	hpi_video_library_external_video_providers.id = '$external_video_provider_id'
 SQL;
 
-		if ($limit != NULL) {
-			$limit = mysql_real_escape_string($limit);
+                if (
+                        ($start != NULL)
+                        &&
+                        ($duration != NULL) 
+                ){
+			$start = mysql_real_escape_string($start);
+			$duration = mysql_real_escape_string($duration);
 			$query .= <<<SQL
 
 LIMIT
-	0, $limit
+	$start, $duration
 SQL;
 
 		}
@@ -732,12 +848,116 @@ SQL;
 
 	}
 
+
+	public static function
+		get_external_videos_count_for_tag_ids(
+			$external_video_library_id,
+			$tag_ids,
+			$ignore_video_id = NULL
+		)
+	{
+		$dbh = DB::m();
+		$external_video_library_id = mysql_real_escape_string($external_video_library_id);
+
+		$query = '';
+		$query .= self::get_select_sql_for_external_videos_count();
+
+		$query .= <<<SQL
+
+FROM
+	hpi_video_library_external_videos,
+	hpi_video_library_external_video_providers,
+	hpi_video_library_tags,
+	hpi_video_library_tags_to_ext_vid_links,
+	hpi_video_library_external_video_libraries,
+	hpi_video_library_ext_vid_to_ext_vid_lib_links
+WHERE
+	hpi_video_library_external_video_libraries.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
+AND
+	hpi_video_library_external_videos.id 
+	= hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+	hpi_video_library_external_video_libraries.id = '$external_video_library_id'
+AND
+	hpi_video_library_external_videos.external_video_provider_id 
+	= hpi_video_library_external_video_providers.id
+	AND
+	hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
+	AND
+	hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
+	AND
+	hpi_video_library_external_videos.status = 'display'
+
+SQL;
+
+		if (count($tag_ids) > 0) {
+			$query .= <<<SQL
+	AND
+(
+
+SQL;
+
+
+			$i = 0;
+			foreach ($tag_ids as $tag_id) {
+				$tag_id = mysql_real_escape_string($tag_id);
+				if ($i != 0){
+					$query .= <<<SQL
+	OR
+
+SQL;
+
+				}
+				$i++;
+				$query .= <<<SQL
+	hpi_video_library_tags.id = '$tag_id'
+
+SQL;
+
+			}
+			$query .= <<<SQL
+)
+
+SQL;
+		}
+
+
+		if ($ignore_video_id > 0) {
+			$ignore_video_id = mysql_real_escape_string($ignore_video_id);
+			$query .= <<<SQL
+	AND
+	hpi_video_library_external_videos.id <> $ignore_video_id
+
+SQL;
+
+		}
+
+		$query .= <<<SQL
+ORDER BY
+	hpi_video_library_external_videos.id
+SQL;
+
+                //echo $query; exit;
+           
+                $result = mysql_query($query, $dbh);
+
+                $tags = array();
+                    
+                $row = mysql_fetch_assoc($result);
+		//print_r($tags);exit;
+		return $row['count'];
+	
+
+	}
+
 	public static function
 		get_external_videos_for_tag_ids(
 			$external_video_library_id,
 			$tag_ids,
 			$ignore_video_id = NULL,
-			$limit = NULL
+                        $start = NULL,
+                        $duration = NULL
 		)
 	{
 		$dbh = DB::m();
@@ -823,7 +1043,21 @@ ORDER BY
 SQL;
 
                 //echo $query; exit;
-                    
+                if (
+                        ($start != NULL)
+                        &&
+                        ($duration != NULL) 
+                ){
+                        $start = mysql_real_escape_string($start);
+                        $duration = mysql_real_escape_string($duration);
+                        $query .= <<<SQL
+
+LIMIT
+        $start, $duration
+SQL;
+
+		}
+	           
                 $result = mysql_query($query, $dbh);
 
                 $tags = array();
@@ -985,6 +1219,17 @@ FROM
 SQL;
 
 	}
+
+	public static function
+		get_select_sql_for_external_videos_count() 
+	{
+		return <<<SQL
+SELECT COUNT( DISTINCT hpi_video_library_external_videos.id ) AS count
+
+SQL;
+
+	}
+
 
 	public static function
 		get_select_sql_for_videos() 
