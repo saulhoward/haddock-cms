@@ -539,6 +539,8 @@ HTML;
                                         if ($first) {
                                                 $span->set_attribute_str('class','first');
                                                 $first = FALSE;
+                                        } elseif ($current_page == $pages) {
+                                                $span->set_attribute_str('class','last');
                                         }
                                         $li->set_attribute_str('class','selected');
                                         $li->append($span);
