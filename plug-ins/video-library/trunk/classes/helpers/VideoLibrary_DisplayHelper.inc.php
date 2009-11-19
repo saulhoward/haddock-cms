@@ -78,37 +78,6 @@ VideoLibrary_DisplayHelper
                 return $img;
         }
 
-        public static function
-                get_related_videos_div(
-                        $video_data,
-                        $related_videos,
-                        $related_video_providers
-                )
-        {
-                //print_r($video_data);exit;
-                $div = new HTMLTags_Div();
-                $div->set_attribute_str('id', 'related-videos');
-                $video_page_url 
-                        = VideoLibrary_URLHelper::get_video_page_url($video_data['id']);
-                $providers_wrapper_div = new HTMLTags_Div();
-                $providers_wrapper_div->set_attribute_str('id', 'providers-wrapper');
-                $providers_wrapper_div->append('<h3 id="channels">Channels</h3>');
-                $providers_wrapper_div->append(
-                        self::get_external_video_provider_navigation_div(
-                                $related_video_providers, $video_page_url
-                        )
-                );
-                $div->append($providers_wrapper_div);
-
-                $thumbnails_wrapper_div = new HTMLTags_Div();
-                $thumbnails_wrapper_div->set_attribute_str('id', 'thumbnails-wrapper');
-                $thumbnails_wrapper_div->append(
-                        self::get_thumbnails_div($related_videos)
-                );
-                $div->append($thumbnails_wrapper_div);
-
-                return $div;
-        }
 
         public static function
                 get_admin_view_video_div($video_data)
@@ -527,76 +496,87 @@ HTML;
                  */
                 $pages = ceil($total_videos_count / $duration);
 
-                /*
-                 * Find current page
-                 */
-                if ($start > 0) {
-                        $current_page = ceil($start / $duration) + 1;
-                } else {
-                        $current_page = 1;
-                }
+                if ($pages > 1) {
 
-                //print_r($start . ' || ' . $duration . "\n");
-                //print_r($pages . ' || ' . $current_page);exit;
-
-                $ul = new HTMLTags_UL();
-
-
-                if ($current_page > 1 ){
-                        $prev_li= new HTMLTags_LI();
-                        $prev_li->set_attribute_str('class', 'prev');
-                        $prev_a = new HTMLTags_A('Previous');
-                        $prev_a->set_href(
-                                VideoLibrary_URLHelper::
-                                get_results_page_url(
-                                        $results_page_url,
-                                        (($current_page - 2) * $duration),
-                                        $duration
-                                )
-                        );
-                        $prev_li->append($prev_a);
-                        $ul->append($prev_li);
-                }
-
-                for ($page = 1; $page <= $pages; $page++) {
-                        $li = new HTMLTags_LI();
-
-                        if ($page == $current_page) {
-                                $li->set_attribute_str('class','selected');
-                                $li->append('<span>' . $page . '</span>');
+                        /*
+                         * Find current page
+                         */
+                        if ($start > 0) {
+                                $current_page = ceil($start / $duration) + 1;
                         } else {
-                                $a = new HTMLTags_A($page);
-                                $a->set_href(
+                                $current_page = 1;
+                        }
+
+                        //print_r($start . ' || ' . $duration . "\n");
+                        //print_r($pages . ' || ' . $current_page);exit;
+
+                        $ul = new HTMLTags_UL();
+
+
+                        $first = TRUE;
+
+                        if ($current_page > 1 ){
+                                $first = FALSE;
+                                $prev_li= new HTMLTags_LI();
+                                $prev_li->set_attribute_str('class', 'prev');
+                                $prev_a = new HTMLTags_A('Previous');
+                                $prev_a->set_href(
                                         VideoLibrary_URLHelper::
                                         get_results_page_url(
                                                 $results_page_url,
-                                                ((($page - 1) * $duration) ),
+                                                (($current_page - 2) * $duration),
                                                 $duration
                                         )
                                 );
-                                $li->append($a);
+                                $prev_li->append($prev_a);
+                                $ul->append($prev_li);
                         }
-                        $ul->append($li);
-                }
 
-                if ($current_page < $pages ){
-                        $next_li= new HTMLTags_LI();
-                        $next_li->set_attribute_str('class', 'next');
-                        $next_a = new HTMLTags_A('Next');
-                        $next_a->set_href(
-                                VideoLibrary_URLHelper::
-                                get_results_page_url(
-                                        $results_page_url,
-                                        (($current_page) * $duration),
-                                        $duration
-                                )
-                        );
-                        $next_li->append($next_a);
-                        $ul->append($next_li);
-                }
+                        for ($page = 1; $page <= $pages; $page++) {
+                                $li = new HTMLTags_LI();
+                                if ($page == $current_page) {
+                                        $span = new HTMLTags_Span($page);
+                                        if ($first) {
+                                                $span->set_attribute_str('class','first');
+                                                $first = FALSE;
+                                        }
+                                        $li->set_attribute_str('class','selected');
+                                        $li->append($span);
+                                } else {
+                                        $a = new HTMLTags_A($page);
+                                        $a->set_href(
+                                                VideoLibrary_URLHelper::
+                                                get_results_page_url(
+                                                        $results_page_url,
+                                                        ((($page - 1) * $duration) ),
+                                                        $duration
+                                                )
+                                        );
+                                        $li->append($a);
+                                }
+                                $ul->append($li);
+                        }
 
-                $div->append($ul);
-                //print_r($div->get_as_string());exit;
+                        if ($current_page < $pages ){
+                                $next_li= new HTMLTags_LI();
+                                $next_li->set_attribute_str('class', 'next');
+                                $next_a = new HTMLTags_A('Next');
+                                $next_a->set_href(
+                                        VideoLibrary_URLHelper::
+                                        get_results_page_url(
+                                                $results_page_url,
+                                                (($current_page) * $duration),
+                                                $duration
+                                        )
+                                );
+                                $next_li->append($next_a);
+                                $ul->append($next_li);
+                        }
+
+                        $div->append($ul);
+                        //print_r($div->get_as_string());exit;
+
+                }
 
                 return $div;
         }

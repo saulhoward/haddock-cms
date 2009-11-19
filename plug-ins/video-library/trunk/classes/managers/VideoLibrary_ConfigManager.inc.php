@@ -99,5 +99,16 @@ extends
                         )
                 );
         }
+
+        public function
+		get_related_videos_results_duration()
+        {
+                return trim(
+                        $this->get_config_value(
+                                'related-videos/duration'
+                        )
+                );
+        }
+
 }
 ?>

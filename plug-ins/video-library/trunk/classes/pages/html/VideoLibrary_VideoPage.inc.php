@@ -15,6 +15,88 @@ VideoLibrary_ExternalVideoLibraryPage
         private $video_data;
         private $external_video_provider_id;
         private $related_videos;
+        protected $total_related_videos_count;
+        protected $start;
+        protected $duration;
+
+        protected function
+                set_start()
+        {
+                if (isset($_GET['start'])) {
+                        $this->start = $_GET['start'];
+                } else {
+                        $this->start = '0';
+                }
+        }
+
+        protected function
+                set_duration()
+        {
+                if (isset($_GET['duration'])) {
+                        $this->duration = $_GET['duration'];
+                } else {
+                        $this->duration =
+                                $this->get_related_videos_results_duration();
+                }
+        }
+
+        private function
+                get_related_videos_results_duration()
+        {
+                $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+                $config_manager = 
+                        $cmf->get_config_manager('plug-ins', 'video-library');
+                return $config_manager->get_related_videos_results_duration();
+        }
+
+        protected function
+                get_start()
+        {
+                if (!isset($this->start)) {
+                        $this->set_start();
+                }
+                return $this->start;
+        }
+
+        protected function
+                get_duration()
+        {
+                if (!isset($this->duration)) {
+                        $this->set_duration();
+                }
+                return $this->duration;
+        }
+
+        protected function
+                get_total_related_videos_count()
+        {
+                if (!isset($this->total_related_videos_count)) {
+                        $this->set_total_related_videos_count();
+                }
+                return $this->total_related_videos_count;
+        }
+
+        protected function
+                set_total_related_videos_count()
+        {
+                if (isset($_GET['external_video_provider_id'])) {
+                        $videos = VideoLibrary_DatabaseHelper
+                                ::get_related_videos_count_for_external_video_data(
+                                        $this->get_external_video_library_id(),
+                                        $this->get_video_data(),
+                                        $this->get_external_video_provider_id()
+                                );
+
+                } else {
+                        $videos = VideoLibrary_DatabaseHelper
+                                ::get_related_videos_count_for_external_video_data(
+                                        $this->get_external_video_library_id(),
+                                        $this->get_video_data()
+                                );
+                }
+
+                $this->total_related_videos_count = $videos;
+        }
 
         protected function
                 get_external_video_library_id()
@@ -23,41 +105,41 @@ VideoLibrary_ExternalVideoLibraryPage
                 return $video_data['external_video_library_id'];
         }
 
-	private function
-		set_external_video_provider_id(
-			$external_video_provider_id
-		)
-	{
-		$this->external_video_provider_id 
-			= $external_video_provider_id;
-	}
+        private function
+                set_external_video_provider_id(
+                        $external_video_provider_id
+                )
+        {
+                $this->external_video_provider_id 
+                        = $external_video_provider_id;
+        }
 
-	private function
-		set_external_video_provider_id_from_get()
-	{ 
-		if (isset($_GET['external_video_provider_id'])) {
-			$this->set_external_video_provider_id(
-				$_GET['external_video_provider_id']
-			);
-		}
-	}
+        private function
+                set_external_video_provider_id_from_get()
+        { 
+                if (isset($_GET['external_video_provider_id'])) {
+                        $this->set_external_video_provider_id(
+                                $_GET['external_video_provider_id']
+                        );
+                }
+        }
 
-	protected function
-		get_external_video_provider_id()
-	{
-		if (isset($this->external_video_provider_id)) {
-			return $this->external_video_provider_id;
-		}
-		elseif (
-			isset($_GET['external_video_provider_id'])
-		) {
-			$this->set_external_video_provider_id_from_get();
-			return $this->get_external_video_provider_id();
-		}
-		else {
-			throw new VideoGallery_ExternalVideoProviderNotSetException();
-		}
-	}
+        protected function
+                get_external_video_provider_id()
+        {
+                if (isset($this->external_video_provider_id)) {
+                        return $this->external_video_provider_id;
+                }
+                elseif (
+                        isset($_GET['external_video_provider_id'])
+                ) {
+                        $this->set_external_video_provider_id_from_get();
+                        return $this->get_external_video_provider_id();
+                }
+                else {
+                        throw new VideoGallery_ExternalVideoProviderNotSetException();
+                }
+        }
 
         private function
                 set_video_data($video_data)
@@ -100,21 +182,26 @@ VideoLibrary_ExternalVideoLibraryPage
         protected function
                 set_related_videos()
         {
-		if (isset($_GET['external_video_provider_id'])) {
+                if (isset($_GET['external_video_provider_id'])) {
                         $videos = VideoLibrary_DatabaseHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data(),
-                                        $this->get_external_video_provider_id()
+                                        $this->get_external_video_provider_id(),
+                                        $this->get_start(),
+                                        $this->get_duration()
                                 );
-	
-		} else {
+
+                } else {
                         $videos = VideoLibrary_DatabaseHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),
-                                        $this->get_video_data()
+                                        $this->get_video_data(),
+                                        NULL,
+                                        $this->get_start(),
+                                        $this->get_duration()
                                 );
-		}
+                }
 
                 $this->related_videos = $videos;
         }
@@ -181,7 +268,7 @@ HTML;
                  *            Get these providers from the SQL
                  *            As a possible optimisation
                  */
-                $providers = VideoLibrary_DatabaseHelper::
+                $related_video_providers = VideoLibrary_DatabaseHelper::
                         get_external_video_providers_for_videos(
                                 VideoLibrary_DatabaseHelper
                                 ::get_related_videos_for_external_video_data(
@@ -189,13 +276,55 @@ HTML;
                                         $this->get_video_data()
                                 )
                         );
+                //print_r($video_data);exit;
+                $div = new HTMLTags_Div();
+                $div->set_attribute_str('id', 'related-videos');
+                $video_data = $this->get_video_data();
+                $video_page_url = VideoLibrary_URLHelper::
+                        get_video_page_url($video_data['id']);
+                $providers_wrapper_div = new HTMLTags_Div();
+                $providers_wrapper_div->set_attribute_str('id', 'providers-wrapper');
+                $providers_wrapper_div->append('<h3 id="channels">Channels</h3>');
+                $providers_wrapper_div->append(
+                        VideoLibrary_DisplayHelper::
+                        get_external_video_provider_navigation_div(
+                                $related_video_providers, $video_page_url
+                        )
+                );
+                $div->append($providers_wrapper_div);
 
-                return VideoLibrary_DisplayHelper
-                        ::get_related_videos_div(
-                                $this->get_video_data(), $this->get_related_videos(), $providers
-                        );
+                $thumbnails_wrapper_div = new HTMLTags_Div();
+                $thumbnails_wrapper_div->set_attribute_str('id', 'thumbnails-wrapper');
+                $thumbnails_wrapper_div->append(
+                        VideoLibrary_DisplayHelper::
+                        get_thumbnails_div($this->get_related_videos())
+                );
+
+                $thumbnails_wrapper_div->append(
+                        VideoLibrary_DisplayHelper::
+                        get_pager_div(
+                                $this->get_start(),
+                                $this->get_duration(),
+                                $this->get_total_related_videos_count(),
+                                $this->get_page_url()
+                        )
+                );
+
+                $div->append($thumbnails_wrapper_div);
+
+                return $div;
         }
 
-
+        protected function
+                get_page_url()
+        {
+                $url = PublicHTML_URLHelper
+                        ::get_oo_page_url(
+                                get_class($this)
+                        );
+                $video_data = $this->get_video_data();
+                $url->set_get_variable('video_id', $video_data['id']);
+                return $url;
+        }
 }
 ?>
