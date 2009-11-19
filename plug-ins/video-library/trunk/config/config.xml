@@ -11,7 +11,7 @@
 		<search-page-class value="VideoLibrary_SearchPage" />
 	</page-classes>
         <search-results>
-		<duration value="16" />
+		<duration value="26" />
         </search-results>
 
 	<thumbnails>

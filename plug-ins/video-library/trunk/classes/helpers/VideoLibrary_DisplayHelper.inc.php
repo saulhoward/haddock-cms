@@ -562,6 +562,7 @@ HTML;
                         $li = new HTMLTags_LI();
 
                         if ($page == $current_page) {
+                                $li->set_attribute_str('class','selected');
                                 $li->append('<span>' . $page . '</span>');
                         } else {
                                 $a = new HTMLTags_A($page);
