@@ -159,8 +159,18 @@ HTML;
                         ::get_pager_div(
                                 $this->get_start(),
                                 $this->get_duration(),
-                                $this->get_total_videos_count()
+                                $this->get_total_videos_count(),
+                                $this->get_page_url()
                         );
+        }
+
+        protected function
+                get_page_url()
+        {
+		return PublicHTML_URLHelper
+			::get_oo_page_url(
+				get_class($this)
+			);
         }
 }
 ?>

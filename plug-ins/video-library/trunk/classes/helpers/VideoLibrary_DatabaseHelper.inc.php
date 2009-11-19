@@ -81,7 +81,7 @@ AND
 	hpi_video_library_external_videos.external_video_provider_id 
 	= hpi_video_library_external_video_providers.id
 AND
-        status = 'display'
+        hpi_video_library_external_videos.status = 'display'
 
 SQL;
 
@@ -90,13 +90,9 @@ SQL;
 
 		$result = mysql_query($query, $dbh);
 
-		$videos = array();
-
-		while ($row = mysql_fetch_assoc($result)) {
-			$videos[] = $row;
-		}   
+		$row = mysql_fetch_assoc($result);
 		//print_r($videos);exit;
-		return $videos;
+		return $row['count'];
 	}
 
 
@@ -107,6 +103,7 @@ SQL;
 			$duration = NULL
 		)
 	{
+		//print_r($start . $duration);exit;
 		//print_r($external_video_library_id);exit;
 		//print_r($external_video_provider_id);exit;
 
@@ -134,7 +131,7 @@ AND
 	hpi_video_library_external_videos.external_video_provider_id 
 	= hpi_video_library_external_video_providers.id
 AND
-        status = 'display'
+        hpi_video_library_external_videos.status = 'display'
 
 SQL;
 
@@ -1240,6 +1237,7 @@ SELECT DISTINCT
 	hpi_video_library_external_videos.name AS name,
 	hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
 	hpi_video_library_external_videos.length_seconds AS length_seconds,
+	hpi_video_library_external_videos.status AS status,
 	hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
 	hpi_video_library_external_video_libraries.id AS external_video_library_id,
 	hpi_video_library_external_video_providers.id AS external_video_provider_id,

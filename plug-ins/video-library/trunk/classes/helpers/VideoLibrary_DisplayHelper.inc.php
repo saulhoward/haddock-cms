@@ -514,22 +514,88 @@ HTML;
                 get_pager_div(
                         $start,
                         $duration,
-                        $total_videos_count
+                        $total_videos_count,
+                        $results_page_url
                 )
         {
                 $div = new HTMLTags_Div();
                 $div->set_attribute_str('class', 'pager');
+                //print_r($total_videos_count . ' || ' . $duration);exit;
 
                 /*
-                 *Find how many pages, anything over has to count as a new page
+                 * Find how many pages, any remainder has to count as a new page
                  */
-                $pages = $total_videos_count / $duration;
-                if (($total_videos_count % $duration) > 0) { $pages++;}
+                $pages = ceil($total_videos_count / $duration);
 
                 /*
-                 *Find current page
+                 * Find current page
                  */
-                $current_page = 
+                if ($start > 0) {
+                        $current_page = ceil($start / $duration) + 1;
+                } else {
+                        $current_page = 1;
+                }
+
+                //print_r($start . ' || ' . $duration . "\n");
+                //print_r($pages . ' || ' . $current_page);exit;
+
+                $ul = new HTMLTags_UL();
+
+
+                if ($current_page > 1 ){
+                        $prev_li= new HTMLTags_LI();
+                        $prev_li->set_attribute_str('class', 'prev');
+                        $prev_a = new HTMLTags_A('Previous');
+                        $prev_a->set_href(
+                                VideoLibrary_URLHelper::
+                                get_results_page_url(
+                                        $results_page_url,
+                                        (($current_page - 2) * $duration),
+                                        $duration
+                                )
+                        );
+                        $prev_li->append($prev_a);
+                        $ul->append($prev_li);
+                }
+
+                for ($page = 1; $page <= $pages; $page++) {
+                        $li = new HTMLTags_LI();
+
+                        if ($page == $current_page) {
+                                $li->append('<span>' . $page . '</span>');
+                        } else {
+                                $a = new HTMLTags_A($page);
+                                $a->set_href(
+                                        VideoLibrary_URLHelper::
+                                        get_results_page_url(
+                                                $results_page_url,
+                                                ((($page - 1) * $duration) ),
+                                                $duration
+                                        )
+                                );
+                                $li->append($a);
+                        }
+                        $ul->append($li);
+                }
+
+                if ($current_page < $pages ){
+                        $next_li= new HTMLTags_LI();
+                        $next_li->set_attribute_str('class', 'next');
+                        $next_a = new HTMLTags_A('Next');
+                        $next_a->set_href(
+                                VideoLibrary_URLHelper::
+                                get_results_page_url(
+                                        $results_page_url,
+                                        (($current_page) * $duration),
+                                        $duration
+                                )
+                        );
+                        $next_li->append($next_a);
+                        $ul->append($next_li);
+                }
+
+                $div->append($ul);
+                //print_r($div->get_as_string());exit;
 
                 return $div;
         }
