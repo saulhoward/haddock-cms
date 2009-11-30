@@ -34,19 +34,23 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
-		get_video_page_url($video_id)
+		get_video_page_class_name()
 	{
 		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
 		$config_manager = 
 			$cmf->get_config_manager('plug-ins', 'video-library');
-		$video_page_class_name= $config_manager->get_video_page_class_name();
+                return $config_manager->get_video_page_class_name();
+	}
 
+	public static function
+		get_video_page_url($video_id)
+	{
 		$get_variables = array(
 			"video_id" => $video_id
 		);
-		return PublicHTML_URLHelper
+		return self
 			::get_oo_page_url(
-				$video_page_class_name,
+				self::get_video_page_class_name(),
 				$get_variables
 			);
 	}
@@ -59,7 +63,7 @@ VideoLibrary_URLHelper
 			$cmf->get_config_manager('plug-ins', 'video-library');
 		$search_page_class_name= $config_manager->get_search_page_class_name();
 
-		return PublicHTML_URLHelper
+		return self
 			::get_oo_page_url(
 				$search_page_class_name
 			);
@@ -231,7 +235,37 @@ VideoLibrary_URLHelper
 
                 return $results_page_url;
         }
-
-	
+        	
+	public static function
+		get_oo_page_url(
+			$page_class,
+			$get_variables = NULL
+		)
+        {
+                /**
+                 * Copied from PublicHTML_URLHelper so I can use 
+                 * the VideoLibrary_URL class
+                 */
+                $url = new VideoLibrary_URL();
+                if (
+                        PublicHTML_ServerCapabilitiesHelper
+				::has_mod_rewrite()
+		) {
+			$url->set_file('/');
+		} else {
+			$url->set_file('/haddock/public-html/public-html/index.php');
+		}
+			
+		$url->set_get_variable('oo-page');
+		$url->set_get_variable('page-class', $page_class);
+		
+		if (isset($get_variables)) {
+			foreach ($get_variables as $k => $v) {
+				$url->set_get_variable($k, urlencode($v));
+			}
+		}
+		
+		return $url;
+        }
 }
 ?>

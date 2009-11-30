@@ -175,7 +175,7 @@ VideoLibrary_ExternalVideoLibraryPage
                         return $this->get_video_data();
                 }
                 else {
-                        throw new VideoGallery_VideoNotSetException();
+                        throw new VideoLibrary_VideoNotSetException();
                 }
         }
 
@@ -318,7 +318,7 @@ HTML;
         protected function
                 get_page_url()
         {
-                $url = PublicHTML_URLHelper
+                $url = VideoLibrary_URLHelper
                         ::get_oo_page_url(
                                 get_class($this)
                         );

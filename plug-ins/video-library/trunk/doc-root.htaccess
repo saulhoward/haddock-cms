@@ -1,0 +1,23 @@
+# .ht conf for the Video Library Plugin
+# #© SANH 2009-11-30
+#
+
+# VideoLibrary_VideoPage
+#
+# /videos/123
+# /videos/123/0/16
+# /videos/123/channels/31
+# /videos/123/channels/31/0/16
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^videos/(\d+)$ /?oo-page=1&page-class=VideoLibrary_VideoPage&video_id=$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^videos/(\d+)/(\d+)/(\d+)$ /?oo-page=1&page-class=VideoLibrary_VideoPage&video_id=$1&start=$2&duration=$3
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^videos/(\d+)/channels/(\d+)$ /?oo-page=1&page-class=VideoLibrary_VideoPage&video_id=$1&external_video_provider_id=$2
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^videos/(\d+)/channels/(\d+)/(\d+)/(\d+)$ /?oo-page=1&page-class=VideoLibrary_VideoPage&video_id=$1&external_video_provider_id=$2&start=$3&duration=$4
+
