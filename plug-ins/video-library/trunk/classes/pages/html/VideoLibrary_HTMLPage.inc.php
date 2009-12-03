@@ -15,6 +15,7 @@ extends
 PublicHTML_HTMLPage
 {
 	private $page_builder;
+        private $all_tags;
 	private $tags_navigation_div;
 	private $libraries_navigation_div;
 	private $provider_navigation_div;
@@ -169,15 +170,29 @@ HTML;
 	}
 
 	protected function
-		set_tags_navigation_div()
+		set_all_tags()
 	{
-		$all_tags = VideoLibrary_DatabaseHelper::get_tags_for_external_library_id(
+		$this->all_tags = VideoLibrary_DatabaseHelper::get_tags_for_external_library_id(
 			$this->get_external_video_library_id(),
 			TRUE
 		);
+	}
+
+	protected function
+		get_all_tags()
+	{
+		if (!isset($this->all_tags)) {
+			$this->set_all_tags();
+		}
+		return $this->all_tags;
+	}
+
+	protected function
+		set_tags_navigation_div()
+	{
 		$this->tags_navigation_div = VideoLibrary_DisplayHelper
 			::get_tags_navigation_div(
-				$all_tags,
+				$this->get_all_tags(),
 				$this->get_external_video_library_id()
 			);
 	}

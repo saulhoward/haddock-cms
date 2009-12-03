@@ -26,7 +26,13 @@ VideoLibrary_ExternalVideoLibraryPage
 		$content_div->set_attribute_str('id', 'TagsPage');
 
 		//$content_div->append($this->get_advert_div());
-		$content_div->append($this->get_tags_navigation_div());
+		$content_div->append(
+			VideoLibrary_DisplayHelper::
+				get_tags_page_tags_div(
+					$this->get_all_tags(),
+					$this->get_external_video_library_id()
+				)
+			);
 
 		return $content_div;
 	}

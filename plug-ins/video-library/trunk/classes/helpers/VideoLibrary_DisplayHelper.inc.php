@@ -42,6 +42,29 @@ VideoLibrary_DisplayHelper
         }
 
         public static function
+                get_thumbnail_div_for_tag($tag, $external_video_library_id)
+        {
+                $div = new HTMLTags_Div();
+                $div->set_attribute_str('class', 'tag');
+
+                $url = VideoLibrary_URLHelper::
+                        get_tags_search_page_url_for_tag_id($tag['id'], $external_video_library_id);
+
+                $img_a = new HTMLTags_A();
+                $img_a->set_href($url);
+                $img_a->append('<img src="/images/tags/thumbnails/default.png" />');
+
+                $text_a = new HTMLTags_A();
+                $text_a->set_attribute_str('class', 'text');
+                $text_a->set_href($url);
+                $text_a->append($tag['tag']);
+
+                $div->append($img_a);
+                $div->append($text_a);
+                return $div;
+        }
+
+        public static function
                 get_thumbnail_div_for_video($video_data)
         {
                 $div = new HTMLTags_Div();
@@ -326,6 +349,28 @@ HTML;
         }
 
         public static function
+                get_tags_page_tags_div(
+                        $tags,
+                        $external_video_library_id
+                )
+        {
+                $wrapper_div = new HTMLTags_Div();
+                $wrapper_div->set_attribute_str('id', 'thumbnails-wrapper');
+                $div = new HTMLTags_Div();
+                $div->set_attribute_str('id', 'thumbnails');
+                $ul = new HTMLTags_UL();
+
+                foreach ($tags as $tag) {
+                        $li = new HTMLTags_LI();
+                        $li->append(self::get_thumbnail_div_for_tag($tag, $external_video_library_id));
+                        $ul->append($li);
+                }
+                $div->append($ul);
+                $wrapper_div->append($div);
+                return $wrapper_div;
+        }
+
+        public static function
                 get_tags_navigation_div(
                         $tags,
                         $external_video_library_id
@@ -414,7 +459,7 @@ HTML;
                         }
                 } 
                 //else {
-                        //$images_div->append('<img src="/images/tags/50/all.png" />');
+                //$images_div->append('<img src="/images/tags/50/all.png" />');
                 //}
                 if ($external_video_provider) {
                         $images_div->append(
