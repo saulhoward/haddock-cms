@@ -29,7 +29,7 @@ VideoLibrary_ExternalVideoLibraryPage
 		$content_div->append(
 			VideoLibrary_DisplayHelper::
 				get_tags_page_tags_div(
-					$this->get_all_tags(),
+					$this->get_primary_tags(),
 					$this->get_external_video_library_id()
 				)
 			);

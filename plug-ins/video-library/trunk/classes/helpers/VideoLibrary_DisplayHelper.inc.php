@@ -48,16 +48,18 @@ VideoLibrary_DisplayHelper
                 $div->set_attribute_str('class', 'tag');
 
                 $url = VideoLibrary_URLHelper::
-                        get_tags_search_page_url_for_tag_id($tag['id'], $external_video_library_id);
+                        get_tags_search_page_url_for_tag_id(
+                                $tag['id'], $external_video_library_id
+                        );
 
                 $img_a = new HTMLTags_A();
                 $img_a->set_href($url);
-                $img_a->append('<img src="/images/tags/thumbnails/default.png" />');
+                $img_a->append(self::get_thumbnail_img_for_tag($tag['tag']));
 
                 $text_a = new HTMLTags_A();
                 $text_a->set_attribute_str('class', 'text');
                 $text_a->set_href($url);
-                $text_a->append($tag['tag']);
+                $text_a->append(ucwords($tag['tag']));
 
                 $div->append($img_a);
                 $div->append($text_a);
@@ -84,6 +86,17 @@ VideoLibrary_DisplayHelper
                 $div->append($img_a);
                 $div->append($text_a);
                 return $div;
+        }
+
+        public static function
+                get_thumbnail_img_for_tag($tag)
+        {
+                $img = new HTMLTags_IMG();
+                $web_location = '/images/tags/thumbnails/';
+                $src = new HTMLTags_URL();
+                $src->set_file($web_location . $tag . '.png');
+                $img->set_src($src);
+                return $img;
         }
 
         public static function
@@ -214,14 +227,19 @@ HTML;
         }
 
         public static function
-                get_external_video_search_div()
+                get_external_video_search_div($search_query = NULL)
         {
+                if ($search_query == NULL) {
+                        $search_query = 'Search...';
+                }
                 $div = new HTMLTags_Div();
                 $div->set_attribute_str('class', 'search');
                 $html = <<<HTML
-<form>
-<input text="text" value="search..."  name="qt" > 
-</form>
+    <form action="/search/"
+          method="get">
+         <input type="text" name="q" value="$search_query">
+         <input type="submit" value="Go">
+    </form>
 
 HTML;
 

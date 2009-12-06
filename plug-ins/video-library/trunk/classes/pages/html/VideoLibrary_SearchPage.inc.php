@@ -11,7 +11,7 @@ VideoLibrary_SearchPage
 extends
 VideoLibrary_ThumbnailsPage
 {
-        private $search_terms;
+        private $search_string;
 
         private $tag_ids;
 
@@ -36,6 +36,14 @@ VideoLibrary_ThumbnailsPage
                                 $this->get_start(),
                                 $this->get_duration()
                         );
+                } elseif (isset($_GET['q'])){
+                         $videos = VideoLibrary_SearchHelper::
+                                get_external_videos_for_search_string(
+                                $this->get_external_video_library_id(),
+                                $this->get_search_string(),
+                                $this->get_start(),
+                                $this->get_duration()
+                        );              
                 } else {
                         $videos = VideoLibrary_DatabaseHelper::get_external_videos(
                                 $this->get_external_video_library_id(),
@@ -63,6 +71,12 @@ VideoLibrary_ThumbnailsPage
                                 $this->get_tag_ids(),
                                 NULL
                         );
+                } elseif (isset($_GET['q'])){
+                         $count = VideoLibrary_SearchHelper::
+                                get_external_videos_count_for_search_string(
+                                $this->get_external_video_library_id(),
+                                $this->get_search_string()
+                        );              
                 } else {
                         $count = VideoLibrary_DatabaseHelper::
                                 get_external_videos_count(
@@ -72,6 +86,40 @@ VideoLibrary_ThumbnailsPage
 
                 $this->total_videos_count = $count;
         }
+
+        private function
+                set_search_string($str)
+        { 
+                $this->search_string = $str;
+        }
+
+        private function
+                set_search_string_from_get()
+        { 
+                if (isset($_GET['q'])) {
+                        $this->set_search_string(
+                                $_GET['q']
+                        );
+                }
+        }
+
+        protected function
+                get_search_string()
+        {
+                if (isset($this->search_string)) {
+                        return $this->search_string;
+                }
+                elseif (
+                        isset($_GET['q'])
+                ) {
+                        $this->set_search_string_from_get();
+                        return $this->get_search_string();
+                }
+                else {
+                        throw new VideoGallery_SearchStringNotSetException();
+                }
+        }
+
 
         private function
                 set_external_video_provider_id(

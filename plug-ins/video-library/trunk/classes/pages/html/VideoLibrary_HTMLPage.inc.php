@@ -15,7 +15,7 @@ extends
 PublicHTML_HTMLPage
 {
 	private $page_builder;
-        private $all_tags;
+        private $primary_tags;
 	private $tags_navigation_div;
 	private $libraries_navigation_div;
 	private $provider_navigation_div;
@@ -54,8 +54,17 @@ PublicHTML_HTMLPage
 		$second_nav_div = new HTMLTags_Div();
 		$second_nav_div->set_attribute_str('id', 'top-nav-2');
 		$second_nav_div->append($this->get_second_tier_navigation_div());
-		$second_nav_div->append(VideoLibrary_DisplayHelper::get_external_video_search_div());
-		echo $second_nav_div->get_as_string();
+                if (isset($_GET['q'])){
+                        $search_query =  $_GET['q'];
+                } else {
+                        $search_query = NULL;
+                }
+                $second_nav_div->append(
+                        VideoLibrary_DisplayHelper::get_external_video_search_div(
+                                $search_query
+                        )
+                );
+                echo $second_nav_div->get_as_string();
 
 		$this->render_body_div_content();
 
@@ -150,8 +159,11 @@ HTML;
 		set_libraries_navigation_div()
 	{
 		//$all_libraries = VideoLibrary_DatabaseHelper::get_external_video_libraries();
+		//$libraries = VideoLibrary_DatabaseHelper
+			//::get_external_video_libraries_for_ids(array(1,2));
+
 		$libraries = VideoLibrary_DatabaseHelper
-			::get_external_video_libraries_for_ids(array(1,2));
+			::get_external_video_libraries();
 		//print_r($libraries);exit;
 		$this->libraries_navigation_div = VideoLibrary_DisplayHelper
 			::get_external_video_libraries_navigation_div(
@@ -170,31 +182,13 @@ HTML;
 	}
 
 	protected function
-		set_all_tags()
-	{
-		$this->all_tags = VideoLibrary_DatabaseHelper::get_tags_for_external_library_id(
-			$this->get_external_video_library_id(),
-			TRUE
-		);
-	}
-
-	protected function
-		get_all_tags()
-	{
-		if (!isset($this->all_tags)) {
-			$this->set_all_tags();
-		}
-		return $this->all_tags;
-	}
-
-	protected function
 		set_tags_navigation_div()
 	{
 		$this->tags_navigation_div = VideoLibrary_DisplayHelper
 			::get_tags_navigation_div(
-				$this->get_all_tags(),
+				$this->get_primary_tags(),
 				$this->get_external_video_library_id()
-			);
+                        );
 	}
 
 	protected function
@@ -205,6 +199,25 @@ HTML;
 		}
 		return $this->tags_navigation_div;
 	}
+
+        protected function
+                set_primary_tags()
+        {
+                $this->primary_tags = VideoLibrary_DatabaseHelper::
+                        get_tags_for_external_library_id(
+                        $this->get_external_video_library_id(),
+                        TRUE
+                );
+        }
+
+        protected function
+                get_primary_tags()
+        {
+                if (!isset($this->primary_tags)) {
+                        $this->set_primary_tags();
+                }
+                return $this->primary_tags;
+        }
 
 	protected function
 		set_provider_navigation_div()

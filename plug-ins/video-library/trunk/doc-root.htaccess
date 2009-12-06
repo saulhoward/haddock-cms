@@ -21,3 +21,11 @@ RewriteRule ^videos/(\d+)/channels/(\d+)$ /?oo-page=1&page-class=VideoLibrary_Vi
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^videos/(\d+)/channels/(\d+)/(\d+)/(\d+)$ /?oo-page=1&page-class=VideoLibrary_VideoPage&video_id=$1&external_video_provider_id=$2&start=$3&duration=$4
 
+# Search Page
+#
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^search/(.*) /?oo-page=1&page-class=VideoLibrary_SearchPage&q=$1
+
+RewriteCond %{QUERY_STRING} ^q(.*)$
+RewriteRule ^search/(.*) /?oo-page=1&page-class=VideoLibrary_SearchPage&%{QUERY_STRING}
+
