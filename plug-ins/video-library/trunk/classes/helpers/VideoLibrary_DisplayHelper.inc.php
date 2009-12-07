@@ -227,7 +227,10 @@ HTML;
         }
 
         public static function
-                get_external_video_search_div($search_query = NULL)
+                get_external_video_search_div(
+                        $external_video_library_id,
+                        $search_query = NULL
+                )
         {
                 if ($search_query == NULL) {
                         $search_query = 'Search...';
@@ -239,6 +242,11 @@ HTML;
           method="get">
          <input type="text" name="q" value="$search_query">
          <input type="submit" value="Go">
+HTML;
+
+                $html .= '<input type="hidden" name="external_video_library_id" value="'
+                        . $external_video_library_id .'">' . "\n";
+                $html .= <<<HTML
     </form>
 
 HTML;

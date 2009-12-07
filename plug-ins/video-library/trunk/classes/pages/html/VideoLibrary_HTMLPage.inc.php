@@ -54,15 +54,8 @@ PublicHTML_HTMLPage
 		$second_nav_div = new HTMLTags_Div();
 		$second_nav_div->set_attribute_str('id', 'top-nav-2');
 		$second_nav_div->append($this->get_second_tier_navigation_div());
-                if (isset($_GET['q'])){
-                        $search_query =  $_GET['q'];
-                } else {
-                        $search_query = NULL;
-                }
                 $second_nav_div->append(
-                        VideoLibrary_DisplayHelper::get_external_video_search_div(
-                                $search_query
-                        )
+                        $this->get_external_video_search_div()
                 );
                 echo $second_nav_div->get_as_string();
 
@@ -72,6 +65,20 @@ PublicHTML_HTMLPage
 
 		echo "</body>\n";
 	}
+        public function
+                get_external_video_search_div()
+        {
+                if (isset($_GET['q'])){
+                        $search_query =  $_GET['q'];
+                } else {
+                        $search_query = NULL;
+                }
+                return VideoLibrary_DisplayHelper::get_external_video_search_div(
+                                $this->get_external_video_library_id(),
+                                $search_query
+                        );
+
+        }
 
 	public function
 		get_first_tier_navigation_div()
@@ -148,7 +155,7 @@ HTML;
 		$footer_nav_div = new HTMLTags_Div();
 		$footer_nav_div->set_attribute_str('id', 'bottom-nav');
 		$footer_nav_div->append($this->get_second_tier_navigation_div());
-		$footer_nav_div->append(VideoLibrary_DisplayHelper::get_external_video_search_div());
+		$footer_nav_div->append($this->get_external_video_search_div());
 		echo $footer_nav_div->get_as_string();
 
 		DBPages_PageRenderer::render_page_section('all', 'copyright-notice');
