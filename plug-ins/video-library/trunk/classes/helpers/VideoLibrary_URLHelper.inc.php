@@ -212,26 +212,7 @@ VideoLibrary_URLHelper
                         'duration',
                         $duration
                 );
-                if (isset($_GET['tag_ids'])) {
-                        $results_page_url->set_get_variable(
-                                'tag_ids',
-                                $_GET['tag_ids']
-                        );
-                }
-                if (isset($_GET['external_video_library_id'])) {
-                        $results_page_url->set_get_variable(
-                                "external_video_library_id", 
-                                $_GET['external_video_library_id']
-                        );
-                }
-                if (isset($_GET['external_video_provider_id'])) {
-                        $results_page_url->set_get_variable(
-                                "external_video_provider_id", 
-                                $_GET['external_video_provider_id']
-                        );
-                }
-
-
+                
 
                 return $results_page_url;
         }

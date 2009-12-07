@@ -470,7 +470,8 @@ HTML;
         public static function
                 get_search_page_videos_description_div(
                         $tags = NULL,
-                        $external_video_provider = NULL
+                        $external_video_provider = NULL,
+                        $search_query = NULL
                 )
         {
                 $div = new HTMLTags_Div();
@@ -497,7 +498,10 @@ HTML;
                 $text_div = new HTMLTags_Div();
                 $text_div->set_attribute_str('id', 'text');
                 $text_str = '';
-                if ($tags) {
+                if ($search_query) {
+                        $text_str .= 'Search for '
+                                . $search_query . ' ';
+                } elseif ($tags) {
                         $i = 0;
                         foreach ($tags as $tag) {
                                 if ($i != 0) $text_str .= ', '; $i++;

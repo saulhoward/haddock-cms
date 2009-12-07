@@ -214,11 +214,18 @@ VideoLibrary_ThumbnailsPage
                         $tags = NULL;
 
                 }
+                if (isset($_GET['q'])) {
+                        $search_query =	$_GET['q'];
+                } else {
+                        $search_query = NULL;
+
+                }
 
                 return	VideoLibrary_DisplayHelper
                         ::get_search_page_videos_description_div(
                                 $tags, 
-                                $external_video_provider
+                                $external_video_provider,
+                                $search_query
                         );
         }
 

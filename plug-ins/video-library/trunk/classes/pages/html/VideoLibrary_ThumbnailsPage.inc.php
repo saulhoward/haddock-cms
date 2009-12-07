@@ -141,7 +141,8 @@ HTML;
         protected function
                 get_videos_description_div()
         {
-                return VideoLibrary_DisplayHelper::get_search_page_videos_description_div();
+                return VideoLibrary_DisplayHelper::
+                        get_search_page_videos_description_div();
         }
 
         private function
@@ -167,10 +168,36 @@ HTML;
         protected function
                 get_page_url()
         {
-		return PublicHTML_URLHelper
+		$page_url =  PublicHTML_URLHelper
 			::get_oo_page_url(
 				get_class($this)
 			);
+                if (isset($_GET['tag_ids'])) {
+                        $page_url->set_get_variable(
+                                'tag_ids',
+                                $_GET['tag_ids']
+                        );
+                }
+                if (isset($_GET['external_video_library_id'])) {
+                        $page_url->set_get_variable(
+                                "external_video_library_id", 
+                                $_GET['external_video_library_id']
+                        );
+                }
+                if (isset($_GET['external_video_provider_id'])) {
+                        $page_url->set_get_variable(
+                                "external_video_provider_id", 
+                                $_GET['external_video_provider_id']
+                        );
+                }
+                if (isset($_GET['q'])) {
+                        $page_url->set_get_variable(
+                                "q", 
+                                $_GET['q']
+                        );
+                }
+
+                return $page_url;
         }
 }
 ?>
