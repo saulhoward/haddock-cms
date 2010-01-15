@@ -52,7 +52,7 @@ PublicHTML_RedirectScript
 
 			$contents = stripslashes($_POST['contents']);
                         $contents = trim($contents);
-                        $contents = "\n\r" . $contents;
+                        $contents = "\r\n\r\n" . $contents;
 
 			$contents = $_POST['filter_function'] .  $contents;
 			//print_r($contents);exit;
