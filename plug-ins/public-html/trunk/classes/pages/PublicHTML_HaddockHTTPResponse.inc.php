@@ -61,6 +61,8 @@ class
 	/**
 	 * The name of the file that contains the script that is to
 	 * be run when a request is sent to the server.
+	 *
+	 * TO DO: Is this right?
 	 */
 	protected function
 		get_current_url_file_str()
