@@ -1,0 +1,9 @@
+## The .htaccess fragment that starts the .htaccess file
+## for the DOCUMENT_ROOT.
+##
+## © 2007-08-03, RFI
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+</IfModule>
+
