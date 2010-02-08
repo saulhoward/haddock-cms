@@ -1,0 +1,5 @@
+# Restrict Access to the html-tags plug-in module.
+# © 2007-03-07, RFI
+
+Order Deny,Allow
+Deny from all
