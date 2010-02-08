@@ -4,6 +4,11 @@
  * @copyright 2008-01-24, Robert Impey
  */
 
+function round_all_bw_rc_corners()
+{
+	round_all_corners('bw-rc');
+}
+
 function round_all_corners(class_name)
 {
 	var divs_to_round = document.getElementsByTagName('div');

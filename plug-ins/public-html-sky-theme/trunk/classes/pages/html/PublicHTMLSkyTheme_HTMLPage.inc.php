@@ -44,6 +44,14 @@ extends
 			::render_external_js_script(
 				'/plug-ins/public-html-sky-theme/public-html/scripts/rounded-corners.js'
 			);
+		HTMLTags_ScriptRenderer
+			::render_external_js_script(
+				'/plug-ins/run-on-load/public-html/scripts/run-on-load.js'
+			);
+		HTMLTags_ScriptRenderer
+			::render_external_js_script(
+				'/plug-ins/public-html-sky-theme/public-html/scripts/register-functions-to-run-on-load.js'
+			);
 	}
 	
 	public function
@@ -97,15 +105,15 @@ extends
 		echo '</div>' . PHP_EOL;
 	}
 	
-	public function
-		render_html()
-	{
-		parent::render_html();
-?>
-<script type="text/javascript">
-round_all_corners('bw-rc');
-</script>
-<?php
-	}
+#	public function
+#		render_html()
+#	{
+#		parent::render_html();
+#
+#<script type="text/javascript">
+#round_all_corners('bw-rc');
+#</script>
+#
+#	}
 }
 ?>
