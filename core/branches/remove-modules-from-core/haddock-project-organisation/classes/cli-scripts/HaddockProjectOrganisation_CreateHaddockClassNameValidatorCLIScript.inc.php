@@ -17,7 +17,8 @@ extends
 			= HaddockProjectOrganisation_ModuleDirectoriesHelper
 				::get_module_directory_from_cli_choice();
 		
-		echo 'Creating an Haddock class name validator for the ' . $module_directory->get_title() . ' module.' . PHP_EOL;
+		echo 'Creating an Haddock class name validator for the '
+			. $module_directory->get_title() . ' module.' . PHP_EOL;
 		
 		$new_haddock_class_name_validator_name
 			= CLIScripts_UserInterrogationHelper
