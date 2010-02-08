@@ -1,0 +1,6 @@
+# Configuration for the CLI Scripts module.
+#
+# © Clear Line Web Design, 2007-08-03
+
+camel-case-root=CLIScripts
+module-name=CLI Scripts
