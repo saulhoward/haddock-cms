@@ -122,17 +122,20 @@ if (isset($_GET['oo-page'])) {
 			
 			PublicHTML_RedirectionHelper::redirect_to_absolute_location($default_location);
 		}
-	} catch (ReflectionException $re) {
-		#print_r($e);
-		#echo "Unable to show that page!\n";
-		echo $re->getMessage();
-	}
-	
-	try {
+		
 		$pcro->run();
+	#} catch (ReflectionException $re) {
+	#	#print_r($e);
+	#	#echo "Unable to show that page!\n";
+	#	echo $re->getMessage();
 	} catch (Exception $e) {
-		$exception_page_url = PublicHTML_ExceptionHelper
-			::set_session_and_get_exception_page_url($e);
+		#echo "Exception thrown!\n"; exit;
+		
+		$exception_page_url
+			= PublicHTML_ExceptionHelper
+				::set_session_and_get_exception_page_url($e);
+		
+		#print_r($e); exit;
 		
 		header('Location: ' . $exception_page_url->get_as_string());
 		exit;
