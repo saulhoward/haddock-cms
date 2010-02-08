@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-10-08
+ * Last Modified: 2010-02-08
  */
 
 function __autoload($class_name)
@@ -301,6 +301,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'exceptions' . DIRECTORY_SEPARATOR . 'FileSystem_FileNotFoundException.inc.php';
 			break;
 
+		case('FileSystem_MetaDataHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'FileSystem_MetaDataHelper.inc.php';
+			break;
+
 		case('FileSystem_PHPClassFile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'FileSystem_PHPClassFile.inc.php';
 			break;
@@ -375,6 +379,10 @@ function __autoload($class_name)
 
 		case('HaddockCMSThemes_HTMLPage'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_HTMLPage.inc.php';
+			break;
+
+		case('HaddockCMSThemes_HurtsickleLoremIpsumHTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMSThemes_HurtsickleLoremIpsumHTMLPage.inc.php';
 			break;
 
 		case('HaddockCMSThemes_LoremIpsumHelper'): 
@@ -463,6 +471,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_CreateHaddockClassNameValidatorCLIScript'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_CreateHaddockClassNameValidatorCLIScript.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_FullHaddockClassNameValidator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'input-validation' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_FullHaddockClassNameValidator.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_HaddockClassNameValidator'): 
@@ -1149,6 +1161,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'PublicHTML_NavigationListsHelper.inc.php';
 			break;
 
+		case('PublicHTML_PageClassNameValidator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'input-validation' . DIRECTORY_SEPARATOR . 'PublicHTML_PageClassNameValidator.inc.php';
+			break;
+
 		case('PublicHTML_PageDirectory'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'PublicHTML_PageDirectory.inc.php';
 			break;
@@ -1251,6 +1267,14 @@ function __autoload($class_name)
 
 		case('PublicHTML_VHostTests'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'unit-tests' . DIRECTORY_SEPARATOR . 'PublicHTML_VHostTests.inc.php';
+			break;
+
+		case('PublicHTML_ZipFile'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'PublicHTML_ZipFile.inc.php';
+			break;
+
+		case('PublicHTMLHurtsickleTheme_HTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html-hurtsickle-theme' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'PublicHTMLHurtsickleTheme_HTMLPage.inc.php';
 			break;
 
 		case('PublicHTMLNeonTheme_HTMLPage'): 

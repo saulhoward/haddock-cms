@@ -18,6 +18,7 @@ h2. Themes for Haddock CMS
 
 * "Neon Lorem Ipsum":/HaddockCMSThemes_NeonLoremIpsumHTMLPage
 * "Sky Lorem Ipsum":/HaddockCMSThemes_SkyLoremIpsumHTMLPage
+* "Hurtsickle Lorem Ipsum":/HaddockCMSThemes_HurtsickleLoremIpsumHTMLPage
 TXT;
 
 		$textile = new Textile_Textile();
