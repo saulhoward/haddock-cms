@@ -33,11 +33,15 @@ function fixLeftNavigationDiv()
 	 */
 	
 	var leftHeight = leftNavigationDiv.clientHeight;
+	//alert('leftHeight: ' + leftHeight);
 	var contentHeight = contentDiv.clientHeight;
+	//alert('contentHeight: ' + contentHeight);
 	
 	if (leftHeight > contentHeight) {
+		//alert('Left is taller');
 		contentDiv.style.height = leftHeight + "px";
 	} else {
+		//alert('Right is taller');
 		leftNavigationDiv.style.height = contentHeight + "px";
 	}
 }

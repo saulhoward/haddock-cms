@@ -1,0 +1,5 @@
+# Restrict Access to the left-navigation-div plug-in module.
+# © 2010-02-16, Robert Impey
+
+Order Deny,Allow
+Deny from all
