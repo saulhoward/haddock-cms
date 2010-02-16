@@ -6,27 +6,41 @@
  */
 
 abstract class
-	VideoLibrary_ExternalVideoProvider
+VideoLibrary_ExternalVideoProvider
 {
-	private $providers_internal_id;
+    private $providers_internal_id;
 
-	public function
-		set_providers_internal_id($id)
-	{
-		$this->providers_internal_id = $id;
-	}
+    abstract function
+        get_video_embed_code();
 
-	public function
-		get_providers_internal_id()
-	{
-		return $this->providers_internal_id;
-	}
-	
-	abstract function
-		get_video_embed_code();
+    abstract function
+        get_thumbnail_url();
 
-	//abstract function
-		//get_video_page_url_schema();
+    abstract function
+        get_video_page_url_schema();
 
+    public function
+        set_providers_internal_id($id)
+    {
+        $this->providers_internal_id = $id;
+    }
+
+    public function
+        get_providers_internal_id()
+    {
+        return $this->providers_internal_id;
+    }
+
+    public function
+        get_video_page_url()
+    {
+        // print_r($this->get_providers_internal_id());exit;
+        // print_r($this->get_video_page_url_schema());exit;
+        return str_replace(
+            '%video_id',
+            $this->get_providers_internal_id(),
+            $this->get_video_page_url_schema()
+        );
+    }
 }
 ?>
