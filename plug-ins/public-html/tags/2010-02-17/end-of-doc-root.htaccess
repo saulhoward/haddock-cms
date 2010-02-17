@@ -1,0 +1,31 @@
+## The .htaccess fragment that finishes the .htaccess file
+## for the DOCUMENT_ROOT.
+##
+## © 2007-08-03, RFI
+
+<IfModule mod_rewrite.c>
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hpi/([a-z-]+)/([a-z-]+).([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=plug-ins&module=$1&page=$2&type=$3
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^hc/([a-z-]+)/([a-z-]+).([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=haddock&module=$1&page=$2&type=$3
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([a-z-]+)\.([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=project-specific&page=$1&type=$2
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([A-Z0-9][a-zA-Z0-9]*_[A-Z0-9][a-zA-Z0-9]*)$ /plug-ins/public-html/public-html/index.php?oo-page=1&page-class=$1
+</IfModule>
+
+# Back up using mod_alias
+
+<IfModule !mod_rewrite.c>
+	RedirectMatch temp ^/hpi/([a-z-]+)/([a-z-]+).([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=plug-ins\&module=$1\&page=$2\&type=$3
+	
+	RedirectMatch temp ^/hc/([a-z-]+)/([a-z-]+).([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=haddock\&module=$1\&page=$2\&type=$3
+	
+	RedirectMatch temp ^/([a-z-]+)\.([a-z]+)$ /plug-ins/public-html/public-html/index.php?section=project-specific\&page=$1\&type=$2
+	
+	RedirectMatch temp ^/([A-Z0-9][a-zA-Z0-9]*_[A-Z0-9][a-zA-Z0-9]*)$ /plug-ins/public-html/public-html/index.php?oo-page=1\&page-class=$1
+</IfModule>
+

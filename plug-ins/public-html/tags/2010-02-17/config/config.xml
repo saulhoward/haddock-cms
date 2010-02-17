@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>PublicHTML_ConfigManager</config-manager>
+	</haddock-project-organisation>
+	<page-elements>
+		<titles>
+			<separator><![CDATA[&nbsp;&gt;&nbsp;]]></separator>
+		</titles>
+	</page-elements>
+	<pages>
+		<error>
+			<title>
+				<ending value="Errors" />
+			</title>
+		</error>
+	</pages>
+	<error-messages>
+		<page-not-found>Sorry, the page you requested does not exist.</page-not-found>
+	</error-messages>
+	<oo-page-classes>
+		<exception value="PublicHTML_ExceptionPage" />
+	</oo-page-classes>
+	<verbosity>
+		<exceptions>
+			<names-are-printed value="FALSE" />
+			<stack-traces-are-printed value="FALSE" />
+		</exceptions>
+		<meta-pages>
+			<show-about-haddock-cms value="TRUE" />
+		</meta-pages>
+	</verbosity>
+	<locations>
+		<server_address value="http://localhost/" />
+		<default value="/PublicHTML_AboutHaddockCMS" />
+	</locations>
+	<!--<server_capabilities>-->
+	<!--	<has_mod_rewrite value="FALSE" />-->
+	<!--</server_capabilities>-->
+</config>
