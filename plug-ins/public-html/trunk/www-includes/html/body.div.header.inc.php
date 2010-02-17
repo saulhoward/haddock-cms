@@ -42,7 +42,7 @@ $h1_title = new HTMLTags_Heading(1);
 
 $home_link = new HTMLTags_A($config_manager->get_project_name());
 
-$home_link->set_href(new HTMLTags_URl('/'));
+$home_link->set_href(new HTMLTags_URL('/'));
 
 $h1_title->append_tag_to_content($home_link);
 
