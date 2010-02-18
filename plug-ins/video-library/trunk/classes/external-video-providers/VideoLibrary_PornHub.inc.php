@@ -22,5 +22,10 @@ VideoLibrary_ExternalVideoProvider
 HTML;
 
 	}
+
+    public function
+        get_thumbnail_url()
+    {
+    }
 }
 ?>

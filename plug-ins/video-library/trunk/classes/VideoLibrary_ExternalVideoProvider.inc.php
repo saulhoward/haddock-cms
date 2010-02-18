@@ -16,8 +16,8 @@ VideoLibrary_ExternalVideoProvider
     abstract function
         get_thumbnail_url();
 
-    abstract function
-        get_video_page_url_schema();
+    // abstract function
+        // get_video_page_url_schema();
 
     public function
         set_providers_internal_id($id)

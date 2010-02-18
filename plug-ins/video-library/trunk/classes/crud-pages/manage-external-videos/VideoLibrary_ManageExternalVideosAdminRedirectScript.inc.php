@@ -10,6 +10,43 @@ class
 extends
 	Database_CRUDAdminRedirectScript
 {
+
+    protected function
+		get_action_method_map()
+	{
+		$crmm = parent::get_action_method_map();
+		
+		$crmm['add_video_to_thumbnail_queue'] = 'add_video_to_thumbnail_queue';
+		
+		return $crmm;
+    }
+    public function
+		add_video_to_thumbnail_queue()
+	{
+		//print_r($_POST);exit;
+        // print_r($_GET);exit;
+
+		$dbh = DB::m();
+		$id = mysql_real_escape_string($_GET['id']);
+
+		$stmt = <<<SQL
+UPDATE
+	hpi_video_library_external_videos_frame_grabbing_queue
+SET
+	last_processed = NULL
+WHERE
+	external_video_id = $id
+
+SQL;
+
+        // print_r($stmt);exit;
+
+		$result = mysql_query($stmt, $dbh);
+
+		return $id;
+	}
+
+
 	public function
 		add_something()
 	{
