@@ -7,7 +7,7 @@ $(function() {
 
 	/*
 	 * Expecting a list of names of tags
-	 * If any of the <li>s are clicked, 
+	 * If any of the <li tag="name">s are clicked, 
 	 * toggle the presence of that tag in the input
 	 * box
 	 */
@@ -18,10 +18,8 @@ $(function() {
 				 function(){
                  var tag = $(this).html();
 					if (toggle_tag_on_click($(this).html()) == 1 ) {
-                        // $(this).addClass('selected')
                         $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
 					} else {
-                        // $(this).removeClass('selected')
                         $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
 					}
 				 }
@@ -31,7 +29,6 @@ $(function() {
                     var tag = $(this).html();
                     if (tag != '') {
                     $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
-                    // $(this).addClass('selected')
                     }
 			 }
 		}
@@ -44,12 +41,13 @@ $(function() {
 	$( 'input:#tags').bind (
 		 "keyup",
 		 function(){
-			$('.tags-empty-links-list li').each(
+			$('.tags-fieldset li[tag]').each(
 				function(){
+                    var tag = $(this).html();
 					 if (tag_is_in_input($(this).html()) == 1) {
-							$(this).addClass('selected')
+                        $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
 					 } else {
-						$(this).removeClass('selected')
+                        $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
 					}
 				}
 			);
