@@ -173,20 +173,67 @@ SQL;
             );
         $status_li = '<li><label for="status">Status</label><select name="status">';
         foreach ($status_values as $status_value) {
-            $status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
+            // $status_li .= '<label><input type="radio" name="external_video_status_id" value="' . $status_value['id'] . '"';
+            // if ($i == 0) $status_li .= ' checked="checked"';
+            // $i++; 
+            // $status_li .= '>';
+            // $status_li .= $status_value['name'] . '<br />';
+           $status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
         }
         $status_li .= '</select></li>';
         echo $status_li;
 
-        echo '<fieldset id="tags-fieldset"><legend>Tags</legend>';
+        echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
         $this->render_add_something_form_li_text_input('tags');
+
+        foreach ($library_values as $library_value) {
+            $lib_tags = VideoLibrary_DatabaseHelper::
+                get_tags_for_external_library_id($library_value['id']);
+            if (count($lib_tags) > 0) {
+                echo '<h3>' . $library_value['name'] . ' Tags</h3>';
+                echo VideoLibrary_DisplayHelper::
+                    get_tags_empty_links_list($lib_tags)->get_as_string();
+            }
+        }
+
+        echo '<h3>Principal Tags</h3>';
         echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
             VideoLibrary_DatabaseHelper::get_tags(TRUE)
         )->get_as_string();
+
+        echo '<h3>All Tags</h3>';
+        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+            VideoLibrary_DatabaseHelper::get_tags()
+        )->get_as_string();
+
+
         echo '</fieldset>';
 
 
         echo "</ol>\n";
+
+        echo <<<HTML
+<div>
+<ul>
+    <li>
+        Providers Internal ID is the code to identify the video from the original site.
+    </li>
+
+    <li>
+        Status will hide or show the video to users.
+    </li>
+
+
+    <li>
+        Choose <em>all</em> tags that match the video. 
+    </li>
+    <li>
+        Write any new tags in the 'Tags' box, and they will be added. Use commas to separate tags.
+    </li>
+</ul>
+</div>
+HTML;
+
     }
 
     protected function

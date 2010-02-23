@@ -11,21 +11,28 @@ $(function() {
 	 * toggle the presence of that tag in the input
 	 * box
 	 */
-	$('.tags-empty-links-list li').each(
+	$('.tags-fieldset li[tag]').each(
 		function(intIndex){
 			 $( this ).bind (
 				 "click",
 				 function(){
+                 var tag = $(this).html();
 					if (toggle_tag_on_click($(this).html()) == 1 ) {
-						$(this).addClass('selected')
+                        // $(this).addClass('selected')
+                        $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
 					} else {
-						$(this).removeClass('selected')
+                        // $(this).removeClass('selected')
+                        $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
 					}
 				 }
 			 );
 
 			 if (tag_is_in_input($(this).html()) == 1) {
-					$(this).addClass('selected')
+                    var tag = $(this).html();
+                    if (tag != '') {
+                    $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
+                    // $(this).addClass('selected')
+                    }
 			 }
 		}
 	);

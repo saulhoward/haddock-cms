@@ -556,7 +556,7 @@ SQL;
 
 
 
-		//echo $query; exit;
+		// echo $query; exit;
 
 		$result = mysql_query($query, $dbh);
 

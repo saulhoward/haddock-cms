@@ -368,6 +368,7 @@ HTML;
                 $ul->set_attribute_str('class', 'tags-empty-links-list');
                 foreach ($tags as $tag) {
                         $li = new HTMLTags_LI();
+                        $li->set_attribute_str('tag', $tag['tag']);
                         $li->append($tag['tag']);
                         $ul->append($li);
                 }
