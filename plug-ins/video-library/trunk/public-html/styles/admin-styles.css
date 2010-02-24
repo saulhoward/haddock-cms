@@ -19,6 +19,11 @@ input#tags {
 	margin: 5px auto;
 	display: block;
 }
+div#principal-tags {
+    padding: 10px 0 5px 0;
+    background: #ccc;
+}
+
 ul.tags-empty-links-list {
 	margin: 20px 25px;
 	text-align: center;
