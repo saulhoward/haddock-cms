@@ -40,6 +40,7 @@ VideoLibrary_RelatedVideosHelper
                 );
         }
     }
+
     public static function
         get_related_videos_for_external_video_data(
             $external_video_library_id,

@@ -49,16 +49,17 @@ VideoLibrary_ExternalVideoLibraryPage
                 return $config_manager->get_related_videos_results_duration();
         }
 
-        protected function
+        public function
                 get_start()
         {
+            // print_r($_GET);exit;
                 if (!isset($this->start)) {
                         $this->set_start();
                 }
                 return $this->start;
         }
 
-        protected function
+        public function
                 get_duration()
         {
                 if (!isset($this->duration)) {
@@ -193,6 +194,7 @@ VideoLibrary_ExternalVideoLibraryPage
                                 );
 
                 } else {
+                        // print_r($this->get_start());exit;
                         $videos = VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),

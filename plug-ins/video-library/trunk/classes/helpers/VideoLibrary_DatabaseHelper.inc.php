@@ -1449,10 +1449,12 @@ LIMIT
     $start, $duration
 SQL;
 
+        // print_r($start . '   ' . $duration);exit;
+        // echo $query; exit;
         }
 
 
-        //echo $query; exit;
+        // echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
