@@ -80,7 +80,7 @@ VideoLibrary_ExternalVideoLibraryPage
                 set_total_related_videos_count()
         {
                 if (isset($_GET['external_video_provider_id'])) {
-                        $videos = VideoLibrary_DatabaseHelper
+                        $videos = VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_count_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data(),
@@ -88,7 +88,7 @@ VideoLibrary_ExternalVideoLibraryPage
                                 );
 
                 } else {
-                        $videos = VideoLibrary_DatabaseHelper
+                        $videos = VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_count_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data()
@@ -183,7 +183,7 @@ VideoLibrary_ExternalVideoLibraryPage
                 set_related_videos()
         {
                 if (isset($_GET['external_video_provider_id'])) {
-                        $videos = VideoLibrary_DatabaseHelper
+                        $videos = VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data(),
@@ -193,7 +193,7 @@ VideoLibrary_ExternalVideoLibraryPage
                                 );
 
                 } else {
-                        $videos = VideoLibrary_DatabaseHelper
+                        $videos = VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data(),
@@ -270,7 +270,7 @@ HTML;
                  */
                 $related_video_providers = VideoLibrary_DatabaseHelper::
                         get_external_video_providers_for_videos(
-                                VideoLibrary_DatabaseHelper
+                                VideoLibrary_RelatedVideosHelper
                                 ::get_related_videos_for_external_video_data(
                                         $this->get_external_video_library_id(),
                                         $this->get_video_data()
