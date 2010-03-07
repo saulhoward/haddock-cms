@@ -1,0 +1,11 @@
+return Textile_TranslationHelper::translate_textile_to_html($text);
+
+h2. Haddock
+
+This is the main site for the Haddock CMS project.
+
+Haddock CMS is an object-oriented framework for web sites and command line programs. The aim of the project is to enable code reuse in lots of projects.
+
+Developers should visit the Google Code page for this project.
+
+"http://code.google.com/p/haddock-cms/":http://code.google.com/p/haddock-cms/
