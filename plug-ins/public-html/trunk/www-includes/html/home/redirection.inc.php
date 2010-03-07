@@ -17,5 +17,16 @@
  */
 $default_location = PublicHTML_DefaultLocationHelper::get_default_location();
 
+if (DEBUG) {
+	echo DEBUG_DELIM_OPEN;
+	
+	echo 'File: ' . __FILE__ . PHP_EOL;
+	echo 'Line: ' . __LINE__ . PHP_EOL;
+	
+	echo '$default_location: ' . $default_location . PHP_EOL;
+	
+	echo DEBUG_DELIM_CLOSE;
+}
+
 PublicHTML_RedirectionHelper::redirect_to_absolute_location($default_location);
 ?>
