@@ -2,7 +2,7 @@
 /**
  * __autoload .INC file
  *
- * Last Modified: 2009-10-10
+ * Last Modified: 2010-03-07
  */
 
 function __autoload($class_name)
@@ -1185,6 +1185,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'exceptions' . DIRECTORY_SEPARATOR . 'FileSystem_FileNotFoundException.inc.php';
 			break;
 
+		case('FileSystem_MetaDataHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'FileSystem_MetaDataHelper.inc.php';
+			break;
+
 		case('FileSystem_PHPClassFile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'FileSystem_PHPClassFile.inc.php';
 			break;
@@ -1269,6 +1273,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMS_HTMLPage.inc.php';
 			break;
 
+		case('HaddockCMS_SiteTextsHTMLPage'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'project-specific' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'HaddockCMS_SiteTextsHTMLPage.inc.php';
+			break;
+
 		case('HaddockProjectOrganisation_AbstractModuleConfigXMLFile'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'file-system' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_AbstractModuleConfigXMLFile.inc.php';
 			break;
@@ -1335,6 +1343,10 @@ function __autoload($class_name)
 
 		case('HaddockProjectOrganisation_CreateHaddockClassNameValidatorCLIScript'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_CreateHaddockClassNameValidatorCLIScript.inc.php';
+			break;
+
+		case('HaddockProjectOrganisation_FullHaddockClassNameValidator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'haddock-project-organisation' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'input-validation' . DIRECTORY_SEPARATOR . 'HaddockProjectOrganisation_FullHaddockClassNameValidator.inc.php';
 			break;
 
 		case('HaddockProjectOrganisation_HaddockClassNameValidator'): 
@@ -2173,6 +2185,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'PublicHTML_AssembleHTAccessCLIScript.inc.php';
 			break;
 
+		case('PublicHTML_CascadingStyleSheet'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'PublicHTML_CascadingStyleSheet.inc.php';
+			break;
+
 		case('PublicHTML_ConfigManager'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'PublicHTML_ConfigManager.inc.php';
 			break;
@@ -2239,6 +2255,10 @@ function __autoload($class_name)
 
 		case('PublicHTML_NavigationListsHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'PublicHTML_NavigationListsHelper.inc.php';
+			break;
+
+		case('PublicHTML_PageClassNameValidator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'input-validation' . DIRECTORY_SEPARATOR . 'PublicHTML_PageClassNameValidator.inc.php';
 			break;
 
 		case('PublicHTML_PageDirectory'): 
@@ -2345,6 +2365,10 @@ function __autoload($class_name)
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'unit-tests' . DIRECTORY_SEPARATOR . 'PublicHTML_VHostTests.inc.php';
 			break;
 
+		case('PublicHTML_ZipFile'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'PublicHTML_ZipFile.inc.php';
+			break;
+
 		case('PublicHTMLSkyTheme_HTMLPage'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'public-html-sky-theme' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . 'PublicHTMLSkyTheme_HTMLPage.inc.php';
 			break;
@@ -2355,6 +2379,30 @@ function __autoload($class_name)
 
 		case('Security_PasswordsHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'security' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Security_PasswordsHelper.inc.php';
+			break;
+
+		case('SiteTexts_PageClassNameValidator'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'input-validation' . DIRECTORY_SEPARATOR . 'SiteTexts_PageClassNameValidator.inc.php';
+			break;
+
+		case('SiteTexts_PagesHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'SiteTexts_PagesHelper.inc.php';
+			break;
+
+		case('SiteTexts_PCROFactory'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'SiteTexts_PCROFactory.inc.php';
+			break;
+
+		case('SiteTexts_SetPageClassNameCLIScript'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'SiteTexts_SetPageClassNameCLIScript.inc.php';
+			break;
+
+		case('SiteTexts_ShowPageClassNameCLIScript'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'cli-scripts' . DIRECTORY_SEPARATOR . 'SiteTexts_ShowPageClassNameCLIScript.inc.php';
+			break;
+
+		case('SiteTexts_SiteTextsHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'site-texts' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'SiteTexts_SiteTextsHelper.inc.php';
 			break;
 
 		case('Strings_Converter'): 
@@ -2379,6 +2427,14 @@ function __autoload($class_name)
 
 		case('Strings_SplittingHelper'): 
 			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'haddock' . DIRECTORY_SEPARATOR . 'strings' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Strings_SplittingHelper.inc.php';
+			break;
+
+		case('Textile_Textile'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'textile' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Textile_Textile.inc.php';
+			break;
+
+		case('Textile_TranslationHelper'): 
+			require_once PROJECT_ROOT . DIRECTORY_SEPARATOR . 'plug-ins' . DIRECTORY_SEPARATOR . 'textile' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'Textile_TranslationHelper.inc.php';
 			break;
 
 		case('UnitTests_CreateUnitTestsClassCLIScript'): 

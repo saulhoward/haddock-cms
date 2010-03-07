@@ -1,1 +1,1 @@
-/db-pages/home.html
+/site-texts-pages/home.html
