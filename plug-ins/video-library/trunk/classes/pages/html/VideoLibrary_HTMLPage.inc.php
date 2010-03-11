@@ -122,6 +122,12 @@ PublicHTML_HTMLPage
 	}
 
 	public function
+		render_head_script_javascript()
+	{
+		echo $this->get_page_builder()->get_html_page_javascript_includes();
+	}
+	
+	public function
 		get_head_meta_keywords()
 	{
 		return 'videos, porn, porno';

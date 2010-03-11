@@ -239,9 +239,11 @@ HTML;
                 $div->set_attribute_str('class', 'search');
                 $html = <<<HTML
     <form action="/search/"
-          method="get">
+          method="get"
+          class="search-form"
+          >
         <fieldset class="search">
-            <input class="box" type="text" name="q" value="$search_query">
+            <input class="search box" type="text" name="q" value="$search_query">
             <!--<input type="submit" value="Go">-->
             <button class="btn" title="Submit Search">Go!</button>
 HTML;
