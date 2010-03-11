@@ -313,6 +313,7 @@ HTML;
                 );
 
                 $div->append($thumbnails_wrapper_div);
+                $div->append('<div class="clear">&nbsp;</div>');
 
                 return $div;
         }

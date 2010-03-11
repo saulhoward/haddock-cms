@@ -233,20 +233,23 @@ HTML;
                 )
         {
                 if ($search_query == NULL) {
-                        $search_query = 'Search...';
+                        $search_query = '';
                 }
                 $div = new HTMLTags_Div();
                 $div->set_attribute_str('class', 'search');
                 $html = <<<HTML
     <form action="/search/"
           method="get">
-         <input type="text" name="q" value="$search_query">
-         <input type="submit" value="Go">
+        <fieldset class="search">
+            <input class="box" type="text" name="q" value="$search_query">
+            <!--<input type="submit" value="Go">-->
+            <button class="btn" title="Submit Search">Go!</button>
 HTML;
 
                 $html .= '<input type="hidden" name="external_video_library_id" value="'
                         . $external_video_library_id .'">' . "\n";
                 $html .= <<<HTML
+        </fieldset>
     </form>
 
 HTML;
