@@ -13,7 +13,7 @@ function connect_to_database()
 
 This is horrible because you have no idea where in your program this function is defined. 
 
-Worse yet, you might define the function in several .INC files and include different files conditionally. I've seen this in code that I'd been handed; it made me want to vomit. You've really no idea how the program is going to behave.
+Worse yet, you might define the function in several .INC files and include different files conditionally. I've seen this in code that I'd been handed; it was very difficult to debug. You've really no idea how the program is going to behave.
 
 To avoid this problem, in Haddock CMS projects, all functions are defined in classes, which saved in files with the same name as the class.
 
