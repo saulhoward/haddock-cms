@@ -22,4 +22,4 @@ Every other framework out there seems to use templates in someway or another. If
 
 Haddock is my attempt to get away from such code. There would be no reason to write Haddock if it was going to copy what's already out there.
 
-Of course, you could implement a plug-in for Haddock that used .INC and templates files. But you'd need to put a gun to my head before I would use it.
+Of course, you could implement a plug-in for Haddock that used .INC and templates files. But I would need a lot of persuading before I would use it.
