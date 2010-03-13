@@ -5,43 +5,53 @@
 
 $(function() { 
 
-        /*
-         * The Search box in the secondary nav
-         */
-        var empty_re = new RegExp("(^\\s*$)","gi");
-        var message_re = new RegExp("(^Search...$)","gi");
+    /**
+     * The Search box 
+     */
+    var empty_re = new RegExp("(^\\s*$)","gi");
+    var message_re = new RegExp("(^Search...$)","gi");
 
-        var query = $('input:.search').val();
-        if (query.match(empty_re)) {
-            $('input:.search').val('Search...');
-            $('input:.search').addClass('empty');
-        }
-        $( 'input:.search').bind (
+    $('input:.search').each (
+		function(intIndex){
+            var query = $(this).val();
+            if (query.match(empty_re)) {
+                $(this).val('Search...');
+                $(this).addClass('empty');
+            }
+        $(this).bind (
             "blur",
             function(){
-                var query = $('input:.search').val();
+                var query = $(this).val();
                 if (query.match(empty_re)) {
-                    $('input:.search').val('Search...');
-                    $('input:.search').addClass('empty');
+                    $(this).val('Search...');
+                    $(this).addClass('empty');
                 }
             }
         );
-       $( 'input:.search').bind (
-            "focus",
-            function(){
-                var query = $('input:.search').val();
-                if (query.match(message_re)) {
-                    $('input:.search').val('');
-                    $('input:.search').removeClass('empty');
+        $(this).bind (
+                "focus",
+                function(){
+                    var query = $(this).val();
+                    if (query.match(message_re)) {
+                        $(this).val('');
+                        $(this).removeClass('empty');
+                    }
                 }
-            }
-        );
-        $('.search-form').submit(function() {
-                var query = $('input:.search').val();
-                if (query.match(empty_re) || query.match(message_re)) {
-                    return false;
-                }
-            });
+            );
+        }
+    );
+
+    $( '.search-form').each (
+		function(intIndex){
+            $(this).submit(function() {
+                    var query = $('input:.search', this).val();
+                    if (query.match(empty_re) || query.match(message_re)) {
+                        return false;
+                    }
+                    $('input:.search', this).addClass('submitted');
+                });
+        }    
+    );
 
 });
 

@@ -89,14 +89,9 @@ VideoLibrary_DisplayHelper
         }
 
         public static function
-                get_thumbnail_img_for_tag($tag)
+            get_thumbnail_img_for_tag($tag)
         {
-                $img = new HTMLTags_IMG();
-                $web_location = '/images/tags/thumbnails/';
-                $src = new HTMLTags_URL();
-                $src->set_file($web_location . $tag . '.png');
-                $img->set_src($src);
-                return $img;
+            return self::get_img_for_tag_name($tag, 'thumbnails');
         }
 
         public static function
@@ -551,6 +546,9 @@ HTML;
                         $size = '50'
                 )
         {
+                $name = preg_replace('([^a-zA-Z,\s])', '', $name);
+                $name = strtolower($name);
+                $name = trim($name);
                 $name = preg_replace('/ /', '-', $name);
 
                 $img = new HTMLTags_IMG();
