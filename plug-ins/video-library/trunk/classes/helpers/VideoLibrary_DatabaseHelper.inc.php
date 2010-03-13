@@ -606,15 +606,22 @@ SQL;
 
         }
 
-        //echo $query; exit;
+        // echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
         $tags = array();
 
-        while ($row = mysql_fetch_assoc($result)) {
-            $tags[] = $row;
-        }   
+        try 
+        {
+            while ($row = mysql_fetch_assoc($result)) {
+                $tags[] = $row;
+            }   
+        }
+        catch (Exception $e)
+        {
+
+        }
         //print_r($tags);exit;
         return $tags;
     }
