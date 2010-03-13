@@ -612,16 +612,12 @@ SQL;
 
         $tags = array();
 
-        try 
-        {
+        if (mysql_num_rows($result) > 0) {
             while ($row = mysql_fetch_assoc($result)) {
                 $tags[] = $row;
             }   
         }
-        catch (Exception $e)
-        {
 
-        }
         //print_r($tags);exit;
         return $tags;
     }
