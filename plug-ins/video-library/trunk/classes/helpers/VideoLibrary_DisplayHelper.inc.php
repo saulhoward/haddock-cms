@@ -240,7 +240,7 @@ HTML;
         <fieldset class="search">
             <input class="search box" type="text" name="q" value="$search_query">
             <!--<input type="submit" value="Go">-->
-            <button class="btn" title="Submit Search">Go!</button>
+            <button class="btn" type="submit" title="Submit Search">Go!</button>
 HTML;
 
                 $html .= '<input type="hidden" name="external_video_library_id" value="'

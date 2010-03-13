@@ -20,8 +20,12 @@ input#tags {
 	display: block;
 }
 div#principal-tags {
+	-moz-border-radius: 8px;
+	-khtml-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
     padding: 10px 0 5px 0;
-    background: #ccc;
+    background: #E0B8FF;
 }
 
 ul.tags-empty-links-list {

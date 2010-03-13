@@ -38,20 +38,27 @@ $(function() {
                     }
                 }
             );
-        }
-    );
+
+    });
 
     $( '.search-form').each (
 		function(intIndex){
             $(this).submit(function() {
-                    var query = $('input:.search', this).val();
-                    if (query.match(empty_re) || query.match(message_re)) {
-                        return false;
-                    }
-                    $('input:.search', this).addClass('submitted');
-                });
-        }    
-    );
-
+                var query = $('input:.search', this).val();
+                if (query.match(empty_re) || query.match(message_re)) {
+                    return false;
+                }
+                $('input:.search', this).addClass('submitted');
+        });
+        /**
+         * For some reason the previous func overrides the default 
+         * form submit on enter key, so I reimplement it here
+         */
+        $(this).keyup(function(e) {
+            if(e.keyCode == 13) {
+                $(this).submit();
+            }
+        });
+    });
 });
 

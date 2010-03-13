@@ -82,11 +82,6 @@ VideoLibrary_PageBuilder
             'title' => 'Categories',
             'href' => '/VideoLibrary_TagsPage'
         );
-        $pages[] = array(
-            'name' => 'blog',
-            'title' => 'Blog',
-            'href' => 'http://blog.dirtydodo.com/'
-        );
         return $pages;
     }
 

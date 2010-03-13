@@ -190,6 +190,13 @@ SQL;
         echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
         $this->render_add_something_form_li_text_input('tags');
 
+        echo '<div id="principal-tags">';
+        echo '<h3>Principal Tags</h3>';
+        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+            VideoLibrary_DatabaseHelper::get_tags(TRUE)
+        )->get_as_string();
+        echo '</div>';
+
         foreach ($library_values as $library_value) {
             $lib_tags = VideoLibrary_DatabaseHelper::
                 get_tags_for_external_library_id($library_value['id']);
@@ -205,15 +212,7 @@ SQL;
             VideoLibrary_DatabaseHelper::get_tags()
         )->get_as_string();
 
-        echo '<div id="principal-tags">';
-        echo '<h3>Principal Tags</h3>';
-        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
-            VideoLibrary_DatabaseHelper::get_tags(TRUE)
-        )->get_as_string();
-        echo '</div>';
-
         echo '</fieldset>';
-
 
         echo "</ol>\n";
 
