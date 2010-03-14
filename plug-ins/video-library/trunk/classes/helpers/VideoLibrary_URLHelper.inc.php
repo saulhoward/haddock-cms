@@ -43,6 +43,17 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
+		get_tags_page_url()
+	{
+		// $get_variables = array(
+			// "video_id" => $video_id
+		// );
+		return self
+			::get_oo_page_url(
+                'VideoLibrary_TagsPage'
+			);
+	}
+	public static function
 		get_video_page_url($video_id)
 	{
 		$get_variables = array(
@@ -68,6 +79,17 @@ VideoLibrary_URLHelper
 				$search_page_class_name
 			);
 	}
+
+	public static function
+		get_external_video_library_url(
+            $base_url,
+			$library_id
+		)
+	{
+		$base_url->set_get_variable("external_video_library_id", $library_id);
+		return $base_url;
+	}
+
 
 	public static function
 		get_external_video_library_search_page_url(

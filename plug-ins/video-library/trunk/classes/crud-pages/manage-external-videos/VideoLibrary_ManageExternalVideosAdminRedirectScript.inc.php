@@ -16,128 +16,127 @@ extends
 	{
 		$crmm = parent::get_action_method_map();
 		
-		$crmm['add_video_to_thumbnail_queue'] = 'add_video_to_thumbnail_queue';
+		// $crmm['add_video_to_thumbnail_queue'] = 'add_video_to_thumbnail_queue';
+		$crmm['requeue_video_in_thumbnail_queue'] = 'requeue_video_in_thumbnail_queue';
 		
 		return $crmm;
     }
+
     public function
-		add_video_to_thumbnail_queue()
+		add_video_to_thumbnail_queue($id)
 	{
-		//print_r($_POST);exit;
-        // print_r($_GET);exit;
-
-		$dbh = DB::m();
-		$id = mysql_real_escape_string($_GET['id']);
-
-		$stmt = <<<SQL
-UPDATE
-	hpi_video_library_external_videos_frame_grabbing_queue
-SET
-	last_processed = NULL
-WHERE
-	external_video_id = $id
-
-SQL;
-
-        // print_r($stmt);exit;
-
-		$result = mysql_query($stmt, $dbh);
-
-		return $id;
+        return VideoLibrary_DatabaseHelper::
+            add_video_to_external_videos_frame_grabbing_queue($id);
 	}
 
+    public function
+		requeue_video_in_thumbnail_queue()
+	{
+        return VideoLibrary_DatabaseHelper::
+            requeue_video_in_external_videos_frame_grabbing_queue($_GET['id']);
+	}
 
 	public function
 		add_something()
 	{
 		//print_r($_POST);exit;
+    
+        if (
+            (trim($_POST['name']) != '')
+            &&
+            (trim($_POST['providers_internal_id']) != '')
+        ) {
 
-		$dbh = DB::m();
-		$name = mysql_real_escape_string($_POST['name']);
-		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
-		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
-		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
-		$status = mysql_real_escape_string($_POST['status']);
+            $dbh = DB::m();
+            $name = mysql_real_escape_string($_POST['name']);
+            $external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
+            $external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
+            $providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
+            $status = mysql_real_escape_string($_POST['status']);
 
-		$tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
-		//print_r($tags);exit;
+            $tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
+            //print_r($tags);exit;
 
 
-		$stmt = <<<SQL
+            $stmt = <<<SQL
 INSERT
 INTO
-	hpi_video_library_external_videos
+    hpi_video_library_external_videos
 SET
-	name = '$name',
-	external_video_provider_id = '$external_video_provider_id',
-	providers_internal_id = '$providers_internal_id',
-	status = '$status',
-	date_added = NOW()
+    name = '$name',
+    external_video_provider_id = '$external_video_provider_id',
+    providers_internal_id = '$providers_internal_id',
+    status = '$status',
+    date_added = NOW()
 
 SQL;
 
-		//print_r($stmt);exit;
+            //print_r($stmt);exit;
 
-		$result = mysql_query($stmt, $dbh);
+            $result = mysql_query($stmt, $dbh);
 
-		$id =  mysql_insert_id($dbh);
+            $id =  mysql_insert_id($dbh);
 
-		$stmt_2 = <<<SQL
+            $stmt_2 = <<<SQL
 INSERT
 INTO
-	hpi_video_library_ext_vid_to_ext_vid_lib_links
+    hpi_video_library_ext_vid_to_ext_vid_lib_links
 SET
-	external_video_id = '$id',
-	external_video_library_id = '$external_video_library_id'
+    external_video_id = '$id',
+    external_video_library_id = '$external_video_library_id'
 
 SQL;
 
-		//print_r($stmt);exit;
+            //print_r($stmt);exit;
 
-		$result = mysql_query($stmt_2, $dbh);
+            $result = mysql_query($stmt_2, $dbh);
 
-		foreach ($tags as $tag) {
-			$tag = mysql_real_escape_string($tag);
+            foreach ($tags as $tag) {
+                $tag = mysql_real_escape_string($tag);
 
-			$tag_query_1 = <<<SQL
+                $tag_query_1 = <<<SQL
 INSERT
 INTO
-	hpi_video_library_tags
+    hpi_video_library_tags
 SET
-	tag = '$tag',
-	principal = 'no'
+    tag = '$tag',
+    principal = 'no'
 
 SQL;
-			$result = mysql_query($tag_query_1, $dbh);
-			if ($result) {
-				$tag_id =  mysql_insert_id($dbh);
-			} else {
-				if (mysql_errno() == 1062) { #duplicate
-					$tag_id 
-						= VideoLibrary_DatabaseHelper
-						::get_tag_id_for_tag_string($tag); 
-				}
-			}
+                $result = mysql_query($tag_query_1, $dbh);
+                if ($result) {
+                    $tag_id =  mysql_insert_id($dbh);
+                } else {
+                    if (mysql_errno() == 1062) { #duplicate
+                        $tag_id 
+                            = VideoLibrary_DatabaseHelper
+                            ::get_tag_id_for_tag_string($tag); 
+                    }
+                }
 
-			$tag_query_2 = <<<SQL
+                $tag_query_2 = <<<SQL
 INSERT
 INTO
-	hpi_video_library_tags_to_ext_vid_links
+    hpi_video_library_tags_to_ext_vid_links
 SET
-	tag_id = '$tag_id',
-	external_video_id = '$id'
+    tag_id = '$tag_id',
+    external_video_id = '$id'
 
 SQL;
 
-			$result = mysql_query($tag_query_2, $dbh);
-			if (!$result) {
-				if (mysql_errno() == 1062) { #duplicate
-					# Do nothing, link already exists			
-				}
-			}
-		}
+                $result = mysql_query($tag_query_2, $dbh);
+                if (!$result) {
+                    if (mysql_errno() == 1062) { #duplicate
+                        # Do nothing, link already exists			
+                    }
+                }
+            }
 
-		return $id;
+            $this->add_video_to_thumbnail_queue($id);
+            return $id;
+        } else {
+            return FALSE;
+        }
 	}
 
 	public function

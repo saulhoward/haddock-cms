@@ -14,17 +14,25 @@ VideoLibrary_ExternalVideoProvider
 		get_video_embed_code()
 	{
 		return <<<HTML
-		<object height="344" width="434">
+		<object height="%video_height" width="%video_width">
 			<param name="movie" value="http://embed.redtube.com/player/">
 			<param name="FlashVars" value="id=%video_id&style=redtube">
 			<embed 
 				src="http://embed.redtube.com/player/?id=%video_id&style=redtube" 
 				pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" 
-				type="application/x-shockwave-flash" height="344" width="434" />
+				type="application/x-shockwave-flash" height="%video_height" width="%video_width" />
 		</object>
 HTML;
 
 	}
+
+
+    public function
+        get_video_dimensions_ratio()
+    {
+        return array(1.261627907,1);
+    }
+
 
     public function
         get_thumbnail_url()

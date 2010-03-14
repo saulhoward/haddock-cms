@@ -71,16 +71,28 @@ VideoLibrary_PageBuilder
     public function
         get_pages_for_first_tier_navigation()
     {
+        $tags_page_url = VideoLibrary_URLHelper::get_tags_page_url();
+        $search_page_url = VideoLibrary_URLHelper::get_search_page_url();
+        if (isset($_GET['external_video_library_id'])) {
+            $tags_page_url->set_get_variable(
+                'external_video_library_id',
+                $_GET['external_video_library_id']
+            );
+            $search_page_url->set_get_variable(
+                'external_video_library_id',
+                $_GET['external_video_library_id']
+            );
+        }
         $pages = array();
         $pages[] = array(
             'name' => 'home',
             'title' => 'Home',
-            'href' => '/'
+            'href' => $search_page_url->get_as_string()
         );
         $pages[] = array(
             'name' => 'tags',
             'title' => 'Categories',
-            'href' => '/VideoLibrary_TagsPage'
+            'href' => $tags_page_url->get_as_string()
         );
         return $pages;
     }
@@ -108,6 +120,12 @@ VideoLibrary_PageBuilder
 </script> 
 HTML;
 
+    }
+
+    public function
+        get_footer_copyright_notice()
+    {
+        return 'Copyright the authors ' . date('Y') . ', all rights reserved.';
     }
 }
 ?>

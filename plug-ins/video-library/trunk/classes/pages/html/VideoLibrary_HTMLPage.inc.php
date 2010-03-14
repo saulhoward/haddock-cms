@@ -164,25 +164,29 @@ HTML;
 		$footer_nav_div->append($this->get_external_video_search_div());
 		echo $footer_nav_div->get_as_string();
 
-		DBPages_PageRenderer::render_page_section('all', 'copyright-notice');
+		echo '<p>' . $this->get_page_builder()->get_footer_copyright_notice() . '</p>';
 		echo '</div>';
 	}
 
 	protected function
 		set_libraries_navigation_div()
 	{
-		//$all_libraries = VideoLibrary_DatabaseHelper::get_external_video_libraries();
-		//$libraries = VideoLibrary_DatabaseHelper
-			//::get_external_video_libraries_for_ids(array(1,2));
-
 		$libraries = VideoLibrary_DatabaseHelper
 			::get_external_video_libraries();
 		//print_r($libraries);exit;
 		$this->libraries_navigation_div = VideoLibrary_DisplayHelper
 			::get_external_video_libraries_navigation_div(
 				$libraries,
-				$this->get_external_video_library_id()
+                $this->get_external_video_library_id(),
+                $this->get_libraries_navigation_div_base_url()
 			);
+	}
+
+	protected function
+		get_libraries_navigation_div_base_url()
+	{
+		return  VideoLibrary_URLHelper
+			::get_search_page_url();
 	}
 
 	protected function

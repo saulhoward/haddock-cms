@@ -19,6 +19,7 @@ extends
 		
 		return $crmm;
 	}
+
 	public function
 		reset_everything()
 	{
@@ -79,6 +80,7 @@ SQL;
 
 		return $id;
 	}
+
     public function
 		requeue_video()
 	{

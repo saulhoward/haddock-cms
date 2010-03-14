@@ -244,11 +244,19 @@ VideoLibrary_ThumbnailsPage
             $search_query = NULL;
 
         }
+        if (isset($_GET['external_video_library_id'])) {
+            $external_video_library_id =	$_GET['external_video_library_id'];
+        } else {
+            $external_video_library_id = NULL;
+
+        }
+
 
         return	VideoLibrary_DisplayHelper
             ::get_search_page_videos_description_div(
                 $tags, 
                 $external_video_provider,
+                $external_video_library_id,
                 $search_query
             );
     }

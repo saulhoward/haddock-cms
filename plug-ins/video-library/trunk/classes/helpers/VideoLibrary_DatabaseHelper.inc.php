@@ -2209,5 +2209,56 @@ SQL;
 
         //return $id;
     }
+
+    public function
+		requeue_video_in_external_videos_frame_grabbing_queue($id)
+	{
+        if (self::video_exists_in_external_videos_frame_grabbing_queue()) {
+            $dbh = DB::m();
+            $id = mysql_real_escape_string($id);
+
+            $stmt = <<<SQL
+UPDATE
+    hpi_video_library_external_videos_frame_grabbing_queue
+SET
+    last_processed = NULL
+WHERE
+    id = $id
+
+SQL;
+
+            //print_r($stmt);exit;
+
+            $result = mysql_query($stmt, $dbh);
+
+            return $id;
+        } else {
+            return self::
+                add_video_to_external_videos_frame_grabbing_queue($id);
+        }
+	}
+
+    public function
+		add_video_to_external_videos_frame_grabbing_queue($id)
+	{
+		$dbh = DB::m();
+		$id = mysql_real_escape_string($id);
+
+		$stmt = <<<SQL
+INSERT
+INTO
+	hpi_video_library_external_videos_frame_grabbing_queue
+SET
+	external_video_id = $id
+
+SQL;
+
+        // print_r($stmt);exit;
+
+		$result = mysql_query($stmt, $dbh);
+
+		return $id;
+	}
+
 }
 ?>

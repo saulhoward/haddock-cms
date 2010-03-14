@@ -92,7 +92,7 @@ HTML;
         $div = new HTMLTags_Div();
 
         $u = $this->get_redirect_script_url();
-        $u->set_get_variable('action', 'add_video_to_thumbnail_queue');
+        $u->set_get_variable('action', 'requeue_video_in_thumbnail_queue');
         $u->set_get_variable('id', $id);
 
         $a = new HTMLTags_A('Refetch Thumbnail');
@@ -173,10 +173,9 @@ SQL;
             );
         // $status_li = '<li><label for="status">Status</label><select name="status">';
         $status_li = '<li><label for="status">Status</label><div class="radio-inputs">';
-        $i = 0;
         foreach ($status_values as $status_value) {
             $status_li .= '<label><input type="radio" name="status" value="' . $status_value . '"';
-            if ($i == 0) $status_li .= ' checked="checked"';
+            if ($status_value == 'display') $status_li .= ' checked="checked"';
             $i++; 
             $status_li .= '>';
             $status_li .= $status_value . '<br />';

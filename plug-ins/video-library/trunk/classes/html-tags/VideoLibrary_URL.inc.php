@@ -21,6 +21,7 @@ HTMLTags_URL
                         //print_r($get_variables);exit;
                         $video_page = VideoLibrary_URLHelper::
                                 get_video_page_class_name();
+                        $tags_page = 'VideoLibrary_TagsPage';
 
                         switch ($get_variables['page-class']) {
                         case $video_page:
@@ -31,8 +32,15 @@ HTMLTags_URL
                                                 . $get_variables['external_video_provider_id'];
                                 }
                                 break;
+                        case $tags_page:
+                            $url = '/tags/';
+                            if (isset($get_variables['external_video_library_id'])) {
+                                $url .= 'libraries/' 
+                                    . $get_variables['external_video_library_id'];
+                            }
+                            break;
                         default:
-                                return parent::get_as_string();
+                            return parent::get_as_string();
                         }
                         if (isset($get_variables['start'])) {
                                 $url .= '/' . $get_variables['start'];

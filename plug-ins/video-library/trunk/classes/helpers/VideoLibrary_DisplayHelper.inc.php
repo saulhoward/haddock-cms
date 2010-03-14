@@ -54,7 +54,7 @@ VideoLibrary_DisplayHelper
 
                 $img_a = new HTMLTags_A();
                 $img_a->set_href($url);
-                $img_a->append(self::get_thumbnail_img_for_tag($tag['tag']));
+                $img_a->append(self::get_thumbnail_img_for_tag($tag['tag'], $external_video_library_id));
 
                 $text_a = new HTMLTags_A();
                 $text_a->set_attribute_str('class', 'text');
@@ -89,9 +89,9 @@ VideoLibrary_DisplayHelper
         }
 
         public static function
-            get_thumbnail_img_for_tag($tag)
+            get_thumbnail_img_for_tag($tag, $external_video_library_id)
         {
-            return self::get_img_for_tag_name($tag, 'thumbnails');
+            return self::get_img_for_tag_name($tag, 'thumbnails/' . $external_video_library_id);
         }
 
         public static function
@@ -331,7 +331,8 @@ HTML;
         public static function
                 get_external_video_libraries_navigation_div(
                         $libraries,
-                        $current_library
+                        $current_library,
+                        $base_url
                 )
         {
                 $div = new HTMLTags_Div();
@@ -347,8 +348,9 @@ HTML;
                         $a = new HTMLTags_A();
                         $a->set_href(
                                 VideoLibrary_URLHelper
-                                ::get_external_video_library_search_page_url(
-                                        $library['id']
+                                ::get_external_video_library_url(
+                                    $base_url,
+                                    $library['id']
                                 )
                         );
                         $a->append($library['name']);
@@ -472,6 +474,7 @@ HTML;
                 get_search_page_videos_description_div(
                         $tags = NULL,
                         $external_video_provider = NULL,
+                        $external_video_library_id = NULL,
                         $search_query = NULL
                 )
         {
@@ -482,7 +485,7 @@ HTML;
                 if ($tags) {
                         foreach ($tags as $tag) {
                                 $images_div->append(
-                                        self::get_img_for_tag_name($tag['tag'])
+                                        self::get_img_for_tag_name($tag['tag'], '50/' . $external_video_library_id)
                                 );
                         }
                 } 

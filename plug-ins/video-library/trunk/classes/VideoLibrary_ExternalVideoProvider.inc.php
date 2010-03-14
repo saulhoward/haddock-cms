@@ -13,6 +13,12 @@ VideoLibrary_ExternalVideoProvider
     abstract function
         get_video_embed_code();
 
+    public function
+        get_video_dimensions_ratio()
+    {
+        return array(1,1);
+    }
+
     abstract function
         get_thumbnail_url();
 

@@ -37,6 +37,14 @@ VideoLibrary_ExternalVideoLibraryPage
 		return $content_div;
 	}
 
+	protected function
+		get_libraries_navigation_div_base_url()
+	{
+		return  VideoLibrary_URLHelper
+			::get_tags_page_url();
+	}
+
+
 
 
 }

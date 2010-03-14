@@ -73,7 +73,13 @@ SQL;
     protected function
         get_default_order_by()
     {
-        return 'last_processed';
+        return "IFNULL(last_processed, '9999-01-01 00:00:00')";
+    }
+
+    protected function
+        get_default_direction()
+    {
+        return 'DESC';
     }
 
     protected function
