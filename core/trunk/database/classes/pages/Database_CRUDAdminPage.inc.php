@@ -1168,6 +1168,12 @@ SQL;
 	{
 		return 'id';
 	}
+
+    protected function
+		get_default_direction()
+	{
+		return 'ASC';
+	}
 	
 	protected function
 		get_current_order_by()
@@ -1189,7 +1195,7 @@ SQL;
 		if (isset($_GET['direction'])) {
 			$direction = $_GET['direction'];
 		} else {
-			$direction = 'ASC';
+			$direction = $this->get_default_direction();
 		}
 		
 		$_SESSION['select-vars']['direction'] = $direction;
