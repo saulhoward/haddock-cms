@@ -165,6 +165,7 @@ SQL;
 
         $this->render_add_something_form_li_text_input('name');
         $this->render_add_something_form_li_text_input('providers_internal_id');
+        $this->render_add_something_form_li_text_input('length');
 
         $status_values = VideoLibrary_DatabaseHelper
             ::get_enum_values(
@@ -249,7 +250,8 @@ HTML;
 
         echo "<ol>\n";
 
-        $library_values = VideoLibrary_DatabaseHelper
+
+ $library_values = VideoLibrary_DatabaseHelper
             ::get_external_video_libraries(TRUE);
         //$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
         //foreach ($library_values as $library_value) {
@@ -311,39 +313,97 @@ HTML;
         $this->render_edit_something_form_li_text_input('name');
         $this->render_edit_something_form_li_text_input('providers_internal_id');
 
+        // $this->render_edit_something_form_li_text_input('length');
+        $cur_length_value = ($acm->has_current_var('length_seconds') ? $acm->get_current_var('length_seconds') : NULL);
+        $current_length = gmdate("H:i:s", $cur_length_value);
+        echo '<li><label for="length">Length (mm:ss)</label>';
+        echo '<input type="text" name="length" id="length" value ="';
+        echo $current_length;
+        echo '" />';
+
         $status_values = VideoLibrary_DatabaseHelper
             ::get_enum_values(
                 'hpi_video_library_external_videos',
                 'status'
             );
-        $status_li = '<li><label for="status">Status</label><select name="status">';
+        // $status_li = '<li><label for="status">Status</label><select name="status">';
+        $status_li = '<li><label for="status">Status</label><div class="radio-inputs">';
         foreach ($status_values as $status_value) {
-            $status_li .= '<option value="' . $status_value . '"';
+            $status_li .= '<label><input type="radio" name="status" value="' . $status_value . '"';
             $cur_status_value = ($acm->has_current_var('status') ? $acm->get_current_var('status') : NULL);
             if ($cur_status_value == $status_value) {
-                $status_li .= ' selected="selected"';
+                $status_li .= ' checked="checked"';
             }
-            $status_li .= '>' . $status_value . '</option>';
-        }
-        $status_li .= '</select></li>';
 
+            $i++; 
+            $status_li .= '>';
+            $status_li .= $status_value . '<br />';
+
+            // $status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
+        }
+        $status_li .= '</label></div></li>';
+        // $status_li .= '</select></li>';
         echo $status_li;
 
-        echo '<fieldset id="tags-fieldset"><legend>Tags</legend>';
-        echo '<li><label for="tags">Tags</label>';
-        echo '<input type="text" name="tags" id="tags" value ="';
 
+        echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
+       echo '<li><label for="tags">Tags</label>';
+        echo '<input type="text" name="tags" id="tags" value ="';
         echo VideoLibrary_DisplayHelper::get_tags_csv_string(
             VideoLibrary_DatabaseHelper::get_tags_for_external_video_id($_GET['id'])
         );
         echo '" />';
+
+        echo '<div id="principal-tags">';
+        echo '<h3>Principal Tags</h3>';
         echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
             VideoLibrary_DatabaseHelper::get_tags(TRUE)
         )->get_as_string();
+        echo '</div>';
 
-        echo '</fieldset>';
+        foreach ($library_values as $library_value) {
+            $lib_tags = VideoLibrary_DatabaseHelper::
+                get_tags_for_external_library_id($library_value['id']);
+            if (count($lib_tags) > 0) {
+                echo '<h3>' . $library_value['name'] . ' Tags</h3>';
+                echo VideoLibrary_DisplayHelper::
+                    get_tags_empty_links_list($lib_tags)->get_as_string();
+            }
+        }
+
+        echo '<h3>All Tags</h3>';
+        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+            VideoLibrary_DatabaseHelper::get_tags()
+        )->get_as_string();
+         echo '</fieldset>';
 
         echo "</ol>\n";
+        echo <<<HTML
+<div>
+<ul>
+    <li>
+        Providers Internal ID is the code to identify the video from the original site.
+    </li>
+
+    <li>
+        Status will hide or show the video to users.
+    </li>
+
+
+    <li>
+        Choose <em>all</em> tags that match the video. 
+    </li>
+    <li>
+        Write any new tags in the 'Tags' box, and they will be added. Use commas to separate tags.
+    </li>
+    <li>
+        Principal tags are used in the sidebar and on the categories page.
+    </li>
+</ul>
+</div>
+HTML;
+
+
     }
 
     protected function
@@ -453,6 +513,18 @@ HTML;
         get_confirm_deleting_everything_question_object()
     {
         return 'all of the Videos';
+    }
+
+    protected function
+        get_default_order_by()
+    {
+        return "date_added";
+    }
+
+    protected function
+        get_default_direction()
+    {
+        return 'DESC';
     }
 }
 ?>

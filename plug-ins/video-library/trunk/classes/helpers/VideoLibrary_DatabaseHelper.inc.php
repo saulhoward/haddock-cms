@@ -2211,9 +2211,9 @@ SQL;
     }
 
     public function
-		requeue_video_in_external_videos_frame_grabbing_queue($id)
+		requeue_video_in_external_videos_frame_grabbing_queue_by_external_video_id($id)
 	{
-        if (self::video_exists_in_external_videos_frame_grabbing_queue()) {
+        if (self::video_exists_in_external_videos_frame_grabbing_queue_by_external_video_id($id)) {
             $dbh = DB::m();
             $id = mysql_real_escape_string($id);
 
@@ -2223,7 +2223,7 @@ UPDATE
 SET
     last_processed = NULL
 WHERE
-    id = $id
+    external_video_id = $id
 
 SQL;
 
@@ -2237,6 +2237,33 @@ SQL;
                 add_video_to_external_videos_frame_grabbing_queue($id);
         }
 	}
+
+    public function
+        video_exists_in_external_videos_frame_grabbing_queue_by_external_video_id($id)
+    {
+        $dbh = DB::m();
+        $id = mysql_real_escape_string($id);
+
+        $stmt = <<<SQL
+SELECT
+    COUNT(*)
+FROM
+    hpi_video_library_external_videos_frame_grabbing_queue
+WHERE
+    external_video_id = $id
+
+SQL;
+
+        // print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+
+        if ( $result > 0 ) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
     public function
 		add_video_to_external_videos_frame_grabbing_queue($id)

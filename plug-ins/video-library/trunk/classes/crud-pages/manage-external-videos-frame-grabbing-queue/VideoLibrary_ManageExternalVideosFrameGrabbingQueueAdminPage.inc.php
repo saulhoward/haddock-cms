@@ -73,7 +73,7 @@ SQL;
     protected function
         get_default_order_by()
     {
-        return "IFNULL(last_processed, '9999-01-01 00:00:00')";
+        return 'IFNULL(last_processed, 9999)';
     }
 
     protected function
@@ -103,9 +103,27 @@ SQL;
         $reset_all_a->set_href($reset_all_href);
 
         $as[] = $reset_all_a;
+        /**
+         * Link to the delete all confirmation page.
+         */
+        $delete_all_a = new HTMLTags_A($this->get_delete_everything_title());
+
+        $delete_all_href = $this->get_current_base_url();
+        $delete_all_href->set_get_variable('content', 'delete_everything');
+
+        $delete_all_a->set_href($delete_all_href);
+
+        $as[] = $delete_all_a;
 
         return $as;
     }
+
+    protected function
+        get_delete_everything_title()
+    {
+        return 'Empty the Queue';
+    }
+
 
     protected function
         get_reset_everything_title()
@@ -147,6 +165,30 @@ HTML;
 
     }
 
+    public function
+        render_content_to_delete_everything()
+    {
+        VideoLibrary_DatabaseHelper::delete_all_external_videos_in_frame_grabbing_queue();
+
+        $back_a = new HTMLTags_A('Back to the Queue');
+        $back_href = $this->get_current_base_url();
+        $back_a->set_href($back_href);
+        $back_a_str = $back_a->get_as_string();
+
+        echo <<<HTML
+<h2>Remove all External Videos from the Frame Grabbing Queue</h2>
+<p>
+        All videos have been removed and the queue has been emptied.
+</p>
+<ul>
+        <li>
+        $back_a_str
+        </li>
+</ul>
+HTML;
+
+    }
+
     protected function
         get_data_table_actions()
     {
@@ -168,9 +210,9 @@ HTML;
     }
 
     protected function
-        get_confirm_reseting_everything_question_object()
+        get_confirm_deleting_everything_question_object()
     {
-        return 'all of the External Video\'s Frames';
+        return 'all of the External Videos from the Frame Grabbing Queue';
     }
 }
 ?>

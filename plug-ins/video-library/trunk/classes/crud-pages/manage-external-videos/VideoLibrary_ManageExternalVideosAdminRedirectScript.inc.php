@@ -33,7 +33,7 @@ extends
 		requeue_video_in_thumbnail_queue()
 	{
         return VideoLibrary_DatabaseHelper::
-            requeue_video_in_external_videos_frame_grabbing_queue($_GET['id']);
+            requeue_video_in_external_videos_frame_grabbing_queue_by_external_video_id($_GET['id']);
 	}
 
 	public function
@@ -49,6 +49,8 @@ extends
 
             $dbh = DB::m();
             $name = mysql_real_escape_string($_POST['name']);
+            $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
+            $length_seconds = mysql_real_escape_string($length_seconds);
             $external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
             $external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
             $providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
@@ -57,13 +59,13 @@ extends
             $tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
             //print_r($tags);exit;
 
-
             $stmt = <<<SQL
 INSERT
 INTO
     hpi_video_library_external_videos
 SET
     name = '$name',
+    length_seconds = '$length_seconds',
     external_video_provider_id = '$external_video_provider_id',
     providers_internal_id = '$providers_internal_id',
     status = '$status',
@@ -139,6 +141,24 @@ SQL;
         }
 	}
 
+    public function
+        get_length_in_seconds_from_input($input)
+    {
+        /**
+         * Nifty regex from:
+         *     http://stackoverflow.com/questions/1400297/matching-hours-minutes-seconds-in-regular-expressions-a-better-way
+         */
+        preg_match('/(?:(?:(?<hh>\d{1,2})[:.])?(?<mm>[0-5]?\d)[:.])?(?<ss>[0-5]?\d)/', $input, $matches);
+
+        // print_r($matches);exit;
+        return
+            ($matches['hh'] * 3600)
+            +
+            ($matches['mm'] * 60)
+            +
+            ($matches['ss']);
+    }
+
 	public function
 		edit_something()
 	{
@@ -148,6 +168,8 @@ SQL;
 		$dbh = DB::m();
 		$id = mysql_real_escape_string($_GET['id']);
 		$name = mysql_real_escape_string($_POST['name']);
+        $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
+        $length_seconds = mysql_real_escape_string($length_seconds);
 		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
 		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
 		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
@@ -160,6 +182,7 @@ UPDATE
 	hpi_video_library_external_videos
 SET
 	name = '$name',
+	length_seconds = '$length_seconds',
 	external_video_provider_id = '$external_video_provider_id',
 	providers_internal_id = '$providers_internal_id',
 	status = '$status'
