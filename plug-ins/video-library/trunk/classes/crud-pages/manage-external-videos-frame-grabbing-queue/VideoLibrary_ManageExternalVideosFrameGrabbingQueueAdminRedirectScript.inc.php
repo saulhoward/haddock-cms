@@ -162,7 +162,7 @@ SQL;
 	protected function
 		get_required_fields()
 	{
-		return explode(' ', 'id external_video_id');
+		return explode(' ', 'id last_processed external_video_id');
 	}
 }
 ?>

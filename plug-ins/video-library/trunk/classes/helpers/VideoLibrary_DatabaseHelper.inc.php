@@ -905,7 +905,7 @@ SQL;
 
         $query .= <<<SQL
 ORDER BY
-    hpi_video_library_external_videos.id
+    hpi_video_library_external_videos.date_added
 SQL;
 
         //echo $query; exit;
@@ -1819,7 +1819,7 @@ SQL;
         }
 
 
-        //echo $query; exit;
+        // echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
@@ -2246,7 +2246,7 @@ SQL;
 
         $stmt = <<<SQL
 SELECT
-    COUNT(*)
+    COUNT(*) as count
 FROM
     hpi_video_library_external_videos_frame_grabbing_queue
 WHERE
@@ -2257,8 +2257,10 @@ SQL;
         // print_r($stmt);exit;
 
         $result = mysql_query($stmt, $dbh);
+        $row = mysql_fetch_assoc($result);
+        // print_r($row);exit;
 
-        if ( $result > 0 ) {
+        if ( $row['count'] > 0 ) {
             return TRUE;
         } else {
             return FALSE;

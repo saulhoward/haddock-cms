@@ -26,7 +26,6 @@ HTML;
 
     }
 
-
     protected function
         get_admin_crud_manager_class_name()
     {
