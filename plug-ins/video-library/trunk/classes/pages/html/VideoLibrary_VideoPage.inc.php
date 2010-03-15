@@ -252,7 +252,7 @@ HTML;
     private function
         get_extra_content_div()
     {
-        echo '<div id="extra-content">';
+        echo '<div class="extra-content">';
 		return $this->get_page_builder()->get_video_page_extra_side_content();
         echo '</div>';
         return $html;

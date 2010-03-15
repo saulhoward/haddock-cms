@@ -119,7 +119,7 @@ VideoLibrary_ExternalVideoLibraryPage
 
                 $thumbnails_wrapper = new HTMLTags_Div();
                 $thumbnails_wrapper->set_attribute_str('id','thumbnails-wrapper');
-                $thumbnails_wrapper->append($this->get_thumbnails_advert_div());
+                $thumbnails_wrapper->append($this->get_thumbnails_extra_content_div());
                 $thumbnails_wrapper->append($this->get_thumbnails_div());
                 $thumbnails_wrapper->append($this->get_pager_div());
                 $content_div->append($thumbnails_wrapper);
@@ -128,14 +128,11 @@ VideoLibrary_ExternalVideoLibraryPage
         }
 
         private function
-                get_thumbnails_advert_div()
+            get_thumbnails_extra_content_div()
         {
-                return <<<HTML
-<div id="medium-square" class="advert">
-&nbsp;
-</div>
-HTML;
-
+            echo ' <div class="extra-content">';
+            return $this->get_page_builder()->get_thumbnails_page_extra_content();
+            echo '</div>';
         }
 
         protected function

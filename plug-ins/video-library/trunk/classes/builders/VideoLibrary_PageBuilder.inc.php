@@ -123,6 +123,19 @@ HTML;
     }
 
     public function
+        get_video_page_extra_side_content()
+    {
+        return '';
+    }
+
+
+    public function
+        get_thumbnails_page_extra_content()
+    {
+        return '';
+    }
+
+    public function
         get_footer_content()
     {
         return '<p>' . $this->get_footer_copyright_notice() . '</p>';
