@@ -168,7 +168,7 @@ VideoLibrary_DisplayHelper
                 <dd>$length_min min</dd>
 
         <dt>Tags:</dt>
-                <dd>$tags</dd>
+                <dd class="tags">$tags</dd>
 </dl>
 HTML;
 

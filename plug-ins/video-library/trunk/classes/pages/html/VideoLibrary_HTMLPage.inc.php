@@ -61,6 +61,8 @@ PublicHTML_HTMLPage
 
 		$this->render_body_div_content();
 
+		$this->render_body_div_footer_nav();
+
 		$this->render_body_div_footer();
 
 		echo "</body>\n";
@@ -151,20 +153,23 @@ HTML;
 	}
 
 	public function
-		render_body_div_footer()
+		render_body_div_footer_nav()
 	{
-		echo '<div id="footer">';
-
 		/*
 		 *Second Tier Nav - libraries and search
 		 */
 		$footer_nav_div = new HTMLTags_Div();
-		$footer_nav_div->set_attribute_str('id', 'bottom-nav');
+		$footer_nav_div->set_attribute_str('id', 'footer-nav');
 		$footer_nav_div->append($this->get_second_tier_navigation_div());
 		$footer_nav_div->append($this->get_external_video_search_div());
 		echo $footer_nav_div->get_as_string();
+	}
 
-		echo '<p>' . $this->get_page_builder()->get_footer_copyright_notice() . '</p>';
+	public function
+		render_body_div_footer()
+	{
+		echo '<div id="footer">';
+		echo $this->get_page_builder()->get_footer_content();
 		echo '</div>';
 	}
 

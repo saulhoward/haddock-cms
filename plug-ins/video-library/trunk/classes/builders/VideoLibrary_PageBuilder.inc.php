@@ -123,6 +123,12 @@ HTML;
     }
 
     public function
+        get_footer_content()
+    {
+        return '<p>' . $this->get_footer_copyright_notice() . '</p>';
+    }
+
+    public function
         get_footer_copyright_notice()
     {
         return 'Copyright the authors ' . date('Y') . ', all rights reserved.';

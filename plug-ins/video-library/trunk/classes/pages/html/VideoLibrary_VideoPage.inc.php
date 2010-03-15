@@ -242,7 +242,7 @@ HTML;
         $content_div->set_attribute_str('class', 'content');
         $content_div->set_attribute_str('id', 'VideoPage');
 
-        $content_div->append($this->get_advert_div());
+        $content_div->append($this->get_extra_content_div());
         $content_div->append($this->get_video_div());
         $content_div->append($this->get_related_videos_div());
 
@@ -250,17 +250,11 @@ HTML;
     }
 
     private function
-        get_advert_div()
+        get_extra_content_div()
     {
-        $html = <<<HTML
-
-<div class="advert" id="ad-side">
-<p>
-More Ads here
-</p>
-</div>
-HTML;
-
+        echo '<div id="extra-content">';
+		return $this->get_page_builder()->get_video_page_extra_side_content();
+        echo '</div>';
         return $html;
     }
 
