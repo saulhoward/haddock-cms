@@ -216,7 +216,14 @@ VideoLibrary_ExternalVideoLibraryPage
         }
         return $this->related_videos;
     }
-
+	
+    public function
+        get_head_title_extension()
+    {   
+        $video_data = $this->get_video_data();
+        return $video_data['name'];
+    }   
+ 
     public function
         render_body_div_header()
     {

@@ -129,17 +129,37 @@ PublicHTML_HTMLPage
 		echo $this->get_page_builder()->get_html_page_javascript_includes();
 	}
 	
-	public function
-		get_head_meta_keywords()
-	{
-		return 'videos, porn, porno';
-	}
+    public function
+        get_head_title()
+    {   
+        return $this->get_head_title_extension() 
+            . ' - ' 
+            . $this->get_head_title_base();
+    }   
 
-	public function
-		get_head_meta_description()
-	{
-		return 'High quality Pornography';
-	}
+    public function
+        get_head_title_extension()
+    {
+        return $this->get_page_builder()->get_head_title_default_extension();
+    }
+
+    public function
+        get_head_title_base()
+    {   
+		return $this->get_page_builder()->get_head_title_base();
+    }
+
+    public function
+        get_head_meta_keywords()
+    {
+		return $this->get_page_builder()->get_head_meta_keywords();
+    }
+
+    public function
+        get_head_meta_description()
+    {
+		return $this->get_page_builder()->get_head_meta_description();
+    }
 
 	public function
 		render_body_div_header()

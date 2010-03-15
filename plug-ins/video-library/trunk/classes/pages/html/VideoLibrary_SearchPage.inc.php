@@ -261,5 +261,10 @@ VideoLibrary_ThumbnailsPage
             );
     }
 
+    // public function
+        // get_head_title_extension()
+    // {   
+        // return parent::get_head_title_extension();
+    // }   
 }
 ?>

@@ -44,6 +44,12 @@ VideoLibrary_ExternalVideoLibraryPage
 			::get_tags_page_url();
 	}
 
+    public function
+        get_head_title_extension()
+    {   
+        return 'Categories';
+    }   
+ 
 
 
 

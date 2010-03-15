@@ -98,6 +98,30 @@ VideoLibrary_PageBuilder
     }
 
     public function
+        get_head_title_base()
+    {   
+        return 'Haddockvision Video Library';
+    }
+
+    public function
+        get_head_title_default_extension()
+    {   
+        return 'Moving Pictures';
+    }
+
+    public function
+        get_head_meta_keywords()
+    {
+        return 'videos, online, flash';
+    }
+
+    public function
+        get_head_meta_description()
+    {
+        return 'A fine collection of online videos';
+    }
+
+    public function
         get_html_page_javascript_includes()
     {
         return <<<HTML
