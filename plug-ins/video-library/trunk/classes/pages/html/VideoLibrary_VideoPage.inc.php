@@ -221,7 +221,7 @@ VideoLibrary_ExternalVideoLibraryPage
         get_head_title_extension()
     {   
         $video_data = $this->get_video_data();
-        return $video_data['name'];
+        return stripslashes($video_data['name']);
     }   
  
     public function

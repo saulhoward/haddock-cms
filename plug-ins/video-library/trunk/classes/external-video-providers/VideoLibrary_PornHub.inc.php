@@ -69,8 +69,12 @@ HTML;
          * for the js var declaration
          */
         $bodies = $dom->getElementsByTagName('body');
-        foreach ($bodies as $body) {
-            $player_div_str = $body->ownerDocument->saveXML($body);
+        if ($bodies){
+            foreach ($bodies as $body) {
+                $player_div_str = $body->ownerDocument->saveXML($body);
+            }
+        } else {
+            throw new VideoLibrary_Exception("body element not found");
         }
         // print_r($player_div_str);exit;
 

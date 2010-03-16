@@ -47,6 +47,7 @@ HTML;
                 $this->get_video_page_url()
             );
         // print_r($this->get_video_page_url());exit;
+        // print_r($video_page_html);exit;
 
         return $this->extract_thumbnail_url_from_video_page(
             $video_page_html
@@ -68,7 +69,12 @@ HTML;
          * We're looking for the <div id=player> element
          */
         $player_div = $dom->getElementById('player');
-        $player_div_str = $player_div->ownerDocument->saveXML($player_div);
+        // print_r($player_div);exit;
+        if ($player_div) {
+            $player_div_str = $player_div->ownerDocument->saveXML($player_div);
+        } else {
+            throw new VideoLibrary_Exception("div with id 'player' not found");
+        }
         //print_r($player_div_str);exit;
 
         /**

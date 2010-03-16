@@ -58,7 +58,8 @@ HTML;
             ),
 
             array(
-                'col_name' => 'name'
+                'col_name' => 'name',
+                'filter' => 'return stripslashes(html_entity_decode($str));',
             ),
             array(
                 'col_name' => 'length_seconds',
@@ -309,7 +310,14 @@ HTML;
 
         echo $provider_li;
 
-        $this->render_edit_something_form_li_text_input('name');
+        // $this->render_edit_something_form_li_text_input('name');
+        $cur_name_value = ($acm->has_current_var('name') ? $acm->get_current_var('name') : NULL);
+        echo '<li><label for="name">Name</label>';
+        echo '<input type="text" name="name" id="name" value ="';
+        echo stripslashes(html_entity_decode($cur_name_value));
+        echo '" />';
+
+
         $this->render_edit_something_form_li_text_input('providers_internal_id');
 
         // $this->render_edit_something_form_li_text_input('length');

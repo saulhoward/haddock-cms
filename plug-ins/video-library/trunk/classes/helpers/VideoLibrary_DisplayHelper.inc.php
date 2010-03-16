@@ -81,7 +81,7 @@ VideoLibrary_DisplayHelper
                 $text_a = new HTMLTags_A();
                 $text_a->set_attribute_str('class', 'text');
                 $text_a->set_href($url);
-                $text_a->append($video_data['name']);
+                $text_a->append(stripslashes($video_data['name']));
 
                 $div->append($img_a);
                 $div->append($text_a);
@@ -137,7 +137,7 @@ VideoLibrary_DisplayHelper
 
                 $name_div = new HTMLTags_Div();
                 $name_div->set_attribute_str('id', 'name');
-                $name_div->append('<h2>' . $video_data['name'] . '</h2>');	
+                $name_div->append('<h2>' . stripslashes($video_data['name']) . '</h2>');	
                 $div->append($name_div);
 
                 /*

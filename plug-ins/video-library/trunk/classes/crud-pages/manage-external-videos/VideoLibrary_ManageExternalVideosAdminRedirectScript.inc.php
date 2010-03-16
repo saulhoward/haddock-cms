@@ -48,7 +48,8 @@ extends
         ) {
 
             $dbh = DB::m();
-            $name = mysql_real_escape_string($_POST['name']);
+            $name = htmlentities($_POST['name']);
+            $name = mysql_real_escape_string($name);
             $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
             $length_seconds = mysql_real_escape_string($length_seconds);
             $external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
@@ -167,7 +168,8 @@ SQL;
 
 		$dbh = DB::m();
 		$id = mysql_real_escape_string($_GET['id']);
-		$name = mysql_real_escape_string($_POST['name']);
+        $name = htmlentities($_POST['name']);
+        $name = mysql_real_escape_string($name);
         $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
         $length_seconds = mysql_real_escape_string($length_seconds);
 		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
