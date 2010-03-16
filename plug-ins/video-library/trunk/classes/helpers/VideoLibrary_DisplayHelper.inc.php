@@ -538,7 +538,12 @@ HTML;
 
                 $img = new HTMLTags_IMG();
                 $url = new HTMLTags_URL();
-                $url->set_file('/images/external-video-providers/' . $size . '/' . $name . '.png');
+                $file_name = '/images/external-video-providers/' . $size . '/' . $name . '.png';
+                if (file_exists($_SERVER{'DOCUMENT_ROOT'} . '/project-specific/public-html' . $file_name)) {
+                    $url->set_file($file_name);
+                } else {
+                    $url->set_file('/images/external-video-providers/' . $size . '/default.png');
+                }
                 $img->set_src($url);
                 return $img;
         }
@@ -556,7 +561,12 @@ HTML;
 
                 $img = new HTMLTags_IMG();
                 $url = new HTMLTags_URL();
-                $url->set_file('/images/tags/' . $size . '/' . $name . '.png');
+                $file_name = '/images/tags/' . $size . '/' . $name . '.png';
+                if (file_exists($_SERVER{'DOCUMENT_ROOT'} . '/project-specific/public-html' . $file_name)) {
+                    $url->set_file($file_name);
+                } else {
+                    $url->set_file('/images/tags/' . $size . '/default.png');
+                }
                 $img->set_src($url);
                 return $img;
         }

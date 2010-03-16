@@ -30,6 +30,7 @@ VideoLibrary_ThumbnailsPage
                     $this->get_external_video_library_id(),
                     $this->get_tag_ids(),
                     $this->get_external_video_provider_id(),
+                    NULL,
                     $this->get_start(),
                     $this->get_duration()
                 );
