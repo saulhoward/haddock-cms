@@ -10,11 +10,15 @@ $(document).ready(function(){
 
     var channel_start_limit_re = new RegExp("^/videos/([0-9]+)/channels/([0-9]+)/([0-9]+)/([0-9]+)","gi");
     var basic_start_limit_re = new RegExp("^/videos/([0-9]+)/([0-9]+)/([0-9]+)","gi");
+    var basic_re = new RegExp("^/videos/([0-9]+)","gi");
     // var basic_re = new RegExp("^/videos/([0-9]+)","gi");
 
-    $('.pager li.next a').each (
-		function(intIndex){
-        $(this).bind (
+    var cur_url = window.location.pathname;
+
+    // $('.pager li a').each (
+		// function(intIndex){
+        // $(this).bind (
+    $('.pager li a').live (
             "click",
             function(){
                 var url = $(this).attr('href');
@@ -32,40 +36,66 @@ $(document).ready(function(){
                         start = match[3];
                         duration = match[4];
                     }
-                } else {
+                } else if (url.match(basic_start_limit_re)) {
                     while (match = basic_start_limit_re.exec(url)) {
                         video_id = match[1];
                         provider_id = false;
                         start = match[2];
                         duration = match[3];
                     }
+                } else {
+                    while (match = basic_re.exec(url)) {
+                        video_id = match[1];
+                        provider_id = false;
+                        start = false;
+                        duration = false;
+                    }
                 }
                 // alert( "video = " + video_id + " // provider = " + provider_id + " //start = " + start + " // duration = " + duration );
 
                 var next_thumbnails_url = 
-                    '/?oo-page=1&page-class=VideoLibrary_SearchPage&related_videos=1&ajax=1'
-                    + '&external_video_id=' + video_id
-                    + '&start=' + start
-                    + '&duration=' + duration;
+                    '/?oo-page=1&page-class=VideoLibrary_SearchXMLPage&related_videos=1&ajax=1'
+                    + '&video_id=' + video_id;
 
+                if (start != false) {
+                    next_thumbnails_url += '&start=' + start
+                }
+ 
+                if (duration != false) {
+                    next_thumbnails_url += '&duration=' + duration
+                }
+ 
                 if (provider_id != false) {
                     next_thumbnails_url += '&external_video_provider_id=' + provider_id
                 }
                 // alert(next_thumbnails_url);
+                $('#thumbnails').slideToggle();
                 $.ajax({
                     method: "get",url: next_thumbnails_url,
                     beforeSend: function(){$("#loading").show("fast");}, //show loading just when link is clicked
                     complete: function(){ $("#loading").hide("fast");}, //stop showing loading when the process is complete
                     success: function(html){ //so, if data is retrieved, store it in html
-                    $("#thumbnails-wrapper").show("slow"); //animation
-                    $("#thumbnails-wrapper").html(html); //show the html inside .content div
+                    $("#thumbnails").show("slow"); //animation
+                    $("#thumbnails").html(html); //show the html inside .content div
                     }
                 }); //close $.ajax(
+
+                /*
+                 * Sort the Pager out
+                 */
+                var old_page_text = $(this).parent().siblings('.selected').children('span').html();
+                $(this).parent().siblings('.selected').html('<a href="' + cur_url + '">' + old_page_text + '</a>');
+                $(this).parent().siblings('.selected').removeClass('selected');
+                cur_url = url;
+
+                $(this).parent().addClass('selected');
+                var text = $(this).html();
+                $(this).replaceWith('<span>' + text + '</span>');
 
                 return false;
             }
         );
-    });
+    // });
 
 }); //close $(
 

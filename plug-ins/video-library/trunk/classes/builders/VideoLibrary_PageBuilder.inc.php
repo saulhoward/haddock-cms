@@ -147,6 +147,19 @@ HTML;
     }
 
     public function
+        get_video_page_javascript_includes()
+    {
+        return <<<HTML
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_VideoPage.js"
+>
+</script> 
+HTML;
+
+    }
+
+    public function
         get_video_page_extra_side_content()
     {
         return '';

@@ -224,6 +224,13 @@ VideoLibrary_ExternalVideoLibraryPage
         return stripslashes($video_data['name']);
     }   
  
+	public function
+		render_head_script_javascript()
+	{
+        parent::render_head_script_javascript();
+		echo $this->get_page_builder()->get_video_page_javascript_includes();
+	}
+
     public function
         render_body_div_header()
     {
