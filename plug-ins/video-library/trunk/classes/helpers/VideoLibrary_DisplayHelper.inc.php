@@ -608,7 +608,6 @@ HTML;
                         $first = TRUE;
 
                         if ($current_page > 1 ){
-                                $first = FALSE;
                                 $prev_li= new HTMLTags_LI();
                                 $prev_li->set_attribute_str('class', 'prev');
                                 $prev_a = new HTMLTags_A('Previous');
@@ -625,30 +624,32 @@ HTML;
                         }
 
                         for ($page = 1; $page <= $pages; $page++) {
-                                $li = new HTMLTags_LI();
-                                if ($page == $current_page) {
-                                        $span = new HTMLTags_Span($page);
-                                        if ($first) {
-                                                $span->set_attribute_str('class','first');
-                                                $first = FALSE;
-                                        } elseif ($current_page == $pages) {
-                                                $span->set_attribute_str('class','last');
-                                        }
-                                        $li->set_attribute_str('class','selected');
-                                        $li->append($span);
-                                } else {
-                                        $a = new HTMLTags_A($page);
-                                        $a->set_href(
-                                                VideoLibrary_URLHelper::
-                                                get_results_page_url(
-                                                        $results_page_url,
-                                                        ((($page - 1) * $duration) ),
-                                                        $duration
-                                                )
-                                        );
-                                        $li->append($a);
-                                }
-                                $ul->append($li);
+                            $li = new HTMLTags_LI();
+                            $li_class = "";
+                            if ($first) {
+                                $li_class .= 'first ';
+                                $first = FALSE;
+                            } elseif ($page == $pages) {
+                                $li_class .= 'last ';
+                            }
+                            if ($page == $current_page) {
+                                $li_class .= 'selected ';
+                                $span = new HTMLTags_Span($page);
+                                $li->append($span);
+                            } else {
+                                $a = new HTMLTags_A($page);
+                                $a->set_href(
+                                    VideoLibrary_URLHelper::
+                                    get_results_page_url(
+                                        $results_page_url,
+                                        ((($page - 1) * $duration) ),
+                                        $duration
+                                    )
+                                );
+                                $li->append($a);
+                            }
+                            $li->set_attribute_str('class', trim($li_class));
+                            $ul->append($li);
                         }
 
                         if ($current_page < $pages ){
