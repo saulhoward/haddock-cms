@@ -234,7 +234,12 @@ VideoLibrary_URLHelper
                         'duration',
                         $duration
                 );
-                
+                if (isset($_GET['external_video_provider_id'])) {
+                    $results_page_url->set_get_variable(
+                        'external_video_provider_id',
+                        $_GET['external_video_provider_id']
+                    );
+                }
 
                 return $results_page_url;
         }
