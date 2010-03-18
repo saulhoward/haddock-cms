@@ -321,8 +321,9 @@ HTML;
             VideoLibrary_DisplayHelper::
             get_thumbnails_div($this->get_related_videos())
         );
+        $div->append($thumbnails_wrapper_div);
 
-        $thumbnails_wrapper_div->append(
+        $div->append(
             VideoLibrary_DisplayHelper::
             get_pager_div(
                 $this->get_start(),
@@ -332,7 +333,6 @@ HTML;
             )
         );
 
-        $div->append($thumbnails_wrapper_div);
         $div->append('<div class="clear">&nbsp;</div>');
 
         return $div;

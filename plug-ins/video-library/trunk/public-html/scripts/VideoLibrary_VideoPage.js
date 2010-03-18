@@ -9,6 +9,7 @@ $(document).ready(function(){
     // var url = "/videos/19/15/30";
 
     var channel_start_limit_re = new RegExp("^/videos/([0-9]+)/channels/([0-9]+)/([0-9]+)/([0-9]+)","gi");
+    var channel_re = new RegExp("^/videos/([0-9]+)/channels/([0-9]+)","gi");
     var basic_start_limit_re = new RegExp("^/videos/([0-9]+)/([0-9]+)/([0-9]+)","gi");
     var basic_re = new RegExp("^/videos/([0-9]+)","gi");
     // var basic_re = new RegExp("^/videos/([0-9]+)","gi");
@@ -65,6 +66,13 @@ $(document).ready(function(){
                             start = match[3];
                             duration = match[4];
                         }
+                    } else if (url.match(channel_re)) {
+                        while (match = channel_re.exec(url)) {
+                            video_id = match[1];
+                            provider_id = match[2];
+                            start = false;
+                            duration = false;
+                        }
                     } else if (url.match(basic_start_limit_re)) {
                         while (match = basic_start_limit_re.exec(url)) {
                             video_id = match[1];
@@ -98,13 +106,24 @@ $(document).ready(function(){
                         next_thumbnails_url += '&external_video_provider_id=' + provider_id
                     }
                     // alert(next_thumbnails_url);
-                    $('#thumbnails').slideToggle();
+
+                    var thumbnails_div = $('#thumbnails');
+                    thumbnails_div.animate({
+                        marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
+                        -thumbnails_div.outerWidth() :
+                        0
+                    });
                     $.ajax({
                         method: "get",url: next_thumbnails_url,
-                        beforeSend: function(){$("#loading").show("fast");}, //show loading just when link is clicked
-                        complete: function(){ $("#loading").hide("fast");}, //stop showing loading when the process is complete
+                        beforeSend: function(){$("#loading").fadeIn("fast");}, //show loading just when link is clicked
+                        complete: function(){ $("#loading").fadeOut("fast");}, //stop showing loading when the process is complete
                         success: function(html){ //so, if data is retrieved, store it in html
-                        $("#thumbnails").show("slow"); //animation
+                        thumbnails_div.css('marginLeft', thumbnails_div.outerWidth());
+                        thumbnails_div.animate({
+                            marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
+                            thumbnails_div.outerWidth() :
+                            0
+                        }); //animation
                         $("#thumbnails").html(html); //show the html inside .content div
                         }
                     }); //close $.ajax(
