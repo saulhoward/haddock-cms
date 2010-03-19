@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>FeedAggregator_ConfigManager</config-manager>
+	</haddock-project-organisation>
+
+    <feed-retrieval-queue>
+		<default-feed-retrieval-frequency-in-minutes value="1440" />
+    </feed-retrieval-queue>
+</config>
