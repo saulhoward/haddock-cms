@@ -19,7 +19,7 @@ extends
 	public function
 		get_page_builder_class_name()
 	{
-		return trim($this->get_default_feed_retrieval_frequency_in_minutes('page-building/default-feed-retrieval-frequency-in-minutes'));
+		return trim($this->get_default_feed_retrieval_frequency_in_minutes('feed-retrieval-queue/default-feed-retrieval-frequency-in-minutes'));
 	}
 }
 ?>
