@@ -1,25 +1,25 @@
 <?php
 /**
- * VideoLibrary_ExternalVideosCRUDManager
+ * al FeedAggegator_FeedsCRUDManager
  *
  * @copyright RFI, 2007-01-08
  */
 
 class
-	VideoLibrary_ExternalVideosCRUDManager
+	FeedAggegator_FeedsCRUDManager
 extends
 	Database_CRUDAdminManager
 {
 	public function
 		get_admin_page_class_name()
 	{
-		return 'VideoLibrary_ManageExternalVideosAdminPage';
+		return 'FeedAggegator_ManageFeedsAdminPage';
 	}
 	
 	public function
 		get_admin_redirect_script_class_name()
 	{
-		return 'VideoLibrary_ManageExternalVideosAdminRedirectScript';
+		return 'FeedAggegator_ManageFeedsAdminRedirectScript';
 	}
 	
 	public function
@@ -32,7 +32,7 @@ extends
 SELECT
 	*
 FROM
-	hpi_video_library_external_videos
+	hpi_feed_aggregator_feeds
 WHERE
 	id = $id
 SQL;
