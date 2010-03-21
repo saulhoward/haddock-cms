@@ -19,7 +19,7 @@ input#tags {
 	margin: 5px auto;
 	display: block;
 }
-div#principal-tags {
+div.principal-tags {
 	-moz-border-radius: 8px;
 	-khtml-border-radius: 8px;
 	-webkit-border-radius: 8px;

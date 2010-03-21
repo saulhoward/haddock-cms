@@ -17,7 +17,11 @@ $(function() {
 				 "click",
 				 function(){
                  var tag = $(this).html();
-					if (toggle_tag_on_click($(this).html()) == 1 ) {
+					if (
+                        (toggle_tag_on_click($(this).html()) == 1 )
+                        &&
+                        ($(this).html() != '')
+                    ) {
                         $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
 					} else {
                         $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
@@ -25,12 +29,16 @@ $(function() {
 				 }
 			 );
 
-			 if (tag_is_in_input($(this).html()) == 1) {
-                    var tag = $(this).html();
-                    if (tag != '') {
-                    $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
-                    }
-			 }
+            if (
+                (tag_is_in_input($(this).html()) == 1)
+                &&
+                ($(this).html() != '')
+            ) {
+                var tag = $(this).html();
+                if (tag != '') {
+                $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
+                }
+            }
 		}
 	);
 
@@ -44,7 +52,11 @@ $(function() {
 			$('.tags-fieldset li[tag]').each(
 				function(){
                     var tag = $(this).html();
-					 if (tag_is_in_input($(this).html()) == 1) {
+                    if (
+                        (tag_is_in_input($(this).html()) == 1)
+                        &&
+                        ($(this).html() != '')
+                    ){
                         $(".tags-fieldset li[tag='" + tag + "']").addClass('selected')
 					 } else {
                         $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
@@ -54,6 +66,25 @@ $(function() {
 		}
 	);
 
+    /**
+     * When one of the library radios is selected,
+     * only show relevant tags 
+     */
+	$( '#library-selector input:radio:checked').each(
+    function() {
+            var library_id = $(this).val();
+            $('div.library').each(function() {$(this).hide();});
+            $('div.library.' + library_id).show();
+    }
+            );
+	$( '#library-selector input:radio').bind (
+		 "change",
+		 function(){
+            var library_id = $(this).val();
+            $('div.library').each(function() {$(this).fadeOut('fast');});
+            $('div.library.' + library_id).fadeIn();
+         });
+    
 
 });
 

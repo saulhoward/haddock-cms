@@ -69,23 +69,34 @@ VideoLibrary_DisplayHelper
         public static function
                 get_thumbnail_div_for_video($video_data)
         {
-                $div = new HTMLTags_Div();
-                $div->set_attribute_str('class', 'video');
+            $div = new HTMLTags_Div();
+            $div->set_attribute_str('class', 'video');
 
-                $url = VideoLibrary_URLHelper::get_video_page_url($video_data['id']);
+            $url = VideoLibrary_URLHelper::get_video_page_url($video_data['id']);
 
-                $img_a = new HTMLTags_A();
-                $img_a->set_href($url);
-                $img_a->append(self::get_thumbnail_img($video_data['thumbnail_url']));;
+            $img_a = new HTMLTags_A();
+            $img_a->set_href($url);
+            $img_a->append(self::get_thumbnail_img($video_data['thumbnail_url']));;
 
-                $text_a = new HTMLTags_A();
-                $text_a->set_attribute_str('class', 'text');
-                $text_a->set_href($url);
-                $text_a->append(stripslashes($video_data['name']));
+            $details_ul = new HTMLTags_UL();
+            $details_ul->set_attribute_str('class', 'details');
 
-                $div->append($img_a);
-                $div->append($text_a);
-                return $div;
+            $name_a = new HTMLTags_A();
+            $name_a->set_attribute_str('class', 'text');
+            $name_a->set_href($url);
+            $name_a->append(stripslashes($video_data['name']));
+            $name_li = new HTMLTags_LI();
+            $name_li->set_attribute_str('class', 'name');
+            $name_li->append($name_a);
+
+            $details_ul->append($name_li);
+
+            $length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
+            $details_ul->append('<li class="length">' . $length_min . ' min</li>');
+
+            $div->append($img_a);
+            $div->append($details_ul);
+            return $div;
         }
 
         public static function

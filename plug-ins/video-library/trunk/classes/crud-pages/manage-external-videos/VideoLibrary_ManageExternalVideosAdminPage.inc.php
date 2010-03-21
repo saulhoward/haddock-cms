@@ -127,7 +127,7 @@ SQL;
         //}
         //$library_li .= '</select></li>';
 
-        $library_li = '<li><label for="external_video_library_id">Library</label><div class="radio-inputs">';
+        $library_li = '<li><label for="external_video_library_id">Library</label><div id="library-selector" class="radio-inputs">';
         $i = 0;
         foreach ($library_values as $library_value) {
             $library_li .= '<label><input type="radio" name="external_video_library_id" value="' . $library_value['id'] . '"';
@@ -189,34 +189,57 @@ SQL;
 
         echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
         $this->render_add_something_form_li_text_input('tags');
-
-        echo '<div id="principal-tags">';
-        echo '<h3>Principal Tags</h3>';
-        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
-            VideoLibrary_DatabaseHelper::get_tags(TRUE)
-        )->get_as_string();
-        echo '</div>';
-
-        foreach ($library_values as $library_value) {
-            $lib_tags = VideoLibrary_DatabaseHelper::
-                get_tags_for_external_library_id($library_value['id']);
-            if (count($lib_tags) > 0) {
-                echo '<h3>' . $library_value['name'] . ' Tags</h3>';
-                echo VideoLibrary_DisplayHelper::
-                    get_tags_empty_links_list($lib_tags)->get_as_string();
-            }
-        }
-
-        echo '<h3>All Tags</h3>';
-        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
-            VideoLibrary_DatabaseHelper::get_tags()
-        )->get_as_string();
-
+        echo $this->get_tags_list_for_form($library_values);
         echo '</fieldset>';
 
         echo "</ol>\n";
 
-        echo <<<HTML
+        echo $this->get_form_help_message();
+
+    }
+
+    public function
+        get_tags_list_for_form($library_values)
+    {
+        $div = '<div id="tags-list">';
+        // $div .= '<h3>Principal Tags</h3>';
+        // $div .= VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+        // VideoLibrary_DatabaseHelper::get_tags(TRUE)
+        // )->get_as_string();
+
+        foreach ($library_values as $library_value) {
+            $principal_lib_tags = VideoLibrary_DatabaseHelper::
+                get_tags_for_external_library_id($library_value['id'], TRUE);
+            $lib_tags = VideoLibrary_DatabaseHelper::
+                get_tags_for_external_library_id($library_value['id']);
+            if (count($lib_tags) > 0) {
+                $div .= '<div class="library ' . $library_value['id']  .'">';
+                $div .= '<div class="principal-tags ' . $library_value['name']  .'">';
+                $div .= '<h3>Principal ' . $library_value['name'] . ' Tags</h3>';
+                $div .= VideoLibrary_DisplayHelper::
+                    get_tags_empty_links_list($principal_lib_tags)->get_as_string();
+                $div .= '</div>';
+
+                $div .= '<h3>All ' . $library_value['name'] . ' Tags</h3>';
+                $div .= VideoLibrary_DisplayHelper::
+                    get_tags_empty_links_list($lib_tags)->get_as_string();
+                $div .= '</div>';
+            }
+        }
+
+        // $div .= '<h3>All Tags</h3>';
+        // $div .= VideoLibrary_DisplayHelper::get_tags_empty_links_list(
+            // VideoLibrary_DatabaseHelper::get_tags()
+        // )->get_as_string();
+
+        $div .= '</div>';
+        return $div;
+    }
+
+    public function
+        get_form_help_message()
+    {
+        return <<<HTML
 <div>
 <ul>
     <li>
@@ -251,21 +274,9 @@ HTML;
         echo "<ol>\n";
 
 
- $library_values = VideoLibrary_DatabaseHelper
+        $library_values = VideoLibrary_DatabaseHelper
             ::get_external_video_libraries(TRUE);
-        //$library_li = '<li><label for="external_video_library_id">Library</label><select name="external_video_library_id">';
-        //foreach ($library_values as $library_value) {
-        //$library_li .= '<option value="' . $library_value['id'] . '"';
-        //$cur_library_value = VideoLibrary_DatabaseHelper
-        //::get_external_video_library_id_for_external_video_id($_GET['id']);
-        //if ($cur_library_value == $library_value['id']) {
-        //$library_li .= ' selected="selected"';
-        //}
-        //$library_li .= '>' . $library_value['name'] . '</option>';
-        //}
-        //$library_li .= '</select></li>';
-
-        $library_li = '<li><label for="external_video_library_id">Library</label><div class="radio-inputs">';
+        $library_li = '<li><label for="external_video_library_id">Library</label><div id="library-selector" class="radio-inputs">';
         foreach ($library_values as $library_value) {
             $library_li .= '<label><input type="radio" name="external_video_library_id" value="' . $library_value['id'] . '"';
             $cur_library_value = VideoLibrary_DatabaseHelper
@@ -284,17 +295,6 @@ HTML;
 
         $provider_values = VideoLibrary_DatabaseHelper
             ::get_external_video_providers();
-        //$provider_li = '<li><label for="external_video_provider_id">Provider</label><select name="external_video_provider_id">';
-        //foreach ($provider_values as $provider_value) {
-        //$provider_li .= '<option value="' . $provider_value['id'] . '"';
-        //$cur_provider_value = ($acm->has_current_var('external_video_provider_id') ? $acm->get_current_var('external_video_provider_id') : NULL);
-        //if ($cur_provider_value == $provider_value['id']) {
-        //$provider_li .= ' selected="selected"';
-        //}
-        //$provider_li .= '>' . $provider_value['name'] . '</option>';
-        //}
-        //$provider_li .= '</select></li>';
-
         $provider_li = '<li><label for="external_video_provider_id">Provider</label><div class="radio-inputs">';
         foreach ($provider_values as $provider_value) {
             $provider_li .= '<label><input type="radio" name="external_video_provider_id" value="' . $provider_value['id'] . '"';
@@ -354,63 +354,18 @@ HTML;
 
 
         echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
-       echo '<li><label for="tags">Tags</label>';
+        echo '<li><label for="tags">Tags</label>';
         echo '<input type="text" name="tags" id="tags" value ="';
         echo VideoLibrary_DisplayHelper::get_tags_csv_string(
             VideoLibrary_DatabaseHelper::get_tags_for_external_video_id($_GET['id'])
         );
         echo '" />';
+        echo $this->get_tags_list_for_form($library_values);
 
-        echo '<div id="principal-tags">';
-        echo '<h3>Principal Tags</h3>';
-        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
-            VideoLibrary_DatabaseHelper::get_tags(TRUE)
-        )->get_as_string();
-        echo '</div>';
-
-        foreach ($library_values as $library_value) {
-            $lib_tags = VideoLibrary_DatabaseHelper::
-                get_tags_for_external_library_id($library_value['id']);
-            if (count($lib_tags) > 0) {
-                echo '<h3>' . $library_value['name'] . ' Tags</h3>';
-                echo VideoLibrary_DisplayHelper::
-                    get_tags_empty_links_list($lib_tags)->get_as_string();
-            }
-        }
-
-        echo '<h3>All Tags</h3>';
-        echo VideoLibrary_DisplayHelper::get_tags_empty_links_list(
-            VideoLibrary_DatabaseHelper::get_tags()
-        )->get_as_string();
-         echo '</fieldset>';
+        echo '</fieldset>';
 
         echo "</ol>\n";
-        echo <<<HTML
-<div>
-<ul>
-    <li>
-        Providers Internal ID is the code to identify the video from the original site.
-    </li>
-
-    <li>
-        Status will hide or show the video to users.
-    </li>
-
-
-    <li>
-        Choose <em>all</em> tags that match the video. 
-    </li>
-    <li>
-        Write any new tags in the 'Tags' box, and they will be added. Use commas to separate tags.
-    </li>
-    <li>
-        Principal tags are used in the sidebar and on the categories page.
-    </li>
-</ul>
-</div>
-HTML;
-
-
+        echo $this->get_form_help_message();
     }
 
     protected function

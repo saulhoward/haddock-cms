@@ -101,6 +101,7 @@ VideoLibrary_ExternalVideoLibraryPage
         {
                 $content_div = new HTMLTags_Div();
                 $content_div->set_attribute_str('id', 'content');
+                $content_div->set_attribute_str('class', 'thumbnails-page');
 
                 $provider_wrapper = new HTMLTags_Div();
                 $provider_wrapper->set_attribute_str('id','providers-wrapper');
