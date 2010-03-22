@@ -43,6 +43,24 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
+		get_edit_external_video_admin_page_url($id)
+    {
+        $url = self::get_manage_external_videos_admin_page_url();
+        $url->set_get_variable('content', 'edit_something');
+        $url->set_get_variable('id', $id);
+        return $url;
+    }
+
+	public static function
+		get_manage_external_videos_admin_page_url()
+	{
+		return self
+			::get_oo_page_url(
+                'VideoLibrary_ManageExternalVideosAdminPage'
+			);
+	}
+
+	public static function
 		get_tags_page_url()
 	{
 		// $get_variables = array(

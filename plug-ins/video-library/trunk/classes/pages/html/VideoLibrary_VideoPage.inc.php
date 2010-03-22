@@ -256,6 +256,14 @@ HTML;
         $content_div->set_attribute_str('class', 'content');
         $content_div->set_attribute_str('id', 'VideoPage');
 
+        if (Admin_LogInHelper::is_logged_id()) {
+            $video_data = $this->get_video_data();
+            echo VideoLibrary_AdminHelper
+                ::get_link_to_edit_video_admin_page_div(
+                    $video_data['id']
+                )->get_as_string();
+        }
+
         $content_div->append($this->get_extra_content_div());
         $content_div->append($this->get_video_div());
         $content_div->append($this->get_related_videos_div());

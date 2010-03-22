@@ -49,13 +49,16 @@ extends
 
             $dbh = DB::m();
             $name = htmlentities($_POST['name']);
-            $name = mysql_real_escape_string($name);
+            $name = mysql_real_escape_string($name, $dbh);
             $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
             $length_seconds = mysql_real_escape_string($length_seconds);
             $external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
             $external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
             $providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
             $status = mysql_real_escape_string($_POST['status']);
+            $added_by = mysql_real_escape_string(
+                VideoLibrary_AdminHelper::get_logged_in_admin_user_name()
+            );
 
             $tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
             //print_r($tags);exit;
@@ -70,7 +73,8 @@ SET
     external_video_provider_id = '$external_video_provider_id',
     providers_internal_id = '$providers_internal_id',
     status = '$status',
-    date_added = NOW()
+    date_added = NOW(),
+    added_by = '$added_by'
 
 SQL;
 
@@ -176,6 +180,9 @@ SQL;
 		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
 		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
 		$status = mysql_real_escape_string($_POST['status']);
+        $last_edited_by = mysql_real_escape_string(
+            VideoLibrary_AdminHelper::get_logged_in_admin_user_name()
+        );
 
 		$tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
 
@@ -187,7 +194,10 @@ SET
 	length_seconds = '$length_seconds',
 	external_video_provider_id = '$external_video_provider_id',
 	providers_internal_id = '$providers_internal_id',
-	status = '$status'
+	status = '$status',
+	last_edited_by = '$last_edited_by',
+    date_last_edited = NOW()
+
 WHERE
 	id = $id
 
