@@ -1,12 +1,12 @@
 <?php
 /**
- * FeedAggegator_ManageFeedsAdminPage
+ * FeedAggregator_ManageFeedsAdminPage
  *
  * @copyright RFI 2008-01-08
  */
 
 class
-FeedAggegator_ManageFeedsAdminPage
+FeedAggregator_ManageFeedsAdminPage
 extends
 Database_CRUDAdminPage
 {
@@ -20,7 +20,7 @@ Database_CRUDAdminPage
     protected function
         get_admin_crud_manager_class_name()
     {
-        return 'FeedAggegator_FeedsCRUDManager';
+        return 'FeedAggregator_FeedsCRUDManager';
     }
 
     protected function

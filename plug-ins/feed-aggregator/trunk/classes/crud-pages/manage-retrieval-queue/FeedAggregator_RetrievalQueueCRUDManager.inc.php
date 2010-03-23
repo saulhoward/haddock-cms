@@ -1,25 +1,25 @@
 <?php
 /**
- * al FeedAggegator_RetrievalQueueCRUDManager
+ * al FeedAggregator_RetrievalQueueCRUDManager
  *
  * @copyright RFI, 2007-01-08
  */
 
 class
-	FeedAggegator_RetrievalQueueCRUDManager
+	FeedAggregator_RetrievalQueueCRUDManager
 extends
 	Database_CRUDAdminManager
 {
 	public function
 		get_admin_page_class_name()
 	{
-		return 'FeedAggegator_ManageRetrievalQueueAdminPage';
+		return 'FeedAggregator_ManageRetrievalQueueAdminPage';
 	}
 	
 	public function
 		get_admin_redirect_script_class_name()
 	{
-		return 'FeedAggegator_ManageRetrievalQueueAdminRedirectScript';
+		return 'FeedAggregator_ManageRetrievalQueueAdminRedirectScript';
 	}
 	
 	public function

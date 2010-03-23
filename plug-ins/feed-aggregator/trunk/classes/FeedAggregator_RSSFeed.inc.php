@@ -1,14 +1,14 @@
 <?php
 /**
- * FeedAggegator_RSSFeed
+ * FeedAggregator_RSSFeed
  *
  * @copyright 2008-10-14, SANH
  */
 
 class
-FeedAggegator_RSSFeed
+FeedAggregator_RSSFeed
 extends
-FeedAggegator_Feed
+FeedAggregator_Feed
 {
     public function
         get_title()

@@ -10,7 +10,7 @@
 class
 FeedAggregator_Feed
 extends
-FeedAggegator_SimpleXMLElement
+FeedAggregator_SimpleXMLElement
 {
 	// public function
 		// __construct(

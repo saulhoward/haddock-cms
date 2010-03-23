@@ -1,8 +1,8 @@
 <?php
 /*
- * FeedAggegator_FeedAggegatorStartPageWidget
+ * FeedAggregator_FeedAggregatorStartPageWidget
  *
- * An abstract class for FeedAggegator Start Page Widgets
+ * An abstract class for FeedAggregator Start Page Widgets
  *
  * Extend this and implement 
  * get_rss_url() and get_rss_version()
@@ -11,11 +11,11 @@
  * 2008-10-14 SANH
  */
 abstract class 
-FeedAggegator_FeedAggegatorStartPageWidget
+FeedAggregator_FeedAggregatorStartPageWidget
 extends
 Admin_StartPageWidget
 {
-	private $rss; // FeedAggegator_FeedAggegator Object initialised in get_rss()
+	private $rss; // FeedAggregator_FeedAggregator Object initialised in get_rss()
 
 	protected function
 		get_widget_title()
@@ -24,12 +24,12 @@ Admin_StartPageWidget
 		{
 			$rss = $this->get_rss();
 		}
-		catch (Exception $e) // if $this->rss isn't an FeedAggegator_FeedAggegator object, for example
+		catch (Exception $e) // if $this->rss isn't an FeedAggregator_FeedAggregator object, for example
 		{
-			return 'FeedAggegator Feed';
+			return 'FeedAggregator Feed';
 		}
 
-		return FeedAggegator_FeedAggegatorHelper::get_widget_title($rss);
+		return FeedAggregator_FeedAggregatorHelper::get_widget_title($rss);
 	}
 
 	protected function
@@ -40,12 +40,12 @@ Admin_StartPageWidget
 
 			$rss = $this->get_rss();
 		}
-		catch (Exception $e) // if $this->rss isn't an FeedAggegator_FeedAggegator object, for example
+		catch (Exception $e) // if $this->rss isn't an FeedAggregator_FeedAggregator object, for example
 		{
-			return '<p class="error">FeedAggegator feed not found</p>';
+			return '<p class="error">FeedAggregator feed not found</p>';
 		}
 
-		return FeedAggegator_FeedAggegatorHelper::get_widget_content($rss);
+		return FeedAggregator_FeedAggregatorHelper::get_widget_content($rss);
 	}
 
 	protected function
@@ -55,15 +55,15 @@ Admin_StartPageWidget
 		{
 			try
 			{
-				$this->rss = new FeedAggegator_FeedAggegator(
+				$this->rss = new FeedAggregator_FeedAggregator(
 					$this->get_rss_url(),
 					$this->get_rss_version()
 				);
 			}
-			catch (Exception $e) // FeedAggegator_FeedAggegator constructor failed
+			catch (Exception $e) // FeedAggregator_FeedAggregator constructor failed
 			{
 				$this->rss = NULL;
-				throw new Exception ('FeedAggegator_FeedAggegator object creation failed');
+				throw new Exception ('FeedAggregator_FeedAggregator object creation failed');
 			}
 		}
 

@@ -1,12 +1,12 @@
 <?php
 /**
- * FeedAggegator_ManageFeedsAdminRedirectScript
+ * FeedAggregator_ManageFeedsAdminRedirectScript
  *
  * @copyright RFI, 2007-01-08
  */
 
 class
-	FeedAggegator_ManageFeedsAdminRedirectScript
+	FeedAggregator_ManageFeedsAdminRedirectScript
 extends
 	Database_CRUDAdminRedirectScript
 {
@@ -24,7 +24,7 @@ extends
 		add_something()
     {
         //print_r($_POST);exit;
-        $id = FeedAggegator_DatabaseHelper::add_feed(
+        $id = FeedAggregator_DatabaseHelper::add_feed(
             $_POST['name'],
             $_POST['title'],
             $_POST['description'],
@@ -38,7 +38,7 @@ extends
 		edit_something()
 	{
         //print_r($_POST);exit;
-        $id = FeedAggegator_DatabaseHelper::edit_feed(
+        $id = FeedAggregator_DatabaseHelper::edit_feed(
             $_POST['id'],
             $_POST['name'],
             $_POST['title'],
@@ -52,7 +52,7 @@ extends
 	public function
 		delete_something()
 	{
-        $id = FeedAggegator_DatabaseHelper::delete_feed(
+        $id = FeedAggregator_DatabaseHelper::delete_feed(
             $_POST['id']
         );
 		return $id;
@@ -61,13 +61,13 @@ extends
 	public function
 		delete_everything()
 	{
-        FeedAggegator_DatabaseHelper::delete_all_feeds();
+        FeedAggregator_DatabaseHelper::delete_all_feeds();
 	}
 	
 	protected function
 		get_admin_crud_manager_class_name()
 	{
-		return 'FeedAggegator_FeedsCRUDManager';
+		return 'FeedAggregator_FeedsCRUDManager';
 	}
 	
 	protected function

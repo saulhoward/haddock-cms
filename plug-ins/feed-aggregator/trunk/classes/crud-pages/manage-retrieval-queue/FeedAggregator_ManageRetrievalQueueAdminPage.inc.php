@@ -1,12 +1,12 @@
 <?php
 /**
- * FeedAggegator_ManageRetrievalQueueAdminPage
+ * FeedAggregator_ManageRetrievalQueueAdminPage
  *
  * @copyright RFI 2008-01-08
  */
 
 class
-FeedAggegator_ManageRetrievalQueueAdminPage
+FeedAggregator_ManageRetrievalQueueAdminPage
 extends
 Database_CRUDAdminPage
 {
@@ -20,7 +20,7 @@ Database_CRUDAdminPage
     protected function
         get_admin_crud_manager_class_name()
     {
-        return 'FeedAggegator_RetrievalQueueCRUDManager';
+        return 'FeedAggregator_RetrievalQueueCRUDManager';
     }
 
     protected function
@@ -29,7 +29,7 @@ Database_CRUDAdminPage
         return array(
             array(
                 'col_name' => 'feed_id',
-                'filter'   => 'return FeedAggegator_DatabaseHelper::get_feed_name_for_feed_id($str);'
+                'filter'   => 'return FeedAggregator_DatabaseHelper::get_feed_name_for_feed_id($str);'
             ),
             array(
                 'col_name' => 'last_retrieved'

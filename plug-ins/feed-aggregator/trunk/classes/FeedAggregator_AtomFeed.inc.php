@@ -1,20 +1,20 @@
 <?php
 /**
- * FeedAggegator_AtomFeed
+ * FeedAggregator_AtomFeed
  *
  * @copyright 2008-10-14, SANH
  */
 
 /**
- *  XML Object created by FeedAggegator_FeedAggegator
- *  extending FeedAggegator_SimpleXMLElement
+ *  XML Object created by FeedAggregator_FeedAggregator
+ *  extending FeedAggregator_SimpleXMLElement
  *
  */
 
 class
-FeedAggegator_AtomFeed
+FeedAggregator_AtomFeed
 extends
-FeedAggegator_Feed
+FeedAggregator_Feed
 {
 	public function
 		get_title()

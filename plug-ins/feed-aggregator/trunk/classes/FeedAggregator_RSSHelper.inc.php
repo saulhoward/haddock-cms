@@ -1,17 +1,17 @@
 <?php
 /**
- * FeedAggegator_FeedAggegatorHelper
+ * FeedAggregator_FeedAggregatorHelper
  *
- * FeedAggegator functions
+ * FeedAggregator functions
  *
  * @copyright 2008-08-11, SANH
  */
 
 class
-FeedAggegator_FeedAggegatorHelper
+FeedAggregator_FeedAggregatorHelper
 {
 	public static function
-		get_widget_content(FeedAggegator_FeedAggegator $rss)
+		get_widget_content(FeedAggregator_FeedAggregator $rss)
 	{
 		$div = new HTMLTags_Div();
 		$div->set_attribute_str('class', 'rss');
@@ -21,13 +21,13 @@ FeedAggegator_FeedAggegatorHelper
 	}
 	
 	public static function
-		get_widget_title(FeedAggegator_FeedAggegator $rss)
+		get_widget_title(FeedAggregator_FeedAggregator $rss)
 	{
 		return $rss->get_feed_title();
 	}
 
 	public function
-		get_rss_titles_ul(FeedAggegator_FeedAggegator $rss, $limit = 10)
+		get_rss_titles_ul(FeedAggregator_FeedAggregator $rss, $limit = 10)
 	{
 //                print_r($rss->get_xml());exit;
 		$items = $rss->get_items();

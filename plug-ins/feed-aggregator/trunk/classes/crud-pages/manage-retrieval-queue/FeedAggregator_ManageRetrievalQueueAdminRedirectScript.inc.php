@@ -1,12 +1,12 @@
 <?php
 /**
- * FeedAggegator_ManageRetrievalQueueAdminRedirectScript
+ * FeedAggregator_ManageRetrievalQueueAdminRedirectScript
  *
  * @copyright RFI, 2007-01-08
  */
 
 class
-	FeedAggegator_ManageRetrievalQueueAdminRedirectScript
+	FeedAggregator_ManageRetrievalQueueAdminRedirectScript
 extends
 	Database_CRUDAdminRedirectScript
 {
@@ -33,7 +33,7 @@ extends
 		edit_something()
 	{
         //print_r($_POST);exit;
-        $id = FeedAggegator_DatabaseHelper::
+        $id = FeedAggregator_DatabaseHelper::
             edit_feed_status_and_frequency_in_retrieval_queue(
             $_POST['id'],
             $_post['status'],
@@ -61,7 +61,7 @@ extends
 	protected function
 		get_admin_crud_manager_class_name()
 	{
-		return 'FeedAggegator_RetrievalQueueCRUDManager';
+		return 'FeedAggregator_RetrievalQueueCRUDManager';
 	}
 	
 	protected function
