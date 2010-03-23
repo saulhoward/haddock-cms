@@ -24,27 +24,20 @@ extends
 		add_something()
     {
         //print_r($_POST);exit;
-        $id = FeedAggegator_DatabaseHelper::add_feed(
-            $_POST['name'],
-            $_POST['title'],
-            $_POST['description'],
-            $_POST['url'],
-            $_POST['format']
+        throw new FeedAggregator_Exception(
+            "Tried to add something to the Feed Retrieval Queue from the admin page."
         );
-        return $id;
     }
 
 	public function
 		edit_something()
 	{
         //print_r($_POST);exit;
-        $id = FeedAggegator_DatabaseHelper::edit_feed(
+        $id = FeedAggegator_DatabaseHelper::
+            edit_feed_status_and_frequency_in_retrieval_queue(
             $_POST['id'],
-            $_POST['name'],
-            $_POST['title'],
-            $_POST['description'],
-            $_POST['url'],
-            $_POST['format']
+            $_post['status'],
+            $_POST['frequency_minutes']
         );
 		return $id;
 	}
@@ -52,16 +45,17 @@ extends
 	public function
 		delete_something()
 	{
-        $id = FeedAggegator_DatabaseHelper::delete_feed(
-            $_POST['id']
+        throw new FeedAggregator_Exception(
+            "Tried to delete something from the Feed Retrieval Queue from the admin page."
         );
-		return $id;
 	}
 		
 	public function
 		delete_everything()
 	{
-        FeedAggegator_DatabaseHelper::delete_all_feeds();
+        throw new FeedAggregator_Exception(
+            "Tried to delete all Feeds from the Feed Retrieval Queue from the admin page."
+        );
 	}
 	
 	protected function
@@ -73,7 +67,7 @@ extends
 	protected function
 		get_required_fields()
 	{
-		return explode(' ', 'name title description url format');
+		return explode(' ', ' feed_id last_retrieved status frequency_minutes');
 	}
 }
 ?>

@@ -38,7 +38,7 @@ Database_CRUDAdminPage
                 'col_name' => 'status'
             ),
             array(
-                'col_name' => 'frequency_days'
+                'col_name' => 'frequency_minutes'
             ) 
         );
     }
@@ -75,10 +75,27 @@ HTML;
         $acm = $this->get_admin_crud_manager();
 
         echo "<ol>\n";
-        $this->render_edit_something_form_li_text_input('frequency_days');
-        /*
-         * Status
-         */
+        $this->render_edit_something_form_li_text_input('frequency_minutes');
+
+        $status_values = FeedAggregator_DatabaseHelper
+            ::get_enum_values(
+                'hpi_feed_aggregator_retrieval_queue',
+                'status'
+            );
+        $status_li = '<li><label for="status">Status</label><div class="radio-inputs">';
+        foreach ($status_values as $status_value) {
+            $status_li .= '<label><input type="radio" name="status" value="' . $status_value . '"';
+            $cur_status_value = ($acm->has_current_var('status') ? $acm->get_current_var('status') : NULL);
+            if ($cur_status_value == $status_value) {
+                $status_li .= ' checked="checked"';
+            }
+            $i++; 
+            $status_li .= '>';
+            $status_li .= $status_value . '<br />';
+        }
+        $status_li .= '</label></div></li>';
+        echo $status_li;
+
         echo "</ol>\n";
 
         // echo $this->get_form_help_message();
@@ -87,7 +104,7 @@ HTML;
     protected function
         get_body_div_header_heading_content()
     {
-        return 'FeedRetrievalQueue';
+        return 'Feed Retrieval Queue';
     }
 
     protected function
@@ -112,7 +129,7 @@ HTML;
     protected function
         get_delete_everything_title()
     {
-        return 'Delete all FeedRetrievalQueue';
+        return 'Delete all Feeds from the Retrieval Queue';
     }
 
     protected function
@@ -133,12 +150,8 @@ HTML;
             array(
                 'name' => 'edit',
                 'filter' => sprintf($eval_template, 'edit_something')
-            ),
-            array(
-                'name' => 'delete',
-                'filter' => sprintf($eval_template, 'delete_something')
-            )
-        );
+            ) 
+       );
     }
 
     protected function
@@ -150,13 +163,13 @@ HTML;
     protected function
         get_confirm_deleting_everything_question_object()
     {
-        return 'all of the FeedRetrievalQueue';
+        return 'all of the Feeds from the Retrieval Queue';
     }
 
     protected function
         get_default_order_by()
     {
-        return "title";
+        return "last_retrieved";
     }
 
     protected function
