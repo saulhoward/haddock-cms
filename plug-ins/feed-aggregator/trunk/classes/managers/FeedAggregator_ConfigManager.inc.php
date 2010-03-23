@@ -6,20 +6,20 @@
  */
 
 class
-	FeedAggregator_ConfigManager
+FeedAggregator_ConfigManager
 extends
-	HaddockProjectOrganisation_ConfigManager
+HaddockProjectOrganisation_ConfigManager
 {
-	protected function
-		get_module_prefix_string()
-	{
-		return '/plug-ins/feed-aggregator/';
-	}
-	
-	public function
-		get_page_builder_class_name()
-	{
-		return trim($this->get_default_feed_retrieval_frequency_in_minutes('feed-retrieval-queue/default-feed-retrieval-frequency-in-minutes'));
-	}
+    protected function
+        get_module_prefix_string()
+    {
+        return '/plug-ins/feed-aggregator/';
+    }
+
+    public function
+        get_page_builder_class_name()
+    {
+        return trim($this->get_default_feed_retrieval_frequency_in_minutes('feed-retrieval-queue/default-feed-retrieval-frequency-in-minutes'));
+    }
 }
 ?>

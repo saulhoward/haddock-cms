@@ -17,16 +17,5 @@ FeedAggegator_SimpleXMLElement
 extends
 SimpleXMLElement
 {
-	abstract public function
-		get_title();
-
-	abstract public function
-		get_url_filename();
-
-	abstract public function
-		get_feed_title();
-
-	abstract public function
-		get_items();
 }
 ?>
