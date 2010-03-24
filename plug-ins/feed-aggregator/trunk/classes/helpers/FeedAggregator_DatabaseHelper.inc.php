@@ -8,7 +8,7 @@
 class
 FeedAggregator_DatabaseHelper
 {
-    public function
+    public static function
         add_feed(
             $name,
             $title,
@@ -18,7 +18,7 @@ FeedAggregator_DatabaseHelper
         )
     {
         $dbh = DB::m();
-        $name = FeedAggregator_FeedHelper->correct_feed_name($name);
+        $name = FeedAggregator_FeedHelper::correct_feed_name($name);
         $name = mysql_real_escape_string($name);
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
@@ -43,20 +43,23 @@ SQL;
         $result = mysql_query($stmt, $dbh);
 
         $id =  mysql_insert_id($dbh);
-        $this->add_feed_to_retrieval_queue($id);
+        self::add_feed_to_retrieval_queue($id);
         return $id;
     }
 
-    public function
+    public static function
         add_feed_to_retrieval_queue(
             $id
         )
     {
         $dbh = DB::m();
         $id = mysql_real_escape_string($id);
+
+        $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+        $config_manager = 
+            $cmf->get_config_manager('plug-ins', 'feed-aggregator');
         $frequency_minutes = mysql_real_escape_string(
-            FeedAggregator_ConfigManager::
-            get_default_feed_retrieval_frequency_in_minutes()
+            $config_manager->get_default_feed_retrieval_frequency_in_minutes()
         );
 
         $stmt = <<<SQL
@@ -71,7 +74,7 @@ SET
 
 SQL;
 
-        //print_r($stmt);exit;
+        // print_r($stmt);exit;
 
         $result = mysql_query($stmt, $dbh);
 
@@ -79,7 +82,7 @@ SQL;
         return $id;
     }
 
-    public function
+    public static function
         edit_feed_status_and_frequency_in_retrieval_queue(
             $id,
             $status,
@@ -93,7 +96,7 @@ SQL;
         );
     }
 
-    public function
+    public static function
         edit_feed_in_retrieval_queue(
             $id,
             $frequency_minutes,
@@ -139,7 +142,7 @@ SQL;
         return $id;
     }
 
-    public function
+    public static function
         edit_feed(
             $id,
             $name,
@@ -151,6 +154,7 @@ SQL;
     {
         //print_r($_POST);exit;
         //print_r($_GET);exit;
+        $dbh = DB::m();
         $id = mysql_real_escape_string($id, $dbh);
         $name = FeedAggregator_FeedHelper::correct_feed_name($name);
         $name = mysql_real_escape_string($name, $dbh);
@@ -172,12 +176,12 @@ WHERE
     id = $id
 SQL;
 
-        //print_r($stmt);exit;
+        // print_r($stmt);exit;
         $result = mysql_query($stmt, $dbh);
         return $id;
     }
 
-    public function
+    public static function
         delete_feed(
             $id
         )
@@ -190,7 +194,28 @@ DELETE
 FROM
     hpi_feed_aggregator_feeds
 WHERE
-    id = $id
+    id = '$id'
+SQL;
+
+        // echo $stmt; exit;
+        mysql_query($stmt, $dbh);
+        return $id;
+    }
+
+    public static function
+        delete_feed_from_retrieval_queue(
+            $id
+        )
+    {
+        $dbh = DB::m();
+        $id = mysql_real_escape_string($id, $dbh);
+
+        $stmt = <<<SQL
+DELETE
+FROM
+    hpi_feed_aggregator_retrieval_queue
+WHERE
+    feed_id = $id
 SQL;
 
         #echo $stmt; exit;
@@ -198,7 +223,7 @@ SQL;
         return $id;
     }
 
-    public function
+    public static function
         delete_all_feeds()
     {
         $dbh = DB::m();
@@ -206,6 +231,19 @@ SQL;
         $stmt = <<<SQL
 TRUNCATE TABLE
     hpi_feed_aggregator_feeds
+SQL;
+
+        mysql_query($stmt, $dbh);
+    }
+
+    public static function
+        delete_all_feeds_from_retrieval_queue()
+    {
+        $dbh = DB::m();
+
+        $stmt = <<<SQL
+TRUNCATE TABLE
+    hpi_feed_aggregator_retrieval_queue
 SQL;
 
         mysql_query($stmt, $dbh);

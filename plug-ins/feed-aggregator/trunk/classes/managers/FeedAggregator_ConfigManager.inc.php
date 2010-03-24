@@ -17,9 +17,11 @@ HaddockProjectOrganisation_ConfigManager
     }
 
     public function
-        get_page_builder_class_name()
+        get_default_feed_retrieval_frequency_in_minutes()
     {
-        return trim($this->get_default_feed_retrieval_frequency_in_minutes('feed-retrieval-queue/default-feed-retrieval-frequency-in-minutes'));
+        return trim(
+            $this->get_config_value('feed-retrieval-queue/default-feed-retrieval-frequency-in-minutes')
+        );
     }
 }
 ?>

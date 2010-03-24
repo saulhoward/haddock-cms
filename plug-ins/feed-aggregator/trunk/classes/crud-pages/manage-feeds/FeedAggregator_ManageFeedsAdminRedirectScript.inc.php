@@ -37,9 +37,9 @@ extends
 	public function
 		edit_something()
 	{
-        //print_r($_POST);exit;
+        // print_r($_POST);exit;
         $id = FeedAggregator_DatabaseHelper::edit_feed(
-            $_POST['id'],
+            $_GET['id'],
             $_POST['name'],
             $_POST['title'],
             $_POST['description'],
@@ -53,8 +53,9 @@ extends
 		delete_something()
 	{
         $id = FeedAggregator_DatabaseHelper::delete_feed(
-            $_POST['id']
+            $_GET['id']
         );
+        FeedAggregator_DatabaseHelper::delete_feed_from_retrieval_queue($id);
 		return $id;
 	}
 		
@@ -62,6 +63,7 @@ extends
 		delete_everything()
 	{
         FeedAggregator_DatabaseHelper::delete_all_feeds();
+        FeedAggregator_DatabaseHelper::delete_all_feeds_from_retrieval_queue();
 	}
 	
 	protected function
