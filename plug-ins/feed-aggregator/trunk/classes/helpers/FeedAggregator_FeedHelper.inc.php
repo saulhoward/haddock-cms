@@ -8,7 +8,7 @@
 class
 FeedAggregator_FeedHelper
 {
-	public function
+	public static function
         correct_feed_name($name)
     {
         /* TODO:

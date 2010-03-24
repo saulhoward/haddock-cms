@@ -25,8 +25,7 @@ CLIScripts_CLIScript
         set_feed_parser()
     {
         $this->feed_parser 
-            = VideoLibrary_PageBuildingHelper::get_feed_parser();
-        $this->feed_parser->set_current_page_class(get_class($this));
+            = FeedAggregator_FeedParsingHelper::get_feed_parser();
     }
 
     public function
@@ -54,22 +53,15 @@ CLIScripts_CLIScript
                         $this->colour_output("#" . $feed_data['id'] . " Downloaded..." . PHP_EOL, 'green')
                     );
 
-                    $feed_class_name =
-                        FeedAggregator_CLIHelper::get_class_name_for_format($feed_data['format']);
-                    try 
-                    {
-                        $feed = new $feed_class_name($xml_data);
-                    }
-                    catch (Exception $e)
-                    {
-                        throw new 
-                            FeedAggregator_ClassInstanceCreationException('Error reading XML');
+                    /**
+                     * Parse the feed object 
+                     * and insert the items into the DB
+                     */
+                    $this->get_feed_parser()->set_raw_feed_data($xml_data);
+                    foreach ($this->get_feed_parser()->get_items() as $item) {
+                        FeedAggregator_CLIHelper::add_feed_item_to_cache($item);
                     }
 
-                    /**
-                     * Insert the feed object into the DB
-                     */
-                    FeedAggregator_CLIHelper::add_feed_object_to_cache($feed);
                     print_r(
                         $this->colour_output(
                             "#" . $feed_data['id'] . " Added " . $feed->get_number_of_items() . " entries to DB..." . PHP_EOL, 'green'
