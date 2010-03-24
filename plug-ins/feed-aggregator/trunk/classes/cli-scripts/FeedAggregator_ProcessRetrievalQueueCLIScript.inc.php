@@ -59,6 +59,7 @@ CLIScripts_CLIScript
                      */
                     $this->get_feed_parser()->set_raw_feed_data($xml_data);
                     foreach ($this->get_feed_parser()->get_items() as $item) {
+                        print_r($item);exit;
                         FeedAggregator_CLIHelper::add_feed_item_to_cache($item);
                     }
 

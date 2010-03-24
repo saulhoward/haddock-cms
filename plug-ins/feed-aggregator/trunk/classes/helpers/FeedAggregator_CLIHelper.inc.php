@@ -88,8 +88,8 @@ SQL;
     }
 
     public static function
-        add_feed_object_to_cache(
-            $feed   //FeedAggegator_Feed 
+        add_feed_item_to_cache(
+            $feed_item   //FeedAggegator_Feed 
         )
     {
         foreach ($feed->get_items() as $item) {
