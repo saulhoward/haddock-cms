@@ -20,26 +20,25 @@ SELECT
     hpi_feed_aggregator_feeds.id,
     hpi_feed_aggregator_feeds.name,
     hpi_feed_aggregator_feeds.url,
-    hpi_feed_aggregator_feeds.type
+    hpi_feed_aggregator_feeds.format
 FROM
     hpi_feed_aggregator_retrieval_queue,
     hpi_feed_aggregator_feeds
 WHERE
-    hpi_feed_aggregator_retrieval_queue.feed_id = 
-    hpi_feed_aggregator_feeds.id
+    hpi_feed_aggregator_retrieval_queue.status = 'retrieve'
 AND
     (
         (
-            hpi_feed_aggregator_retrieval_queue.last_retrieved 
+            IFNULL(hpi_feed_aggregator_retrieval_queue.last_retrieved, '1970-01-01 00:00:00')
             + 
             INTERVAL hpi_feed_aggregator_retrieval_queue.frequency_minutes MINUTE
         ) 
-        <= DATE()
+        <= NOW()
     )
 
 SQL;
 
-        //echo $query; exit;
+        // print_r($query); exit;
 
         $result = mysql_query($query, $dbh);
         $feeds = array();
@@ -98,7 +97,7 @@ SQL;
 
             FeedAggregator_CLIHelper::add_feed_item_to_cache(
                 $item->get_title()
-            )
+            );
         }
     }
 }

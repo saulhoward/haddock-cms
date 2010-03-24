@@ -7,7 +7,7 @@
  *
  */
 
-class
+abstract class
 FeedAggregator_Feed
 extends
 FeedAggregator_SimpleXMLElement

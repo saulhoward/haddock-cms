@@ -32,11 +32,11 @@ extends
 	public function
 		edit_something()
 	{
-        //print_r($_POST);exit;
+        // print_r($_POST);exit;
         $id = FeedAggregator_DatabaseHelper::
             edit_feed_status_and_frequency_in_retrieval_queue(
-            $_POST['id'],
-            $_post['status'],
+            $_GET['id'],
+            $_POST['status'],
             $_POST['frequency_minutes']
         );
 		return $id;

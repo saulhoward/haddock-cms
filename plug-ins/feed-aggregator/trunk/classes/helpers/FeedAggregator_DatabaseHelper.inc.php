@@ -134,7 +134,7 @@ WHERE
 
 SQL;
 
-        //print_r($stmt);exit;
+        // print_r($stmt);exit;
 
         $result = mysql_query($stmt, $dbh);
 

@@ -10,7 +10,7 @@ FeedAggregator_ProcessRetrievalQueueCLIScript
 extends
 CLIScripts_CLIScript
 {
-    $feed_parser
+    private $feed_parser;
 
     protected function
         get_feed_parser()
@@ -37,9 +37,7 @@ CLIScripts_CLIScript
              * Get feeds for whom their time has come
              */
             $feeds = FeedAggregator_CLIHelper::
-                get_feeds_to_process_from_retrieval_queue(
-                    date()
-                );
+                get_feeds_to_process_from_retrieval_queue();
             //print_r($queued_videos);exit;
 
             foreach ($feeds as $feed_data) {

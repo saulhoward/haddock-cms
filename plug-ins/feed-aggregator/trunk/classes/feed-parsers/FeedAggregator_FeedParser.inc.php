@@ -10,7 +10,7 @@
 abstract class
 FeedAggregator_FeedParser
 {
-    $raw_feed_data;
+    private $raw_feed_data;
 
     protected function
         get_raw_feed_data()

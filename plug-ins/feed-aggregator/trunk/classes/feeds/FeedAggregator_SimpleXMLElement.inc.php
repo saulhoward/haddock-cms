@@ -1,6 +1,6 @@
 <?php
 /**
- * FeedAggegator_SimpleXMLElement
+ * FeedAggregator_SimpleXMLElement
  *
  * @copyright 2008-10-14, SANH
  */
@@ -13,7 +13,7 @@
  */
 
 abstract class
-FeedAggegator_SimpleXMLElement
+FeedAggregator_SimpleXMLElement
 extends
 SimpleXMLElement
 {
