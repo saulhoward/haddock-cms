@@ -7,4 +7,9 @@
     <feed-retrieval-queue>
 		<default-feed-retrieval-frequency-in-minutes value="1440" />
     </feed-retrieval-queue>
+
+    <feed-parser>
+        <class-name>FeedAggregator_SimplePieFeedParser</class-name>
+    </feed-parser>
+
 </config>
