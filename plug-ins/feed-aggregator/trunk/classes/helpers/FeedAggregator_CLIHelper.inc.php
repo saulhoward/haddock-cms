@@ -88,16 +88,73 @@ SQL;
 
     public static function
         add_feed_item_to_cache(
-            $feed_item   //FeedAggegator_Feed 
+            $feed_id,
+            $item       // SimplePie_Item -- NOT GOOD
         )
     {
-        foreach ($feed->get_items() as $item) {
+        $dbh = DB::m();
 
-            print_r($item);exit;
+        $feed_id = mysql_real_escape_string($feed_id, $dbh);
+        $full_content = mysql_real_escape_string($item->get_content(), $dbh);
+        $unique_item_id = mysql_real_escape_string($item->get_id(), $dbh);
+        $summary = mysql_real_escape_string($item->get_description(), $dbh);
+        $title = mysql_real_escape_string($item->get_title(), $dbh);
+        $link = mysql_real_escape_string($item->get_link(), $dbh);
 
-            FeedAggregator_CLIHelper::add_feed_item_to_cache(
-                $item->get_title()
-            );
+        $stmt = <<<SQL
+INSERT
+INTO
+    hpi_feed_aggregator_cache
+SET
+    feed_id = '$feed_id',
+    unique_item_id = '$unique_item_id',
+    date_retrieved = NOW(),
+    full_content = '$full_content',
+    title = '$title',
+    link = '$link',
+    summary = '$summary'
+
+SQL;
+
+        // print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+
+        $id =  mysql_insert_id($dbh);
+        return $id;
+    }
+
+    public static function
+        item_is_in_cache(
+            $feed_id,
+            $item_id
+        )
+    {
+        $dbh = DB::m();
+        $feed_id = mysql_real_escape_string($feed_id);
+
+        $stmt = <<<SQL
+SELECT
+    COUNT(*) as count
+FROM
+    hpi_feed_aggregator_cache
+WHERE
+    feed_id = '$feed_id'
+AND
+    unique_item_id = '$item_id'
+
+SQL;
+
+        // print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+        $row = mysql_fetch_assoc($result);
+        // print_r($row);exit;
+
+        if ( $row['count'] > 0 ) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 }

@@ -47,6 +47,7 @@ CLIScripts_CLIScript
                      * Download the feed
                      */
                     $xml_data = FeedAggregator_CLIHelper::download_feed($feed_data['url']);
+                    FeedAggregator_DatabaseHelper::set_feed_retrieved_date($feed_data['id'], date('Y-m-d h:i:s'));
                     print_r(
                         $this->colour_output("#" . $feed_data['id'] . " Downloaded..." . PHP_EOL, 'green')
                     );
@@ -55,17 +56,28 @@ CLIScripts_CLIScript
                      * Parse the feed object 
                      * and insert the items into the DB
                      */
+                    // print_r($xml_data);exit;
                     $this->get_feed_parser()->set_raw_feed_data($xml_data);
+
                     foreach ($this->get_feed_parser()->get_items() as $item) {
-                        print_r($item);exit;
-                        FeedAggregator_CLIHelper::add_feed_item_to_cache($item);
+                        // print_r($item);exit;
+                        
+                        /* TODO:
+                         * Currently $item is a SimplePie_Item object,
+                         * which would be a problem if another parser is used
+                         *
+                         * Should implement some helper functions for 
+                         * FeedAggregator_SimplePieFeedParser that can 
+                         * deal with the items for us abstractly
+                         */
+                        if (!FeedAggregator_CLIHelper::item_is_in_cache($feed_data['id'], $item->get_id())) {
+                            FeedAggregator_CLIHelper::add_feed_item_to_cache($feed_data['id'], $item);
+                            print_r(
+                                $this->colour_output("#" . $feed_data['id'] . " Added item to database..." . PHP_EOL, 'green')
+                            );
+                        }
                     }
 
-                    print_r(
-                        $this->colour_output(
-                            "#" . $feed_data['id'] . " Added " . $feed->get_number_of_items() . " entries to DB..." . PHP_EOL, 'green'
-                        )
-                    );
                 }
                 catch (Exception $e)
                 {

@@ -143,6 +143,32 @@ SQL;
     }
 
     public static function
+        set_feed_retrieved_date(
+            $id,
+            $date
+        )
+    {
+        $dbh = DB::m();
+        $id = mysql_real_escape_string($id, $dbh);
+        $date = mysql_real_escape_string($date, $dbh);
+
+        $stmt = <<<SQL
+UPDATE 
+    hpi_feed_aggregator_retrieval_queue
+SET
+    last_retrieved = '$date'
+WHERE
+    feed_id = '$id'
+
+SQL;
+
+        // print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+        return $id;
+    }
+
+    public static function
         edit_feed(
             $id,
             $name,

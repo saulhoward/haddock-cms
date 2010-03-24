@@ -32,6 +32,13 @@ FeedAggregator_FeedParser
     }
 
 	public function
+        get_title()
+    {
+        return $this->get_simple_pie()->get_title();
+    }
+
+
+	public function
         get_items()
     {
         return $this->get_simple_pie()->get_items();
@@ -42,6 +49,7 @@ FeedAggregator_FeedParser
     {
         parent::set_raw_feed_data($feed_data);
         $this->get_simple_pie()->set_raw_data($feed_data);
+        $this->get_simple_pie()->init();
     }
 }
 ?>
