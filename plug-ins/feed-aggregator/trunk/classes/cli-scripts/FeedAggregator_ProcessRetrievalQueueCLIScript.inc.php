@@ -10,6 +10,25 @@ FeedAggregator_ProcessRetrievalQueueCLIScript
 extends
 CLIScripts_CLIScript
 {
+    $feed_parser
+
+    protected function
+        get_feed_parser()
+    {
+        if (!isset($this->feed_parser)) {
+            $this->set_feed_parser();
+        }
+        return $this->feed_parser;
+    }
+
+    protected function
+        set_feed_parser()
+    {
+        $this->feed_parser 
+            = VideoLibrary_PageBuildingHelper::get_feed_parser();
+        $this->feed_parser->set_current_page_class(get_class($this));
+    }
+
     public function
         do_actions()
     {
