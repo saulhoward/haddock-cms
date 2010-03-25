@@ -49,7 +49,7 @@ HTML;
             ),
             array(
                 'col_name' => 'id',
-                'filter' => 'return FeedAggregator_DisplayHelper::get_tags_csv_string(FeedAggregator_DatabaseHelper::get_tags_for_external_video_id($str));',
+                'filter' => 'return FeedAggregator_DisplayHelper::get_tags_csv_string(FeedAggregator_DatabaseHelper::get_tags_for_feed_id($str));',
                 'title' => 'Tags'
             )
         );

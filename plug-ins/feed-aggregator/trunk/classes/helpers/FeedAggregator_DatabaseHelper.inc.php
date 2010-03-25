@@ -470,6 +470,216 @@ SQL;
         return mysql_query($query, $dbh);
     }
 
+    public function
+        get_feed_count_for_tag_id($id)
+    {
+        $dbh = DB::m();
+        $id = mysql_real_escape_string($id);
+        $query = <<<SQL
+SELECT
+    count(distinct(hpi_video_library_external_videos.id)) AS 'video_count'
+FROM
+    hpi_video_library_external_videos,
+    hpi_video_library_tags,
+    hpi_video_library_tags_to_feed_links
+WHERE
+    hpi_video_library_tags_to_feed_links.external_video_id = hpi_video_library_external_videos.id
+    AND
+    hpi_video_library_tags_to_feed_links.tag_id = hpi_video_library_tags.id
+    AND
+    hpi_video_library_tags.id = '$id' 
+GROUP BY
+    hpi_video_library_tags.id
+
+SQL;
+
+        //print_r($query);exit;
+
+        $result = mysql_query($query, $dbh);
+        $row = mysql_fetch_assoc($result);
+        if ( $row['video_count'] == '' ) $row['video_count'] = 0;
+        return $row['video_count'];
+    }
+
+    public function
+        get_tags_with_counts(
+            $order_by = 'product_count',
+            $direction = 'DESC'
+        )
+    {
+        $query = <<<SQL
+SELECT
+    count(distinct(hpi_shop_products.id)) AS 'product_count',
+    hpi_shop_product_tags.*
+FROM
+    hpi_shop_products,
+    hpi_shop_product_tags,
+    hpi_shop_product_tag_links
+WHERE
+    hpi_shop_product_tag_links.product_id = hpi_shop_products.id
+    AND
+    hpi_shop_product_tag_links.product_tag_id = hpi_shop_product_tags.id
+GROUP BY
+    hpi_shop_product_tags.id
+ORDER BY
+    $order_by $direction
+SQL;
+
+        #$tags_table = $this->get_element();
+
+        return $this->get_rows_for_select($query);      
+
+    }
+}
+
+    public static function
+        get_tags_for_feed_id(
+            $video_id,
+            $principal = FALSE
+        )
+    {
+        $dbh = DB::m();
+
+        $video_id = mysql_real_escape_string($video_id);
+
+        $query = <<<SQL
+
+SELECT 
+    hpi_feed_aggregator_tags.id as id,
+    hpi_feed_aggregator_tags.tag as tag,
+    hpi_feed_aggregator_tags.principal as principal
+FROM 
+    `hpi_feed_aggregator_tags`,
+    hpi_feed_aggregator_tags_to_feed_links,
+    hpi_feed_aggregator_feeds
+WHERE 
+    hpi_feed_aggregator_tags.id = hpi_feed_aggregator_tags_to_feed_links.tag_id
+AND 
+    hpi_feed_aggregator_feeds.id 
+    = hpi_feed_aggregator_tags_to_feed_links.feed_id
+AND
+    hpi_feed_aggregator_feeds.id = $video_id
+
+SQL;
+
+        if ($principal) {
+            $query .= <<<SQL
+AND
+    hpi_feed_aggregator_tags.principal = 'yes'
+
+SQL;
+
+        }
+
+        // echo $query; exit;
+
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        if ($result) {
+            if (mysql_num_rows($result) > 0) {
+                while ($row = mysql_fetch_assoc($result)) {
+                    $tags[] = $row;
+                }   
+            }
+        }
+
+        //print_r($tags);exit;
+        return $tags;
+    }
+
+
+    public static function
+        get_tags_for_tag_ids(
+            $tag_ids
+        )
+    {
+        $dbh = DB::m();
+
+        //$limit = mysql_real_escape_string($limit);
+
+        $query = <<<SQL
+SELECT
+    *
+FROM
+    hpi_feed_aggregator_tags
+WHERE
+
+SQL;
+
+        $i = 0;
+        foreach ($tag_ids as $tag_id) {
+            $tag_id = mysql_real_escape_string($tag_id);
+            if ($i != 0){
+                $query .= <<<SQL
+    OR
+
+SQL;
+
+            }
+            $i++;
+            $query .= <<<SQL
+    hpi_feed_aggregator_tags.id = '$tag_id'
+
+SQL;
+
+        }
+
+        //echo $query; exit;
+
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $tags[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $tags;
+    }
+
+    public static function
+        get_tags(
+            $principal = FALSE
+        )
+    {
+        $dbh = DB::m();
+
+        //$limit = mysql_real_escape_string($limit);
+
+        $query = <<<SQL
+SELECT
+    *
+FROM
+    hpi_feed_aggregator_tags
+
+SQL;
+
+        if ($principal) {
+            $query .= <<<SQL
+WHERE
+    principal = 'yes'
+
+SQL;
+
+        }
+
+        //echo $query; exit;
+
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $tags[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $tags;
+    }
+
+
+
 
 }
 ?>
