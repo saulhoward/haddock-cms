@@ -15,7 +15,15 @@ Database_CRUDAdminPage
     {
         parent::render_head_link_stylesheet();
         HTMLTags_LinkRenderer::render_style_sheet_link('/plug-ins/video-library/public-html/styles/admin-styles.css');
+        echo <<<HTML
+<script type="text/javascript" 
+         src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" 
+         src="/plug-ins/video-library/public-html/scripts/VideoLibrary_ManageExternalVideosPage.js"></script>
+HTML;
+
     }
+
 
     protected function
         get_admin_crud_manager_class_name()
@@ -38,7 +46,12 @@ Database_CRUDAdminPage
             ),
             array(
                 'col_name' => 'format'
-            ) 
+            ),
+            array(
+                'col_name' => 'id',
+                'filter' => 'return FeedAggregator_DisplayHelper::get_tags_csv_string(FeedAggregator_DatabaseHelper::get_tags_for_external_video_id($str));',
+                'title' => 'Tags'
+            )
         );
     }
 
@@ -66,9 +79,25 @@ SQL;
         $this->render_add_something_form_li_text_input('url');
         $this->render_add_something_form_li_text_input('format');
 
+        echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
+        $this->render_add_something_form_li_text_input('tags');
+        echo $this->get_tags_list_for_form();
+     
         echo "</ol>\n";
 
         echo $this->get_form_help_message();
+    }
+
+    public function
+        get_tags_list_for_form()
+    {
+        $div = '<div id="tags-list">';
+        $div .= '<h3>All Tags</h3>';
+        $div .= FeedAggregator_DisplayHelper::get_tags_empty_links_list(
+            FeedAggregator_DatabaseHelper::get_tags()
+        )->get_as_string();
+        $div .= '</div>';
+        return $div;
     }
 
     public function
@@ -100,6 +129,16 @@ HTML;
         $this->render_edit_something_form_li_text_input('description');
         $this->render_edit_something_form_li_text_input('url');
         $this->render_edit_something_form_li_text_input('format');
+
+        echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
+        echo '<li><label for="tags">Tags</label>';
+        echo '<input type="text" name="tags" id="tags" value ="';
+        echo FeedAggregator_DisplayHelper::get_tags_csv_string(
+            FeedAggregator_DatabaseHelper::get_tags_for_feed_id($_GET['id'])
+        );
+        echo '" />';
+        echo $this->get_tags_list_for_form();
+
         echo "</ol>\n";
 
         echo $this->get_form_help_message();

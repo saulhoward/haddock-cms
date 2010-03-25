@@ -14,7 +14,8 @@ FeedAggregator_DatabaseHelper
             $title,
             $description,
             $url,
-            $format
+            $format,
+            $tags           // array
         )
     {
         $dbh = DB::m();
@@ -41,9 +42,61 @@ SQL;
         //print_r($stmt);exit;
 
         $result = mysql_query($stmt, $dbh);
-
         $id =  mysql_insert_id($dbh);
+
+        self::add_tags_to_feed($id, $tags);
         self::add_feed_to_retrieval_queue($id);
+        return $id;
+    }
+
+    public static function
+        add_tags_to_feed(
+            $id,
+            $tags // array
+        )
+    {
+        $dbh = DB::m();
+        foreach ($tags as $tag) {
+            $tag = mysql_real_escape_string($tag);
+
+            $tag_query_1 = <<<SQL
+INSERT
+INTO
+    hpi_feed_aggregator_tags
+SET
+    tag = '$tag',
+    principal = 'no'
+
+SQL;
+            $result = mysql_query($tag_query_1, $dbh);
+            if ($result) {
+                $tag_id =  mysql_insert_id($dbh);
+            } else {
+                if (mysql_errno() == 1062) { #duplicate
+                    $tag_id 
+                        = FeedAggregator_DatabaseHelper
+                        ::get_tag_id_for_tag_string($tag); 
+                }
+            }
+            $tag_id = mysql_real_escape_string($tag_id);
+
+            $tag_query_2 = <<<SQL
+INSERT
+INTO
+    hpi_feed_aggregator_tags_to_feed_links
+SET
+    tag_id = '$tag_id',
+    feed_id = '$id'
+
+SQL;
+
+            $result = mysql_query($tag_query_2, $dbh);
+            if (!$result) {
+                if (mysql_errno() == 1062) { #duplicate
+                    # Do nothing, link already exists			
+                }
+            }
+        }
         return $id;
     }
 
@@ -175,7 +228,8 @@ SQL;
             $title,
             $description,
             $url,
-            $format
+            $format,
+            $tags              // array
         )
     {
         //print_r($_POST);exit;
@@ -204,6 +258,36 @@ SQL;
 
         // print_r($stmt);exit;
         $result = mysql_query($stmt, $dbh);
+
+		/**
+         * Tags 
+         * ----
+         * delete all the links 
+         * then add them again
+         * then run the orphaned tags func
+		 */
+        self::delete_tag_to_feed_links_for_feed_id($id);
+        self::add_tags_to_feed($id, $tags);
+		self::delete_orphaned_tags();
+        return $id;
+    }
+
+    public static function
+        delete_tag_to_feed_links_for_feed_id($id)
+    {
+        $dbh = DB::m();
+        $id = mysql_real_escape_string($id, $dbh);
+		$stmt = <<<SQL
+DELETE
+FROM
+	hpi_feed_aggregator_tags_to_feed_links
+WHERE
+	feed_id = $id
+SQL;
+		
+		#echo $stmt; exit;
+		mysql_query($stmt, $dbh);
+
         return $id;
     }
 
@@ -225,6 +309,9 @@ SQL;
 
         // echo $stmt; exit;
         mysql_query($stmt, $dbh);
+        self::delete_feed_from_retrieval_queue($id);
+        self::delete_tag_to_feed_links_for_feed_id($id);
+		self::delete_orphaned_tags();
         return $id;
     }
 
@@ -260,6 +347,28 @@ TRUNCATE TABLE
 SQL;
 
         mysql_query($stmt, $dbh);
+        FeedAggregator_DatabaseHelper::delete_all_feeds_from_retrieval_queue();
+        FeedAggregator_DatabaseHelper::delete_all_tags();
+    }
+
+    public static function
+        delete_all_tags()
+    {
+        $dbh = DB::m();
+
+        $stmt = <<<SQL
+TRUNCATE TABLE
+    hpi_feed_aggregator_tags
+SQL;
+
+        mysql_query($stmt, $dbh);
+
+        $stmt_2 = <<<SQL
+TRUNCATE TABLE
+    hpi_feed_aggregator_tags_to_feed_links
+SQL;
+
+        mysql_query($stmt_2, $dbh);
     }
 
     public static function
@@ -329,6 +438,38 @@ SQL;
         $row = mysql_fetch_assoc($result);
         return $row['name'];
     }
+
+    public static function
+        delete_orphaned_tags($include_principal_tags = FALSE)
+    {
+        $dbh = DB::m();
+        $query = <<<SQL
+DELETE FROM
+    hpi_feed_aggregator_tags
+WHERE
+    hpi_feed_aggregator_tags.id
+NOT IN (
+    SELECT DISTINCT (
+    hpi_feed_aggregator_tags_to_feed_links.tag_id
+    )
+    FROM
+    hpi_feed_aggregator_tags_to_feed_links
+)
+
+SQL;
+
+        if ($include_principal_tags == FALSE) {
+            $query .= <<<SQL
+AND
+    hpi_feed_aggregator_tags.principal = 'no'
+
+SQL;
+
+        }
+
+        return mysql_query($query, $dbh);
+    }
+
 
 }
 ?>

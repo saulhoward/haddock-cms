@@ -29,7 +29,8 @@ extends
             $_POST['title'],
             $_POST['description'],
             $_POST['url'],
-            $_POST['format']
+            $_POST['format'],
+            FeedAggregator_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags'])
         );
         return $id;
     }
@@ -44,7 +45,8 @@ extends
             $_POST['title'],
             $_POST['description'],
             $_POST['url'],
-            $_POST['format']
+            $_POST['format'],
+            FeedAggregator_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags'])
         );
 		return $id;
 	}
@@ -52,18 +54,14 @@ extends
 	public function
 		delete_something()
 	{
-        $id = FeedAggregator_DatabaseHelper::delete_feed(
-            $_GET['id']
-        );
-        FeedAggregator_DatabaseHelper::delete_feed_from_retrieval_queue($id);
-		return $id;
+        FeedAggregator_DatabaseHelper::delete_feed($_GET['id']);
+		return $_GET['id'];
 	}
 		
 	public function
 		delete_everything()
 	{
         FeedAggregator_DatabaseHelper::delete_all_feeds();
-        FeedAggregator_DatabaseHelper::delete_all_feeds_from_retrieval_queue();
 	}
 	
 	protected function
