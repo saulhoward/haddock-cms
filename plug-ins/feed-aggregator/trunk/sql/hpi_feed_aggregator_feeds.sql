@@ -1,8 +1,15 @@
+-- 
+-- Table structure for table `hpi_feed_aggregator_feeds`
+-- 
+
 CREATE TABLE `hpi_feed_aggregator_feeds` (
-    `id` INT( 10 ) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-    `name` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL ,
-    `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL ,
-    `description` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL ,
-    `url` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL ,
-    `format` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL
-) ENGINE = MYISAM ;
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
+  `title` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
+  `description` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
+  `url` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
+  `format` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
+  `sort_order` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+

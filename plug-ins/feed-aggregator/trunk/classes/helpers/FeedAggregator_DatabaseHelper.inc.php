@@ -15,6 +15,7 @@ FeedAggregator_DatabaseHelper
             $description,
             $url,
             $format,
+            $sort_order,
             $tags           // array
         )
     {
@@ -25,6 +26,7 @@ FeedAggregator_DatabaseHelper
         $description = mysql_real_escape_string($description);
         $url = mysql_real_escape_string($url);
         $format = mysql_real_escape_string(trim($format));
+        $sort_order = mysql_real_escape_string(trim($sort_order));
 
         $stmt = <<<SQL
 INSERT
@@ -35,6 +37,7 @@ SET
     title = '$title',
     description = '$description',
     url = '$url',
+    sort_order = '$sort_order',
     format = '$format'
 
 SQL;
@@ -229,6 +232,7 @@ SQL;
             $description,
             $url,
             $format,
+            $sort_order,
             $tags              // array
         )
     {
@@ -242,6 +246,7 @@ SQL;
         $description = mysql_real_escape_string($description, $dbh);
         $url = mysql_real_escape_string($url, $dbh);
         $format = mysql_real_escape_string(trim($format), $dbh);
+        $sort_order = mysql_real_escape_string(trim($sort_order));
 
         $stmt = <<<SQL
 UPDATE
@@ -251,6 +256,7 @@ SET
     title = '$title',
     description = '$description',
     url = '$url',
+    sort_order = '$sort_order',
     format = '$format'
 WHERE
     id = $id
@@ -528,9 +534,7 @@ SQL;
         #$tags_table = $this->get_element();
 
         return $this->get_rows_for_select($query);      
-
     }
-}
 
     public static function
         get_tags_for_feed_id(
@@ -678,6 +682,220 @@ SQL;
         return $tags;
     }
 
+    public static function
+        get_feeds_for_tags(
+            $tags,
+            $ignore_feed_id = NULL,
+            $start = NULL,
+            $duration = NULL
+        )
+    {
+        $dbh = DB::m();
+
+        $query = '';
+        $query .= self::get_select_sql_for_feeds();
+
+        $query .= <<<SQL
+FROM
+    hpi_feed_aggregator_feeds,
+    hpi_feed_aggregator_tags_to_feed_links,
+    hpi_feed_aggregator_tags
+WHERE
+    hpi_feed_aggregator_feeds.id = hpi_feed_aggregator_tags_to_feed_links.feed_id
+    AND
+    hpi_feed_aggregator_tags.id = hpi_feed_aggregator_tags_to_feed_links.tag_id
+
+SQL;
+
+        if (count($tags) > 0) {
+            $query .= <<<SQL
+    AND
+(
+
+SQL;
+
+
+            $i = 0;
+            foreach ($tags as $tag) {
+                $tag = mysql_real_escape_string(trim($tag));
+                if ($i != 0){
+                    $query .= <<<SQL
+    OR
+
+SQL;
+
+                }
+                $i++;
+                $query .= <<<SQL
+    hpi_feed_aggregator_tags.tag = '$tag'
+
+SQL;
+
+            }
+            $query .= <<<SQL
+)
+
+SQL;
+        }
+
+
+        if ($ignore_feed_id > 0) {
+            $ignore_feed_id = mysql_real_escape_string($ignore_feed_id);
+            $query .= <<<SQL
+    AND
+    hpi_feed_aggregator_feeds.id <> $ignore_feed_id
+
+SQL;
+
+        }
+
+        $query .= <<<SQL
+ORDER BY
+    hpi_feed_aggregator_feeds.sort_order DESC
+SQL;
+
+        //echo $query; exit;
+        if (
+            ($start != NULL)
+            &&
+            ($duration != NULL) 
+        ){
+            $start = mysql_real_escape_string($start);
+            $duration = mysql_real_escape_string($duration);
+            $query .= <<<SQL
+
+LIMIT
+        $start, $duration
+SQL;
+
+        }
+
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $tags[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $tags;
+    }
+
+    public static function
+        get_select_sql_for_feeds() 
+    {
+        return <<<SQL
+SELECT DISTINCT
+    hpi_feed_aggregator_feeds.id AS id,
+    hpi_feed_aggregator_feeds.name AS name,
+    hpi_feed_aggregator_feeds.title AS title,
+    hpi_feed_aggregator_feeds.description AS description,
+    hpi_feed_aggregator_feeds.url AS url
+
+SQL;
+
+    }
+
+    public static function
+        get_items_for_feed_id(
+            $feed_id
+            $ignore_item_id = NULL,
+            $start = NULL,
+            $duration = NULL
+        )
+    {
+        $dbh = DB::m();
+
+        $query = '';
+        $query .= self::get_select_sql_for_items();
+
+        $query .= <<<SQL
+FROM
+    hpi_feed_aggregator_feeds,
+    hpi_feed_aggregator_tags_to_feed_links,
+    hpi_feed_aggregator_tags
+WHERE
+    hpi_feed_aggregator_feeds.id = hpi_feed_aggregator_tags_to_feed_links.feed_id
+    AND
+    hpi_feed_aggregator_tags.id = hpi_feed_aggregator_tags_to_feed_links.tag_id
+
+SQL;
+
+        if (count($tags) > 0) {
+            $query .= <<<SQL
+    AND
+(
+
+SQL;
+
+
+            $i = 0;
+            foreach ($tags as $tag) {
+                $tag = mysql_real_escape_string(trim($tag));
+                if ($i != 0){
+                    $query .= <<<SQL
+    OR
+
+SQL;
+
+                }
+                $i++;
+                $query .= <<<SQL
+    hpi_feed_aggregator_tags.tag = '$tag'
+
+SQL;
+
+            }
+            $query .= <<<SQL
+)
+
+SQL;
+        }
+
+
+        if ($ignore_feed_id > 0) {
+            $ignore_feed_id = mysql_real_escape_string($ignore_feed_id);
+            $query .= <<<SQL
+    AND
+    hpi_feed_aggregator_feeds.id <> $ignore_feed_id
+
+SQL;
+
+        }
+
+        $query .= <<<SQL
+ORDER BY
+    hpi_feed_aggregator_feeds.sort_order DESC
+SQL;
+
+        //echo $query; exit;
+        if (
+            ($start != NULL)
+            &&
+            ($duration != NULL) 
+        ){
+            $start = mysql_real_escape_string($start);
+            $duration = mysql_real_escape_string($duration);
+            $query .= <<<SQL
+
+LIMIT
+        $start, $duration
+SQL;
+
+        }
+
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $tags[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $tags;
+    }
 
 
 

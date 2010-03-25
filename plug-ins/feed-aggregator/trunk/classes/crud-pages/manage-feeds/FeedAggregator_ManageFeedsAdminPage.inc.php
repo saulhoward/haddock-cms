@@ -36,6 +36,9 @@ HTML;
     {
         return array(
             array(
+                'col_name' => 'sort_order'
+            ),
+            array(
                 'col_name' => 'name'
             ),
             array(
@@ -78,6 +81,7 @@ SQL;
         $this->render_add_something_form_li_text_input('description');
         $this->render_add_something_form_li_text_input('url');
         $this->render_add_something_form_li_text_input('format');
+        $this->render_add_something_form_li_text_input('sort_order');
 
         echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
         $this->render_add_something_form_li_text_input('tags');
@@ -129,6 +133,7 @@ HTML;
         $this->render_edit_something_form_li_text_input('description');
         $this->render_edit_something_form_li_text_input('url');
         $this->render_edit_something_form_li_text_input('format');
+        $this->render_edit_something_form_li_text_input('sort_order');
 
         echo '<fieldset class="tags-fieldset" id="tags-fieldset"><legend>Tags</legend>';
         echo '<li><label for="tags">Tags</label>';

@@ -30,6 +30,7 @@ extends
             $_POST['description'],
             $_POST['url'],
             $_POST['format'],
+            $_POST['sort_order'],
             FeedAggregator_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags'])
         );
         return $id;
@@ -46,6 +47,7 @@ extends
             $_POST['description'],
             $_POST['url'],
             $_POST['format'],
+            $_POST['sort_order'],
             FeedAggregator_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags'])
         );
 		return $id;
