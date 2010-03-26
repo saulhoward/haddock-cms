@@ -798,8 +798,50 @@ SQL;
     }
 
     public static function
+        get_select_sql_for_items() 
+    {
+        return <<<SQL
+SELECT DISTINCT
+    hpi_feed_aggregator_cache.id AS id,
+    hpi_feed_aggregator_cache.unique_item_id AS unique_item_id,
+    hpi_feed_aggregator_cache.title AS title,
+    hpi_feed_aggregator_cache.full_content AS full_content,
+    hpi_feed_aggregator_cache.summary AS summary,
+    hpi_feed_aggregator_cache.link AS link,
+    hpi_feed_aggregator_cache.updated AS updated
+
+SQL;
+
+    }
+
+    public static function
+        get_item_by_id(
+            $id
+        )
+    {
+        $dbh = DB::m();
+
+        $query = '';
+        $query .= self::get_select_sql_for_items();
+
+        $query .= <<<SQL
+FROM
+    hpi_feed_aggregator_cache
+WHERE
+    hpi_feed_aggregator_cache.id = '$id'
+
+SQL;
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+
+        while ($row = mysql_fetch_assoc($result)) {
+            return $row;
+        }   
+    }
+
+    public static function
         get_items_for_feed_id(
-            $feed_id
+            $feed_id,
             $ignore_item_id = NULL,
             $start = NULL,
             $duration = NULL
@@ -812,53 +854,17 @@ SQL;
 
         $query .= <<<SQL
 FROM
-    hpi_feed_aggregator_feeds,
-    hpi_feed_aggregator_tags_to_feed_links,
-    hpi_feed_aggregator_tags
+    hpi_feed_aggregator_cache
 WHERE
-    hpi_feed_aggregator_feeds.id = hpi_feed_aggregator_tags_to_feed_links.feed_id
-    AND
-    hpi_feed_aggregator_tags.id = hpi_feed_aggregator_tags_to_feed_links.tag_id
+    hpi_feed_aggregator_cache.feed_id = '$feed_id'
 
 SQL;
 
-        if (count($tags) > 0) {
+        if ($ignore_item_id > 0) {
+            $ignore_item_id = mysql_real_escape_string($ignore_item_id);
             $query .= <<<SQL
     AND
-(
-
-SQL;
-
-
-            $i = 0;
-            foreach ($tags as $tag) {
-                $tag = mysql_real_escape_string(trim($tag));
-                if ($i != 0){
-                    $query .= <<<SQL
-    OR
-
-SQL;
-
-                }
-                $i++;
-                $query .= <<<SQL
-    hpi_feed_aggregator_tags.tag = '$tag'
-
-SQL;
-
-            }
-            $query .= <<<SQL
-)
-
-SQL;
-        }
-
-
-        if ($ignore_feed_id > 0) {
-            $ignore_feed_id = mysql_real_escape_string($ignore_feed_id);
-            $query .= <<<SQL
-    AND
-    hpi_feed_aggregator_feeds.id <> $ignore_feed_id
+    hpi_feed_aggregator_cache.id <> $ignore_item_id
 
 SQL;
 
@@ -866,7 +872,7 @@ SQL;
 
         $query .= <<<SQL
 ORDER BY
-    hpi_feed_aggregator_feeds.sort_order DESC
+    hpi_feed_aggregator_cache.updated DESC
 SQL;
 
         //echo $query; exit;
@@ -888,13 +894,13 @@ SQL;
         // print_r($query);exit;
         $result = mysql_query($query, $dbh);
 
-        $tags = array();
+        $items = array();
 
         while ($row = mysql_fetch_assoc($result)) {
-            $tags[] = $row;
+            $items[] = $row;
         }   
-        //print_r($tags);exit;
-        return $tags;
+        //print_r($items);exit;
+        return $items;
     }
 
 

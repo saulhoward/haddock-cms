@@ -23,7 +23,7 @@ FeedAggregator_PageHelper
 
         $div = new HTMLTags_Div();
         foreach ($feeds as $feed) {
-            $feed['items'] = FeedAggregator_DatabaseHelper::get_items_for_feed($feed, $number_of_items_per_feed);
+            $feed['items'] = FeedAggregator_DatabaseHelper::get_items_for_feed_id($feed['id'], NULL, 0, $number_of_items_per_feed);
             $div->append(FeedAggregator_DisplayHelper::get_feed_summary_div($feed));
         }
         return $div;

@@ -12,4 +12,7 @@
         <class-name>FeedAggregator_SimplePieFeedParser</class-name>
     </feed-parser>
 
+    <page-classes>
+        <item-page-class value="FeedAggregator_ItemPage" />
+    </page-classes>
 </config>

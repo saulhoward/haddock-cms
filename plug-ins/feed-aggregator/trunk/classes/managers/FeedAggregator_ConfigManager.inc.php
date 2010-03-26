@@ -31,5 +31,14 @@ HaddockProjectOrganisation_ConfigManager
             $this->get_config_value('feed-parser/class-name')
         );
     }
+
+    public function
+        get_item_page_class_name()
+    {
+        return trim(
+            $this->get_config_value('page-classes/item-page-class')
+        );
+    }
+
 }
 ?>

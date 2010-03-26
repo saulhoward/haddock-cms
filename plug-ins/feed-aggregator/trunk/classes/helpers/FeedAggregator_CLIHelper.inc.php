@@ -98,6 +98,7 @@ SQL;
         $full_content = mysql_real_escape_string($item->get_content(), $dbh);
         $unique_item_id = mysql_real_escape_string($item->get_id(), $dbh);
         $summary = mysql_real_escape_string($item->get_description(), $dbh);
+        $updated = mysql_real_escape_string($item->get_date(), $dbh);
         $title = mysql_real_escape_string($item->get_title(), $dbh);
         $link = mysql_real_escape_string($item->get_link(), $dbh);
 
@@ -110,6 +111,7 @@ SET
     unique_item_id = '$unique_item_id',
     date_retrieved = NOW(),
     full_content = '$full_content',
+    updated = '$updated',
     title = '$title',
     link = '$link',
     summary = '$summary'
