@@ -18,6 +18,55 @@ FeedAggregator_DisplayHelper
         return $item_div;
     }
 
+    public static function
+        get_images_only_feed_div($feed)
+    {
+        if ($feed['items'] == '') {
+            throw new Exception('Feed contains no items.');
+        }
+        $div = new HTMLTags_Div();
+        $div->set_attribute_str('class', 'feed');
+        $div->append('<h3>' . $feed['title'] . '</h3>');
+        foreach ($feed['items'] as $item) {
+            $item_div = new HTMLTags_Div();
+            $item_div->set_attribute_str('class', 'item');
+            $img = self::get_image_from_string($item['full_content']);
+            if ($img) $item_div->append($img);
+            $div->append($item_div);
+        }
+        return $div;
+    }
+
+
+    public static function 
+        get_image_from_string ($text) 
+    {
+        /*
+         * What. the. hell. this only works if I double up the $text input
+         */
+        $text = html_entity_decode($text . $text, ENT_QUOTES, 'UTF-8');
+        // echo $text; echo 'balls';
+        // print_r($text);exit;
+        $pattern = "/<img[^>]+\>/i";
+        preg_match($pattern, $text, $matches);
+        $text = $matches[0];
+        // print_r($matches);exit;
+        return $text;
+    }
+
+    public static function
+        get_url_from_image($text) 
+    {
+
+        $pattern = '/src=[\'"]?([^\'" >]+)[\'" >]/'; 
+
+        preg_match($pattern, $text, $link);
+
+        $link = $link[1];
+        $link = urlencode($link);
+        return $link;
+
+    }
 
     public static function
         get_feed_summary_div($feed)

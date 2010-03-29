@@ -104,6 +104,32 @@ SQL;
     }
 
     public static function
+        get_tag_id_for_tag_string($tag)
+    {
+        $dbh = DB::m();
+
+        $tag = mysql_real_escape_string($tag);
+
+        $query = <<<SQL
+SELECT
+    hpi_feed_aggregator_tags.id
+FROM
+    hpi_feed_aggregator_tags
+WHERE
+hpi_feed_aggregator_tags.tag = '$tag'
+
+SQL;
+
+        //echo $query; exit;
+
+        $result = mysql_query($query, $dbh);
+
+        $row = mysql_fetch_assoc($result);
+        return $row['id'];
+
+    }
+
+    public static function
         add_feed_to_retrieval_queue(
             $id
         )
@@ -683,6 +709,79 @@ SQL;
     }
 
     public static function
+        get_feeds_for_all_tags(
+            $tags,
+            $ignore_feed_id = NULL,
+            $start = NULL,
+            $duration = NULL
+        )
+    {
+        // print_r($start . '  ' . $duration);exit;
+        $dbh = DB::m();
+
+        $query = '';
+        $num_tags = count($tags);
+        if ($num_tags > 0 && $num_tags <= 32) {
+            $sql_select = "SELECT t2f" . ($num_tags - 1) . ".feed_id, ";
+            $sql_select .= self::get_data_for_select_sql_for_feeds();
+            $sql_from = " FROM hpi_feed_aggregator_feeds, ";
+            $sql_where = " WHERE ";
+            $sql_joins = "";
+            for ($i=0;$i<$num_tags;++$i) {
+                if ($i==0) {
+                    $sql_from .= " hpi_feed_aggregator_tags t0 ";
+                    $sql_where .= " t0.tag = '" . $tags[0] . "'";
+                    $sql_joins .= " INNER JOIN hpi_feed_aggregator_tags_to_feed_links t2f0 ON t0.id = t2f0.tag_id ";
+                }
+                else {
+                    $sql_from .= " CROSS JOIN hpi_feed_aggregator_tags t" . $i;
+                    $sql_where .= " AND t" . $i . ".tag = '" . $tags[$i] . "'";
+                    $sql_joins .= " INNER JOIN hpi_feed_aggregator_tags_to_feed_links t2f" . $i . " ON t2f" . ($i - 1) . ".feed_id = t2f" . $i . ".feed_id " . 
+                        " AND t2f" . $i . ".tag_id = t" . $i . ".id ";
+                }
+            }
+            $sql_where .= 'AND hpi_feed_aggregator_feeds.id = t2f' . ($i - 1) . '.feed_id';
+            $query = $sql_select . $sql_from . $sql_joins . $sql_where;
+        } else {
+            throw new FeedAggregator_Exception('Too many tags searched for simultaneously');
+        }
+
+        $query .= <<<SQL
+
+ORDER BY
+    hpi_feed_aggregator_feeds.sort_order DESC
+SQL;
+
+        //echo $query; exit;
+        if (
+            !(is_null($start))
+            &&
+            !(is_null($duration)) 
+        ){
+            // print_r($start . '    ' . $duration);exit;
+            $start = mysql_real_escape_string($start);
+            $duration = mysql_real_escape_string($duration);
+            $query .= <<<SQL
+
+LIMIT
+        $start, $duration
+SQL;
+
+        }
+
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+
+        $feeds = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $feeds[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $feeds;
+    }
+
+    public static function
         get_feeds_for_tags(
             $tags,
             $ignore_feed_id = NULL,
@@ -690,6 +789,7 @@ SQL;
             $duration = NULL
         )
     {
+        // print_r($start . '  ' . $duration);exit;
         $dbh = DB::m();
 
         $query = '';
@@ -756,10 +856,11 @@ SQL;
 
         //echo $query; exit;
         if (
-            ($start != NULL)
+            !(is_null($start))
             &&
-            ($duration != NULL) 
+            !(is_null($duration)) 
         ){
+            // print_r($start . '    ' . $duration);exit;
             $start = mysql_real_escape_string($start);
             $duration = mysql_real_escape_string($duration);
             $query .= <<<SQL
@@ -770,7 +871,7 @@ SQL;
 
         }
 
-        // print_r($query);exit;
+        print_r($query);exit;
         $result = mysql_query($query, $dbh);
 
         $tags = array();
@@ -785,8 +886,13 @@ SQL;
     public static function
         get_select_sql_for_feeds() 
     {
+        return 'SELECT DISTINCT' . "\n" . self::get_data_for_select_sql_for_feeds();
+    }
+
+    public static function
+        get_data_for_select_sql_for_feeds() 
+    {
         return <<<SQL
-SELECT DISTINCT
     hpi_feed_aggregator_feeds.id AS id,
     hpi_feed_aggregator_feeds.name AS name,
     hpi_feed_aggregator_feeds.title AS title,
@@ -877,9 +983,9 @@ SQL;
 
         //echo $query; exit;
         if (
-            ($start != NULL)
+            !(is_null($start))
             &&
-            ($duration != NULL) 
+            !(is_null($duration)) 
         ){
             $start = mysql_real_escape_string($start);
             $duration = mysql_real_escape_string($duration);
