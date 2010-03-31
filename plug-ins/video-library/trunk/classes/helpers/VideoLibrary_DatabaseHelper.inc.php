@@ -1898,6 +1898,7 @@ SELECT DISTINCT
     hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
     hpi_video_library_external_video_libraries.id AS external_video_library_id,
     hpi_video_library_external_video_providers.id AS external_video_provider_id,
+    hpi_video_library_external_video_providers.name AS external_video_provider_name,
     hpi_video_library_external_video_providers.haddock_class_name AS haddock_class_name
 
 SQL;
