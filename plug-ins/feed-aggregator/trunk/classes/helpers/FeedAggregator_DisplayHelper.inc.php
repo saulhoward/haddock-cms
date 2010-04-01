@@ -44,7 +44,8 @@ FeedAggregator_DisplayHelper
         /*
          * What. the. hell. this only works if I double up the $text input
          */
-        $text = html_entity_decode($text . $text, ENT_QUOTES, 'UTF-8');
+        // $text = html_entity_decode($text . $text, ENT_QUOTES, 'UTF-8');
+        $text = html_entity_decode($text , ENT_QUOTES, 'UTF-8');
         // echo $text; echo 'balls';
         // print_r($text);exit;
         $pattern = "/<img[^>]+\>/i";
