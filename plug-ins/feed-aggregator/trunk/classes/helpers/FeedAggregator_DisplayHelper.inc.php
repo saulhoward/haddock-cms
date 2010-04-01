@@ -42,17 +42,18 @@ FeedAggregator_DisplayHelper
         get_image_from_string ($text) 
     {
         /*
-         * What. the. hell. this only works if I double up the $text input
+         * Doesn't work on Flickr
          */
-        // $text = html_entity_decode($text . $text, ENT_QUOTES, 'UTF-8');
-        $text = html_entity_decode($text , ENT_QUOTES, 'UTF-8');
-        // echo $text; echo 'balls';
-        // print_r($text);exit;
-        $pattern = "/<img[^>]+\>/i";
-        preg_match($pattern, $text, $matches);
-        $text = $matches[0];
-        // print_r($matches);exit;
-        return $text;
+        // return strip_tags($text. $text,'<img>');
+
+        /*
+         * From:
+         * http://carters-site.net/wordpress/2009/08/php-flickr-imagerss-feed-parser/
+         * Seems to work with Flickr! 
+         */
+          preg_match("#\s?src=\"(http://(.+)\.jpg)\"(\w)*#", $text, $matches); // updated!
+          $src = $matches[1];
+          return "<img src='{$src}'/>";
     }
 
     public static function
