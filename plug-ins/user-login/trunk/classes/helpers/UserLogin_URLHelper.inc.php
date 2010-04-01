@@ -17,17 +17,28 @@ UserLogin_URLHelper
     }
 
     public static function
-        get_login_page_url()
+        get_log_out_return_to_page_url()
     {
-        // $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-        // $config_manager = 
-            // $cmf->get_config_manager('plug-ins', 'user-login');
-        // $login_page_class_name= $config_manager->get_login_page_class_name();
-
         return PublicHTML_URLHelper
             ::get_oo_page_url(
-                self::get_config_manager()->get_login_page_class_name()
+                self::get_config_manager()->get_log_out_return_to_page_class_name()
             );
+    }
+
+    public static function
+        get_login_page_url()
+    {
+        $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+        $config_manager = 
+            $cmf->get_config_manager('plug-ins', 'user-login');
+        $login_page_class_name= $config_manager->get_login_page_class_name();
+
+        // print_r($login_page_class_name);exit;
+        return PublicHTML_URLHelper
+            ::get_oo_page_url(
+        $login_page_class_name
+            );
+                // self::get_config_manager()->get_login_page_class_name()
     }
 
     public static function
@@ -86,6 +97,24 @@ UserLogin_URLHelper
         return PublicHTML_URLHelper
             ::get_oo_page_url(
                 'UserLogin_LogOutRedirectScript'
+            );
+    }
+
+    public static function
+        get_registration_page_url()
+    {
+        return PublicHTML_URLHelper
+            ::get_oo_page_url(
+                self::get_config_manager()->get_registration_page_class_name()
+            );
+    }
+
+    public static function
+        get_account_page_url()
+    {
+        return PublicHTML_URLHelper
+            ::get_oo_page_url(
+                self::get_config_manager()->get_account_page_class_name()
             );
     }
 }

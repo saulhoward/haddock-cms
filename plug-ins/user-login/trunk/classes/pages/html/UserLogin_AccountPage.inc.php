@@ -7,24 +7,28 @@
  */
 
 class
-UserLogin_LoginPage
+UserLogin_AccountPage
 extends
-UserLogin_HTMLPage
+UserLogin_RestrictedHTMLPage
 {
     public function
         content()
     {
         $div = new HTMLTags_Div();
+        $div->append($this->get_log_out_div());
         $div->append($this->get_error_message_div());
-        $div->append($this->get_login_div());
+        $div->append($this->get_account_div());
         echo $div->get_as_string();
 
     }
 
     public function
-        get_login_div()
+        get_account_div()
     {
-        return UserLogin_DisplayHelper::get_login_div();
+        return UserLogin_DisplayHelper::
+            get_account_div(
+                $this->get_logged_in_user()
+            )->get_as_string();
     }
 
 }

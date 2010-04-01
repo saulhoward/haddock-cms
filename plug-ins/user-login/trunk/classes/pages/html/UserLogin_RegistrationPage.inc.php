@@ -1,5 +1,6 @@
 <?php
 /**
+ *
  * all of these pages are just examples
  * to be copied with proj-spec pages of your own devising
  *
@@ -7,7 +8,7 @@
  */
 
 class
-UserLogin_LoginPage
+UserLogin_RegistrationPage
 extends
 UserLogin_HTMLPage
 {
@@ -16,15 +17,14 @@ UserLogin_HTMLPage
     {
         $div = new HTMLTags_Div();
         $div->append($this->get_error_message_div());
-        $div->append($this->get_login_div());
+        $div->append($this->get_registration_div());
         echo $div->get_as_string();
-
     }
 
     public function
-        get_login_div()
+        get_registration_div()
     {
-        return UserLogin_DisplayHelper::get_login_div();
+        return UserLogin_DisplayHelper::get_registration_div();
     }
 
 }

@@ -9,7 +9,7 @@
 class
 UserLogin_LoginRedirectScript
 extends
-PublicHTML_RedirectScript                                                                                                          
+UserLogin_RedirectScript                                                                                                          
 {
     protected function
         do_actions() 
@@ -31,8 +31,8 @@ PublicHTML_RedirectScript
                         unset($_SESSION['user-login-data']['error-message']);
 
                         if (isset($_SESSION['user-login-data']['desired-url'])) {
-                            $return_url = UserLogin_URLHelper::
-                                get_url_for_string($_SESSION['user-login-data']['desired-url']);
+                            // print_r($_SESSION['user-login-data']['desired-url']);exit;
+                            $return_url = $_SESSION['user-login-data']['desired-url'];
                         }
                     } catch (HaddockProjectOrganisation_LoginException $e) {
                         $_SESSION['user-login-data']['error-message'] = $e->getMessage();

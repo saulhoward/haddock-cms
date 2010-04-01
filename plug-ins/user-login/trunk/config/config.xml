@@ -6,6 +6,9 @@
 
     <page-classes>
         <login value="UserLogin_LoginPage" />
+        <log-out-return-to value="UserLogin_LoginPage" />
+        <registration value="UserLogin_RegistrationPage" />
+        <account value="UserLogin_AccountPage" />
         <password-reset-confirmation value="UserLogin_PasswordResetConfirmationPage" />
     </page-classes>
 

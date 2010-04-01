@@ -9,7 +9,7 @@
 abstract class
 	UserLogin_RestrictedHTMLPage
 extends
-	PublicHTML_HTMLPage
+	UserLogin_HTMLPage
 {
 	/**
 	 * This where we check whether the user is logged in or not.
@@ -40,5 +40,18 @@ extends
 			exit;
 		}
 	}
+
+    protected function
+        get_logged_in_user()
+    {
+		$alm = UserLogin_LoginManager::get_instance();
+        return $alm->get_name();
+    }
+
+    public function
+        get_log_out_div()
+    {
+        return UserLogin_DisplayHelper::get_log_out_div();
+    }
 }
 ?>

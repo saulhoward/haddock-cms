@@ -33,6 +33,32 @@ HaddockProjectOrganisation_ConfigManager
     }
 
     public function
+        get_log_out_return_to_page_class_name()
+    {
+        return trim(
+            $this->get_config_value('page-classes/log-out-return-to')
+        );
+    }
+    public function
+        get_registration_page_class_name()
+    {
+        return trim(
+            $this->get_config_value('page-classes/registration')
+        );
+    }
+    public function
+        get_account_page_class_name()
+    {
+        return trim(
+            $this->get_config_value('page-classes/account')
+        );
+    }
+
+
+
+
+
+    public function
         get_password_reset_email_reply_address()
     {
         return trim(

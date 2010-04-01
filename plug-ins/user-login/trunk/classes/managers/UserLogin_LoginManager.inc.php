@@ -151,9 +151,10 @@ extends
 		$mu = $muf->get_for_this_project();
 		$database = $mu->get_database();
 		
-		$user_users_table = $database->get_table('hpi_user_login_users');
+		$users_table = $database->get_table('hpi_user_login_users');
 		
-		return $user_users_table;
+        // print_r($users_table);exit;
+		return $users_table;
 	}
 	
 	/*
