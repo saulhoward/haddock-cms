@@ -58,6 +58,9 @@ VideoLibrary_PageBuilder
             $url = new HTMLTags_URL();
             $url->set_file($page['href']);
             $a->set_href($url);
+            if ($page['open-in-new-window'] == 'yes') {
+                $a->set_attribute_str('target', '_blank');
+            }
             $span = new HTMLTags_Span($page['title']);
             $a->append($span);
             $li->append($a);
