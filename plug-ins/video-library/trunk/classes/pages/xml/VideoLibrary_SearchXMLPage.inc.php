@@ -17,8 +17,6 @@ VideoLibrary_XMLPage
 
     private $external_video_provider_id;
 
-    private $related_videos;
-
     private $external_video_library_id;
 
     private $video_data;
@@ -91,37 +89,27 @@ VideoLibrary_XMLPage
         }
     }
 
-    public function
+    protected function
         get_external_video_library_id()
     {
-        /*
-         * Is this always a Video Page?
-         */
-        $video_data = $this->get_video_data();
-        return $video_data['external_video_library_id'];
+        if (isset($this->external_video_library_id)) {
+            return $this->external_video_library_id;
+        }
+        elseif (
+            isset($_GET['external_video_library_id'])
+        ) {
+            $this->set_external_video_library_id_from_get();
+            return $this->get_external_video_library_id();
+        }
+        else {
+            $this->set_external_video_library_id(
+                VideoLibrary_ExternalLibraryHelper
+                ::get_default_external_library_id()
+            );
+            return $this->get_external_video_library_id();
+            //throw new VideoGallery_ExternalVideoLibraryNotSetException();
+        }
     }
-
-    // protected function
-        // get_external_video_library_id()
-    // {
-        // if (isset($this->external_video_library_id)) {
-            // return $this->external_video_library_id;
-        // }
-        // elseif (
-            // isset($_GET['external_video_library_id'])
-        // ) {
-            // $this->set_external_video_library_id_from_get();
-            // return $this->get_external_video_library_id();
-        // }
-        // else {
-            // $this->set_external_video_library_id(
-                // VideoLibrary_ExternalLibraryHelper
-                // ::get_default_external_library_id()
-            // );
-            // return $this->get_external_video_library_id();
-            // //throw new VideoGallery_ExternalVideoLibraryNotSetException();
-        // }
-    // }
 
     private function
         set_video_data($video_data)

@@ -308,7 +308,7 @@ HTML;
         //print_r($video_data);exit;
         $div = new HTMLTags_Div();
         $div->set_attribute_str('id', 'related-videos');
-        $div->append('<h2 id="related-videos">Related Videos</h2>');
+        $div->append('<h2 class="related-videos">Related Videos</h2>');
         $video_data = $this->get_video_data();
         $video_page_url = VideoLibrary_URLHelper::
             get_video_page_url($video_data['id']);
