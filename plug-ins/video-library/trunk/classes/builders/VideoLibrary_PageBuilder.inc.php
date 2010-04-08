@@ -31,11 +31,9 @@ VideoLibrary_PageBuilder
     {
         $this->current_page_class = $current_page_class;
     }
-
     public function
-        get_first_tier_navigation_div()
+        get_first_tier_navigation_ul()
     {
-        $div = new HTMLTags_Div();
         $pages = $this->get_pages_for_first_tier_navigation();
         $ul = new HTMLTags_UL();
 
@@ -73,8 +71,14 @@ VideoLibrary_PageBuilder
             $li->append($a);
             $ul->append($li);
         }
-        $div->append($ul);
+        return $ul;
+    }
 
+    public function
+        get_first_tier_navigation_div()
+    {
+        $div = new HTMLTags_Div();
+        $div->append($this->get_first_tier_navigation_ul());
         return $div;
     }
 
