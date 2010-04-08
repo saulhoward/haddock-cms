@@ -71,8 +71,16 @@ $(document).ready(function(){
     /*
      * Add special Pager Previous and Next buttons (at the sides)
      */
-    $('#thumbnails-wrapper').before('<div class="prev standalone"><a href="#">Previous</a></div>');
-    $('#thumbnails-wrapper').after('<div class="next standalone"><a href="#">Next</a></div>');
+    if ($('.pager li.prev').length) { 
+        $('#thumbnails-wrapper').before('<div class="prev standalone"><a href="#">Previous</a></div>');
+    } else {
+        $('#thumbnails-wrapper').before('<div class="prev standalone"><span>Previous</span></div>');
+    }
+    if ($('.pager li.next').length) { 
+        $('#thumbnails-wrapper').after('<div class="next standalone"><a href="#">Next</a></div>');
+    } else {
+        $('#thumbnails-wrapper').after('<div class="next standalone"><span>Next</span></div>');
+    }
 
     $('#related-videos .next.standalone a').live(
             "click",
