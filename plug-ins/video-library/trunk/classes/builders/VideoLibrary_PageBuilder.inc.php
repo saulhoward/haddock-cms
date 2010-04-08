@@ -11,6 +11,12 @@ VideoLibrary_PageBuilder
     private $current_page_class;
 
     public function
+        get_current_page_class_string()
+    {
+        return get_class($this->get_current_page_class());
+    }
+
+    public function
         get_current_page_class()
     {
         if (!isset($this->current_page_class)) {
@@ -18,6 +24,7 @@ VideoLibrary_PageBuilder
         }
         return $this->current_page_class;
     }
+
 
     public function
         set_current_page_class($current_page_class)
@@ -37,16 +44,16 @@ VideoLibrary_PageBuilder
             if (
                 (
                     (
-                        ($this->get_current_page_class() == 'VideoLibrary_SearchPage')
+                        ($this->get_current_page_class_string() == 'VideoLibrary_SearchPage')
                         ||
-                        ($this->get_current_page_class() == 'VideoLibrary_HomePage')
+                        ($this->get_current_page_class_string() == 'VideoLibrary_HomePage')
                     )
                     &&
                     ($page['name'] == 'home')
                 )
                 ||
                 (
-                    ($this->get_current_page_class() == 'VideoLibrary_TagsPage')
+                    ($this->get_current_page_class_string() == 'VideoLibrary_TagsPage')
                     &&
                     ($page['name'] == 'tags')
 
@@ -74,17 +81,24 @@ VideoLibrary_PageBuilder
     public function
         get_pages_for_first_tier_navigation()
     {
-        $tags_page_url = VideoLibrary_URLHelper::get_tags_page_url();
-        $search_page_url = VideoLibrary_URLHelper::get_search_page_url();
-        if (isset($_GET['external_video_library_id'])) {
-            $tags_page_url->set_get_variable(
-                'external_video_library_id',
-                $_GET['external_video_library_id']
-            );
-            $search_page_url->set_get_variable(
-                'external_video_library_id',
-                $_GET['external_video_library_id']
-            );
+        /**
+         * Check whether or not the page we are building is an inheritor 
+         * of VideoLibrary_ExternalVideoLibraryPage
+         */
+        if (method_exists($this->get_current_page_class(), 'get_external_video_library_id')) {
+            $tags_page_url = VideoLibrary_URLHelper::
+                get_tags_page_url_for_external_video_library_id(
+                    $this->get_current_page_class()->get_external_video_library_id()
+                );
+            $search_page_url = VideoLibrary_URLHelper::
+                get_search_page_url_for_external_video_library_id(
+                    $this->get_current_page_class()->get_external_video_library_id()
+                );
+        } else {
+            $tags_page_url = VideoLibrary_URLHelper::
+                get_tags_page_url();
+            $search_page_url = VideoLibrary_URLHelper::
+                get_search_page_url();
         }
         $pages = array();
         $pages[] = array(

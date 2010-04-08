@@ -99,7 +99,7 @@ VideoLibrary_ExternalVideoLibraryPage
         $this->total_related_videos_count = $videos;
     }
 
-    protected function
+    public function
         get_external_video_library_id()
     {
         $video_data = $this->get_video_data();

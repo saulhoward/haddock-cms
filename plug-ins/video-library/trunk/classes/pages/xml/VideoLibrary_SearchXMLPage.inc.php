@@ -91,27 +91,37 @@ VideoLibrary_XMLPage
         }
     }
 
-    protected function
+    public function
         get_external_video_library_id()
     {
-        if (isset($this->external_video_library_id)) {
-            return $this->external_video_library_id;
-        }
-        elseif (
-            isset($_GET['external_video_library_id'])
-        ) {
-            $this->set_external_video_library_id_from_get();
-            return $this->get_external_video_library_id();
-        }
-        else {
-            $this->set_external_video_library_id(
-                VideoLibrary_ExternalLibraryHelper
-                ::get_default_external_library_id()
-            );
-            return $this->get_external_video_library_id();
-            //throw new VideoGallery_ExternalVideoLibraryNotSetException();
-        }
+        /*
+         * Is this always a Video Page?
+         */
+        $video_data = $this->get_video_data();
+        return $video_data['external_video_library_id'];
     }
+
+    // protected function
+        // get_external_video_library_id()
+    // {
+        // if (isset($this->external_video_library_id)) {
+            // return $this->external_video_library_id;
+        // }
+        // elseif (
+            // isset($_GET['external_video_library_id'])
+        // ) {
+            // $this->set_external_video_library_id_from_get();
+            // return $this->get_external_video_library_id();
+        // }
+        // else {
+            // $this->set_external_video_library_id(
+                // VideoLibrary_ExternalLibraryHelper
+                // ::get_default_external_library_id()
+            // );
+            // return $this->get_external_video_library_id();
+            // //throw new VideoGallery_ExternalVideoLibraryNotSetException();
+        // }
+    // }
 
     private function
         set_video_data($video_data)
