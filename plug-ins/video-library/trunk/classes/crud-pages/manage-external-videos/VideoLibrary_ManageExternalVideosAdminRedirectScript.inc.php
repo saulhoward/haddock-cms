@@ -178,6 +178,8 @@ SQL;
             &&
             (isset($_POST['external_video_library_id']) && ($_POST['external_video_library_id'] != '')) 
             &&
+            (isset($_POST['providers_internal_id']) && ($_POST['providers_internal_id'] != '')) 
+            &&
             (isset($_POST['status']) && ($_POST['status'] != '')) 
         ) {
 
