@@ -169,121 +169,147 @@ SQL;
 	{
 		//print_r($_POST);exit;
 		//print_r($_GET);exit;
+        if (
+            (isset($_POST['name']) && ($_POST['name'] != '')) 
+            &&
+            (isset($_POST['length']) && ($this->validate_length($_POST['length'])))
+            &&
+            (isset($_POST['external_video_provider_id']) && ($_POST['external_video_provider_id'] != '')) 
+            &&
+            (isset($_POST['external_video_library_id']) && ($_POST['external_video_library_id'] != '')) 
+            &&
+            (isset($_POST['status']) && ($_POST['status'] != '')) 
+        ) {
 
-		$dbh = DB::m();
-		$id = mysql_real_escape_string($_GET['id']);
-        $name = htmlentities($_POST['name']);
-        $name = mysql_real_escape_string($name);
-        $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
-        $length_seconds = mysql_real_escape_string($length_seconds);
-		$external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
-		$external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
-		$providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
-		$status = mysql_real_escape_string($_POST['status']);
-        $last_edited_by = mysql_real_escape_string(
-            VideoLibrary_AdminHelper::get_logged_in_admin_user_name()
-        );
+            $dbh = DB::m();
+            $id = mysql_real_escape_string($_GET['id']);
+            $name = htmlentities($_POST['name']);
+            $name = mysql_real_escape_string($name);
+            $length_seconds = $this->get_length_in_seconds_from_input($_POST['length']);
+            $length_seconds = mysql_real_escape_string($length_seconds);
+            $external_video_provider_id = mysql_real_escape_string($_POST['external_video_provider_id']);
+            $external_video_library_id = mysql_real_escape_string($_POST['external_video_library_id']);
+            $providers_internal_id = mysql_real_escape_string($_POST['providers_internal_id']);
+            $status = mysql_real_escape_string($_POST['status']);
+            $last_edited_by = mysql_real_escape_string(
+                VideoLibrary_AdminHelper::get_logged_in_admin_user_name()
+            );
 
-		$tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
+            $tags = VideoLibrary_TagsHelper::get_tags_array_for_admin_post_input($_POST['tags']);
 
-		$stmt = <<<SQL
+            $stmt = <<<SQL
 UPDATE
-	hpi_video_library_external_videos
+    hpi_video_library_external_videos
 SET
-	name = '$name',
-	length_seconds = '$length_seconds',
-	external_video_provider_id = '$external_video_provider_id',
-	providers_internal_id = '$providers_internal_id',
-	status = '$status',
-	last_edited_by = '$last_edited_by',
+    name = '$name',
+    length_seconds = '$length_seconds',
+    external_video_provider_id = '$external_video_provider_id',
+    providers_internal_id = '$providers_internal_id',
+    status = '$status',
+    last_edited_by = '$last_edited_by',
     date_last_edited = NOW()
 
 WHERE
-	id = $id
+    id = $id
 
 SQL;
 
-		//print_r($stmt);exit;
+            //print_r($stmt);exit;
 
-		$result = mysql_query($stmt, $dbh);
+            $result = mysql_query($stmt, $dbh);
 
-		$stmt_2 = <<<SQL
+            $stmt_2 = <<<SQL
 UPDATE
-	hpi_video_library_ext_vid_to_ext_vid_lib_links
+    hpi_video_library_ext_vid_to_ext_vid_lib_links
 SET
-	external_video_library_id = '$external_video_library_id'
+    external_video_library_id = '$external_video_library_id'
 WHERE
-	external_video_id = '$id'
+    external_video_id = '$id'
 
 SQL;
 
-		//print_r($stmt);exit;
+            //print_r($stmt);exit;
 
-		$result = mysql_query($stmt_2, $dbh);
+            $result = mysql_query($stmt_2, $dbh);
 
-		/*
-		 * TAGS
-		 */
-		$stmt_3 = <<<SQL
+            /*
+             * TAGS
+             */
+            $stmt_3 = <<<SQL
 DELETE
 FROM
-	hpi_video_library_tags_to_ext_vid_links
+    hpi_video_library_tags_to_ext_vid_links
 WHERE
-	external_video_id = $id
+    external_video_id = $id
 SQL;
-		
-		#echo $stmt; exit;
-		
-		mysql_query($stmt_3, $dbh);
+
+            #echo $stmt; exit;
+
+            mysql_query($stmt_3, $dbh);
 
 
-		foreach ($tags as $tag) {
-			$tag = mysql_real_escape_string($tag);
+            foreach ($tags as $tag) {
+                $tag = mysql_real_escape_string($tag);
 
-			$tag_query_1 = <<<SQL
+                $tag_query_1 = <<<SQL
 INSERT
 INTO
-	hpi_video_library_tags
+    hpi_video_library_tags
 SET
-	tag = '$tag',
-	principal = 'no'
+    tag = '$tag',
+    principal = 'no'
 
 SQL;
 
-			//print_r($tag_query_1);exit;
-			$result = mysql_query($tag_query_1, $dbh);
-			if ($result) {
-				$tag_id =  mysql_insert_id($dbh);
-			} else {
-				if (mysql_errno() == 1062) { #duplicate
-					$tag_id 
-						= VideoLibrary_DatabaseHelper
-						::get_tag_id_for_tag_string($tag); 
-				}
-			}
+                //print_r($tag_query_1);exit;
+                $result = mysql_query($tag_query_1, $dbh);
+                if ($result) {
+                    $tag_id =  mysql_insert_id($dbh);
+                } else {
+                    if (mysql_errno() == 1062) { #duplicate
+                        $tag_id 
+                            = VideoLibrary_DatabaseHelper
+                            ::get_tag_id_for_tag_string($tag); 
+                    }
+                }
 
-			$tag_query_2 = <<<SQL
+                $tag_query_2 = <<<SQL
 INSERT
 INTO
-	hpi_video_library_tags_to_ext_vid_links
+    hpi_video_library_tags_to_ext_vid_links
 SET
-	tag_id = '$tag_id',
-	external_video_id = '$id'
+    tag_id = '$tag_id',
+    external_video_id = '$id'
 
 SQL;
 
-			$result = mysql_query($tag_query_2, $dbh);
-			if (!$result) {
-				if (mysql_errno() == 1062) { #duplicate
-					# Do nothing, link already exists			
-				}
-			}
-		}
+                $result = mysql_query($tag_query_2, $dbh);
+                if (!$result) {
+                    if (mysql_errno() == 1062) { #duplicate
+                        # Do nothing, link already exists			
+                    }
+                }
+            }
 
-		VideoLibrary_DatabaseHelper::delete_orphaned_tags();
+            VideoLibrary_DatabaseHelper::delete_orphaned_tags();
 
-		return $id;
+            return $id;
+        } else {
+            throw new VideoLibrary_EditVideoDataNotSetException();
+        }
 	}
+
+    public function
+        validate_length($length)
+    {
+        /*
+         * Should be just 0-9 and : or .
+         */
+        preg_match('/[^0-9:.]/', $length, $matches);
+        // print_r($matches);exit;
+        if (isset($matches[0])) return FALSE;
+        return TRUE;
+    }
 
 	public function
 		delete_something()
