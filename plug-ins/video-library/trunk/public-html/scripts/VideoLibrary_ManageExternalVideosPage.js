@@ -110,14 +110,28 @@ $(function() {
         });
      $('input:text').bind("keyup focus blur change",
         function() {
-                if ($(this).val() == '') {
+                if ($(this).val().trim() == '') {
                         $(this).addClass('empty');
                 } else {
                         $(this).removeClass('empty');
                 }
         });
 
-
+        /*
+        * On form submit, alert if any textboxes are empty
+        */
+        $('form').submit(function() {
+            var validate = true;
+            $(this).find('input:text').each(function() {
+                if ($(this).val().trim() == '') {
+                    alert('Please fill in the ' + $(this).siblings('label').html() + '!');
+                    $(this).focus();
+                    validate = false;
+                    return false;
+                } 
+            });
+            return validate;
+        });
 
 });
 

@@ -8,7 +8,7 @@
 class
 VideoLibrary_EditVideoDataNotSetException
 extends
-VideoLibrary_Exception
+VideoLibrary_AdminException
 {
 	public function
 		__construct()
