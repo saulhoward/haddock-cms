@@ -30,21 +30,28 @@ div.principal-tags {
 
 ul.tags-empty-links-list {
 	margin: 20px 25px;
-    -moz-column-count: 5;
-    -webkit-column-count: 5;
+    -moz-column-width: 6em;
+    -moz-column-gap: 1.5em;
+    -moz-column-rule: 1px solid #ccc;
+    -webkit-column-width: 6em;
+    -webkit-column-gap: 1.5em;
+    -webkit-column-rule: 1px solid #ccc;
+}
+div.principal-tags ul.tags-empty-links-list {
+    -moz-column-rule: 1px solid white;
+    -webkit-column-rule: 1px solid white;
 }
 ul.tags-empty-links-list li {
 	cursor: pointer;
 	display: block;
-	padding: 3px !important;
-	margin: 2px 0 !important;
+	padding: 5px 3px !important;
+	margin: 5px 0 !important;
 	font-weight: 900;
 	color: #666;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	line-height:1.5em;
 }
 ul.tags-empty-links-list li.selected {
 	background: #4040FF;
