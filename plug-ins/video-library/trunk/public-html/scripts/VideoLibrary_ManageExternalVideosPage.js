@@ -26,6 +26,7 @@ $(function() {
 					} else {
                         $(".tags-fieldset li[tag='" + tag + "']").removeClass('selected')
 					}
+                 $('input#tags').trigger('change');
 				 }
 			 );
 
@@ -100,14 +101,14 @@ $(function() {
                 $(this).parent().addClass('checked');
         });
 
-        /*
-         * Highlight any empty input text boxes
-         */
+     /*
+      * Highlight any empty input text boxes
+      */
      $('input:text[value=""]').each (
         function() {
                 $(this).addClass('empty');
         });
-     $('input:text').bind("keypress focus blur change",
+     $('input:text').bind("keyup focus blur change",
         function() {
                 if ($(this).val() == '') {
                         $(this).addClass('empty');
