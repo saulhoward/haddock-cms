@@ -134,9 +134,9 @@ SQL;
             if ($i == 0) $library_li .= ' checked="checked"';
             $i++; 
             $library_li .= '>';
-            $library_li .= $library_value['name'] . '<br />';
+            $library_li .= $library_value['name'] . '<br /></label>';
         }
-        $library_li .= '</label></div></li>';
+        $library_li .= '</div></li>';
 
 
         echo $library_li;
@@ -156,9 +156,9 @@ SQL;
             if ($i == 0) $provider_li .= ' checked="checked"';
             $i++; 
             $provider_li .= '>';
-            $provider_li .= $provider_value['name'] . '<br />';
+            $provider_li .= $provider_value['name'] . '<br /></label>';
         }
-        $provider_li .= '</label></div></li>';
+        $provider_li .= '</div></li>';
 
 
         echo $provider_li;
@@ -179,11 +179,11 @@ SQL;
             if ($status_value == 'display') $status_li .= ' checked="checked"';
             $i++; 
             $status_li .= '>';
-            $status_li .= $status_value . '<br />';
+            $status_li .= $status_value . '<br /></label>';
 
             // $status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
         }
-        $status_li .= '</label></div></li>';
+        $status_li .= '</div></li>';
         // $status_li .= '</select></li>';
         echo $status_li;
 
@@ -285,9 +285,9 @@ HTML;
                 $library_li .= ' checked="checked"';
             }
             $library_li .= '>';
-            $library_li .= $library_value['name'] . '<br />';
+            $library_li .= $library_value['name'] . '<br /></label>';
         }
-        $library_li .= '</label></div></li>';
+        $library_li .= '</div></li>';
 
 
         echo $library_li;
@@ -303,9 +303,9 @@ HTML;
                 $provider_li .= ' checked="checked"';
             }
             $provider_li .= '>';
-            $provider_li .= $provider_value['name'] . '<br />';
+            $provider_li .= $provider_value['name'] . '<br /></label>';
         }
-        $provider_li .= '</label></div></li>';
+        $provider_li .= '</div></li>';
 
 
         echo $provider_li;
@@ -344,11 +344,11 @@ HTML;
 
             $i++; 
             $status_li .= '>';
-            $status_li .= $status_value . '<br />';
+            $status_li .= $status_value . '<br /></label>';
 
             // $status_li .= '<option value="' . $status_value . '">' . $status_value . '</option>';
         }
-        $status_li .= '</label></div></li>';
+        $status_li .= '</div></li>';
         // $status_li .= '</select></li>';
         echo $status_li;
 
