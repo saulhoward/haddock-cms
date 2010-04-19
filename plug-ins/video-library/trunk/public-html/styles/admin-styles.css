@@ -24,26 +24,27 @@ div.principal-tags {
 	-khtml-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-    padding: 10px 0 5px 0;
+    padding: 3px;
     background: #E0B8FF;
 }
 
 ul.tags-empty-links-list {
 	margin: 20px 25px;
-	text-align: center;
+    -moz-column-count: 5;
+    -webkit-column-count: 5;
 }
 ul.tags-empty-links-list li {
 	cursor: pointer;
-	display: inline;
-	padding: 1px;
-	margin: 0;
+	display: block;
+	padding: 3px !important;
+	margin: 2px 0 !important;
 	font-weight: 900;
 	color: #666;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	line-height:38px;
+	line-height:1.5em;
 }
 ul.tags-empty-links-list li.selected {
 	background: #4040FF;
@@ -56,8 +57,20 @@ form div.radio-inputs {
 }
 
 form div.radio-inputs label{
-        padding: 0;
-        margin: 0;
+    padding: 3px 10px 3px 1px;
+        line-height: 1.5em;
         float: none;
         display: inline;
+}
+form div.radio-inputs label.checked {
+    -moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #4040FF;
+	color: white;
+    font-weight: 900;
+}
+form input.empty {
+    background-color: #FF8080;
 }

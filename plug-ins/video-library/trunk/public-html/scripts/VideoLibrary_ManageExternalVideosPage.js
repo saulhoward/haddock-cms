@@ -85,6 +85,38 @@ $(function() {
             $('div.library.' + library_id).fadeIn();
          });
     
+    /*
+     * When any radio button is checked, give it's label a css class
+     */
+     $('input:radio:checked').each (
+        function() {
+                $(this).parent().siblings('label').removeClass('checked');
+                $(this).parent().addClass('checked');
+        });
+     $('input:radio').bind (
+        "change",
+        function() {
+                $(this).parent().siblings('label').removeClass('checked');
+                $(this).parent().addClass('checked');
+        });
+
+        /*
+         * Highlight any empty input text boxes
+         */
+     $('input:text[value=""]').each (
+        function() {
+                $(this).addClass('empty');
+        });
+     $('input:text').bind("keypress focus blur change",
+        function() {
+                if ($(this).val() == '') {
+                        $(this).addClass('empty');
+                } else {
+                        $(this).removeClass('empty');
+                }
+        });
+
+
 
 });
 
