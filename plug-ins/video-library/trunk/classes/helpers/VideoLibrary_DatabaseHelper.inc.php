@@ -40,11 +40,22 @@ SQL;
 
         $result = mysql_query($query, $dbh);
 
-        $video_data = mysql_fetch_assoc($result);
-        $video_data['tags'] 
-            = self::get_tags_for_external_video_id($video_data['id']);
-        //print_r($video_data);exit;
-        return $video_data;
+        // print_r($result);exit;
+
+        if (
+            ($result)
+            &&
+            (mysql_num_rows($result) > 0)
+        ) {
+
+            $video_data = mysql_fetch_assoc($result);
+            $video_data['tags'] 
+                = self::get_tags_for_external_video_id($video_data['id']);
+            //print_r($video_data);exit;
+            return $video_data;
+        } else {
+            throw new VideoLibrary_ExternalVideoNotFoundException($id);
+        }
     }
 
 
