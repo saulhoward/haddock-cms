@@ -9,7 +9,7 @@
 abstract class
 VideoLibrary_ExternalVideoLibraryPage
 extends
-VideoLibrary_HTMLPage
+VideoLibrary_FullPage
 {
     private $external_video_library_id;
 

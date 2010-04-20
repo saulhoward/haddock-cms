@@ -194,9 +194,15 @@ HTML;
     }
 
     public function
-        get_footer_content()
+        get_simple_footer_content()
     {
         return '<p>' . $this->get_footer_copyright_notice() . '</p>';
+    }
+
+    public function
+        get_footer_content()
+    {
+        return $this->get_simple_footer_content();
     }
 
     public function

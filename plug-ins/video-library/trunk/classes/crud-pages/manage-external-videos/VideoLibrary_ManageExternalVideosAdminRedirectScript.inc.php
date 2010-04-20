@@ -40,13 +40,21 @@ extends
 		add_something()
 	{
 		//print_r($_POST);exit;
-    
-        if (
-            (trim($_POST['name']) != '')
+            if (
+            (isset($_POST['name']) && ($_POST['name'] != '')) 
             &&
-            (trim($_POST['providers_internal_id']) != '')
+            (isset($_POST['length']) && ($this->validate_length($_POST['length'])))
+            &&
+            (isset($_POST['external_video_provider_id']) && ($_POST['external_video_provider_id'] != '')) 
+            &&
+            (isset($_POST['external_video_library_id']) && ($_POST['external_video_library_id'] != '')) 
+            &&
+            (isset($_POST['providers_internal_id']) && ($_POST['providers_internal_id'] != '')) 
+            &&
+            (isset($_POST['status']) && ($_POST['status'] != '')) 
+            &&
+            ($this->is_video_unique($_POST['external_video_provider_id'], $_POST['providers_internal_id']))
         ) {
-
             $dbh = DB::m();
             $name = htmlentities($_POST['name']);
             $name = mysql_real_escape_string($name, $dbh);
@@ -142,9 +150,27 @@ SQL;
             $this->add_video_to_thumbnail_queue($id);
             return $id;
         } else {
-            return FALSE;
+            throw new VideoLibrary_AddVideoDataNotSetException();
         }
 	}
+
+    public function
+        is_video_unique(
+            $external_video_provider_id,
+            $providers_internal_id
+        )
+    {
+        if (
+            VideoLibrary_DatabaseHelper::
+            video_exists_in_external_videos_by_external_video_provider_id_and_providers_internal_id(
+                $external_video_provider_id,
+                $providers_internal_id
+            )
+        ) {
+            throw new VideoLibrary_VideoAlreadyExistsInDatabaseException();
+        }
+        return TRUE;
+    }
 
     public function
         get_length_in_seconds_from_input($input)
@@ -309,7 +335,7 @@ SQL;
          */
         preg_match('/[^0-9:.]/', $length, $matches);
         // print_r($matches);exit;
-        if (isset($matches[0])) return FALSE;
+        if (isset($matches[0])) throw new VideoLibrary_LengthValidationFailException();
         return TRUE;
     }
 

@@ -2240,6 +2240,41 @@ SQL;
 	}
 
     public function
+        video_exists_in_external_videos_by_external_video_provider_id_and_providers_internal_id(
+            $external_video_provider_id,
+            $providers_internal_id
+        ) 
+    {
+        $dbh = DB::m();
+        $external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
+        $providers_internal_id = mysql_real_escape_string($providers_internal_id);
+
+        $stmt = <<<SQL
+SELECT
+    COUNT(*) as count
+FROM
+    hpi_video_library_external_videos
+WHERE
+    external_video_provider_id = '$external_video_provider_id'
+AND
+    providers_internal_id = '$providers_internal_id'
+
+SQL;
+
+         // print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+        $row = mysql_fetch_assoc($result);
+        // print_r($row);exit;
+
+        if ( $row['count'] > 0 ) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function
         video_exists_in_external_videos_frame_grabbing_queue_by_external_video_id($id)
     {
         $dbh = DB::m();
