@@ -625,6 +625,9 @@ HTML;
 
                         $first = TRUE;
 
+                        /*
+                         * Previous Link
+                         */
                         if ($current_page > 1 ){
                                 $prev_li= new HTMLTags_LI();
                                 $prev_li->set_attribute_str('class', 'prev');
@@ -641,35 +644,74 @@ HTML;
                                 $ul->append($prev_li);
                         }
 
+                        /*
+                         * Middle Links:
+                         *
+                         * (if there are 7 pages)
+                         * << 1 2 3 4 5 6 7>>
+                         *
+                         * (if we're on page 5 of 8)
+                         * << 1 2 ... 4 5 6 7 8 >>
+                         *
+                         * (if we're on page 50 of 100)
+                         * << 1 2 ... 49 50 51 ... 99 100 >>
+                         *
+                         */
+                        $ellipsis = 0;
+                        $previous_line_was_ellipsis = FALSE;
                         for ($page = 1; $page <= $pages; $page++) {
-                            $li = new HTMLTags_LI();
-                            $li_class = "";
-                            if ($first) {
-                                $li_class .= 'first ';
-                                $first = FALSE;
-                            } elseif ($page == $pages) {
-                                $li_class .= 'last ';
+                            if (
+                                ($pages <= 9) 
+                                OR
+                                ($page == 1) OR ($page == 2)
+                                OR
+                                ($page == $current_page)
+                                OR
+                                ($page == ($pages -1)) OR ($page == $pages)
+                                OR
+                                ($page == ($current_page - 1)) OR ($page == ($current_page + 1))
+                            ) {
+                                $li = new HTMLTags_LI();
+                                $li_class = "";
+                                if ($first) {
+                                    $li_class .= 'first ';
+                                    $first = FALSE;
+                                } elseif ($page == $pages) {
+                                    $li_class .= 'last ';
+                                }
+                                if ($page == $current_page) {
+                                    $li_class .= 'selected ';
+                                    $span = new HTMLTags_Span($page);
+                                    $li->append($span);
+                                } else {
+                                    $a = new HTMLTags_A($page);
+                                    $a->set_href(
+                                        VideoLibrary_URLHelper::
+                                        get_results_page_url(
+                                            $results_page_url,
+                                            ((($page - 1) * $duration) ),
+                                            $duration
+                                        )
+                                    );
+                                    $li->append($a);
+                                }
+                                $li->set_attribute_str('class', 
+                                    trim($li_class));
+                                $ul->append($li);
+                                $previous_line_was_ellipsis = FALSE;
+                            } elseif (!($previous_line_was_ellipsis) && ($ellipsis <= 1)){
+                                    $li = new HTMLTags_LI();
+                                    $li->set_attribute_str('class', 'ellipsis');
+                                    $li->append('<span>...</span>');
+                                    $ul->append($li);
+                                    $ellipsis++;
+                                    $previous_line_was_ellipsis = TRUE;
                             }
-                            if ($page == $current_page) {
-                                $li_class .= 'selected ';
-                                $span = new HTMLTags_Span($page);
-                                $li->append($span);
-                            } else {
-                                $a = new HTMLTags_A($page);
-                                $a->set_href(
-                                    VideoLibrary_URLHelper::
-                                    get_results_page_url(
-                                        $results_page_url,
-                                        ((($page - 1) * $duration) ),
-                                        $duration
-                                    )
-                                );
-                                $li->append($a);
-                            }
-                            $li->set_attribute_str('class', trim($li_class));
-                            $ul->append($li);
                         }
 
+                        /*
+                         * Next page link
+                         */
                         if ($current_page < $pages ){
                                 $next_li= new HTMLTags_LI();
                                 $next_li->set_attribute_str('class', 'next');
