@@ -25,103 +25,25 @@ $(document).ready(
         /*
          * Click event on any pager button
          */
-        $('.pager li a').live (
+        $('a', $('.pager')).live(
             "click",
-            function(){
-                /*
-                 * Sort out removing or putting back the 'Previous' button
-                 */
-                // if ($(this).parent().hasClass('first')) {
-                    // $(this).parent().siblings('.prev').remove();
-                    // $('#related-videos .prev.standalone').html('<span>Previous</span>');
-                // } else if (
-                    // !$(this).parent().hasClass('.prev')
-                    // &&
-                    // !$(this).parent().siblings().hasClass('.prev')
-                // ) {
-                    // $(this).parent().siblings('.first').before('<li class="prev"><a href="/">Previous</a></li>');
-                    // $('#related-videos .prev.standalone').html('<a href="#">Previous</a>');
-                // }
-
-                /*
-                 * And the 'Next' button
-                 */
-                // if ($(this).parent().hasClass('last')) {
-                    // $(this).parent().siblings('.next').remove();
-                    // $('#related-videos .next.standalone').html('<span>Next</span>');
-                // } else if (
-                    // !$(this).parent().hasClass('.next')
-                    // &&
-                    // !$(this).parent().siblings().hasClass('.next')
-                // ) {
-                    // $(this).parent().siblings('.last').after('<li class="next"><a href="/">Next</a></li>');
-                    // $('#related-videos .next.standalone').html('<a href="#">Next</a>');
-                // }
-
-                /*
-                 * Now what to do with the click
-                 */
-
-                /*
-                 * Create the video_page_url object for the clicked button
-                 */
-                var clicked_url_string = $(this).attr('href');
-                url = new video_page_url(clicked_url_string);
-                // alert(url);
-
-                /*
-                 * if a sibling is '...', then sort that out
-                 */
-                // if ($(this).parent().next().hasClass('ellipsis')) {
-                    // var subsequent_url_string = create_subsequent_url_string(url);
-                    // var subsequent_line_number = parseInt($(this).html()) + 1;
-                    // var subsequent_line = '<li><a href="' + subsequent_url_string + '">' + subsequent_line_number + '</a></li>';
-                    // $(this).parent().after(subsequent_line);
-                // }
-                // if ($(this).parent().prev().hasClass('ellipsis')) {
-                    // var preceeding_url_string = create_preceeding_url_string(url);
-                    // var preceeding_line_number = parseInt($(this).html()) - 1;
-                    // var preceeding_line = '<li><a href="' + preceeding_url_string + '">' + preceeding_line_number + '</a></li>';
-                    // $(this).parent().before(preceeding_line);
-                // }
-
-                /*
-                 * Do the actual click,
-                 * if its a prev or next button, simulate the click on
-                 * the indented target, otherwise run the click and redo
-                 * the pager
-                 */
-                if ($(this).parent().hasClass('.prev')) {
-                    $(this).parent().siblings('.selected').prev().children('a').click();
-                } else if ($(this).parent().hasClass('.next')) {
-                    $(this).parent().siblings('.selected + li').children('a').click();
+            function(event){
+                if ($(event.target).parent().hasClass('.prev')) {
+                    $(event.target).parent().siblings('.selected').prev().children('a').click();
+                } else if ($(event.target).parent().hasClass('.next')) {
+                    $(event.target).parent().siblings('.selected + li').children('a').click();
                 } else {
+                    var clicked_url_string = $(event.target).attr('href');
+                    url = new video_page_url(clicked_url_string);
 
-                    /*
-                     * AJAX function to get the videos
-                     */
                     set_related_videos(url);
 
-                    /*
-                     * Sort the Pager out
-                     */
-                    // var old_page_text = $(this).parent().siblings('.selected').children('span').html();
-                    // $(this).parent().siblings('.selected').html('<a href="' + cur_url + '">' + old_page_text + '</a>');
-                    // $(this).parent().siblings('.selected').removeClass('selected');
-                    // cur_url = clicked_url_string;
-
-                    // $(this).parent().addClass('selected');
-                    // var text = $(this).html();
-                    // $(this).replaceWith('<span>' + text + '</span>');
-
-                    // setup_pager($('.pager'));
-
-                    var new_pager = get_new_pager(
-                        $(this).parent().siblings('.last').children('a').html(),
+                    new_pager = get_new_pager(
+                        $('.pager .last a').html(),
                         (url.start / url.duration) + 1,
                         url
-                    )
-                    $('.pager').html(new_pager);
+                    );
+                    // $('.pager ul').replaceWith(new_pager);
                 }
                 return false;
         });
@@ -203,7 +125,7 @@ function get_new_pager(
                 video_page_url = create_video_page_url_string(
                     selected_url.video_id,
                     selected_url.provider_id,
-                    (((page - 1)* selected_url.duration)),
+                    (((page - 1) * selected_url.duration)),
                     selected_url.duration
                 );
                 li_html += '<li class="' + li_class + '"><a href="' + video_page_url + '">' + page + '</a></li>';
@@ -226,128 +148,6 @@ function get_new_pager(
     return pager_html;
 }
 
-function setup_pager(pager)
-{
-    /*
-     * If there are too many line numbers, delete some
-     * if necessary, insert '...'
-     */
-    var total_number_of_pages = pager.children('.last').children('a').html();
-    if (total_number_of_pages > 9) {
-        var preceeding_was_ellipsis = false;
-        var preceeding_line_number = false;
-        var selected_line_number = pager.children('.selected').children('span').html();
-        pager.children('li').each(function(index) {
-                var replacement_html = false;
-                var delete_line = false;
-                if (
-                    $(this).hasClass('prev')
-                    ||
-                    (!($(this).hasClass('ellipsis')))
-                ) {
-                    var this_line_number = $(this).children('a').html();
-                } else if ($(this).hasClass('selected')) {
-                    var this_line_number = $(this).children('span').html();
-                } else {
-                    var this_line_number = false;
-                }
-
-
-                if (
-                    (
-                        (!($(this).hasClass('ellipsis')))
-                        &&
-                        (!(preceeding_was_ellipsis))
-                    )
-                    &&
-                    (
-                        (
-                            (this_line_number == (selected_line_number + 2))
-                            &&
-                            (this_line_number < (total_number_of_pages - 1))
-                        )
-                        ||
-                        (
-                            (this_line_number == (selected_line_number - 2))
-                            &&
-                            (this_line_number > 2)
-                        )
-                    )
-                ) {
-                    replacement_html = '<li class="ellipsis"><span>...</span></li>';
-                    preceeding_was_ellipsis = true;
-                }
-
-
-                /*
-                 * Remove more than one ellipses
-                 */
-                if ($(this).hasClass('ellipsis')) {
-                    if (preceeding_was_ellipsis) {
-                        delete_line = true;
-                    }
-                    preceeding_was_ellipsis = true;
-                } else {
-                    preceeding_was_ellipsis = false;
-                }
-
-                if (this_line_number) {
-                    preceeding_line_number = this_line_number;
-                }
-
-                if (
-                    (this_line_number)
-                    &&
-                    (preceeding_line_number > this_line_number)
-                ) {
-                    $(this).prev().remove();
-                    delete_line = true;
-                }
-
-                if (delete_line) {
-                    $(this).remove();
-                    // $(this).replaceWith('Deleted!');
-                } else if (replacement_html) {
-                    $(this).replaceWith(replacement_html);
-                }
-
-            });
-    }
-}
-
-function create_subsequent_url_string(url)
-{
-    var url_string = '/videos/' + url.video_id;
-    if (url.provider_id != false) {
-        url_string += '/channels/' + url.provider_id;
-    }
-    if (url.start != false) {
-        url_string += '/' + (parseInt(url.start) + parseInt(url.duration));
-    }
-    if (url.duration != false) {
-        url_string += '/' + url.duration;
-    }
-
-    return url_string;
-}
-function create_preceeding_url_string(url)
-{
-    var url_string = '/videos/' + url.video_id;
-
-    if (url.provider_id != false) {
-        url_string += '/channels/' + url.provider_id;
-    }
-
-    if (url.start != false) {
-        url_string += '/' + (parseInt(url.start) - parseInt(url.duration));
-    }
-
-    if (url.duration != false) {
-        url_string += '/' + url.duration;
-    }
-
-    return url_string;
-}
 function create_video_page_url_string(
     video_id,
     provider_id,
@@ -371,8 +171,6 @@ function create_video_page_url_string(
 
     return url_string;
 }
-
-
 
 function video_page_url(url)
 {
