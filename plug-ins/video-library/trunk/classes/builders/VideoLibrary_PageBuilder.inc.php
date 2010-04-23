@@ -148,7 +148,7 @@ VideoLibrary_PageBuilder
         return <<<HTML
 <script 
     type="text/javascript" 
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
 >
 </script> 
 <!--
