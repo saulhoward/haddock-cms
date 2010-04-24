@@ -702,7 +702,7 @@ HTML;
                             } elseif (!($previous_line_was_ellipsis) && ($ellipsis <= 1)){
                                     $li = new HTMLTags_LI();
                                     $li->set_attribute_str('class', 'ellipsis');
-                                    $li->append('<span>...</span>');
+                                    $li->append('<span>&hellip;</span>');
                                     $ul->append($li);
                                     $ellipsis++;
                                     $previous_line_was_ellipsis = TRUE;

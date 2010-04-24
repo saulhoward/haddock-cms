@@ -19,7 +19,7 @@ $(document).ready(
          * Set up the loading div,
          * and hide it.
          */
-        $('#thumbnails').after('<div id="loading">Loading...</div>');
+        $('#thumbnails').after('<div id="loading">Loading&hellip;</div>');
         $('#loading').hide();
 
         var duration = 0;
@@ -151,7 +151,7 @@ function get_new_pager(
             previous_line_was_ellipsis = false;
         } 
         else if ((!(previous_line_was_ellipsis)) && (ellipsis <= 1)){
-            ul_html += '<li class="ellipsis"><span>...</span></li>';
+            ul_html += '<li class="ellipsis"><span>&hellip;</span></li>';
             ellipsis++;
             previous_line_was_ellipsis = true;
         }
