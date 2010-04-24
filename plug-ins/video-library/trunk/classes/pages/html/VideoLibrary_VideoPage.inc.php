@@ -264,18 +264,19 @@ HTML;
                 )->get_as_string();
         }
 
-        $content_div->append($this->get_extra_content_div());
+        $content_div->append($this->get_side_content_div());
         $content_div->append($this->get_video_div());
+        $content_div->append($this->get_video_info_div());
         $content_div->append($this->get_related_videos_div());
 
         return $content_div;
     }
 
     private function
-        get_extra_content_div()
+        get_side_content_div()
     {
-        echo '<div class="extra-content">';
-		return $this->get_page_builder()->get_video_page_extra_side_content();
+        echo '<div class="side-content">';
+		return $this->get_page_builder()->get_video_page_side_content();
         echo '</div>';
         return $html;
     }
@@ -289,6 +290,21 @@ HTML;
             );
     }
 
+    private function
+        get_video_info_div()
+    {
+        $div = VideoLibrary_DisplayHelper
+            ::get_video_info_div_for_external_video_data(
+                $this->get_video_data()
+            );
+		$div->append(
+            $this->get_page_builder()->get_video_info_div_additional_content(
+                $this->get_video_data()
+            )
+        );
+        return $div;
+    }
+ 
     private function
         get_related_videos_div()
     {

@@ -181,11 +181,18 @@ HTML;
     }
 
     public function
-        get_video_page_extra_side_content()
+        get_video_page_side_content()
     {
         return '';
     }
 
+    public function
+        get_video_info_div_additional_content(
+            $video_data
+        )
+    {
+        return '';
+    }
 
     public function
         get_thumbnails_page_extra_content()

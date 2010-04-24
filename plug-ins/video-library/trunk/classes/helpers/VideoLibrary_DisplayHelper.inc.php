@@ -191,19 +191,24 @@ VideoLibrary_DisplayHelper
                         ::get_video_embed_code_for_external_video($video_data)
                 );
                 $div->append($embed_div);
+                return $div;
+        }
 
-                /*
-                 *Info
-                 */
-                $info_div = new HTMLTags_Div();
-                $info_div->set_attribute_str('id', 'info');
+        public static function
+            get_video_info_div_for_external_video_data($video_data)
+        {
+            /*
+             *Info
+             */
+            $info_div = new HTMLTags_Div();
+            $info_div->set_attribute_str('id', 'info');
 
-                $length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
-                $tags = self::get_tags_links_string(
-                        $video_data['tags'],
-                        $video_data['external_video_library_id']
-                );
-                $info_dl = <<<HTML
+            $length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
+            $tags = self::get_tags_links_string(
+                $video_data['tags'],
+                $video_data['external_video_library_id']
+            );
+            $info_dl = <<<HTML
 <dl>
         <dt>Length:</dt>
                 <dd>$length_min min</dd>
@@ -213,10 +218,9 @@ VideoLibrary_DisplayHelper
 </dl>
 HTML;
 
-                $info_div->append($info_dl);
-                $div->append($info_div);
+            $info_div->append($info_dl);
 
-                return $div;
+            return $info_div;
         }
 
         public static function

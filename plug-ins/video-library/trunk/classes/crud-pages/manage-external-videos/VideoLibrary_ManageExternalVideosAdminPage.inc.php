@@ -37,6 +37,14 @@ HTML;
     {
         return array(
             array(
+                'col_name' => 'id',
+                'title' => 'ID'
+            ),
+            array(
+                'col_name' => 'added_by',
+                'title' => 'User'
+            ),
+            array(
                 'col_name' => 'date_added',
                 'filter' => 'return date("F j, Y", strtotime($str));'
             ),
