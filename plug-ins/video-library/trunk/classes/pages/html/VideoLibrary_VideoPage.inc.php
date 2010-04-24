@@ -267,6 +267,7 @@ HTML;
         $content_div->append($this->get_side_content_div());
         $content_div->append($this->get_video_div());
         $content_div->append($this->get_video_info_div());
+        $content_div->append('<div class="clear">&nbsp;</div>');
         $content_div->append($this->get_related_videos_div());
 
         return $content_div;
