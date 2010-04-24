@@ -22,33 +22,58 @@ $(document).ready(
         $('#thumbnails').after('<div id="loading">Loading...</div>');
         $('#loading').hide();
 
+        var duration = 0;
+
         /*
          * Click event on any pager button
          */
         $('a', $('.pager')).live(
             "click",
             function(event){
-                if ($(event.target).parent().hasClass('.prev')) {
-                    $(event.target).parent().siblings('.selected').prev().children('a').click();
-                } else if ($(event.target).parent().hasClass('.next')) {
-                    $(event.target).parent().siblings('.selected + li').children('a').click();
-                } else {
-                    var clicked_url_string = $(event.target).attr('href');
-                    url = new video_page_url(clicked_url_string);
+                var clicked_url_string = $(event.target).attr('href');
+                url = new video_page_url(clicked_url_string);
 
-                    set_related_videos(url);
+                set_related_videos(url);
 
-                    new_pager = get_new_pager(
-                        $('.pager .last a').html(),
-                        (url.start / url.duration) + 1,
-                        url
-                    );
-                    // $('.pager ul').replaceWith(new_pager);
+                if (url.duration) {
+                    duration = url.duration;
                 }
+
+                new_pager = get_new_pager(
+                    $('.pager .last span, .pager .last a').html(),
+                    url,
+                    duration
+                );
+                $('.pager ul').replaceWith(new_pager);
+                sort_out_standalone_buttons();
                 return false;
-        });
+            });
+
+        sort_out_standalone_buttons();
+
+        $('.next.standalone a', $('#related-videos')).live(
+            "click",
+            function(){
+                $('.pager li.next a').click();
+                sort_out_standalone_buttons();
+                return false;
+            }
+        );
+        $('.prev.standalone a', $('#related-videos')).live(
+            "click",
+            function(){
+                $('.pager li.prev a').click();
+                sort_out_standalone_buttons();
+                return false;
+            }
+        );
 
 
+    }); //close $
+
+function sort_out_standalone_buttons()
+{
+    $('.standalone').remove();
     /*
      * Add special Pager Previous and Next buttons (at the sides)
      */
@@ -62,31 +87,17 @@ $(document).ready(
     } else {
         $('#thumbnails-wrapper').after('<div class="next standalone"><span>Next</span></div>');
     }
+}
 
-    $('#related-videos .next.standalone a').live(
-        "click",
-        function(){
-            $('.pager li.next a').click();
-            return false;
-        }
-    );
-    $('#related-videos .prev.standalone a').live(
-        "click",
-        function(){
-            $('.pager li.prev a').click();
-            return false;
-        }
-    );
-
-
-}); //close $
 
 function get_new_pager(
     pages,
-    current_page,
-    selected_url
+    selected_url,
+    duration
 )
 {
+    // alert(pages + '//' + duration);
+    var current_page = (selected_url.start / duration) + 1;
     var pager_html = '';
     var ul_html = '';
     var ellipsis = 0;
@@ -96,7 +107,13 @@ function get_new_pager(
     // pager_html += '<div class="pager">';
     ul_html += '<ul>';
     if (current_page != 1) {
-        ul_html += '<li class="prev"><a href="#">Previous</a></li>';
+        var prev_video_page_url = create_video_page_url_string(
+            selected_url.video_id,
+            selected_url.provider_id,
+            ((current_page - 2) * duration),
+            duration
+        );
+        ul_html += '<li class="prev"><a href="' + prev_video_page_url + '">Previous</a></li>';
     }
     for (var page = 1; page <= pages; page++) {
         if (
@@ -111,7 +128,7 @@ function get_new_pager(
             (page == (current_page - 1)) || (page == (current_page + 1))
         ) {
             var li_html = '';
-            var li_class = "";
+            var li_class = '';
             if (first) {
                 li_class += 'first ';
                 first = false;
@@ -122,24 +139,31 @@ function get_new_pager(
                 li_class += 'selected ';
                 li_html += '<li class="' + li_class + '"><span>' + page + '</span></li>';
             } else {
-                video_page_url = create_video_page_url_string(
+                var video_page_url = create_video_page_url_string(
                     selected_url.video_id,
                     selected_url.provider_id,
-                    (((page - 1) * selected_url.duration)),
-                    selected_url.duration
+                    (((page - 1) * duration)),
+                    duration
                 );
                 li_html += '<li class="' + li_class + '"><a href="' + video_page_url + '">' + page + '</a></li>';
             }
             ul_html += li_html;
             previous_line_was_ellipsis = false;
-        } else if ((!(previous_line_was_ellipsis)) && (ellipsis <= 1)){
+        } 
+        else if ((!(previous_line_was_ellipsis)) && (ellipsis <= 1)){
             ul_html += '<li class="ellipsis"><span>...</span></li>';
             ellipsis++;
             previous_line_was_ellipsis = true;
         }
     }
     if (current_page != pages) {
-        ul_html += '<li class="next"><a href="#">Next</a></li>';
+        var next_video_page_url = create_video_page_url_string(
+            selected_url.video_id,
+            selected_url.provider_id,
+            (current_page * duration),
+            duration
+        );
+        ul_html += '<li class="next"><a href="' + next_video_page_url + '">Next</a></li>';
     }
     ul_html += '</ul>';
 
@@ -163,6 +187,8 @@ function create_video_page_url_string(
 
     if (start != false) {
         url_string += '/' + start;
+    } else if (start == 0) {
+        url_string += '/0';
     }
 
     if (url.duration != false) {
