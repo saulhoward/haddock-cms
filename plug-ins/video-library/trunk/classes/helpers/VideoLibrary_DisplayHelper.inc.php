@@ -66,6 +66,28 @@ VideoLibrary_DisplayHelper
                 return $div;
         }
 
+        public static function 
+            truncate_video_name(
+                $string,
+                $limit,
+                $break=" ",
+                $pad='&hellip;'
+            ) 
+        { 
+            // This function
+            // Original PHP code by Chirp Internet: www.chirp.com.au 
+            // Please acknowledge use of this code by including this header. 
+
+            // return with no change if string is shorter than $limit  
+            if(strlen($string) <= $limit) return $string;
+
+            $string = substr($string, 0, $limit);
+            if(false !== ($breakpoint = strrpos($string, $break))) {
+                $string = substr($string, 0, $breakpoint);
+            } 
+            return $string . $pad;
+        }
+
         public static function
                 get_thumbnail_div_for_video($video_data)
         {
@@ -84,7 +106,8 @@ VideoLibrary_DisplayHelper
             $name_a = new HTMLTags_A();
             $name_a->set_attribute_str('class', 'text');
             $name_a->set_href($url);
-            $name_a->append(stripslashes($video_data['name']));
+            $name_a->set_attribute_str('title', stripslashes($video_data['name']));
+            $name_a->append(self::truncate_video_name(stripslashes($video_data['name']), 50));
             $name_li = new HTMLTags_LI();
             $name_li->set_attribute_str('class', 'name');
             $name_li->append($name_a);

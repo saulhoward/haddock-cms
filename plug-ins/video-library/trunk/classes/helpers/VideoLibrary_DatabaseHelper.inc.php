@@ -265,6 +265,13 @@ AND
 
 SQL;
 
+        $query .= <<<SQL
+
+ORDER BY
+    hpi_video_library_external_videos.date_added DESC
+SQL;
+
+
         if (
             ($start != NULL)
             &&
@@ -280,7 +287,7 @@ SQL;
 
         }
 
-        //echo $query; exit;
+        // echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
@@ -381,6 +388,13 @@ AND
 AND
     hpi_video_library_external_video_providers.id = '$external_video_provider_id'
 SQL;
+
+        $query .= <<<SQL
+
+ORDER BY
+    hpi_video_library_external_videos.date_added DESC
+SQL;
+
 
         if (
             ($start != NULL)
