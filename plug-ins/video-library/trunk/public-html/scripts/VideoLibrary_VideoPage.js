@@ -68,7 +68,6 @@ $(document).ready(
             }
         );
 
-
     }); //close $
 
 function sort_out_standalone_buttons()
