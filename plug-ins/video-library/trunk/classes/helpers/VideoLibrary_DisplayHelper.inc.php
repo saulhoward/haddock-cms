@@ -600,8 +600,11 @@ HTML;
             $filetype = NULL
         )
     {
+        /*
+         * A bodge TODO: rewrite this function
+         */
         if (!($filetype)) {
-            if ($size == '50') {
+            if (substr($size, 0, 2) == '50') {
                 $filetype = 'png';
             } else {
                 $filetype = 'jpg';
