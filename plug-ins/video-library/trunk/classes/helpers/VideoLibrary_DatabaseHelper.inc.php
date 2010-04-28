@@ -948,126 +948,28 @@ SQL;
 
     }
 
-
     public static function
-        get_external_videos_count_for_tag_ids(
-            $external_video_library_id,
-            $tag_ids,
-            $ignore_video_id = NULL
-        )
-    {
-        $dbh = DB::m();
-        $external_video_library_id = mysql_real_escape_string($external_video_library_id);
-
-        $query = '';
-        $query .= self::get_select_sql_for_external_videos_count();
-
-        $query .= <<<SQL
-
-FROM
-    hpi_video_library_external_videos,
-    hpi_video_library_external_video_providers,
-    hpi_video_library_tags,
-    hpi_video_library_tags_to_ext_vid_links,
-    hpi_video_library_external_video_libraries,
-    hpi_video_library_ext_vid_to_ext_vid_lib_links
-WHERE
-    hpi_video_library_external_video_libraries.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
-AND
-    hpi_video_library_external_videos.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
-AND
-    hpi_video_library_external_video_libraries.id = '$external_video_library_id'
-AND
-    hpi_video_library_external_videos.external_video_provider_id 
-    = hpi_video_library_external_video_providers.id
-    AND
-    hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
-    AND
-    hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
-    AND
-    hpi_video_library_external_videos.status = 'display'
-
-SQL;
-
-        if (count($tag_ids) > 0) {
-            $query .= <<<SQL
-    AND
-(
-
-SQL;
-
-
-            $i = 0;
-            foreach ($tag_ids as $tag_id) {
-                $tag_id = mysql_real_escape_string($tag_id);
-                if ($i != 0){
-                    $query .= <<<SQL
-    OR
-
-SQL;
-
-                }
-                $i++;
-                $query .= <<<SQL
-    hpi_video_library_tags.id = '$tag_id'
-
-SQL;
-
-            }
-            $query .= <<<SQL
-)
-
-SQL;
-        }
-
-
-        if ($ignore_video_id > 0) {
-            $ignore_video_id = mysql_real_escape_string($ignore_video_id);
-            $query .= <<<SQL
-    AND
-    hpi_video_library_external_videos.id <> $ignore_video_id
-
-SQL;
-
-        }
-
-        $query .= <<<SQL
-ORDER BY
-    hpi_video_library_external_videos.id
-SQL;
-
-        // echo $query; exit;
-
-        $result = mysql_query($query, $dbh);
-
-        $tags = array();
-
-        $row = mysql_fetch_assoc($result);
-        //print_r($tags);exit;
-        return $row['count'];
-
-
-    }
-
-    public static function
-        get_external_videos_for_tag_ids(
+        get_sql_parts_for_external_videos_for_tag_ids(
             $external_video_library_id,
             $tag_ids,
             $ignore_video_id = NULL,
             $start = NULL,
-            $duration = NULL
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE
+            )
         )
     {
-       // print_r($start . '  ' . $duration);exit;
-        $dbh = DB::m();
-
         $query = '';
         $num_tags = count($tag_ids);
         if ($num_tags > 0 && $num_tags <= 32) {
-            $sql_select = "SELECT DISTINCT t2v" . ($num_tags - 1) . ".external_video_id, ";
-            $sql_select .= self::get_data_for_select_sql_for_videos() . ', COUNT( * ) AS count' . "\n";
+            if ($options['count']) {
+                $sql_select = "SELECT COUNT( DISTINCT t2v" . ($num_tags - 1) . ".external_video_id) AS count ";
+            } else {
+                $sql_select = "SELECT DISTINCT t2v" . ($num_tags - 1) . ".external_video_id, ";
+                $sql_select .= self::get_data_for_select_sql_for_videos() . "\n";
+            }
+
             $sql_from = " " . self::get_from_sql_for_videos() . ", ";
             $sql_where = " WHERE ";
             $sql_joins = "";
@@ -1088,6 +990,7 @@ SQL;
             }
             $sql_where .= 'AND hpi_video_library_external_videos.id = t2v' . ($i - 1) . '.external_video_id' . "\n";
 
+            $external_video_library_id = mysql_real_escape_string($external_video_library_id);
             $sql_where .= <<<SQL
 AND
     hpi_video_library_external_video_libraries.id 
@@ -1102,29 +1005,36 @@ AND
 
 SQL;
 
-            $query = $sql_select . $sql_from . $sql_joins . $sql_where;
-        } else {
-            throw new VideoLibrary_Exception('Too many tags searched for simultaneously');
-        }
-
-        if ($ignore_video_id > 0) {
-            $ignore_video_id = mysql_real_escape_string($ignore_video_id);
-            $query .= <<<SQL
-    AND
+            if ($ignore_video_id > 0) {
+                $ignore_video_id = mysql_real_escape_string($ignore_video_id);
+                $sql_where .= <<<SQL
+AND
     hpi_video_library_external_videos.id <> $ignore_video_id
 
 SQL;
 
+            }
+
+
+        } else {
+            throw new VideoLibrary_Exception('Too many tags searched for simultaneously');
         }
 
-        $query .= <<<SQL
+        $sql_group_by = '';
+        if (!($options['count'])) {
+            $sql_group_by .= <<<SQL
 GROUP BY
     hpi_video_library_external_videos.id
-ORDER BY
-    count DESC, hpi_video_library_external_videos.date_added DESC
 SQL;
 
-        // echo $query; exit;
+        }
+
+        $sql_order_by = <<<SQL
+ORDER BY
+     hpi_video_library_external_videos.date_added DESC
+SQL;
+
+
         if (
             !(is_null($start))
             &&
@@ -1133,7 +1043,7 @@ SQL;
             // print_r($start . '    ' . $duration);exit;
             $start = mysql_real_escape_string($start);
             $duration = mysql_real_escape_string($duration);
-            $query .= <<<SQL
+            $sql_limit = <<<SQL
 
 LIMIT
         $start, $duration
@@ -1141,6 +1051,76 @@ SQL;
 
         }
 
+        return array(
+            'select' => $sql_select,
+            'from' => $sql_from,
+            'joins' => $sql_joins,
+            'where' => $sql_where,
+            'group_by' => $sql_group_by,
+            'order_by' => $sql_order_by,
+            'limit' => $sql_limit
+        );
+    }
+
+    public static function
+        get_external_videos_count_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id = NULL
+        )
+    {
+       // print_r($start . '  ' . $duration);exit;
+        $dbh = DB::m();
+        $sql = self::get_sql_parts_for_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id,
+            NULL,
+            NULL,
+            array(
+                'count' => TRUE
+            )
+        );
+        $query = self::assemble_query_from_sql_parts($sql);
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+        $row = mysql_fetch_assoc($result);
+        return $row['count'];
+    }
+
+    public static function
+        assemble_query_from_sql_parts(
+            $sql
+        )
+    {
+        return $sql['select']  . "\n"
+            . $sql['from']  . "\n"
+            . $sql['joins']  . "\n"
+            . $sql['where']  . "\n"
+            . $sql['group_by'] . "\n"
+            . $sql['limit'] . "\n";
+    }
+
+    public static function
+        get_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL
+        )
+    {
+       // print_r($start . '  ' . $duration);exit;
+        $dbh = DB::m();
+        $sql = self::get_sql_parts_for_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id,
+            $start,
+            $duration
+        );
+        // echo $query; exit;
+        $query  = self::assemble_query_from_sql_parts($sql);
         // print_r($query);exit;
         $result = mysql_query($query, $dbh);
 
@@ -1154,131 +1134,6 @@ SQL;
     }
 
     public static function
-        old_get_external_videos_for_tag_ids(
-            $external_video_library_id,
-            $tag_ids,
-            $ignore_video_id = NULL,
-            $start = NULL,
-            $duration = NULL
-        )
-    {
-        $dbh = DB::m();
-        $external_video_library_id = mysql_real_escape_string($external_video_library_id);
-
-        $query = '';
-        $query .= self::get_select_sql_for_videos();
-
-        $query .= <<<SQL
-
-,
-    COUNT( * ) AS count
-
-FROM
-    hpi_video_library_external_videos,
-    hpi_video_library_external_video_providers,
-    hpi_video_library_tags,
-    hpi_video_library_tags_to_ext_vid_links,
-    hpi_video_library_external_video_libraries,
-    hpi_video_library_ext_vid_to_ext_vid_lib_links
-WHERE
-    hpi_video_library_external_video_libraries.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
-AND
-    hpi_video_library_external_videos.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
-AND
-    hpi_video_library_external_video_libraries.id = '$external_video_library_id'
-AND
-    hpi_video_library_external_videos.external_video_provider_id 
-    = hpi_video_library_external_video_providers.id
-    AND
-    hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
-    AND
-    hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
-    AND
-    hpi_video_library_external_videos.status = 'display'
-
-SQL;
-
-        if (count($tag_ids) > 0) {
-            $query .= <<<SQL
-    AND
-(
-
-SQL;
-
-
-            $i = 0;
-            foreach ($tag_ids as $tag_id) {
-                $tag_id = mysql_real_escape_string($tag_id);
-                if ($i != 0){
-                    $query .= <<<SQL
-    OR
-
-SQL;
-
-                }
-                $i++;
-                $query .= <<<SQL
-    hpi_video_library_tags.id = '$tag_id'
-
-SQL;
-
-            }
-            $query .= <<<SQL
-)
-
-SQL;
-        }
-
-
-        if ($ignore_video_id > 0) {
-            $ignore_video_id = mysql_real_escape_string($ignore_video_id);
-            $query .= <<<SQL
-    AND
-    hpi_video_library_external_videos.id <> $ignore_video_id
-
-SQL;
-
-        }
-
-        $query .= <<<SQL
-GROUP BY
-    hpi_video_library_external_videos.id
-ORDER BY
-    count DESC
-SQL;
-
-        //echo $query; exit;
-        if (
-            ($start != NULL)
-            &&
-            ($duration != NULL) 
-        ){
-            $start = mysql_real_escape_string($start);
-            $duration = mysql_real_escape_string($duration);
-            $query .= <<<SQL
-
-LIMIT
-        $start, $duration
-SQL;
-
-        }
-
-        // print_r($query);exit;
-
-        $result = mysql_query($query, $dbh);
-
-        $tags = array();
-
-        while ($row = mysql_fetch_assoc($result)) {
-            $tags[] = $row;
-        }   
-        //print_r($tags);exit;
-        return $tags;
-    }
-
-    public static function
         get_external_videos_count_for_tag_ids_and_external_video_provider_id(
             $external_video_library_id,
             $tag_ids,
@@ -1287,94 +1142,21 @@ SQL;
         )
     {
         $dbh = DB::m();
-        $external_video_library_id = mysql_real_escape_string($external_video_library_id);
-        $external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
-
+        $sql = self::get_sql_parts_for_external_videos_for_tag_ids_and_external_video_provider_id(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id,
+            $ignore_video_id,
+            NULL,
+            NULL,
+            array(
+                'count' => TRUE
+            )
+        );
         $query = '';
-        $query .= self::get_select_sql_for_external_videos_count();
-
-        $query .= <<<SQL
-
-FROM
-    hpi_video_library_external_videos,
-    hpi_video_library_external_video_providers,
-    hpi_video_library_tags,
-    hpi_video_library_tags_to_ext_vid_links,
-    hpi_video_library_external_video_libraries,
-    hpi_video_library_ext_vid_to_ext_vid_lib_links
-WHERE
-    hpi_video_library_external_video_libraries.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
-AND
-    hpi_video_library_external_videos.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
-AND
-    hpi_video_library_external_video_providers.id = '$external_video_provider_id'
-AND
-    hpi_video_library_external_video_libraries.id = '$external_video_library_id'
-AND
-    hpi_video_library_external_videos.external_video_provider_id 
-    = hpi_video_library_external_video_providers.id
-    AND
-    hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
-    AND
-    hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
-    AND
-    hpi_video_library_external_videos.status = 'display'
-
-SQL;
-
-        if (count($tag_ids) > 0) {
-            $query .= <<<SQL
-    AND
-(
-
-SQL;
-
-
-            $i = 0;
-            foreach ($tag_ids as $tag_id) {
-                $tag_id = mysql_real_escape_string($tag_id);
-                if ($i != 0){
-                    $query .= <<<SQL
-    OR
-
-SQL;
-
-                }
-                $i++;
-                $query .= <<<SQL
-    hpi_video_library_tags.id = '$tag_id'
-
-SQL;
-
-            }
-            $query .= <<<SQL
-)
-
-SQL;
-        }
-
-
-        if ($ignore_video_id > 0) {
-            $ignore_video_id = mysql_real_escape_string($ignore_video_id);
-            $query .= <<<SQL
-    AND
-    hpi_video_library_external_videos.id <> $ignore_video_id
-
-SQL;
-
-        }
-
-        $query .= <<<SQL
-ORDER BY
-    hpi_video_library_external_videos.id
-SQL;
-
-        //echo $query; exit;
-
+        $query = self::assemble_query_from_sql_parts($sql);
+        // echo $query; exit;
         $result = mysql_query($query, $dbh);
-
         $row = mysql_fetch_assoc($result);
         //print_r($tags);exit;
         return $row['count'];
@@ -1826,8 +1608,38 @@ SQL;
 
     }
 
+    public static function
+        get_sql_parts_for_external_videos_for_tag_ids_and_external_video_provider_id(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE
+            )
+        )
+    {
+        $sql = self::get_sql_parts_for_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id,
+            $start,
+            $duration,
+            $options 
+        );
+        $external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
+        $sql['where'] .= <<<SQL
+AND
+    hpi_video_library_external_video_providers.id = '$external_video_provider_id'
+AND
+    hpi_video_library_external_videos.external_video_provider_id 
+    = hpi_video_library_external_video_providers.id
+SQL;
 
-
+        return $sql;
+    }
 
 
     public static function
@@ -1838,127 +1650,27 @@ SQL;
             $ignore_video_id = NULL,
             $start = NULL,
             $duration = NULL
-
         )
     {
         $dbh = DB::m();
-        $external_video_library_id = mysql_real_escape_string($external_video_library_id);
-        $external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
-
+        $sql = self::get_sql_parts_for_external_videos_for_tag_ids_and_external_video_provider_id(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id,
+            $ignore_video_id,
+            $start,
+            $duration
+        );
         $query = '';
-        $query .= self::get_select_sql_for_videos();
-
-        $query .= <<<SQL
-,
-    COUNT( * ) AS count
-
-FROM
-    hpi_video_library_external_videos,
-    hpi_video_library_external_video_providers,
-    hpi_video_library_tags,
-    hpi_video_library_tags_to_ext_vid_links,
-    hpi_video_library_external_video_libraries,
-    hpi_video_library_ext_vid_to_ext_vid_lib_links
-WHERE
-    hpi_video_library_external_video_libraries.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
-AND
-    hpi_video_library_external_videos.id 
-    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
-AND
-    hpi_video_library_external_video_providers.id = '$external_video_provider_id'
-AND
-    hpi_video_library_external_video_libraries.id = '$external_video_library_id'
-AND
-    hpi_video_library_external_videos.external_video_provider_id 
-    = hpi_video_library_external_video_providers.id
-    AND
-    hpi_video_library_external_videos.id = hpi_video_library_tags_to_ext_vid_links.external_video_id
-    AND
-    hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
-    AND
-    hpi_video_library_external_videos.status = 'display'
-
-SQL;
-
-        if (count($tag_ids) > 0) {
-            $query .= <<<SQL
-    AND
-(
-
-SQL;
-
-
-            $i = 0;
-            foreach ($tag_ids as $tag_id) {
-                $tag_id = mysql_real_escape_string($tag_id);
-                if ($i != 0){
-                    $query .= <<<SQL
-    OR
-
-SQL;
-
-                }
-                $i++;
-                $query .= <<<SQL
-    hpi_video_library_tags.id = '$tag_id'
-
-SQL;
-
-            }
-            $query .= <<<SQL
-)
-
-SQL;
-        }
-
-
-        if ($ignore_video_id > 0) {
-            $ignore_video_id = mysql_real_escape_string($ignore_video_id);
-            $query .= <<<SQL
-    AND
-    hpi_video_library_external_videos.id <> $ignore_video_id
-
-SQL;
-
-        }
-
-        $query .= <<<SQL
-GROUP BY
-    hpi_video_library_external_videos.id
-ORDER BY
-    count DESC
-SQL;
-
-        if (
-            ($start != NULL)
-            &&
-            ($duration != NULL) 
-        ){
-            $start = mysql_real_escape_string($start);
-            $duration = mysql_real_escape_string($duration);
-            $query .= <<<SQL
-
-LIMIT
-    $start, $duration
-SQL;
-
-        }
-
-
+        $query = self::assemble_query_from_sql_parts($sql);
         // echo $query; exit;
-
         $result = mysql_query($query, $dbh);
-
         $tags = array();
-
         while ($row = mysql_fetch_assoc($result)) {
             $tags[] = $row;
         }   
         //print_r($tags);exit;
         return $tags;
-
-
     }
 
     public static function
@@ -2019,6 +1731,16 @@ SQL;
         return 'SELECT DISTINCT ' . "\n" . self::get_data_for_select_sql_for_videos();
     }
 
+
+    public static function
+        get_data_for_select_sql_for_videos_count() 
+    {
+        return <<<SQL
+    hpi_video_library_external_videos.id AS id
+
+SQL;
+
+    }
 
 
     public static function
