@@ -16,8 +16,9 @@ VideoLibrary_RelatedVideosHelper
         )
     {
         /*
-         * Like all count functions. just a copy and paste of the video 
-         * select function
+         * TODO: Change these to functions that actually count the 
+         * number of related videos (ie. tag1 OR tag2 OR tag3)
+         * Right now, they are looking for videos that have every tag
          */
         $tag_ids = array();
         foreach ($video_data['tags'] as $tag) {
@@ -80,10 +81,6 @@ VideoLibrary_RelatedVideosHelper
                 );
         }
     }
-
-
-
-
 
 }
 ?>
