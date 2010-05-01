@@ -924,6 +924,7 @@ SQL;
             . $sql['joins']  . "\n"
             . $sql['where']  . "\n"
             . $sql['group_by'] . "\n"
+            . $sql['order_by'] . "\n"
             . $sql['limit'] . "\n";
     }
 
