@@ -72,7 +72,7 @@ VideoLibrary_RelatedVideosHelper
                 );
         } else {
             return VideoLibrary_DatabaseHelper::
-                get_external_videos_for_tag_ids_weighted_for_principal_tags(
+                get_related_external_videos_for_tag_ids(
                     $external_video_library_id,
                     $tag_ids,
                     $video_data['id'],

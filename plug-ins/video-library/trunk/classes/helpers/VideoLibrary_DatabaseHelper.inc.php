@@ -791,12 +791,9 @@ SQL;
         )
     {
         $query = '';
+        $tag_ids = self::limit_tag_ids($tag_ids);
         $num_tags = count($tag_ids);
         // print_r($num_tags);exit;
-        if ($num_tags > 28) {
-            $tag_ids = array_slice($tag_ids, 0, 28);
-            $num_tags = count($tag_ids);
-        }
         // print_r($tag_ids);exit;
         if ($num_tags > 0 && $num_tags <= 58) {
             if ($options['count']) {
@@ -992,7 +989,52 @@ SQL;
     }
 
     public static function
-        get_external_videos_for_tag_ids_weighted_for_principal_tags(
+        limit_tag_ids(
+            $tag_ids
+        )
+    {
+        /*
+         * More than 28 and SQL barfs on the temporary tables it has to create 
+         * for most of the tag functions being used
+         */
+        if (count($tag_ids) > 28) {
+            $tag_ids = array_slice($tag_ids, 0, 28);
+        }
+        return $tag_ids;
+    }
+
+    public static function
+        get_related_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL
+
+        )
+    {    
+
+        $tag_ids = self::limit_tag_ids($tag_ids);
+        $dbh = DB::m();
+        $sql = self::get_sql_parts_for_external_videos_for_some_tag_ids_and_external_video_provider_id(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id,
+            $ignore_video_id,
+            NULL,
+            NULL,
+            array(
+                'count' => TRUE
+            )
+        );
+        $query = '';
+        $query = self::assemble_query_from_sql_parts($sql);
+ 
+     
+
+    }
+    public static function
+        old_get_external_videos_for_tag_ids_weighted_for_principal_tags(
             $external_video_library_id,
             $tag_ids,
             $ignore_video_id = NULL,
@@ -1001,9 +1043,8 @@ SQL;
 
         )
     {        
-        if (count($tag_ids) > 28) {
-            $tag_ids = array_slice($tag_ids, 0, 28);
-        }
+        $tag_ids = self::limit_tag_ids($tag_ids);
+        
  
         $dbh = DB::m();
         $external_video_library_id = mysql_real_escape_string($external_video_library_id);
@@ -1200,7 +1241,7 @@ SQL;
         }
 
 
-        // echo $query; exit;
+        echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
@@ -1226,10 +1267,7 @@ SQL;
 
         )
     {
-        if (count($tag_ids) > 28) {
-            $tag_ids = array_slice($tag_ids, 0, 28);
-        }
- 
+        $tag_ids = self::limit_tag_ids($tag_ids);
         $dbh = DB::m();
         $external_video_library_id = mysql_real_escape_string($external_video_library_id);
         $external_video_provider_id = mysql_real_escape_string($external_video_provider_id);
