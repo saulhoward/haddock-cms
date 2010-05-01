@@ -26,7 +26,7 @@ VideoLibrary_RelatedVideosHelper
         }
         if (isset($external_video_provider_id)) {
             return VideoLibrary_DatabaseHelper::
-                get_external_videos_count_for_tag_ids_and_external_video_provider_id(
+                get_related_external_videos_count_for_tag_ids(
                     $external_video_library_id,
                     $tag_ids,
                     $external_video_provider_id,
@@ -34,9 +34,10 @@ VideoLibrary_RelatedVideosHelper
                 );
         } else {
             return VideoLibrary_DatabaseHelper::
-                get_external_videos_count_for_tag_ids(
+                get_related_external_videos_count_for_tag_ids(
                     $external_video_library_id,
                     $tag_ids,
+                    NULL,
                     $video_data['id']
                 );
         }
@@ -62,7 +63,7 @@ VideoLibrary_RelatedVideosHelper
 
         if (isset($external_video_provider_id)) {
             return VideoLibrary_DatabaseHelper::
-                get_external_videos_for_tag_ids_and_external_video_provider_id_weighted_for_principal_tags(
+                get_related_external_videos_for_tag_ids(
                     $external_video_library_id,
                     $tag_ids,
                     $external_video_provider_id,
@@ -75,6 +76,7 @@ VideoLibrary_RelatedVideosHelper
                 get_related_external_videos_for_tag_ids(
                     $external_video_library_id,
                     $tag_ids,
+                    NULL,
                     $video_data['id'],
                     $start,
                     $duration
