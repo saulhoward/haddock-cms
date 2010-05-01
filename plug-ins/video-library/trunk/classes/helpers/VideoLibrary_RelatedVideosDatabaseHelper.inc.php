@@ -32,12 +32,11 @@ VideoLibrary_RelatedVideosDatabaseHelper
                 'count' => TRUE
             )
         );
-        $query .= self::assemble_query_from_sql_parts($sql);
+        $query .= VideoLibrary_DatabaseHelper::assemble_query_from_sql_parts($sql);
         // echo $query; exit;
         $result = mysql_query($query, $dbh);
         $row = mysql_fetch_assoc($result);
-        //print_r($tags);exit;
-        return $row['count']
+        return $row['count'];
     }
 
     public static function
@@ -50,9 +49,15 @@ VideoLibrary_RelatedVideosDatabaseHelper
             $duration = NULL
         )
     {    
+        /*
+         * The idea is to order the videos by number of matching tags. To 
+         * give principal tags more weight, select them on their own 
+         * first and then union that with a selection of all tags.
+         */
         $tag_ids = VideoLibrary_DatabaseHelper::limit_tag_ids($tag_ids);
         $dbh = DB::m();
-        $principal_sql = self::get_sql_parts_for_external_videos_matching_any_of_these_tag_ids(
+        $principal_sql = 
+            self::get_sql_parts_for_external_videos_matching_any_of_these_tag_ids(
             $external_video_library_id,
             $tag_ids,
             $external_video_provider_id,
@@ -63,7 +68,9 @@ VideoLibrary_RelatedVideosDatabaseHelper
                 'principal_tags' => TRUE
             )
         );
-        $normal_sql = self::get_sql_parts_for_external_videos_matching_any_of_these_tag_ids(
+        $principal_sql['limit'] = '';
+        $normal_sql = 
+            self::get_sql_parts_for_external_videos_matching_any_of_these_tag_ids(
             $external_video_library_id,
             $tag_ids,
             $external_video_provider_id,
@@ -74,6 +81,7 @@ VideoLibrary_RelatedVideosDatabaseHelper
                 'principal_tags' => FALSE
             )
         );
+        $normal_sql['limit'] = '';
 
         $query = '';
         $query .= <<<SQL
@@ -81,7 +89,7 @@ SELECT *, SUM(tag_count) as weighted_tag_count FROM(
 (
 SQL;
 
-        $query .= self::assemble_query_from_sql_parts($principal_sql);
+        $query .= VideoLibrary_DatabaseHelper::assemble_query_from_sql_parts($principal_sql);
      
         $query .= <<<SQL
 )
@@ -89,7 +97,7 @@ UNION ALL
 (
 SQL;
 
-        $query .= self::assemble_query_from_sql_parts($normal_sql);
+        $query .= VideoLibrary_DatabaseHelper::assemble_query_from_sql_parts($normal_sql);
         $query .= <<<SQL
 )
 
@@ -102,7 +110,7 @@ SQL;
         $query .= VideoLibrary_DatabaseHelper::get_limit_sql_for_external_videos(
             $start, $duration
         );
-        //echo $query; exit;
+        // echo $query; exit;
         $result = mysql_query($query, $dbh);
         $videos = array();
         while ($row = mysql_fetch_assoc($result)) {
@@ -116,8 +124,8 @@ SQL;
         get_sql_parts_for_external_videos_matching_any_of_these_tag_ids(
             $external_video_library_id,
             $tag_ids,
-            $ignore_video_id = NULL,
             $external_video_provider_id = NULL,
+            $ignore_video_id = NULL,
             $start = NULL,
             $duration = NULL,
             $options = array(
@@ -150,13 +158,15 @@ WHERE
 AND
     hpi_video_library_external_videos.id 
     = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+
 SQL;
 
-        if ($external_video_provider_id) {
+        if (isset($external_video_provider_id)) {
 
             $sql['where'] .= <<<SQL
 AND
     hpi_video_library_external_video_providers.id = '$external_video_provider_id'
+
 SQL;
 
         }
@@ -224,12 +234,12 @@ SQL;
 
         }
 
-        $sql['group_by'] = <<<SQL
+        if (!($options['count'])) {
+            $sql['group_by'] = <<<SQL
 GROUP BY
     hpi_video_library_external_videos.id
 SQL;
 
-        if (!($options['count'])) {
             $sql['limit'] = 
                 VideoLibrary_DatabaseHelper::get_limit_sql_for_external_videos(
                     $start, $duration

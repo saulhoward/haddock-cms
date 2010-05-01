@@ -7,7 +7,7 @@
  * Contains all MySQL DB functions for the VideoLibrary plugin
  *
  * Where functions have moved to another DB helper, there will be links 
- * to their new homes.
+ * to their new homes (but they should be deprecated?)
  */
 
 class
@@ -1518,8 +1518,8 @@ SQL;
             get_related_external_videos_count_for_tag_ids(
                 $external_video_library_id,
                 $tag_ids,
-                $external_video_provider_id = NULL,
-                $ignore_video_id = NULL
+                $external_video_provider_id,
+                $ignore_video_id
             );
     }
 
