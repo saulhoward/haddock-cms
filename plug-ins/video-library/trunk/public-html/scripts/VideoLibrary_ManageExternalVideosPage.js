@@ -108,12 +108,28 @@ $(function() {
             function() {
                 $(this).addClass('empty');
             });
-        $('input:text').bind("keyup focus blur change",
-            function() {
+        $('input:text', $('#basic-form')).live(
+            "keyup focus blur change",
+            function(event) {
                 if ($(this).val().trim() == '') {
                     $(this).addClass('empty');
                 } else {
                     $(this).removeClass('empty');
+                }
+
+                if ( 
+                    (event.type == 'focusout')
+                    &&
+                    ($(event.target).attr('id') == 'providers_internal_id') 
+                    &&
+                    (!($(event.target).val().trim() == ''))
+                    &&
+                    ($('#external_video_provider_ids input:radio:checked').length > 0)
+                ){
+                    check_for_providers_internal_id_in_database(
+                        $('#external_video_provider_ids input:radio:checked').val(),
+                        $(event.target).val()
+                    );
                 }
             });
 
@@ -133,7 +149,69 @@ $(function() {
                 return validate;
             });
 
+        /*
+         * Live check for provider code in database
+         */
+        $('form#basic-form').before('<div id="form-validity-msg">Enter video details</div><div id="form-validity-loading">Loading...</div>');
+        $('#form-validity-loading').hide();
+
+        if ($('form#basic-form').attr('name') == 'edit_something_form') {
+            check_for_providers_internal_id_in_database(
+                $('#external_video_provider_ids input:radio:checked').val(),
+                $('input#providers_internal_id').val()
+            );
+        }
+        $('input:radio', $('#external_video_provider_ids')).live(
+            "change",
+            function(event) {
+                if (!( $('input#providers_internal_id').val().trim() == '')){
+                    check_for_providers_internal_id_in_database(
+                        $('#external_video_provider_ids input:radio:checked').val(),
+                        $('input#providers_internal_id').val()
+                    );
+                }
+            });
+
+
     });
+
+function check_for_providers_internal_id_in_database(
+    external_video_provider_id,
+    providers_internal_id
+) {
+    var providers_internal_id_query_url =
+        '/?oo-page=1&page-class=VideoLibrary_ManageVideosAdminJSONPage&check_providers_internal_id=1&ajax=1'
+    + '&external_video_provider_id=' + external_video_provider_id
+    + '&providers_internal_id=' + providers_internal_id;
+
+    $.ajax({
+            method: "get",url: providers_internal_id_query_url,
+            dataType: 'json',
+            beforeSend: function(){$("#form-validity-msg").hide();$("#form-validity-loading").fadeIn("fast");}, //show loading just when link is clicked
+            complete: function(){ $("#form-validity-loading").hide();$("#form-validity-msg").fadeIn("fast");}, //stop showing loading when the process is complete
+            success: function(data){ //so, if data is retrieved, store it in html
+                var msg = '';
+                if ( data.result == true)
+                {
+                    msg = 'Video is already in the Database';
+                    if ($('form#basic-form').attr('name') == 'add_something_form') {
+                        $('#form-validity-msg').addClass('warning');
+                        msg = msg + '!';
+                    }
+                    $('#form-validity-msg').html(msg);
+                } else {
+                    $('#form-validity-msg').removeClass('warning');
+                    if ($('form#basic-form').attr('name') == 'add_something_form') {
+                        msg = 'Video is OK';
+                    } else {
+                        msg = 'Video is new';
+                    }
+                    $('#form-validity-msg').html(msg);
+                }
+                return false;
+            }
+        }); 
+}
 
 function toggle_tag_on_click(tag) {
 

@@ -18,7 +18,7 @@ Database_CRUDAdminPage
 
         echo <<<HTML
 <script type="text/javascript" 
-         src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+         src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" 
          src="/plug-ins/video-library/public-html/scripts/VideoLibrary_ManageExternalVideosPage.js"></script>
 HTML;
@@ -139,7 +139,7 @@ SQL;
         $i = 0;
         foreach ($library_values as $library_value) {
             $library_li .= '<label><input type="radio" name="external_video_library_id" value="' . $library_value['id'] . '"';
-            if ($i == 0) $library_li .= ' checked="checked"';
+            // if ($i == 0) $library_li .= ' checked="checked"';
             $i++; 
             $library_li .= '>';
             $library_li .= $library_value['name'] . '<br /></label>';
@@ -157,11 +157,11 @@ SQL;
         //}
         //$provider_li .= '</select></li>';
 
-        $provider_li = '<li><label for="external_video_provider_id">Provider</label><div class="radio-inputs">';
+        $provider_li = '<li><label for="external_video_provider_id">Provider</label><div id="external_video_provider_ids" class="radio-inputs">';
         $i = 0;
         foreach ($provider_values as $provider_value) {
             $provider_li .= '<label><input type="radio" name="external_video_provider_id" value="' . $provider_value['id'] . '"';
-            if ($i == 0) $provider_li .= ' checked="checked"';
+            // if ($i == 0) $provider_li .= ' checked="checked"';
             $i++; 
             $provider_li .= '>';
             $provider_li .= $provider_value['name'] . '<br /></label>';
@@ -303,7 +303,7 @@ HTML;
 
         $provider_values = VideoLibrary_DatabaseHelper
             ::get_external_video_providers();
-        $provider_li = '<li><label for="external_video_provider_id">Provider</label><div class="radio-inputs">';
+        $provider_li = '<li><label for="external_video_provider_id">Provider</label><div id="external_video_provider_ids" class="radio-inputs">';
         foreach ($provider_values as $provider_value) {
             $provider_li .= '<label><input type="radio" name="external_video_provider_id" value="' . $provider_value['id'] . '"';
             $cur_provider_value = ($acm->has_current_var('external_video_provider_id') ? $acm->get_current_var('external_video_provider_id') : NULL);
