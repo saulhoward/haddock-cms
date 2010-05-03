@@ -19,9 +19,9 @@ VideoLibrary_TagsHelper
 			$post_str
 		)
 	{
-                /*
+        /*
 		 *Get rid of anything that's not A-Z, a-z, commas and spaces
-                 */
+         */
 		$post_str = preg_replace('([^a-zA-Z,\s])', '', $post_str);
 
 		/*

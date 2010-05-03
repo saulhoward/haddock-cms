@@ -166,7 +166,7 @@ VideoLibrary_ExternalVideoLibraryPage
         protected function
                 get_page_url()
         {
-		$page_url =  PublicHTML_URLHelper
+            $page_url =  VideoLibrary_URLHelper
 			::get_oo_page_url(
 				get_class($this)
 			);

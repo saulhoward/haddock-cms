@@ -80,11 +80,17 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
-		get_video_page_url($video_id)
+        get_video_page_url(
+            $video_id,
+            $video_name = NULL
+        )
 	{
 		$get_variables = array(
 			"video_id" => $video_id
 		);
+        if ($video_name) {
+            $get_variables['video_name'] = self::format_string_for_url($video_name);
+        }
 		return self
 			::get_oo_page_url(
 				self::get_video_page_class_name(),
@@ -92,17 +98,31 @@ VideoLibrary_URLHelper
 			);
 	}
 
+    public static function
+        format_string_for_url($str)
+    {
+        $str = strtolower($str);
+        $str = preg_replace('([^a-zA-Z\s])', '', $str);
+        $str = preg_replace('(\s+)', '-', $str);
+        // $str = rawurlencode($str);
+        return $str;
+    }
+
+	public static function
+        get_search_page_class_name()
+    {
+        $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
+		$config_manager = 
+			$cmf->get_config_manager('plug-ins', 'video-library');
+		return $config_manager->get_search_page_class_name();
+    }
+
 	public static function
 		get_search_page_url()
 	{
-		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-		$config_manager = 
-			$cmf->get_config_manager('plug-ins', 'video-library');
-		$search_page_class_name= $config_manager->get_search_page_class_name();
-
 		return self
 			::get_oo_page_url(
-				$search_page_class_name
+				self::get_search_page_class_name()
 			);
 	}
 

@@ -21,6 +21,8 @@ HTMLTags_URL
                         //print_r($get_variables);exit;
                         $video_page = VideoLibrary_URLHelper::
                                 get_video_page_class_name();
+                        $search_page = VideoLibrary_URLHelper::
+                                get_search_page_class_name();
                         $tags_page = 'VideoLibrary_TagsPage';
 
                         switch ($get_variables['page-class']) {
@@ -39,6 +41,21 @@ HTMLTags_URL
                                     . $get_variables['external_video_library_id'];
                             }
                             break;
+                        case $search_page:
+                            $url = '/search';
+                            if (isset($get_variables['external_video_library_id'])) {
+                                $url .= '/libraries/' 
+                                    . $get_variables['external_video_library_id'];
+                            }
+                            if (isset($get_variables['external_video_provider_id'])) {
+                                $url .= '/channels/' 
+                                    . $get_variables['external_video_provider_id'];
+                            }             
+                            if (isset($get_variables['tag_ids'])) {
+                                $url .= '/tags/' 
+                                    . $get_variables['tag_ids'];
+                            }             
+                            break;
                         default:
                             return parent::get_as_string();
                         }
@@ -48,10 +65,23 @@ HTMLTags_URL
                         if (isset($get_variables['duration'])) {
                                 $url .= '/' . $get_variables['duration'];
                         }
+
+                        /*
+                         * If its the video page, stick the name on the end
+                         */
+                        if (
+                            ($get_variables['page-class'] == $video_page)
+                            &&
+                            (isset($get_variables['video_name']))
+                        ) {
+                                $url .= '/' . $get_variables['video_name'];
+                        }
+
                         return $url;
                 } else {
                         return parent::get_as_string();
                 }
         }
+
 }
 ?>

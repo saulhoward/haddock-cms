@@ -94,7 +94,7 @@ VideoLibrary_DisplayHelper
         $div = new HTMLTags_Div();
         $div->set_attribute_str('class', 'video');
 
-        $url = VideoLibrary_URLHelper::get_video_page_url($video_data['id']);
+        $url = VideoLibrary_URLHelper::get_video_page_url($video_data['id'], $video_data['name']);
 
         $img_a = new HTMLTags_A();
         $img_a->set_href($url);
