@@ -160,9 +160,15 @@ VideoLibrary_PageBuilder
 -->
 <script 
     type="text/javascript" 
-    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_HTMLPage.js"
+    src="/plug-ins/video-library/public-html/scripts/pages/VideoLibrary_HTMLPage.js"
 >
 </script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_SearchForms.js"
+>
+</script> 
+
 HTML;
 
     }
@@ -173,9 +179,19 @@ HTML;
         return <<<HTML
 <script 
     type="text/javascript" 
-    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_VideoPage.js"
+    src="/plug-ins/video-library/public-html/scripts/pages/VideoLibrary_VideoPage.js"
 >
 </script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_VideoPageURL.js"
+>
+</script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_VideoPageURLHelper.js"
+>
+</script>
 <script 
     type="text/javascript" 
     src="/plug-ins/video-library/public-html/scripts/VideoLibrary_RelatedVideos.js"
