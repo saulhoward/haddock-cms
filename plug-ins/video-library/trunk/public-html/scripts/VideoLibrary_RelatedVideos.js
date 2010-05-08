@@ -6,7 +6,6 @@
  * related videos 
  */
 
-
 function VideoLibrary_RelatedVideos(options) { 
 
     this.$container = options.$container;
@@ -36,7 +35,7 @@ function VideoLibrary_RelatedVideos(options) {
             "click",
             function(event){
                 var clicked_url_string = $(event.target).attr('href');
-                url = new video_page_url(clicked_url_string);
+                url = new VideoLibrary_VideoPageURL(clicked_url_string);
 
                 me.set_related_videos(url);
 
@@ -54,7 +53,6 @@ function VideoLibrary_RelatedVideos(options) {
                 return false;
             });
     };
-
 
     this.bind_standalone_buttons = function() {
         var me = this;
@@ -112,7 +110,7 @@ function VideoLibrary_RelatedVideos(options) {
         // pager_html += '<div class="pager">';
         ul_html += '<ul>';
         if (current_page != 1) {
-            var prev_video_page_url = create_video_page_url_string(
+            var prev_video_page_url = VideoLibrary_VideoPageURLHelper.create_video_page_url_string(
                 selected_url.video_id,
                 selected_url.provider_id,
                 ((current_page - 2) * duration),
@@ -144,7 +142,7 @@ function VideoLibrary_RelatedVideos(options) {
                     li_class += 'selected ';
                     li_html += '<li class="' + li_class + '"><span>' + page + '</span></li>';
                 } else {
-                    var video_page_url = create_video_page_url_string(
+                    var video_page_url = VideoLibrary_VideoPageURLHelper.create_video_page_url_string(
                         selected_url.video_id,
                         selected_url.provider_id,
                         (((page - 1) * duration)),
@@ -162,7 +160,7 @@ function VideoLibrary_RelatedVideos(options) {
             }
         }
         if (current_page != pages) {
-            var next_video_page_url = create_video_page_url_string(
+            var next_video_page_url = VideoLibrary_VideoPageURLHelper.create_video_page_url_string(
                 selected_url.video_id,
                 selected_url.provider_id,
                 (current_page * duration),
@@ -219,93 +217,5 @@ function VideoLibrary_RelatedVideos(options) {
             }); //close $.ajax
     };
 
-};
-
-
-
-/*
- * URL Functions
- */
-
-function create_video_page_url_string(
-    video_id,
-    provider_id,
-    start,
-    duration
-) 
-{
-    var url_string = '/videos/' + video_id;
-
-    if (provider_id != false) {
-        url_string += '/channels/' + provider_id;
-    }
-
-    if (start != false) {
-        url_string += '/' + start;
-    } else if (start == 0) {
-        url_string += '/0';
-    }
-
-    if (url.duration != false) {
-        url_string += '/' + duration;
-    }
-
-    return url_string;
-};
-
-function video_page_url(url)
-{
-    // var url = "/videos/19/channels/1/15/30";
-    // var url = "/videos/19/15/30";
-
-    var channel_start_limit_re = new RegExp("^/videos/([0-9]+)/channels/([0-9]+)/([0-9]+)/([0-9]+)","gi");
-    var channel_re = new RegExp("^/videos/([0-9]+)/channels/([0-9]+)","gi");
-    var basic_start_limit_re = new RegExp("^/videos/([0-9]+)/([0-9]+)/([0-9]+)","gi");
-    var basic_re = new RegExp("^/videos/([0-9]+)","gi");
-    // var basic_re = new RegExp("^/videos/([0-9]+)","gi");
-
-
-    // var url = link.attr('href');
-    // alert(url);
-
-    var video_id ;
-    var provider_id;
-    var start;
-    var duration;
-    var match;
-    if (url.match(channel_start_limit_re)) {
-        while (match = channel_start_limit_re.exec(url)) {
-            video_id = match[1];
-            provider_id = match[2];
-            start = match[3];
-            duration = match[4];
-        }
-    } else if (url.match(channel_re)) {
-        while (match = channel_re.exec(url)) {
-            video_id = match[1];
-            provider_id = match[2];
-            start = false;
-            duration = false;
-        }
-    } else if (url.match(basic_start_limit_re)) {
-        while (match = basic_start_limit_re.exec(url)) {
-            video_id = match[1];
-            provider_id = false;
-            start = match[2];
-            duration = match[3];
-        }
-    } else {
-        while (match = basic_re.exec(url)) {
-            video_id = match[1];
-            provider_id = false;
-            start = false;
-            duration = false;
-        }
-    }
-    // alert( "video = " + video_id + " // provider = " + provider_id + " //start = " + start + " // duration = " + duration );
-    this.video_id = video_id ;
-    this.provider_id = provider_id;
-    this.start = start;
-    this.duration = duration;
 };
 
