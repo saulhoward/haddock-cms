@@ -176,6 +176,11 @@ HTML;
     src="/plug-ins/video-library/public-html/scripts/VideoLibrary_VideoPage.js"
 >
 </script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_RelatedVideos.js"
+>
+</script> 
 HTML;
 
     }
