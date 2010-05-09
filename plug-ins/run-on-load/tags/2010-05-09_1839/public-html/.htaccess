@@ -1,0 +1,5 @@
+# All access to the public-html directory of the run-on-load plug-in.
+# © 2010-02-16, Robert Impey
+
+Order Allow,Deny
+Allow from all
