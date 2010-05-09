@@ -1,0 +1,134 @@
+/**
+ * Styles for the div with rounded corners.
+ *
+ * @copyright 2008-02-24, Robert Impey.
+ */
+
+div.bw-rc div {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	
+	/*background-position: center left;*/
+}
+
+div.bw-rc div.c {
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+div.bw-rc div.horiz div {
+	height: 16px;
+}
+
+div.bw-rc div.horiz div.c {
+	background-repeat: repeat-x;
+	
+	/*background-position: top;*/
+}
+
+div.bw-rc div.r {
+	background-position: right;
+}
+
+div.bw-rc div.row {
+	clear: right;
+}
+
+div.bw-rc div.corner {
+	background-repeat: no-repeat;
+}
+
+div.bw-rc div.vert {
+	background-repeat: repeat-y;
+}
+
+/*
+ * Styles for the header.
+ */
+
+div.bw-rc div.h div {
+	
+}
+
+div.bw-rc div.h div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tl.png');
+	/*background-image: url('/images/corner-icons/tl.gif');*/
+
+	background-position: bottom left;
+
+	/*display: none;*/
+}
+
+div.bw-rc div.h div.c {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/t.png');
+	
+	background-position: bottom;
+	
+	/*display: none;*/
+}
+
+div.bw-rc div.h div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tr.png');
+	background-position: bottom right;
+	
+	/*display: none;*/
+}
+
+/*
+ * Styles for the middle.
+ */
+
+div.bw-rc div.m {
+	/*display: none;*/
+	height: 100%;
+}
+
+div.bw-rc div.m div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/l.png');
+	
+	height: 100%;
+}
+
+div.bw-rc div.m div.c {
+	background-color: white;
+	
+	height: 100%;
+}
+
+div.bw-rc div.m div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/r.png');
+	
+	height: 100%;
+}
+
+/*
+ * Styles for the footer.
+ */
+
+div.bw-rc div.f div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/bl.png');
+}
+
+div.bw-rc div.f div.c {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/b.png');
+}
+
+div.bw-rc div.f div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/br.png');
+	
+	background-position: top right;
+}
+
+/*
+ * Styles for the elements in the content of these divs.
+ */
+div.bw-rc div.m div.c p,h1,h2,h3,h4,h5,h6,ul,ol,img,a,dl {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+div.bw-rc div.m div.c p,h1,h2,h3,h4,h5,h6 {
+	padding-bottom: 0.5em;
+}

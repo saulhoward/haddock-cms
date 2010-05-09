@@ -1,0 +1,38 @@
+/**
+ * Styles for the div with rounded corners in IE6 using GIFs instead
+ * of PNGs.
+ *
+ * @copyright 2008-02-24, Robert Impey.
+ */
+
+div.bw-rc div.h div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tl.gif');
+}
+
+div.bw-rc div.h div.c {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/t.gif');
+}
+
+div.bw-rc div.h div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tr.gif');
+}
+
+div.bw-rc div.m div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/l.gif');
+}
+
+div.bw-rc div.m div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/r.gif');
+}
+
+div.bw-rc div.f div.l {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/bl.gif');
+}
+
+div.bw-rc div.f div.c {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/b.gif');
+}
+
+div.bw-rc div.f div.r {
+	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/br.gif');
+}
