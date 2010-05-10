@@ -257,8 +257,8 @@ function VideoLibrary_RelatedVideos(options) {
         $.ajax({
                 method: 'get',
                 url: next_thumbnails_url,
-                beforeSend: function(){$loading_div.show();},
-                complete: function(){$loading_div.hide();},
+                beforeSend: function(){$loading_div.fadeIn('fast');},
+                complete: function(){$loading_div.fadeOut('fast');},
                 success: function(html) {
                     ajax_success(html);
                 }
