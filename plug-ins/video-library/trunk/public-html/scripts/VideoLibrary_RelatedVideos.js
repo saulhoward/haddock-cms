@@ -3,7 +3,11 @@
  * Using JQuery
  * 
  * This class provides AJAX loading behaviour for the 
- * related videos 
+ * related videos
+ *
+ * It requires VideoLibrary_VideoPageURL and
+ * VideoLibrary_VideoPageURLHelper
+ *
  */
 
 function VideoLibrary_RelatedVideos(options) { 
@@ -12,32 +16,56 @@ function VideoLibrary_RelatedVideos(options) {
     this.cur_url = options.cur_url;
 
     this.construct = function() {
-        this.create_thumbnails();
+
+        this.create_loading_div($('#thumbnails', this.$container));
         this.bind_pager();
-        this.rewrite_standalone_buttons();
+
+        this.rewrite_standalone_buttons(); // Create them first
         this.bind_standalone_buttons();
+
+        /*
+         * Video Provider AJAX
+         */
+        this.create_loading_div($('#video-control-wrapper', this.$container));
+        this.bind_provider_links();
     };
 
-    this.create_thumbnails = function() {
+    this.create_loading_div = function($position) {
         var $loading_div = $('<div/>', {
-                id: 'loading',
+                class: 'loading',
                 text: 'Loading&hellip;'
             });     
-        $('#thumbnails', this.$container).after($loading_div);
+        $position.after($loading_div);
         $loading_div.hide();
+    };
+
+    this.bind_provider_links = function() {
+        var me = this;
+        $('a', $('.providers ul')).live(
+            "click",
+            function(event){
+                var clicked_url_string = $(event.target).attr('href');
+                url = new VideoLibrary_VideoPageURL(clicked_url_string);
+                me.set_related_videos(url, {rewrite_controls: true});
+                $(event.target).parent().siblings('.selected').removeClass('selected');
+                $(event.target).parent().addClass('selected');
+                // me.bind_pager();
+                return false;
+            });
+
     };
 
     this.bind_pager = function() {
         var duration = 0;
         var me = this;
         // Click event on any pager button
-        $('a', $('.pager')).live(
+        $('.pager a', me.$container).live(
             "click",
             function(event){
                 var clicked_url_string = $(event.target).attr('href');
                 url = new VideoLibrary_VideoPageURL(clicked_url_string);
 
-                me.set_related_videos(url);
+                me.set_related_videos(url, {rewrite_controls: false});
 
                 if (url.duration) {
                     duration = url.duration;
@@ -176,7 +204,10 @@ function VideoLibrary_RelatedVideos(options) {
     };
 
 
-    this.set_related_videos = function(url) {
+    this.set_related_videos = function(
+        url,
+        options
+    ) {
         var me = this;
         var next_thumbnails_url = 
             '/?oo-page=1&page-class=VideoLibrary_VideoXMLPage&related_videos=1&ajax=1'
@@ -195,26 +226,60 @@ function VideoLibrary_RelatedVideos(options) {
         }
         // alert(next_thumbnails_url);
 
-        var thumbnails_div = $('#thumbnails');
-        thumbnails_div.animate({
-                marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
-                -thumbnails_div.outerWidth() :
-                0
-            });
+        var ajax_success;
+        var $loading_div_context;
+        if (options.rewrite_controls) {
+            next_thumbnails_url += '&rewrite_controls=1';
+            $('#video-control-wrapper', this.$container).children().fadeOut('slow');
+            $loading_div_context = $('#video-control-wrapper'); 
+            ajax_success = function(html){ //so, if data is retrieved, store it in html
+                $("#video-control-wrapper", me.$container).children().fadeIn('slow'); //show the html inside .content div
+                $("#video-control-wrapper", me.$container).html(html); //show the html inside .content div
+                me.rewrite_standalone_buttons();
+            }
+        } else {
+            var thumbnails_div = $('#thumbnails', this.$container);
+            thumbnails_div.animate({
+                    marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
+                    -thumbnails_div.outerWidth() :
+                    0
+                });
+            $loading_div_context = $('#thumbnails-wrapper'); 
+            ajax_success = function(html){ //so, if data is retrieved, store it in html
+                thumbnails_div.css('marginLeft', thumbnails_div.outerWidth());
+                thumbnails_div.animate({
+                        marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
+                        thumbnails_div.outerWidth() :
+                        0
+                    }); //animation
+                $("#thumbnails").html(html); //show the html inside .content div
+            }
+        }
+
         $.ajax({
-                method: "get",url: next_thumbnails_url,
-                beforeSend: function(){$("#loading").fadeIn("fast");}, //show loading just when link is clicked
-                complete: function(){ $("#loading").fadeOut("fast");}, //stop showing loading when the process is complete
-                success: function(html){ //so, if data is retrieved, store it in html
-                    thumbnails_div.css('marginLeft', thumbnails_div.outerWidth());
-                    thumbnails_div.animate({
-                            marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
-                            thumbnails_div.outerWidth() :
-                            0
-                        }); //animation
-                    $("#thumbnails").html(html); //show the html inside .content div
+                method: 'get',
+                url: next_thumbnails_url,
+                beforeSend:function(){$(".loading", $loading_div_context).fadeIn("fast");},
+                complete: function(){ $(".loading", $loading_div_context).fadeOut("fast");},
+                success: function(html) {
+                    ajax_success(html);
                 }
-            }); //close $.ajax
+            }); 
+
+        // $.ajax({
+                // method: "get",url: next_thumbnails_url,
+                // beforeSend: function(){$(".loading", $('#thumbnails-wrapper')).fadeIn("fast");}, //show loading just when link is clicked
+                // complete: function(){ $(".loading", $('#thumbnails-wrapper')).fadeOut("fast");}, //stop showing loading when the process is complete
+                // success: function(html){ //so, if data is retrieved, store it in html
+                    // thumbnails_div.css('marginLeft', thumbnails_div.outerWidth());
+                    // thumbnails_div.animate({
+                            // marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
+                            // thumbnails_div.outerWidth() :
+                            // 0
+                        // }); //animation
+                    // $("#thumbnails").html(html); //show the html inside .content div
+                // }
+            // }); //close $.ajax
     };
 
 };

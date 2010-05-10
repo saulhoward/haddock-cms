@@ -97,6 +97,36 @@ VideoLibrary_SearchXMLPage
         return $this->related_videos;
     }
 
+    protected function
+        get_total_related_videos_count()
+    {
+        if (!isset($this->total_related_videos_count)) {
+            $this->set_total_related_videos_count();
+        }
+        return $this->total_related_videos_count;
+    }
+
+    protected function
+        set_total_related_videos_count()
+    {
+        if (isset($_GET['external_video_provider_id'])) {
+            $videos = VideoLibrary_RelatedVideosHelper
+                ::get_related_videos_count_for_external_video_data(
+                    $this->get_external_video_library_id(),
+                    $this->get_video_data(),
+                    $this->get_external_video_provider_id()
+                );
+
+        } else {
+            $videos = VideoLibrary_RelatedVideosHelper
+                ::get_related_videos_count_for_external_video_data(
+                    $this->get_external_video_library_id(),
+                    $this->get_video_data()
+                );
+        }
+
+        $this->total_related_videos_count = $videos;
+    }
     public function
         render_xml()
     {
@@ -104,10 +134,51 @@ VideoLibrary_SearchXMLPage
             (isset($_GET['ajax']))
             &&
             (isset($_GET['related_videos']))
+            &&
+            (isset($_GET['rewrite_controls']))
+        ) {
+            $div = new HTMLTags_Div();
+            $thumbnails_wrapper_div = new HTMLTags_Div();
+            $thumbnails_wrapper_div->set_attribute_str('id', 'thumbnails-wrapper');
+            $thumbnails_wrapper_div->append(
+                VideoLibrary_DisplayHelper::
+                get_thumbnails_div($this->get_related_videos())
+            );
+            $div->append($thumbnails_wrapper_div);
+
+            $div->append(
+                VideoLibrary_DisplayHelper::
+                get_pager_div(
+                    $this->get_start(),
+                    $this->get_duration(),
+                    $this->get_total_related_videos_count(),
+                    $this->get_page_url()
+                )
+            );
+            echo $div->get_as_string();
+
+        }
+        elseif (
+            (isset($_GET['ajax']))
+            &&
+            (isset($_GET['related_videos']))
         ) {
             echo VideoLibrary_DisplayHelper::
                 get_thumbnails_div($this->get_related_videos());
         }
+ 
+    }
+
+    protected function
+        get_page_url()
+    {
+        $url = VideoLibrary_URLHelper
+            ::get_oo_page_url(
+                'VideoLibrary_VideoPage'
+            );
+        $video_data = $this->get_video_data();
+        $url->set_get_variable('video_id', $video_data['id']);
+        return $url;
     }
 }
 ?>

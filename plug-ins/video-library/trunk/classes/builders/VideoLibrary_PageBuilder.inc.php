@@ -151,13 +151,6 @@ VideoLibrary_PageBuilder
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
 >
 </script> 
-<!--
-<script 
-    type="text/javascript" 
-    src="/plug-ins/video-library/public-html/scripts/jquery.glow.js"
->
-</script> 
--->
 <script 
     type="text/javascript" 
     src="/plug-ins/video-library/public-html/scripts/pages/VideoLibrary_HTMLPage.js"

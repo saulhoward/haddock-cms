@@ -340,15 +340,18 @@ HTML;
         );
         $div->append($providers_wrapper_div);
 
+        $video_control_wrapper_div = new HTMLTags_Div();
+        $video_control_wrapper_div->set_attribute_str('id', 'video-control-wrapper');
+
         $thumbnails_wrapper_div = new HTMLTags_Div();
         $thumbnails_wrapper_div->set_attribute_str('id', 'thumbnails-wrapper');
         $thumbnails_wrapper_div->append(
             VideoLibrary_DisplayHelper::
             get_thumbnails_div($this->get_related_videos())
         );
-        $div->append($thumbnails_wrapper_div);
+        $video_control_wrapper_div->append($thumbnails_wrapper_div);
 
-        $div->append(
+        $video_control_wrapper_div->append(
             VideoLibrary_DisplayHelper::
             get_pager_div(
                 $this->get_start(),
@@ -358,6 +361,7 @@ HTML;
             )
         );
 
+        $div->append($video_control_wrapper_div);
         $div->append('<div class="clear">&nbsp;</div>');
 
         return $div;
