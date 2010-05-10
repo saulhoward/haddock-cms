@@ -23,9 +23,6 @@ function VideoLibrary_RelatedVideos(options) {
         this.rewrite_standalone_buttons(); // Create them first
         this.bind_standalone_buttons();
 
-        /*
-         * Video Provider AJAX
-         */
         this.create_loading_div($('#video-control-wrapper', this.$container));
         this.bind_provider_links();
     };
@@ -231,7 +228,7 @@ function VideoLibrary_RelatedVideos(options) {
         if (options.rewrite_controls) {
             next_thumbnails_url += '&rewrite_controls=1';
             $('#video-control-wrapper', this.$container).children().fadeOut('slow');
-            $loading_div_context = $('#video-control-wrapper'); 
+            $loading_div_context = $('#related-videos'); 
             ajax_success = function(html){ //so, if data is retrieved, store it in html
                 $("#video-control-wrapper", me.$container).children().fadeIn('slow'); //show the html inside .content div
                 $("#video-control-wrapper", me.$container).html(html); //show the html inside .content div
@@ -259,8 +256,8 @@ function VideoLibrary_RelatedVideos(options) {
         $.ajax({
                 method: 'get',
                 url: next_thumbnails_url,
-                beforeSend:function(){$(".loading", $loading_div_context).fadeIn("fast");},
-                complete: function(){ $(".loading", $loading_div_context).fadeOut("fast");},
+                beforeSend:function(){$(".loading", $loading_div_context).first().fadeIn("fast");},
+                complete: function(){ $(".loading", $loading_div_context).first().fadeOut("fast");},
                 success: function(html) {
                     ajax_success(html);
                 }
