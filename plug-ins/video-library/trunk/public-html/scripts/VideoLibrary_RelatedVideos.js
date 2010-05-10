@@ -224,24 +224,25 @@ function VideoLibrary_RelatedVideos(options) {
         // alert(next_thumbnails_url);
 
         var ajax_success;
-        var $loading_div_context;
+        var $loading_div;
         if (options.rewrite_controls) {
             next_thumbnails_url += '&rewrite_controls=1';
-            $('#video-control-wrapper', this.$container).children().fadeOut('slow');
-            $loading_div_context = $('#related-videos'); 
+            $('#video-control-wrapper', me.$container).children().fadeOut('fast');
+            $loading_div = $('#video-control-wrapper').next('.loading'); 
             ajax_success = function(html){ //so, if data is retrieved, store it in html
-                $("#video-control-wrapper", me.$container).children().fadeIn('slow'); //show the html inside .content div
+                $("#video-control-wrapper", me.$container).children().fadeIn('fast'); //show the html inside .content div
                 $("#video-control-wrapper", me.$container).html(html); //show the html inside .content div
                 me.rewrite_standalone_buttons();
+                me.create_loading_div($('#thumbnails', me.$container));
             }
         } else {
-            var thumbnails_div = $('#thumbnails', this.$container);
+            var thumbnails_div = $('#thumbnails', me.$container);
             thumbnails_div.animate({
                     marginLeft: parseInt(thumbnails_div.css('marginLeft'),10) == 0 ?
                     -thumbnails_div.outerWidth() :
                     0
                 });
-            $loading_div_context = $('#thumbnails-wrapper'); 
+            $loading_div = $('.loading', $('#thumbnails-wrapper')); 
             ajax_success = function(html){ //so, if data is retrieved, store it in html
                 thumbnails_div.css('marginLeft', thumbnails_div.outerWidth());
                 thumbnails_div.animate({
@@ -256,8 +257,8 @@ function VideoLibrary_RelatedVideos(options) {
         $.ajax({
                 method: 'get',
                 url: next_thumbnails_url,
-                beforeSend:function(){$(".loading", $loading_div_context).first().fadeIn("fast");},
-                complete: function(){ $(".loading", $loading_div_context).first().fadeOut("fast");},
+                beforeSend: function(){$loading_div.show();},
+                complete: function(){$loading_div.hide();},
                 success: function(html) {
                     ajax_success(html);
                 }
