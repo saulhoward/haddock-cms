@@ -1230,14 +1230,21 @@ SQL;
 		if (isset($_GET['limit'])) {
 			$limit = $_GET['limit'];
 		} else {
-			$limit = 10;
+			$limit = $this->get_default_limit();
 		}
 		
 		$_SESSION['select-vars']['limit'] = $limit;
 		
 		return $limit;
 	}
-	
+
+    protected function
+		get_default_limit()
+	{
+		return '10';
+	}
+
+
 	/**
 	 * Returns the current offset.
 	 *
