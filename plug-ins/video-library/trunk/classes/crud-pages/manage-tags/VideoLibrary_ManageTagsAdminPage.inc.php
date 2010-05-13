@@ -209,5 +209,11 @@ SQL;
 	{
 		return 'all of the Tags';
 	}
+
+    protected function
+        get_default_limit()
+    {
+        return '50';
+    }
 }
 ?>

@@ -71,6 +71,12 @@ SQL;
     }
 
     protected function
+        get_default_limit()
+    {
+        return '50';
+    }
+
+    protected function
         get_default_order_by()
     {
         return 'IFNULL(last_processed, 9999)';
