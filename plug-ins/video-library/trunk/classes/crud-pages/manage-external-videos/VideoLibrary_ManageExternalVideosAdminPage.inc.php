@@ -46,7 +46,7 @@ HTML;
             ),
             array(
                 'col_name' => 'date_added',
-                'filter' => 'return date("F j, Y", strtotime($str));'
+                'filter' => 'return date("j M y G:i", strtotime($str));'
             ),
             array(
                 'col_name' => 'id',
@@ -461,6 +461,7 @@ HTML;
         render_content_to_view_a_video()
     {
         echo $this->get_back_link_p();
+        echo $this->get_actions_div()->get_as_string();
         if (isset($_GET['id'])) {
             echo VideoLibrary_DisplayHelper::get_admin_view_video_div(
                 VideoLibrary_DatabaseHelper::get_external_video_data(
@@ -472,6 +473,20 @@ HTML;
         }
         echo $this->get_back_link_p();
     }
+
+    /*
+     * This div contains all the action links 
+     */
+	protected function
+		get_actions_div()
+	{
+        $id = $_GET['id'];
+        $div = new HTMLTags_Div();
+        $ul = new HTMLTags_UL();
+        $ul->append('<li><a href="/?oo-page=1&page-class=VideoLibrary_ManageExternalVideosAdminPage&content=edit_something&id=' . $id . '">Edit</a></li>');
+        $div->append($ul);
+        return $div;
+	}
 
     protected function
         get_data_table_caption_content_explanation_part()
