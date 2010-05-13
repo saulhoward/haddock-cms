@@ -11,15 +11,20 @@ VideoLibrary_URLHelper
 	public static function
 		get_default_thumbnail_url()
 	{
+		$url = new VideoLibrary_URL();
+		$url->set_file(self::get_default_thumbnail_url_string());
+		return $url;
+	}
+
+	public static function
+		get_default_thumbnail_url_string()
+	{
 		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
 		$config_manager = 
 			$cmf->get_config_manager('plug-ins', 'video-library');
-		$default_url= $config_manager->get_default_thumbnail_url();
-
-		$url = new HTMLTags_URL();
-		$url->set_file($default_url);
-		return $url;
+		return $config_manager->get_default_thumbnail_url();
 	}
+
 
 	public static function
 		get_pretty_video_page_url(
