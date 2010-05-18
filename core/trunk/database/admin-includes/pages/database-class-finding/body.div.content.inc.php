@@ -26,7 +26,7 @@ require_once PROJECT_ROOT
     . 'HTMLTags_Div.inc.php';
 
 require_once PROJECT_ROOT
-    . '/haddock/haddock-project-organisation/classes/'
+    . '/haddock/haddock-project-organisation/classes/finders/'
     . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
 
 require_once PROJECT_ROOT

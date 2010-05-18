@@ -381,10 +381,10 @@ abstract class
 		$eav = new InputValidation_EmailAddressValidator();
 		
 		if (
-			$this->is_name_valid($name) &&
-			$this->is_name_available($name) &&
-			$this->is_password_valid($password) &&
-			$this->is_type_valid($type) &&
+            $this->is_name_valid($name) &&
+            $this->is_name_available($name) &&
+            $this->is_password_valid($password) &&
+            $this->is_type_valid($type) &&
 			$eav->validate($email)
 		) {
 			$users_table = $this->get_users_table();
@@ -397,7 +397,7 @@ abstract class
 			
 			$users_table->add($values);
 		} else {
-			throw new InputValidation_InvalidInputException('Unable to add new user!');
+            throw new InputValidation_InvalidInputException('Unable to add new user!');
 		}
 	}
 	
