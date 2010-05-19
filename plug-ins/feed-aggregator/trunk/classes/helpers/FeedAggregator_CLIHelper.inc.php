@@ -87,6 +87,17 @@ SQL;
     }
 
     public static function
+        get_time_from_date($str)
+    {
+        $timestamp = strtotime($str);
+        if ($timestamp) {
+            return $timestamp;
+        } else {
+            return $str;
+        }
+    }
+
+    public static function
         add_feed_item_to_cache(
             $feed_id,
             $item       // SimplePie_Item -- NOT GOOD
@@ -98,7 +109,7 @@ SQL;
         $full_content = mysql_real_escape_string($item->get_content(), $dbh);
         $unique_item_id = mysql_real_escape_string($item->get_id(), $dbh);
         $summary = mysql_real_escape_string($item->get_description(), $dbh);
-        $updated = mysql_real_escape_string($item->get_date(), $dbh);
+        $updated = mysql_real_escape_string(self::get_time_from_date($item->get_date()), $dbh);
         $title = mysql_real_escape_string($item->get_title(), $dbh);
         $link = mysql_real_escape_string($item->get_link(), $dbh);
 
