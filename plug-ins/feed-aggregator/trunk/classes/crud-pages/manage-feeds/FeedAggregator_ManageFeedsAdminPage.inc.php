@@ -17,7 +17,7 @@ Database_CRUDAdminPage
         HTMLTags_LinkRenderer::render_style_sheet_link('/plug-ins/video-library/public-html/styles/admin-styles.css');
         echo <<<HTML
 <script type="text/javascript" 
-         src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+         src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" 
          src="/plug-ins/video-library/public-html/scripts/VideoLibrary_ManageExternalVideosPage.js"></script>
 HTML;

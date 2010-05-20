@@ -82,15 +82,48 @@ FeedAggregator_DisplayHelper
         foreach ($feed['items'] as $item) {
             $item_div = new HTMLTags_Div();
             $item_div->set_attribute_str('class', 'item');
-            $item_div->append('<h4>' . self::get_item_link($item) . '</h4>');
-            $item_div->append($item['summary']);
+            $link = self::get_item_external_link($item);
+            $item_div->append('<h4>' . $link . '</h4>');
+            $item_div->append(self::truncate_text($item['summary'], 150));
             $div->append($item_div);
         }
         return $div;
     }
 
+    public static function 
+        truncate_text(
+            $string,
+            $limit,
+            $break=" ",
+            $pad='&hellip;'
+        ) 
+    { 
+        // This function
+        // Original PHP code by Chirp Internet: www.chirp.com.au 
+        // Please acknowledge use of this code by including this header. 
+
+        // return with no change if string is shorter than $limit  
+        if(strlen($string) <= $limit) return $string;
+
+        $string = substr($string, 0, $limit);
+        if(false !== ($breakpoint = strrpos($string, $break))) {
+            $string = substr($string, 0, $breakpoint);
+        } 
+        return $string . $pad;
+    }
+
     public static function
-        get_item_link($item)
+        get_item_external_link($item)
+    {
+        $url = FeedAggregator_URLHelper::
+            get_item_external_url($item);
+        $a = new HTMLTags_A($item['title']);
+        $a->set_href($url);
+        return $a;
+    }
+
+    public static function
+        get_item_internal_link($item)
     {
         $url = FeedAggregator_URLHelper::
             get_item_page_url_for_item_id($item['id']);

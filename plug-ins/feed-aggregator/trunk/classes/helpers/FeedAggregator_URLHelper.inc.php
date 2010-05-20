@@ -9,6 +9,14 @@ class
 FeedAggregator_URLHelper
 {
     public static function
+        get_item_external_url($item)
+    {
+        $url = new HTMLTags_URL();
+        $url->set_file($item['link']);
+        return $url;
+    }
+
+    public static function
         get_item_page_url()
     {
         $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
