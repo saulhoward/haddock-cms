@@ -84,10 +84,18 @@ FeedAggregator_DisplayHelper
             $item_div->set_attribute_str('class', 'item');
             $link = self::get_item_external_link($item);
             $item_div->append('<h4>' . $link . '</h4>');
-            $item_div->append(self::truncate_text($item['summary'], 150));
+            $item_div->append(self::prepare_summary_text($item['summary']));
             $div->append($item_div);
         }
         return $div;
+    }
+
+    public static function 
+        prepare_summary_text($summary)
+    {
+        $summary = strip_tags($summary);
+        $summary = self::truncate_text($summary, 150);
+        return $summary;
     }
 
     public static function 
