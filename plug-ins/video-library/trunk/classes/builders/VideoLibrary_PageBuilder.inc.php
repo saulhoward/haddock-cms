@@ -148,7 +148,7 @@ VideoLibrary_PageBuilder
         return <<<HTML
 <script 
     type="text/javascript" 
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"
 >
 </script> 
 <script 
@@ -159,6 +159,16 @@ VideoLibrary_PageBuilder
 <script 
     type="text/javascript" 
     src="/plug-ins/video-library/public-html/scripts/VideoLibrary_SearchForms.js"
+>
+</script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/pages/VideoLibrary_ThumbnailsPage.js"
+>
+</script> 
+<script 
+    type="text/javascript" 
+    src="/plug-ins/video-library/public-html/scripts/VideoLibrary_Thumbnails.js"
 >
 </script> 
 

@@ -54,7 +54,7 @@ HTML;
         );
 
         $urls = array();
-        for ($i = 1; $i == 30; $i++) {
+        for ($i = 1; $i <= 30; $i++) {
             $urls[] = $this->convert_url_to_frame_specific_url($url, $i);
         }
         return $urls;
@@ -72,7 +72,8 @@ HTML;
          * The last number (30) is the frame no.
          */
 
-        preg_replace('/\.([0-9]+)\.jpg$/', $frame_no, $url);
+        $url = preg_replace('/\.[0-9]+\.jpg$/', '.' . $frame_no . '.jpg', $url);
+        // print_r($url);exit;
         return $url;
     }
 

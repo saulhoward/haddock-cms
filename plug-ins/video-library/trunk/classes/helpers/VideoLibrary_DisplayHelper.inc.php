@@ -139,6 +139,7 @@ VideoLibrary_DisplayHelper
         get_thumbnail_img($url)
     {
         $img = new HTMLTags_IMG();
+        $img->set_attribute_str('class', 'thumbnail');
         if ($url == NULL) {
             $src = VideoLibrary_URLHelper
                 ::get_default_thumbnail_url();

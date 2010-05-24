@@ -37,7 +37,7 @@ HTML;
         get_thumbnail_urls()
     {
         $urls = array();
-        for ($i = 1; $i == 16; $i++) {
+        for ($i = 1; $i <= 16; $i++) {
             $urls[] = $this->extract_thumbnail_url_from_video_page_url($i);
         }
         return $urls;

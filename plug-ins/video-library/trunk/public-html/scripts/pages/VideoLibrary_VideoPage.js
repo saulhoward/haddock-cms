@@ -4,8 +4,7 @@
  * 
  */
 
-$(document).ready(
-    function(){
+$(function() { 
 
         var $related_videos_div = $('#related-videos');
         var cur_url = window.location.pathname;

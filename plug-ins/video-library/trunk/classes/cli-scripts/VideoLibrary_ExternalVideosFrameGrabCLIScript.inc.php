@@ -23,7 +23,7 @@ CLIScripts_CLIScript
                 get_external_videos_frame_grabbing_queue(
                     'last_processed IS NULL'
                 );
-            //print_r($queued_videos);exit;
+            // print_r($queued_videos);exit;
 
             foreach ($queued_videos as $queued_video) {
 
@@ -37,6 +37,7 @@ CLIScripts_CLIScript
 
                 $thumbnail_urls = VideoLibrary_CLIScriptsHelper
                     ::get_thumbnail_urls_for_external_video($video);
+                // print_r($thumbnail_urls);exit;
 
                 $i = 1;
                 foreach ($thumbnail_urls as $thumbnail_url) {
@@ -78,7 +79,7 @@ CLIScripts_CLIScript
 
                         /**
                          * Update the video's status and thumbnail details
-                         * but for the first thumb
+                         * but only for the first thumb
                          */
                         if ($i == 1) {
                             $thumbnails_medium_web_dir = VideoLibrary_CLIScriptsHelper::
@@ -110,7 +111,7 @@ CLIScripts_CLIScript
 
                         print_r($this->colour_output($output, 'red'));
                     }
-                    $i++
+                    $i++;
                 }
             }
             print_r('Queue processed. Exiting...' . PHP_EOL);

@@ -20,7 +20,7 @@ VideoLibrary_ExternalVideoProvider
     }
 
     abstract function
-        get_thumbnail_url();
+        get_thumbnail_urls();
 
     // abstract function
         // get_video_page_url_schema();
