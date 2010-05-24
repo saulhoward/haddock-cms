@@ -33,9 +33,18 @@ HTML;
         return array(1.261627907,1);
     }
 
+    public function
+        get_thumbnail_urls()
+    {
+        $urls = array();
+        for ($i = 1; $i == 16; $i++) {
+            $urls[] = $this->extract_thumbnail_url_from_video_page_url($i);
+        }
+        return $urls;
+    }
 
     public function
-        get_thumbnail_url()
+        extract_thumbnail_url_from_video_page_url($frame_no)
     {
         /**
          * Simple Transform on the ID
@@ -43,8 +52,9 @@ HTML;
          * 8259  -> http://thumbs.redtube.com/_thumbs/0000008/0008259/0008259_001.jpg
          *
          */
+        $frame_no = sprintf('%03d', $frame_no);
 
-        $thumb_schema = 'http://thumbs.redtube.com/_thumbs/%formatted_id_008.jpg';
+        $thumb_schema = 'http://thumbs.redtube.com/_thumbs/%formatted_id_' . $frame_no . '.jpg';
         $id = $this->get_providers_internal_id();
 
         $id_2 = sprintf("%07.7s", $id);                // 7 chars, padded with 0s

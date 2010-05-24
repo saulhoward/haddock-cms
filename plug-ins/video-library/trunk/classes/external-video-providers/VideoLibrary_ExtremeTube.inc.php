@@ -35,19 +35,23 @@ HTML;
     }
 
     public function
-        get_thumbnail_url()
+        get_thumbnail_urls()
     {
-        return $this->extract_thumbnail_url_from_video_page_url();
+        $urls = array();
+        for ($i = 1; $i == 16; $i++) {
+            $urls[] = $this->extract_thumbnail_url_from_video_page_url($i);
+        }
+        return $urls;
     }
 
     public function
-        extract_thumbnail_url_from_video_page_url()
+        extract_thumbnail_url_from_video_page_url($frame_no)
     {
         /* The thumbnail link works by formatting the id like this:
          * 404 => 000/000/404
          * 1699 => 000/001/699
          */
-        $thumb_schema = 'http://pics1.extremetube.com/thumbs/%formatted_id/240x180/1.jpg';
+        $thumb_schema = 'http://pics1.extremetube.com/thumbs/%formatted_id/240x180/' . $frame_no . '.jpg';
         $id = $this->get_providers_internal_id();
 
         $id = sprintf("%09.9s", $id);                // 9 chars, padded with 0s

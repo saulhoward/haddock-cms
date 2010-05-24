@@ -93,7 +93,7 @@ VideoLibrary_CLIScriptsHelper
     }
 
     public static function
-        get_thumbnail_url_for_external_video(
+        get_thumbnail_urls_for_external_video(
             $video_data
         )
     {
@@ -107,7 +107,7 @@ VideoLibrary_CLIScriptsHelper
         $instance->set_providers_internal_id(
             $video_data['providers_internal_id']
         );
-        return $instance->get_thumbnail_url();
+        return $instance->get_thumbnail_urls();
     }
 
     public static function

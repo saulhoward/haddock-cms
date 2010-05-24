@@ -39,7 +39,7 @@ HTML;
     }
 
     public function
-        get_thumbnail_url()
+        get_thumbnail_urls()
     {
         $video_page_html =
             VideoLibrary_CLIScriptsHelper
@@ -49,9 +49,31 @@ HTML;
         // print_r($this->get_video_page_url());exit;
         // print_r($video_page_html);exit;
 
-        return $this->extract_thumbnail_url_from_video_page(
+        $url = $this->extract_thumbnail_url_from_video_page(
             $video_page_html
         );
+
+        $urls = array();
+        for ($i = 1; $i == 30; $i++) {
+            $urls[] = $this->convert_url_to_frame_specific_url($url, $i);
+        }
+        return $urls;
+    }
+
+    public function
+        convert_url_to_frame_specific_url(
+            $url,
+            $frame_no
+        )
+    {
+        /**
+         * The url will be in the form
+         * http://img100.xvideos.com/videos/thumbslll/7/1/e/71e1bd885d0fe4a98e8fd32ba74013a6.30.jpg
+         * The last number (30) is the frame no.
+         */
+
+        preg_replace('/\.([0-9]+)\.jpg$/', $frame_no, $url);
+        return $url;
     }
 
     public function

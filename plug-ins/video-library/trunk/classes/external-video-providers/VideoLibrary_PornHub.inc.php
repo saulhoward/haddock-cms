@@ -36,7 +36,7 @@ HTML;
     }
 
     public function
-        get_thumbnail_url()
+        get_thumbnail_urls()
     {
         // print_r($this->get_video_page_url());exit;
         $video_page_html =
@@ -45,11 +45,16 @@ HTML;
                 $this->get_video_page_url()
             );
 
-        return $this->create_thumbnail_url_from_thumbnail_id(
+        $urls = array();
+        // for ($i = 1; $i == 16; $i++) {
+        // }
+
+        $urls[] = $this->create_thumbnail_url_from_thumbnail_id(
             $this->extract_thumbnail_code_from_video_page(
                 $video_page_html
             )
         );
+        return $urls;
     }
 
     public function
