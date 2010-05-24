@@ -55,6 +55,14 @@ RewriteRule ^search/libraries/(\d+)/tags/([\d,]+)/*$ /?oo-page=1&page-class=Vide
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^search/libraries/(\d+)/tags/([\d,]+)/(\d+)/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_library_id=$1&tag_ids=$2&start=$3&duration=$4
 
+# /search/channels/1/26/26
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^search/channels/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_provider_id=$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^search/channels/(\d+)/(\d+)/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_provider_id=$1&start=$2&duration=$3                     
+
+
 # /search/libraries/1/channels/1/26/26
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^search/libraries/(\d+)/channels/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_library_id=$1&external_video_provider_id=$2
