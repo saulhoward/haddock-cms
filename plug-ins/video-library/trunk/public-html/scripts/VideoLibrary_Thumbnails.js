@@ -4,14 +4,12 @@
  * 
  * This class provides animated thumbnail
  * 
- *
- * It requires ...
- * 
  */
 
 function VideoLibrary_Thumbnails(options) { 
 
     this.$thumbnails = options.$thumbnails;
+    this.interval = 0;
 
     this.bind = function() {
         var me = this;
@@ -20,18 +18,23 @@ function VideoLibrary_Thumbnails(options) {
 
     this.bind_thumbnails = function() {
         var me = this;
-
-        var orig_img_url;
-
+        // var interval;
 
         $('img.thumbnail', me.$thumbnails).live('mouseover mouseout', function(event) {
-                var interval;
                 if (event.type == 'mouseover') {
                     // do something on mouseover
-                    interval = setInterval(me.advance_image(event.target) , 300);
+                    var $cur_img = event.target;
+
+                    me.interval = setInterval( 
+                        function() {
+                            me.advance_image($cur_img);
+                        } ,
+                        300
+                    );
+
                 } else {
                     // do something on mouseout
-                    clearInterval(interval);
+                    clearInterval(me.interval);
                 }
 
             });
@@ -40,23 +43,24 @@ function VideoLibrary_Thumbnails(options) {
     this.advance_image = function($cur_img) {
         var me = this;
         var cur_img_url = $cur_img.src;
-        var orig_img_url = cur_img_url;
+
+        /*
+         * I don't know how it returns to the first img url when it runs out, but it does...
+         */
         var next_img_url = this.get_next_image_url(cur_img_url); 
-        // setTimeout( function() { me.change_image($cur_img, next_img_url); }, 300 );
         me.change_image($cur_img, next_img_url);
-        return orig_img_url;
     };
 
     this.change_image = function($img, url) {
+        $($img).addClass('loading');
         var img = new Image();
 
         // wrap our new image in jQuery, then:
         $(img)
         // once the image has loaded, execute this code
         .load(function () {
-                var img = $img;
-                $(this).addClass('thumbnail');
-                $(img).replaceWith(this);
+                $($img).removeClass('loading');
+                $($img).attr('src', url);
             })
 
         // if there was an error loading the image, react accordingly
@@ -64,6 +68,7 @@ function VideoLibrary_Thumbnails(options) {
                 // notify the user that the image could not be loaded
             })
         .attr('src', url);
+        return img;
     };
 
 
@@ -77,12 +82,7 @@ function VideoLibrary_Thumbnails(options) {
             while (match = re.exec(cur_url)) {
                 cur_frame_no = match[1];
             }
-if (cur_frame_no > 5) {
-
-            next_frame_no = 1;
-} else {
             next_frame_no = parseInt(cur_frame_no, 10) + 1;
-}
         }
 
         return cur_url.replace(/_[0-9]+.jpg$/g, '_' + next_frame_no + '.jpg')
