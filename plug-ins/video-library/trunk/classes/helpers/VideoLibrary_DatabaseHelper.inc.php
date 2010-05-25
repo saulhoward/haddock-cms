@@ -831,6 +831,9 @@ AND
     hpi_video_library_external_videos.id 
     = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
 AND
+    hpi_video_library_external_videos.external_video_provider_id 
+    = hpi_video_library_external_video_providers.id
+AND
     hpi_video_library_external_videos.status = 'display'
 SQL;
 
