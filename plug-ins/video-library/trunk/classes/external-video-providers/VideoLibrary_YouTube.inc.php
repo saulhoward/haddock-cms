@@ -23,7 +23,7 @@ HTML;
 	}
 
     public function
-        get_thumbnail_url()
+        get_thumbnail_urls()
     {
     }
 }

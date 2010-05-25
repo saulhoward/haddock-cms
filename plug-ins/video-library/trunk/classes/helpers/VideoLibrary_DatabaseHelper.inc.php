@@ -1577,5 +1577,20 @@ SQL;
         return VideoLibrary_FrameGrabbingQueueDatabaseHelper::
             add_video_to_external_videos_frame_grabbing_queue($id);
     }
+
+    public function
+		add_all_videos_to_external_videos_frame_grabbing_queue()
+    {
+        $libraries = self::get_external_video_libraries();
+
+        foreach ($libraries as $library) {
+
+            $videos = self::get_external_videos($library['id']);
+            foreach ($videos as $video) {
+                VideoLibrary_FrameGrabbingQueueDatabaseHelper::
+                    add_video_to_external_videos_frame_grabbing_queue($video['id']);
+            }
+        }
+    }
 }
 ?>
