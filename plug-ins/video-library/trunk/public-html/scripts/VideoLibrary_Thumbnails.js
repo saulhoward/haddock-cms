@@ -29,7 +29,7 @@ function VideoLibrary_Thumbnails(options) {
                         function() {
                             me.advance_image($cur_img);
                         } ,
-                        300
+                        500
                     );
 
                 } else {

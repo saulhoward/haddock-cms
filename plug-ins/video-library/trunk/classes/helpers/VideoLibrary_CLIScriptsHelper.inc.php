@@ -182,48 +182,69 @@ VideoLibrary_CLIScriptsHelper
 
     public static function 
         resize_image(
-            $original_filename,
+            $original_filename = NULL,
             $width,
             $height,
             $save_dir,
             $save_name
         )
     {
-        $save_dir .= (substr($save_dir,-1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR : "";
+        if (is_null($original_filename) || !is_file($original_filename) || !(getimagesize($original_filename))) {
+            throw new VideoLibrary_FailedToCreateImageException();
+        }
         $gis        = getimagesize($original_filename);
         $type        = $gis[2];
-        switch($type)
-        {
-        case "1": $imorig = imagecreatefromgif($original_filename); break;
-        case "2": $imorig = imagecreatefromjpeg($original_filename);break;
-        case "3": $imorig = imagecreatefrompng($original_filename); break;
-        default:  $imorig = imagecreatefromjpeg($original_filename);
-        }
 
-        $x = imagesx($imorig);
-        $y = imagesy($imorig);
+        
+        if (self::resize_proportional_image($original_filename, $save_dir.$save_name, $width, $height, TRUE))
+            return $save_dir.$save_name;
+        else
+            throw new VideoLibrary_FailedToCreateImageException();
+    }
 
-        $maxisheight = 0;
-        $woh = (!$maxisheight)? $gis[0] : $gis[1] ;    
+    public static function 
+        resize_proportional_image($filename, $destination, $th_width, $th_height, $forcefill)
+    {    
+        list($width, $height) = getimagesize($filename);
 
-        if($woh <= $width) {
-            $aw = $x;
-            $ah = $y;
-        } else {
-            if(!$maxisheight){
-                $aw = $width;
-                $ah = $width * $y / $x;
-            } else {
-                $aw = $width * $x / $y;
-                $ah = $width;
+        $source = imagecreatefromjpeg($filename);
+
+        if($width > $th_width || $height > $th_height){
+            $a = $th_width/$th_height;
+            $b = $width/$height;
+
+            if(($a > $b)^$forcefill)
+            {
+                $src_rect_width  = $a * $height;
+                $src_rect_height = $height;
+                if(!$forcefill)
+                {
+                    $src_rect_width = $width;
+                    $th_width = $th_height/$height*$width;
+                }
             }
-        }   
-        $im = imagecreatetruecolor($width,$height);
-        if (imagecopyresampled($im,$imorig , 0,0,0,0,$aw,$ah,$x,$y))
-            if (imagejpeg($im, $save_dir.$save_name))
-                return $save_dir.$save_name;
             else
-                throw new VideoLibrary_FailedToCreateImageException();
+            {
+                $src_rect_height = $width/$a;
+                $src_rect_width  = $width;
+                if(!$forcefill)
+                {
+                    $src_rect_height = $height;
+                    $th_height = $th_width/$width*$height;
+                }
+            }
+
+            $src_rect_xoffset = ($width - $src_rect_width)/2*intval($forcefill);
+            $src_rect_yoffset = ($height - $src_rect_height)/2*intval($forcefill);
+
+            $thumb  = imagecreatetruecolor($th_width, $th_height);
+            imagecopyresampled($thumb, $source, 0, 0, $src_rect_xoffset, $src_rect_yoffset, $th_width, $th_height, $src_rect_width, $src_rect_height);
+
+            imagejpeg($thumb,$destination);
+            return TRUE;
+        }
+        imagejpeg($thumb,$destination);
+        return TRUE;
     }
 }
 ?>

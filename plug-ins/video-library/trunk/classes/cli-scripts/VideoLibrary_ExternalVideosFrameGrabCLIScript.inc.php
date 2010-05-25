@@ -77,6 +77,8 @@ CLIScripts_CLIScript
                                 $thumbnail_filename
                             );
 
+                        $actual_frame_no ++;
+
                         /**
                          * Update the video's status and thumbnail details
                          * but only for the first thumb
@@ -102,16 +104,16 @@ CLIScripts_CLIScript
 
                         $output = '#' . $video['id'] . ' Set thumbnail ' . $i . ' for video "' . $video['name'] . '"' . PHP_EOL;
                         print_r($this->colour_output($output, 'green'));
+                        $i++;
                     }
                     catch (Exception $e)
                     {
                         $output = "#" . $video['id'] 
-                            . ' Failed to set thumbnail for video "' 
+                            . ' Failed to set thumbnail ' . $i . ' for video "' 
                             . $video['name'] . '" (' . $e->getMessage() . ")" . PHP_EOL;
 
                         print_r($this->colour_output($output, 'red'));
                     }
-                    $i++;
                 }
             }
             print_r('Queue processed. Exiting...' . PHP_EOL);
