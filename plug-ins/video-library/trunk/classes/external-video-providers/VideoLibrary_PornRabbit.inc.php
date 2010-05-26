@@ -86,7 +86,7 @@ HTML;
          * And now we want the string between
          * var flagger_video_...;
          */
-        preg_match('/&image=([0-9a-zA-Z:\/\/]+)player.jpg/', $player_div_str, $matches);
+        preg_match('/&image=(.+)player.jpg/', $player_div_str, $matches);
         // print_r($matches[1]);exit;
 
         return $matches[1];
@@ -102,7 +102,9 @@ HTML;
         // print_r($id . "\n");
         // print_r($id_mod);exit;
 
-        return $thumb_loc_url . $frame_no . '_medium.jpg';
+        $thumb_url = $thumbnail_loc_url . $frame_no . '_medium.jpg';
+        // print_r($thumb_url);exit;
+        return $thumb_url;
     }
 
 
