@@ -25,7 +25,7 @@ HTML;
     public function
         get_video_dimensions_ratio()
     {
-        return array(1.67673716,1);
+        return array(1.28,0.763387387);
     }
 
     public function
