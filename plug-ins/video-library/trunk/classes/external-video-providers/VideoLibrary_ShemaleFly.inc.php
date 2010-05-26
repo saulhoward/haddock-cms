@@ -16,8 +16,14 @@ VideoLibrary_ExternalVideoProvider
         //$internal_id = $this->get_providers_internal_id();
 
         return <<<HTML
+<embed src='http://shemalefly/player.swf' height='443' width='596' allowscriptaccess='always' allowfullscreen='true' flashvars='config=http%3A%2F%2Fshemalefly%2Fvid_config.php%3Fid%3Ddark_and_juicy_dark_and_thick_5_chunk_1'/><br><a href='http://www.shemalefly.com/categories/Shemale-Blowjobs-1.html'>Shemale Blowjobs</a> - <a href='http://www.shemalefly.com'>Tgirl</a> 
+
+HTML;
+
+        $embed = <<<HTML
 <embed src='http://shemalefly/player.swf' height='%video_height' width='%video_width' allowscriptaccess='always' allowfullscreen='true' flashvars='config=http%3A%2F%2Fshemalefly%2Fvid_config.php%3Fid%3D%video_id'/>
 HTML;
+
 
     }
 
