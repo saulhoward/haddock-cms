@@ -528,20 +528,28 @@ HTML;
 
         $images_div = new HTMLTags_Div();
         $images_div->set_attribute_str('id', 'images');
-        if ($tags) {
-            foreach ($tags as $tag) {
+        if (!($tags) && !($external_video_provider) && !($search_query)) {
+            $images_div->append(
+                self::get_img_for_default('50')
+            );
+        } else {
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    $images_div->append(
+                        self::get_img_for_tag_name($tag['tag'], '50/' . $external_video_library_id)
+                    );
+                }
+            } 
+            if ($external_video_provider) {
                 $images_div->append(
-                    self::get_img_for_tag_name($tag['tag'], '50/' . $external_video_library_id)
+                    self::get_img_for_external_provider_name($external_video_provider['name'])
                 );
             }
-        } 
-        //else {
-        //$images_div->append('<img src="/images/tags/50/all.png" />');
-        //}
-        if ($external_video_provider) {
-            $images_div->append(
-                self::get_img_for_external_provider_name($external_video_provider['name'])
-            );
+            if ($search_query) {
+                $images_div->append(
+                    self::get_img_for_search('50')
+                );
+            }
         }
         $div->append($images_div);
 
@@ -590,6 +598,31 @@ HTML;
         } else {
             $url->set_file('/images/external-video-providers/' . $size . '/default.png');
         }
+        $img->set_src($url);
+        return $img;
+    }
+
+    public static function
+        get_img_for_default(
+            $size = '50'
+        )
+    {
+        $img = new HTMLTags_IMG();
+        $url = new HTMLTags_URL();
+        $file_name = '/images/icons/' . $size . '/default.png';
+        $url->set_file($file_name);
+        $img->set_src($url);
+        return $img;
+    }
+    public static function
+        get_img_for_search(
+            $size = '50'
+        )
+    {
+        $img = new HTMLTags_IMG();
+        $url = new HTMLTags_URL();
+        $file_name = '/images/icons/' . $size . '/search.png';
+        $url->set_file($file_name);
         $img->set_src($url);
         return $img;
     }
