@@ -16,15 +16,39 @@ VideoLibrary_ExternalVideoProvider
 		//$internal_id = $this->get_providers_internal_id();
 
 		return <<<HTML
-<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/%video_id"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%video_id" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+<object width="%video_width" height="%video_height"><param name="movie" value="http://www.youtube.com/v/%video_id"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%video_id" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="%video_width" height="%video_height"></embed></object>
 
 HTML;
 
 	}
 
     public function
+        get_video_dimensions_ratio()
+    {
+        return array(1,1);
+    }
+
+    public function
         get_thumbnail_urls()
     {
+        // So far just getting one thumb from YouTube
+        $urls = array();
+        $urls[] = $this->create_thumbnail_url_from_provider_id();
+        return $urls;
+    }
+
+    public function
+        create_thumbnail_url_from_provider_id()
+    {
+        $thumb_schema = 'http://i4.ytimg.com/vi/%video_id/default.jpg';
+        $thumb_url = str_replace(
+            '%video_id',
+            $this->get_providers_internal_id(),
+            $thumb_schema
+        );
+
+        // print_r($thumb_url);exit;
+        return $thumb_url;
     }
 }
 ?>

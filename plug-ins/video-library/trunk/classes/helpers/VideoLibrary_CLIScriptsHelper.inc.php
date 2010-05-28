@@ -170,13 +170,14 @@ VideoLibrary_CLIScriptsHelper
         $buffer = curl_exec($curl_handle);
         curl_close($curl_handle);
         fclose($fp);
-        //print_r($buffer);exit;
+        // print_r($buffer);exit;
 
         if (empty($buffer)) {
             throw new VideoLibrary_DownloadUnsuccessfulException();
         } else {
 
         }
+        // print_r($local_destination . $local_filename);exit;
         return $local_destination . $local_filename;
     }
 
