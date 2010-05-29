@@ -158,12 +158,14 @@ VideoLibrary_CLIScriptsHelper
     {
         $curl_handle=curl_init();
         curl_setopt($curl_handle,CURLOPT_URL, $remote_url);
-        ////curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+        //curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
         curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
         curl_setopt ($curl_handle, CURLOPT_FOLLOWLOCATION, 1);
 
-        $local_destination 
-            .= (substr($save_dir,-1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR : "";
+        // This is now done in the Config Manager before dirs are passed out
+        // $local_destination 
+            // .= (substr($local_destination,-1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR : "";
+
         $fp = fopen($local_destination . $local_filename, 'w');
         curl_setopt($curl_handle, CURLOPT_FILE, $fp);
 
@@ -177,7 +179,7 @@ VideoLibrary_CLIScriptsHelper
         } else {
 
         }
-        // print_r($local_destination . $local_filename);exit;
+        // print_r($local_destination . ' :: ' . $local_filename);exit;
         return $local_destination . $local_filename;
     }
 
@@ -190,12 +192,15 @@ VideoLibrary_CLIScriptsHelper
             $save_name
         )
     {
+        // print_r($original_filename);
+        // print_r($save_dir . $save_name);exit;
         if (is_null($original_filename) || !is_file($original_filename) || !(getimagesize($original_filename))) {
             throw new VideoLibrary_FailedToCreateImageException();
         }
         $gis        = getimagesize($original_filename);
         $type        = $gis[2];
 
+        // print_r($gis);exit;
         
         if (self::resize_proportional_image($original_filename, $save_dir.$save_name, $width, $height, TRUE))
             return $save_dir.$save_name;
@@ -244,7 +249,10 @@ VideoLibrary_CLIScriptsHelper
             imagejpeg($thumb,$destination);
             return TRUE;
         }
-        imagejpeg($thumb,$destination);
+        /*
+         * Image is already the thumb size`
+         */
+        imagejpeg($source,$destination);
         return TRUE;
     }
 }

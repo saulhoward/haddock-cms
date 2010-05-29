@@ -77,8 +77,6 @@ CLIScripts_CLIScript
                                 $thumbnail_filename
                             );
 
-                        $actual_frame_no ++;
-
                         /**
                          * Update the video's status and thumbnail details
                          * but only for the first thumb
