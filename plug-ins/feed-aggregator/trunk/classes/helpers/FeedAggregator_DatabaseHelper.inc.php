@@ -769,7 +769,14 @@ SQL;
 
         }
 
+        // foreach ($tags as $tag) {
+            // if ($tag == 'itunes') {
+                // print_r($tags);
+                // print_r($query);exit;
+            // }
+        // }
         // print_r($query);exit;
+
         $result = mysql_query($query, $dbh);
 
         $feeds = array();
@@ -777,6 +784,7 @@ SQL;
         while ($row = mysql_fetch_assoc($result)) {
             $feeds[] = $row;
         }   
+
         //print_r($tags);exit;
         return $feeds;
     }

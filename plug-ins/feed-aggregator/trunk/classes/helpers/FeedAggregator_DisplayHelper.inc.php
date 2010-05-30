@@ -90,6 +90,25 @@ FeedAggregator_DisplayHelper
         return $div;
     }
 
+    public static function
+        get_feed_headlines_div($feed)
+    {
+        if ($feed['items'] == '') {
+            throw new Exception('Feed contains no items.');
+        }
+        $div = new HTMLTags_Div();
+        $div->set_attribute_str('class', 'feed');
+        $div->append('<h3>' . $feed['title'] . '</h3>');
+        foreach ($feed['items'] as $item) {
+            $item_div = new HTMLTags_Div();
+            $item_div->set_attribute_str('class', 'item');
+            $link = self::get_item_external_link($item);
+            $item_div->append('<h4>' . $link . '</h4>');
+            $div->append($item_div);
+        }
+        return $div;
+    }
+
     public static function 
         prepare_summary_text($summary)
     {

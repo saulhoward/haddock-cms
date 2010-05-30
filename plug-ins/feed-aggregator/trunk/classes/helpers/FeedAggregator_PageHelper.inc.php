@@ -15,6 +15,47 @@ FeedAggregator_PageHelper
             $number_of_items_per_feed
         )
     {
+        $div = self::get_feed_div(
+            $tags,
+            $number_of_feeds,
+            $number_of_items_per_feed,
+            array(
+                'length' => 'summaries'
+            )
+        );
+        return $div;
+    }
+
+   public static function
+        get_feed_headlines_div(
+            $tags,                     // array
+            $number_of_feeds,
+            $number_of_items_per_feed
+        )
+    {
+        $div = self::get_feed_div(
+            $tags,
+            $number_of_feeds,
+            $number_of_items_per_feed,
+            array(
+                'length' => 'headlines'
+            )
+        );
+        return $div;
+    }
+
+
+
+    public static function
+        get_feed_div(
+            $tags,                     // array
+            $number_of_feeds,
+            $number_of_items_per_feed,
+            $options = array(
+                'length' => 'summaries' // headlines, summaries, full
+            )
+        )
+    {
         $feeds = FeedAggregator_DatabaseHelper::
             get_feeds_for_all_tags(
                 $tags,
@@ -22,6 +63,14 @@ FeedAggregator_PageHelper
                 0,
                 $number_of_feeds
             );
+
+        // foreach ($tags as $tag) {
+            // if ($tag == 'itunes') {
+                // print_r($tags);
+                // print_r('  //  ');
+                // print_r($feeds);exit;
+            // }
+        // }
         // print_r($tags);
         // print_r('  //  ');
         // print_r($feeds);exit;
@@ -36,7 +85,24 @@ FeedAggregator_PageHelper
                     $number_of_items_per_feed
                 );
             // print_r($feed);exit;
-            $div->append(FeedAggregator_DisplayHelper::get_feed_summary_div($feed));
+
+
+            switch ($options['length']) {
+            case 'summaries':
+                $div->append(
+                    FeedAggregator_DisplayHelper::get_feed_summary_div($feed)
+                );
+                break;
+            case 'headlines':
+                $div->append(
+                    FeedAggregator_DisplayHelper::get_feed_headlines_div($feed)
+                );
+                break;
+            default:
+                $div->append(
+                    FeedAggregator_DisplayHelper::get_feed_summary_div($feed)
+                );
+            }
         }
         return $div;
     }
