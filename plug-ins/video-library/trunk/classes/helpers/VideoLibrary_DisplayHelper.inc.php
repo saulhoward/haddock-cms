@@ -10,7 +10,10 @@ VideoLibrary_DisplayHelper
 {
     public static function
         get_thumbnails_div(
-            $videos
+            $videos,
+            $options = array(
+                'admin' => FALSE
+            )
         )
     {
         $div = new HTMLTags_Div();
@@ -20,7 +23,7 @@ VideoLibrary_DisplayHelper
             $div->append('<ul>');
             foreach ($videos as $video) {
                 $div->append('<li>');
-                $div->append(self::get_thumbnail_div_for_video($video));
+                $div->append(self::get_thumbnail_div_for_video($video, $options));
                 $div->append('</li>');
             }
             $div->append('</ul>');
@@ -32,13 +35,13 @@ VideoLibrary_DisplayHelper
     public static function
         get_admin_view_tag_div($videos)
     {
-        return self::get_thumbnails_div($videos);
+        return self::get_thumbnails_div($videos, array('admin' => TRUE));
     }
 
     public static function
         get_admin_view_library_div($videos)
     {
-        return self::get_thumbnails_div($videos);
+        return self::get_thumbnails_div($videos, array('admin' => TRUE));
     }
 
     public static function
@@ -89,7 +92,12 @@ VideoLibrary_DisplayHelper
     }
 
     public static function
-        get_thumbnail_div_for_video($video_data)
+        get_thumbnail_div_for_video(
+            $video_data,
+            $options = array(
+                'admin' => FALSE
+            )
+        )
     {
         $div = new HTMLTags_Div();
         $div->set_attribute_str('class', 'video');
@@ -126,6 +134,24 @@ VideoLibrary_DisplayHelper
 
         $div->append($img_a);
         $div->append($details_ul);
+        if (
+            ($options['admin'])
+            &&
+            (Admin_LogInHelper::is_logged_id())
+        ) {
+            $links_ul = new HTMLTags_UL();
+            $links_ul->set_attribute_str('class', 'options');
+            $edit_li = '<li>' .
+                VideoLibrary_AdminHelper
+                ::get_link_to_edit_video_admin_page_div(
+                    $video_data['id']
+                )->get_as_string()
+                . '</li>';
+            $links_ul->append($edit_li);
+            $div->append($links_ul);
+            $div->append('<hr />');
+        }
+
         return $div;
     }
 
