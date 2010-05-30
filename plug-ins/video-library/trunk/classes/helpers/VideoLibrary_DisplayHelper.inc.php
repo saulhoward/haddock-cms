@@ -168,10 +168,31 @@ VideoLibrary_DisplayHelper
     {
         return sprintf( "%02.2d:%02.2d", floor( $seconds / 60 ), $seconds % 60 );
     }
-
+    public static function
+        get_videos_div_for_external_videos_data(
+            $videos_data,
+            $size = 500
+        )
+    {
+        //print_r($video_data);exit;
+        $div = new HTMLTags_Div();
+        $div->set_attribute_str('id', 'videos');
+        foreach ($videos_data as $video_data) {
+            $div->append(
+                self::get_video_div_for_external_video_data(
+                    $video_data,
+                    $size
+                )
+            );
+        }
+        return $div;
+    }
 
     public static function
-        get_video_div_for_external_video_data($video_data)
+        get_video_div_for_external_video_data(
+            $video_data,
+            $size = 500
+        )
     {
         //print_r($video_data);exit;
         $div = new HTMLTags_Div();
@@ -189,7 +210,7 @@ VideoLibrary_DisplayHelper
         $embed_div->set_attribute_str('id', 'embed');
         $embed_div->append(
             VideoLibrary_EmbedHelper
-            ::get_video_embed_code_for_external_video($video_data)
+            ::get_video_embed_code_for_external_video($video_data, $size)
         );
         $div->append($embed_div);
         return $div;

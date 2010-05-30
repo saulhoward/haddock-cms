@@ -10,7 +10,8 @@ VideoLibrary_EmbedHelper
 {
 	public static function
 		get_video_embed_code_for_external_video(
-			$video_data
+            $video_data,
+            $size = 500
 		)
 	{
 		/**
@@ -23,7 +24,10 @@ VideoLibrary_EmbedHelper
 
 
         $embed_code = $instance->get_video_embed_code();
-        $video_dimensions = self::get_video_dimensions($instance->get_video_dimensions_ratio());
+        $video_dimensions = self::get_video_dimensions(
+            $instance->get_video_dimensions_ratio(),
+            $size
+        );
 		$embed_code = str_replace(
 			'%video_id',
 			$video_data['providers_internal_id'],
@@ -44,10 +48,10 @@ VideoLibrary_EmbedHelper
 
     public static function
         get_video_dimensions(
-            $ratio
+            $ratio,
+            $multiplier = 500
         )
     {
-        $multiplier = 500;
         return array(
             round($multiplier * $ratio[0]),
             round($multiplier * $ratio[1])
