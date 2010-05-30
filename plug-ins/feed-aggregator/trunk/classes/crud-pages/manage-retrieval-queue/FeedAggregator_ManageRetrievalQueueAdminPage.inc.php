@@ -169,13 +169,19 @@ HTML;
     protected function
         get_default_order_by()
     {
-        return "last_retrieved";
+        return "status";
     }
 
     protected function
         get_default_direction()
     {
-        return 'DESC';
+        return 'ASC';
+    }
+
+    protected function
+        get_default_limit()
+    {
+        return '50';
     }
 }
 ?>
