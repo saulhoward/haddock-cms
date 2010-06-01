@@ -16,7 +16,7 @@ VideoLibrary_ExternalVideoProvider
 		//$internal_id = $this->get_providers_internal_id();
 
 		return <<<HTML
-<object width="%video_width" height="%video_height"><param name="movie" value="http://www.youtube.com/v/%video_id"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%video_id" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="%video_width" height="%video_height"></embed></object>
+<object width="%video_width" height="%video_height"><param name="movie" value="http://www.youtube.com/v/%video_id&fs=1&color1=0x5d1719&color2=0xcd311b"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%video_id&fs=1&color1=0x5d1719&color2=0xcd311b" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="%video_width" height="%video_height"></embed></object>
 
 HTML;
 
