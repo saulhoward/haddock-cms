@@ -778,7 +778,61 @@ SQL;
     }
 
     public static function
+        get_sql_parts_for_external_videos_for_tag_names(
+            $external_video_library_id,
+            $tags,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE,
+                'admin' => FALSE
+            )
+        )
+    {
+        return self::get_sql_parts_for_external_videos_for_tags(
+            $external_video_library_id,
+            $tags,
+            $ignore_video_id,
+            $start,
+            $duration,
+            array(
+                'count' => $options['count'],
+                'admin' => $options['admin'],
+                'use_ids_for_tags' => FALSE
+            )
+        );
+    }
+
+    public static function
         get_sql_parts_for_external_videos_for_tag_ids(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE,
+                'admin' => FALSE
+            )
+        )
+    {
+        return self::get_sql_parts_for_external_videos_for_tags(
+            $external_video_library_id,
+            $tag_ids,
+            $ignore_video_id,
+            $start,
+            $duration,
+            array(
+                'count' => $options['count'],
+                'admin' => $options['admin'],
+                'use_ids_for_tags' => TRUE
+            )
+        );
+    }
+
+    public static function
+        old_get_sql_parts_for_external_videos_for_tag_ids(
             $external_video_library_id,
             $tag_ids,
             $ignore_video_id = NULL,
@@ -816,6 +870,128 @@ SQL;
                     $tag_ids[$i] = mysql_real_escape_string($tag_ids[$i]);
                     $sql_from .= " CROSS JOIN hpi_video_library_tags t" . $i;
                     $sql_where .= " AND t" . $i . ".id = '" . $tag_ids[$i] . "'";
+                    $sql_joins .= " INNER JOIN hpi_video_library_tags_to_ext_vid_links t2v" 
+                        . $i . " ON t2v" . ($i - 1) . ".external_video_id = t2v" . $i . ".external_video_id " . 
+                        " AND t2v" . $i . ".tag_id = t" . $i . ".id ";
+                }
+            }
+            $sql_where .= 'AND hpi_video_library_external_videos.id = t2v' . ($i - 1) . '.external_video_id' . "\n";
+
+            $sql_where .= <<<SQL
+AND
+    hpi_video_library_external_video_libraries.id 
+    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id
+AND
+    hpi_video_library_external_videos.id 
+    = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+    hpi_video_library_external_videos.external_video_provider_id 
+    = hpi_video_library_external_video_providers.id
+AND
+    hpi_video_library_external_videos.status = 'display'
+SQL;
+
+            if (!($options['admin'])) {
+                $external_video_library_id 
+                    = mysql_real_escape_string($external_video_library_id);
+                $sql_where .= <<<SQL
+AND
+    hpi_video_library_external_video_libraries.id = '$external_video_library_id'
+
+SQL;
+
+            }
+
+            if ($ignore_video_id > 0) {
+                $ignore_video_id = mysql_real_escape_string($ignore_video_id);
+                $sql_where .= <<<SQL
+AND
+    hpi_video_library_external_videos.id <> $ignore_video_id
+
+SQL;
+
+            }
+
+
+        } else {
+            throw new VideoLibrary_Exception('Too many tags searched for simultaneously');
+        }
+
+        $sql_group_by = '';
+        $sql_order_by = '';
+        $sql_limit = '';
+
+        if (!($options['count'])) {
+            $sql_group_by .= <<<SQL
+GROUP BY
+    hpi_video_library_external_videos.id
+SQL;
+
+            $sql_order_by = self::get_order_by_sql_for_external_videos();
+            $sql_limit = self::get_limit_sql_for_external_videos(
+                $start, $duration
+            );
+
+        }
+
+        return array(
+            'select' => $sql_select,
+            'from' => $sql_from,
+            'joins' => $sql_joins,
+            'where' => $sql_where,
+            'group_by' => $sql_group_by,
+            'order_by' => $sql_order_by,
+            'limit' => $sql_limit
+        );
+    }
+    public static function
+        get_sql_parts_for_external_videos_for_tags(
+            $external_video_library_id,
+            $tags, // array of either ids or names see $options['use_ids_for_tags']
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE,
+                'admin' => FALSE,
+                'use_ids_for_tags' => TRUE
+            )
+        )
+    {
+        $query = '';
+        $tags = self::limit_tags($tags);
+        $num_tags = count($tags);
+        // print_r($num_tags);exit;
+        // print_r($tags);exit;
+        if ($num_tags > 0 && $num_tags <= 58) {
+            if ($options['count']) {
+                $sql_select = "SELECT COUNT( DISTINCT t2v" . ($num_tags - 1) . ".external_video_id) AS count ";
+            } else {
+                $sql_select = "SELECT DISTINCT t2v" . ($num_tags - 1) . ".external_video_id, ";
+                $sql_select .= self::get_data_for_select_sql_for_external_videos() . "\n";
+            }
+
+            $sql_from = " " . self::get_from_sql_for_external_videos() . ", ";
+            $sql_where = " WHERE ";
+            $sql_joins = "";
+            for ($i=0;$i<$num_tags;++$i) {
+                if ($i==0) {
+                    $sql_from .= " hpi_video_library_tags t0 ";
+                    if ($options['use_ids_for_tags']) {
+                        $sql_where .= " t0.id = '" . $tags[0] . "'";
+                    } else {
+                        $sql_where .= " t0.tag = '" . $tags[0] . "'";
+                    }
+                    $sql_joins .= " INNER JOIN hpi_video_library_tags_to_ext_vid_links t2v0 ON t0.id = t2v0.tag_id ";
+                }
+                else {
+                    $tags[$i] = mysql_real_escape_string($tags[$i]);
+                    $sql_from .= " CROSS JOIN hpi_video_library_tags t" . $i;
+                    if ($options['use_ids_for_tags']) {
+                        $sql_where .= " AND t" . $i . ".id = '" . $tags[$i] . "'";
+                    } else {
+                        $sql_where .= " AND t" . $i . ".tag = '" . $tags[$i] . "'";
+                    }
                     $sql_joins .= " INNER JOIN hpi_video_library_tags_to_ext_vid_links t2v" 
                         . $i . " ON t2v" . ($i - 1) . ".external_video_id = t2v" . $i . ".external_video_id " . 
                         " AND t2v" . $i . ".tag_id = t" . $i . ".id ";
@@ -964,6 +1140,39 @@ SQL;
     }
 
     public static function
+        get_external_videos_for_tag_names(
+            $external_video_library_id,
+            $tag_names,       //array
+            $ignore_video_id = NULL,
+            $start = NULL, 
+            $duration = NULL
+        )
+    {
+       // print_r($start . '  ' . $duration);exit;
+        $dbh = DB::m();
+        $sql = self::
+            get_sql_parts_for_external_videos_for_tag_names(
+                $external_video_library_id,
+                $tag_names,
+                $ignore_video_id,
+                $start,
+                $duration
+            );
+        // echo $query; exit;
+        $query  = self::assemble_query_from_sql_parts($sql);
+        // print_r($query);exit;
+        $result = mysql_query($query, $dbh);
+
+        $videos = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $videos[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $videos;
+    }
+ 
+    public static function
         get_external_videos_count_for_tag_ids_and_external_video_provider_id(
             $external_video_library_id,
             $tag_ids,
@@ -997,14 +1206,22 @@ SQL;
             $tag_ids
         )
     {
+        return self::limit_tags($tag_ids);
+    }
+
+    public static function
+        limit_tags(
+            $tags
+        )
+    {
         /*
          * More than 28 and SQL barfs on the temporary tables it has to create 
          * for most of the tag functions being used
          */
-        if (count($tag_ids) > 28) {
-            $tag_ids = array_slice($tag_ids, 0, 28);
+        if (count($tags) > 28) {
+            $tags = array_slice($tags, 0, 28);
         }
-        return $tag_ids;
+        return $tags;
     }
 
     public static function
