@@ -194,6 +194,7 @@ VideoLibrary_DisplayHelper
     {
         return sprintf( "%02.2d:%02.2d", floor( $seconds / 60 ), $seconds % 60 );
     }
+
     public static function
         get_videos_div_for_external_videos_data(
             $videos_data,
