@@ -1017,7 +1017,21 @@ SQL;
         return $items;
     }
 
+    public static function
+        delete_old_feeds_from_cache()
+    {
+        $dbh = DB::m();
+        $stmt = <<<SQL
+DELETE FROM
+    hpi_feed_aggregator_cache
+WHERE 
+`date_retrieved` < DATE_SUB( NOW() , INTERVAL 1 WEEK ) ;
 
+SQL;
 
+        //print_r($stmt);exit;
+
+        $result = mysql_query($stmt, $dbh);
+    }
 }
 ?>
