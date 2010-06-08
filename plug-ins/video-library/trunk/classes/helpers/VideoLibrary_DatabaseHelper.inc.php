@@ -1054,6 +1054,7 @@ SQL;
                 $start, $duration
             );
 
+            // print_r($sql_limit);exit;
         }
 
         return array(
@@ -1158,7 +1159,7 @@ SQL;
                 $start,
                 $duration
             );
-        // echo $query; exit;
+        // print_r($sql); exit;
         $query  = self::assemble_query_from_sql_parts($sql);
         // print_r($query);exit;
         $result = mysql_query($query, $dbh);
@@ -1350,9 +1351,9 @@ SQL;
     {
         $limit = '';
         if (
-            ($start != NULL)
+            ($start >= 0)
             &&
-            ($duration != NULL) 
+            ($duration >= 0) 
         ){
             $start = mysql_real_escape_string($start);
             $duration = mysql_real_escape_string($duration);
@@ -1363,6 +1364,7 @@ LIMIT
 SQL;
 
         }
+        // print_r($limit);exit;
         return $limit;
     }
 
