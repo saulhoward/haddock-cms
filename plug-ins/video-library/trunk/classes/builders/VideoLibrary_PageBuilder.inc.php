@@ -83,20 +83,30 @@ VideoLibrary_PageBuilder
     }
 
     public function
-        get_pages_for_first_tier_navigation()
+        get_current_page_external_video_library_id()
     {
         /**
          * Check whether or not the page we are building is an inheritor 
          * of VideoLibrary_ExternalVideoLibraryPage
          */
         if (method_exists($this->get_current_page_class(), 'get_external_video_library_id')) {
+            return $this->get_current_page_class()->get_external_video_library_id();
+        } else {
+            return FALSE; // Page has no library id
+        }
+    }
+
+    public function
+        get_pages_for_first_tier_navigation()
+    {
+        if ($library_id = $this->get_current_page_external_video_library_id()) {
             $tags_page_url = VideoLibrary_URLHelper::
                 get_tags_page_url_for_external_video_library_id(
-                    $this->get_current_page_class()->get_external_video_library_id()
+                    $library_id
                 );
             $search_page_url = VideoLibrary_URLHelper::
                 get_search_page_url_for_external_video_library_id(
-                    $this->get_current_page_class()->get_external_video_library_id()
+                    $library_id
                 );
         } else {
             $tags_page_url = VideoLibrary_URLHelper::
