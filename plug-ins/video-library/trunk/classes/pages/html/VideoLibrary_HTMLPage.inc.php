@@ -48,12 +48,6 @@ PublicHTML_HTMLPage
     type="text/css"
     media="screen"
 />
-<link
-    rel="stylesheet"
-    href="/styles/style2.css"
-    type="text/css"
-    media="screen"
-/>
 <!--[if IE 7]>
 <link
         rel="stylesheet"
