@@ -245,6 +245,12 @@ HTML;
     }
 
     public function
+        get_video_page_body_header_extra_content()
+    {
+        return '';
+    }
+
+    public function
         get_video_page_side_content()
     {
         return '';

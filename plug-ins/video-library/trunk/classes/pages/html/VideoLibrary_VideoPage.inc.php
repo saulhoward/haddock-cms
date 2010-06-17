@@ -234,12 +234,16 @@ VideoLibrary_ExternalVideoLibraryPage
     public function
         render_body_div_header()
     {
+		$title = $this->get_head_title();
+
         echo <<<HTML
 <div id="header" class="VideoPage">
-    <h1><a href="/">Dirty Dodo</a></h1>
-</div>
+    <h1><a href="/">$title</a></h1>
 HTML;
 
+		echo $this->get_page_builder()->get_video_page_body_header_extra_content();
+
+        echo '</div>';
     }
 
     public function
