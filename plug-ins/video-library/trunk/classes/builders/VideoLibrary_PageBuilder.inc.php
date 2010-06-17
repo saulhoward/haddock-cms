@@ -257,6 +257,13 @@ HTML;
     }
 
     public function
+        get_video_player_div_additional_content()
+    {
+        return '';
+    }
+
+
+    public function
         get_video_info_div_additional_content(
             $video_data
         )

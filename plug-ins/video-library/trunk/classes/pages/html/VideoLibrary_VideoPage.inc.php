@@ -259,15 +259,6 @@ HTML;
         $content_div = new HTMLTags_Div();
         $content_div->set_attribute_str('class', 'content');
         $content_div->set_attribute_str('id', 'VideoPage');
-
-        if (Admin_LogInHelper::is_logged_id()) {
-            $video_data = $this->get_video_data();
-            echo VideoLibrary_AdminHelper
-                ::get_link_to_edit_video_admin_page_div(
-                    $video_data['id']
-                )->get_as_string();
-        }
-
         $content_div->append($this->get_side_content_div());
         $content_div->append($this->get_video_div());
         $content_div->append($this->get_video_info_div());
@@ -289,10 +280,18 @@ HTML;
     private function
         get_video_div()
     {
-        return VideoLibrary_DisplayHelper
+        $div = new HTMLTags_Div();
+       
+        $div->append(
+            VideoLibrary_DisplayHelper
             ::get_video_div_for_external_video_data(
                 $this->get_video_data()
-            );
+            )
+        );
+        $div->append(
+            $this->get_page_builder()->get_video_player_div_additional_content()
+        );
+        return $div;
     }
 
     private function
