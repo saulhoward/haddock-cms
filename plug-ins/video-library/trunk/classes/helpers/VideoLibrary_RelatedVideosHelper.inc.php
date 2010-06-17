@@ -52,6 +52,7 @@ VideoLibrary_RelatedVideosHelper
             $duration = NULL
         )
     {
+        // print_r($start . '  - ' . $duration);exit;
         /*
          * TODO:
          *        Surely a better way of extracting this data?

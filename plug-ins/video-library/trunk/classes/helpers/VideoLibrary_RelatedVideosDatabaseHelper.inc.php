@@ -107,11 +107,12 @@ ORDER BY
      weighted_tag_count DESC
 SQL;
 
-        if ($start && $duration) {
+        if (isset($start) && isset($duration)) {
             $query .= VideoLibrary_DatabaseHelper::get_limit_sql_for_external_videos(
                 $start, $duration
             );
         }
+        // echo $start . '  -  ' . $duration;
         // echo $query; exit;
         $result = mysql_query($query, $dbh);
         $videos = array();

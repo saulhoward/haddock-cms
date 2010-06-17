@@ -194,7 +194,7 @@ VideoLibrary_ExternalVideoLibraryPage
                 );
 
         } else {
-            // print_r($this->get_start());exit;
+            // print_r($this->get_start() . '  - ' . $this->get_duration());exit;
             $videos = VideoLibrary_RelatedVideosHelper
                 ::get_related_videos_for_external_video_data(
                     $this->get_external_video_library_id(),
