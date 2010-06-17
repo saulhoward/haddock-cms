@@ -41,30 +41,7 @@ PublicHTML_HTMLPage
     protected function
         render_head_link_stylesheet()
     {
-?>
-<link
-    rel="stylesheet"
-    href="/styles/style.css"
-    type="text/css"
-    media="screen"
-/>
-<!--[if IE 7]>
-<link
-        rel="stylesheet"
-        href="/styles/ie7-hacks.css"
-        type="text/css"
-        media="screen"
-    />
-<![endif]-->
-<!--[if lte IE 6]>
-<link
-        rel="stylesheet"
-        href="/styles/ie6-hacks.css"
-        type="text/css"
-        media="screen"
-    />
-<![endif]-->
-<?php
+        echo $this->get_page_builder()->get_html_page_css_includes();
     }
 
     public function

@@ -153,6 +153,36 @@ VideoLibrary_PageBuilder
     }
 
     public function
+        get_html_page_css_includes()
+    {
+        return <<<HTML
+<link
+    rel="stylesheet"
+    href="/styles/style.css"
+    type="text/css"
+    media="screen"
+/>
+<!--[if IE 7]>
+<link
+        rel="stylesheet"
+        href="/styles/ie7-hacks.css"
+        type="text/css"
+        media="screen"
+    />
+<![endif]-->
+<!--[if lte IE 6]>
+<link
+        rel="stylesheet"
+        href="/styles/ie6-hacks.css"
+        type="text/css"
+        media="screen"
+    />
+<![endif]-->
+HTML;
+
+    }
+
+    public function
         get_html_page_javascript_includes()
     {
         return <<<HTML
