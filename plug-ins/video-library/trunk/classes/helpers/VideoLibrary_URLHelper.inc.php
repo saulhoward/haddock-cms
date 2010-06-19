@@ -76,6 +76,24 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
+		get_home_page_url()
+	{
+		return self
+			::get_oo_page_url(
+                '/'
+			);
+	}
+
+	public static function
+		get_add_external_video_admin_page_url()
+	{
+		return self
+			::get_oo_page_url(
+                'VideoLibrary_AddExternalVideoAdminPage'
+			);
+	}
+
+	public static function
 		get_tags_page_url()
 	{
 		return self
