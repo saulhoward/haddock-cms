@@ -6,7 +6,7 @@
  */
 
 class
-VideoLibrary_ExtremeTube
+VideoLibrary_KeezMovies
 extends
 VideoLibrary_ExternalVideoProvider
 {
@@ -24,7 +24,7 @@ HTML;
     public function
         get_video_dimensions_ratio()
     {
-        return array(1,1);
+        return array(1.28,1);
     }
 
 
@@ -79,7 +79,7 @@ HTML;
             $id_mod,
             $thumb_schema
         );
-        print_r($thumb_url);exit;
+        // print_r($thumb_url);exit;
         return $thumb_url;
     }
 
