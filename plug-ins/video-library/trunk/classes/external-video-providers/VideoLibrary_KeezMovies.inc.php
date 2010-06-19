@@ -16,7 +16,7 @@ VideoLibrary_ExternalVideoProvider
         //$internal_id = $this->get_providers_internal_id();
 
         return <<<HTML
-<object type="application/x-shockwave-flash" data="http://km-static.phncdn.com/flash/player_embed.swf" width="%video_width" height="%video_height"><param name="movie" value="http://km-static.phncdn.com/flash/player_embed.swf" /><param name="bgColor" value="#000000" /><param name="allowfullscreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="FlashVars" value="options=http://www.keezmovies.com/embed_player.php?id=%video_id"/></object>
+<object type="application/x-shockwave-flash" data="http://km-static.phncdn.com/flash/player_embed.swf" width="608" height="476"><param name="movie" value="http://km-static.phncdn.com/flash/player_embed.swf" /><param name="bgColor" value="#000000" /><param name="allowfullscreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="FlashVars" value="options=http://www.keezmovies.com/embed_player.php?id=%video_id"/></object>
 HTML;
 
     }
