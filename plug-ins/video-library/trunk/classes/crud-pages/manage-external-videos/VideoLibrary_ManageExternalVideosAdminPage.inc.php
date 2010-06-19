@@ -368,7 +368,7 @@ HTML;
             VideoLibrary_DatabaseHelper::get_tags_for_external_video_id($_GET['id'])
         );
         echo '" />';
-        echo $this->get_tags_list_for_form($library_values);
+        // echo $this->get_tags_list_for_form($library_values);
 
         echo '</fieldset>';
 
@@ -396,27 +396,27 @@ HTML;
         /**
          * Link to the delete all confirmation page.
          */
-        $add_something_a = new HTMLTags_A($this->get_add_something_title());
+        // $add_something_a = new HTMLTags_A($this->get_add_something_title());
 
-        $add_something_href = $this->get_current_base_url();
-        $add_something_href->set_get_variable('content', 'add_something');
+        // $add_something_href = $this->get_current_base_url();
+        // $add_something_href->set_get_variable('content', 'add_something');
 
-        $add_something_a->set_href($add_something_href);
+        // $add_something_a->set_href($add_something_href);
 
-        $as[] = $add_something_a;
+        // $as[] = $add_something_a;
 
 
         /**
          * Link to the delete all confirmation page.
          */
-        $delete_all_a = new HTMLTags_A($this->get_delete_everything_link_text());
+        // $delete_all_a = new HTMLTags_A($this->get_delete_everything_link_text());
 
-        $delete_all_href = $this->get_current_base_url();
-        $delete_all_href->set_get_variable('content', 'delete_everything');
+        // $delete_all_href = $this->get_current_base_url();
+        // $delete_all_href->set_get_variable('content', 'delete_everything');
 
-        $delete_all_a->set_href($delete_all_href);
+        // $delete_all_a->set_href($delete_all_href);
 
-        $as[] = $delete_all_a;
+        // $as[] = $delete_all_a;
 
         return $as;
     }
