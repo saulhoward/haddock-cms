@@ -1351,9 +1351,9 @@ SQL;
     {
         $limit = '';
         if (
-            ($start >= 0)
+            (isset($start))
             &&
-            ($duration >= 0) 
+            (isset($duration)) 
         ){
             $start = mysql_real_escape_string($start);
             $duration = mysql_real_escape_string($duration);
