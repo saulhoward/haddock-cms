@@ -415,6 +415,65 @@ SQL;
         $library_id = mysql_real_escape_string($library_id);
 
         $query = <<<SQL
+SELECT tag_id as id, tag, principal
+FROM  
+`hpi_video_library_tags`,
+  `hpi_video_library_tags_to_ext_vid_links`,
+ hpi_video_library_external_videos,
+ hpi_video_library_ext_vid_to_ext_vid_lib_links,
+ hpi_video_library_external_video_libraries
+WHERE
+hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
+AND
+hpi_video_library_tags_to_ext_vid_links.external_video_id = hpi_video_library_external_videos.id
+AND
+hpi_video_library_external_videos.id = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+AND
+hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id = hpi_video_library_external_video_libraries.id
+AND
+hpi_video_library_external_video_libraries.id = $library_id
+
+SQL;
+
+        if ($principal) {
+            $query .= <<<SQL
+AND
+    hpi_video_library_tags.principal = 'yes'
+
+SQL;
+
+        }
+
+        $query .= <<<SQL
+GROUP BY
+hpi_video_library_tags.tag
+
+SQL;
+
+        // echo $query; exit;
+
+        $result = mysql_query($query, $dbh);
+
+        $tags = array();
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $tags[] = $row;
+        }   
+        //print_r($tags);exit;
+        return $tags;
+    }
+
+    public static function
+        old_get_tags_for_external_library_id(
+            $library_id,
+            $principal = FALSE
+        )
+    {
+        $dbh = DB::m();
+
+        $library_id = mysql_real_escape_string($library_id);
+
+        $query = <<<SQL
 SELECT * FROM `hpi_video_library_tags`
 
 WHERE EXISTS ( 
@@ -469,7 +528,7 @@ SQL;
 
 
 
-        // echo $query; exit;
+        echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
