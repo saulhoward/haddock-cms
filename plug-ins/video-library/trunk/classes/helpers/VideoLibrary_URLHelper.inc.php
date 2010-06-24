@@ -77,11 +77,15 @@ VideoLibrary_URLHelper
 
 	public static function
 		get_home_page_url()
-	{
-		return self
-			::get_oo_page_url(
-                '/'
-			);
+    {
+        $url = new HTMLTags_URL();
+		$url->set_file('/');
+		return $url;
+	
+		// return self
+			// ::get_oo_page_url(
+                // '/'
+			// );
 	}
 
 	public static function
