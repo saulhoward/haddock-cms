@@ -1488,6 +1488,7 @@ SQL;
         return <<<SQL
     hpi_video_library_external_videos.id AS id,
     hpi_video_library_external_videos.name AS name,
+    hpi_video_library_external_videos.views AS views,
     hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
     hpi_video_library_external_videos.length_seconds AS length_seconds,
     hpi_video_library_external_videos.status AS status,
@@ -1873,5 +1874,35 @@ SQL;
             }
         }
     }
+
+    /*
+     * Views SQL
+     */
+    public function
+        update_views_for_external_video_id(
+            $id,
+            $views
+        )
+	{
+		$dbh = DB::m();
+		$id = mysql_real_escape_string($id);
+		$views = mysql_real_escape_string($views);
+
+        $stmt = <<<SQL
+UPDATE
+    hpi_video_library_external_videos
+SET
+    views = $views
+WHERE
+    id = $id
+
+SQL;
+
+        // print_r($stmt);exit;
+
+		$result = mysql_query($stmt, $dbh);
+
+		return $id;
+	}
 }
 ?>

@@ -257,10 +257,15 @@ VideoLibrary_DisplayHelper
             $video_data['tags'],
             $video_data['external_video_library_id']
         );
+        $views = $video_data['views'];
+
         $info_dl = <<<HTML
 <dl>
         <dt>Length:</dt>
                 <dd>$length_min min</dd>
+
+        <dt>Views:</dt>
+                <dd>$views</dd>
 
         <dt>Tags:</dt>
                 <dd class="tags">$tags</dd>
