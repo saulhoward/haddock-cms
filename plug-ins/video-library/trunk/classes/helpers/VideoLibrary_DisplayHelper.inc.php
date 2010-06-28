@@ -124,16 +124,14 @@ VideoLibrary_DisplayHelper
 
         $length_min = self::get_minutes_from_seconds($video_data['length_seconds']);
         $details_ul->append('<li class="length">' . $length_min . ' min</li>');
+        $details_ul->append('<li class="views">' . $video_data['views'] . ' views</li>');
 
-        $provider_li = new HTMLTags_LI();
-        $provider_li->set_attribute_str('class', 'provider');
-        $provider_li->append(
-            self::get_img_for_external_provider_name($video_data['external_video_provider_name'], 16)
-        );
-        $details_ul->append($provider_li);
+        $provider_img = self::get_img_for_external_provider_name($video_data['external_video_provider_name'], 16);
+        $provider_img->set_attribute_str('class', 'provider');
 
         $div->append($img_a);
         $div->append($details_ul);
+        $div->append($provider_img);
         if (
             ($options['admin'])
             &&
