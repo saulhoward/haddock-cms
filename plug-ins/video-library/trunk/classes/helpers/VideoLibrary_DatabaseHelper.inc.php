@@ -713,6 +713,8 @@ WHERE EXISTS (
         hpi_video_library_ext_vid_to_ext_vid_lib_links
         WHERE
         hpi_video_library_external_videos.id = hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_id
+        AND
+        hpi_video_library_external_videos.status = 'display'
         AND EXISTS (
             SELECT * FROM
             hpi_video_library_external_video_libraries
@@ -771,7 +773,9 @@ SQL;
     }
 
     public static function
-        get_external_video_providers()
+        get_external_video_providers(
+            $ignore_status = FALSE
+        )
     {
         $dbh = DB::m();
 
@@ -784,7 +788,17 @@ FROM
     hpi_video_library_external_video_providers
 SQL;
 
-        //echo $query; exit;
+        if ($ignore_status == FALSE) {
+            $query .= <<<SQL
+
+WHERE
+    status = 'display'
+
+SQL;
+
+        }
+
+        // echo $query; exit;
 
         $result = mysql_query($query, $dbh);
 
