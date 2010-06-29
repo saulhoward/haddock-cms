@@ -421,7 +421,8 @@ FROM
   `hpi_video_library_tags_to_ext_vid_links`,
  hpi_video_library_external_videos,
  hpi_video_library_ext_vid_to_ext_vid_lib_links,
- hpi_video_library_external_video_libraries
+ hpi_video_library_external_video_libraries,
+hpi_video_library_external_video_providers
 WHERE
 hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
 AND
@@ -432,6 +433,10 @@ AND
 hpi_video_library_ext_vid_to_ext_vid_lib_links.external_video_library_id = hpi_video_library_external_video_libraries.id
 AND
 hpi_video_library_external_video_libraries.id = $library_id
+AND
+hpi_video_library_external_videos.external_video_provider_id = hpi_video_library_external_video_providers.id
+AND
+hpi_video_library_external_video_providers.status = 'display'
 
 SQL;
 
@@ -722,6 +727,8 @@ WHERE EXISTS (
         )
     )
 )
+AND
+hpi_video_library_external_video_providers.status = 'display'
 
 SQL;
 
@@ -1070,6 +1077,8 @@ AND
     = hpi_video_library_external_video_providers.id
 AND
     hpi_video_library_external_videos.status = 'display'
+AND
+    hpi_video_library_external_video_providers.status = 'display'
 SQL;
 
             if (!($options['admin'])) {
@@ -1312,6 +1321,8 @@ AND
 AND
     hpi_video_library_external_videos.external_video_provider_id 
     = hpi_video_library_external_video_providers.id
+AND
+hpi_video_library_external_video_providers.status = 'display'
 SQL;
 
         return $sql;
@@ -1449,6 +1460,8 @@ AND
     = hpi_video_library_external_video_providers.id
 AND
         hpi_video_library_external_videos.status = 'display'
+AND
+        hpi_video_library_external_video_providers.status = 'display'
 
 SQL;
 

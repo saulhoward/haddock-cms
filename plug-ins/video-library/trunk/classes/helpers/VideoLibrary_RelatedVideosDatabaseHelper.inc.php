@@ -186,6 +186,9 @@ AND
     hpi_video_library_tags.id = hpi_video_library_tags_to_ext_vid_links.tag_id
     AND
     hpi_video_library_external_videos.status = 'display'
+AND
+hpi_video_library_external_video_providers.status = 'display'
+
 
 SQL;
 
