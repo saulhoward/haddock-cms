@@ -42,9 +42,21 @@ Database_CRUDAdminPage
                 'col_name' => 'id',
                 'filter' => 'return VideoLibrary_ManageExternalVideosFrameGrabbingQueueAdminPage::get_requeue_video_link($str);',
                 'title' => 'Requeue'
+            ),
+             array(
+                'col_name' => 'external_video_id',
+                'filter' => 'return VideoLibrary_ManageExternalVideosFrameGrabbingQueueAdminPage::get_admin_video_view_link($str);',
+                'title' => 'View'
             )
 
-        );
+       );
+    }
+
+    public function
+        get_admin_video_view_link($id)
+    {
+        $url = VideoLibrary_URLHelper::get_admin_video_view_url($id)->get_as_string();
+        return '<a href="' . $url . '">View</a>';
     }
 
     public function

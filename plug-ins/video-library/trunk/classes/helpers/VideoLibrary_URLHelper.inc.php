@@ -107,6 +107,23 @@ VideoLibrary_URLHelper
 	}
 
 	public static function
+        get_admin_video_view_url(
+            $video_id
+        )
+	{
+		$get_variables = array(
+			"id" => $video_id,
+			"content" => 'view_video'
+		);
+		return self
+			::get_oo_page_url(
+				'VideoLibrary_ManageExternalVideosAdminPage',
+				$get_variables
+			);
+	}
+
+
+	public static function
         get_video_page_url(
             $video_id,
             $video_name = NULL
