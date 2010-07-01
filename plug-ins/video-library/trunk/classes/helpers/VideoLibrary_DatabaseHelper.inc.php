@@ -1421,7 +1421,7 @@ SQL;
     {
         return <<<SQL
 ORDER BY
-    hpi_video_library_external_videos.date_added DESC
+    hpi_video_library_external_videos.date_last_edited DESC
 
 SQL;
 
