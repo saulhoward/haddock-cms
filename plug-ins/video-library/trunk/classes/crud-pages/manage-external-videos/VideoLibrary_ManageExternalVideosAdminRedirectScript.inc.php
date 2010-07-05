@@ -82,7 +82,9 @@ SET
     providers_internal_id = '$providers_internal_id',
     status = '$status',
     date_added = NOW(),
-    added_by = '$added_by'
+    added_by = '$added_by',
+    last_edited_by = '$added_by',
+    date_last_edited = NOW()
 
 SQL;
 
