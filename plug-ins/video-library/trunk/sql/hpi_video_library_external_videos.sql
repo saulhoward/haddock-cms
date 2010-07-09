@@ -1,8 +1,8 @@
---
+-- 
 -- Table structure for table `hpi_video_library_external_videos`
---
+-- 
 
-CREATE TABLE IF NOT EXISTS `hpi_video_library_external_videos` (
+CREATE TABLE `hpi_video_library_external_videos` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
   `date_added` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS `hpi_video_library_external_videos` (
   `added_by` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
   `last_edited_by` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
   `date_last_edited` varchar(255) character set utf8 collate utf8_roman_ci NOT NULL,
-  `views` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  `views` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`id`),
+  FULLTEXT KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 

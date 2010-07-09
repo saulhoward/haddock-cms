@@ -171,6 +171,9 @@ VideoLibrary_SearchHelper
     )
     {
         if ($options['count']) {
+            /*
+             * TODO: DOn't do regex on returned sql!!!
+             */
             $sql['select']  = str_replace('COUNT(', '', $sql['select']);
             $sql['select']  = str_replace(') AS count', '', $sql['select']);
             $sql['select']  = $sql['select'] . ' AS id';
