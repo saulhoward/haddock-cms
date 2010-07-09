@@ -146,6 +146,7 @@ VideoLibrary_SearchHelper
             $query .= ') AS count';
             // print_r($query);exit;
         }
+            // print_r($query);exit;
         $result = mysql_query($query, $dbh);
 
         $videos = array();

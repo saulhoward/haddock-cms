@@ -99,6 +99,7 @@ VideoLibrary_ExternalVideoLibraryPage
         public function
                 render_body_div_content()
         {
+            // print_r($_GET);exit;
                 $content_div = new HTMLTags_Div();
                 $content_div->set_attribute_str('id', 'content');
                 $content_div->set_attribute_str('class', 'thumbnails-page');

@@ -25,6 +25,8 @@ HTMLTags_URL
                                 get_search_page_class_name();
                         $tags_page = 'VideoLibrary_TagsPage';
 
+                        $append_url = NULL;
+
                         switch ($get_variables['page-class']) {
                         case $video_page:
                                 $url = '/videos/';
@@ -55,6 +57,11 @@ HTMLTags_URL
                                 $url .= '/tags/' 
                                     . $get_variables['tag_ids'];
                             }             
+                            if (isset($get_variables['q'])) {
+                                $append_url .= '?q=' 
+                                    . $get_variables['q'];
+                            }             
+ 
                             break;
                         default:
                             return parent::get_as_string();
@@ -75,6 +82,10 @@ HTMLTags_URL
                             (isset($get_variables['video_name']))
                         ) {
                                 $url .= '/' . $get_variables['video_name'];
+                        }
+
+                        if (isset($append_url)) {
+                            $url = $url . '/' . $append_url;
                         }
 
                         return $url;

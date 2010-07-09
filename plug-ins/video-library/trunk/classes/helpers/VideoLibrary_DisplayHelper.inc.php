@@ -330,7 +330,7 @@ HTML;
         $div = new HTMLTags_Div();
         $div->set_attribute_str('class', 'search');
         $html = <<<HTML
-    <form action="/search/"
+    <form action="/search/libraries/$external_video_library_id/"
           method="get"
           class="search-form"
           >
@@ -340,8 +340,8 @@ HTML;
             <button class="btn" type="submit" title="Submit Search">Go!</button>
 HTML;
 
-        $html .= '<input type="hidden" name="external_video_library_id" value="'
-            . $external_video_library_id .'">' . "\n";
+        // $html .= '<input type="hidden" name="external_video_library_id" value="'
+            // . $external_video_library_id .'">' . "\n";
         $html .= <<<HTML
         </fieldset>
     </form>

@@ -1056,8 +1056,9 @@ SQL;
             if ($options['count']) {
                 $sql_select = "SELECT COUNT( DISTINCT t2v" . ($num_tags - 1) . ".external_video_id) AS count ";
             } else {
-                $sql_select = "SELECT DISTINCT t2v" . ($num_tags - 1) . ".external_video_id, ";
-                $sql_select .= self::get_data_for_select_sql_for_external_videos() . "\n";
+                $sql_select = "SELECT DISTINCT ";
+                $sql_select .= self::get_data_for_select_sql_for_external_videos() . ',' . "\n";
+                $sql_select .= "t2v" . ($num_tags - 1) . ".external_video_id";
             }
 
             $sql_from = " " . self::get_from_sql_for_external_videos() . ", ";

@@ -30,9 +30,16 @@ RewriteRule ^tags/libraries/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_TagsPag
 
 # Search Page
 #
-# /search/?q=lolcats
+
+# /search/libraries/1/0/16/?q=search+query
+# RewriteRule ^search/(.*) /?oo-page=1&page-class=VideoLibrary_SearchPage&%{QUERY_STRING}
 RewriteCond %{QUERY_STRING} ^q(.*)$
-RewriteRule ^search/(.*) /?oo-page=1&page-class=VideoLibrary_SearchPage&%{QUERY_STRING}
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^search/libraries/(\d+)/(\d+)/(\d+)/(.*)$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_library_id=$1&start=$2&duration=$3&%{QUERY_STRING}
+
+RewriteCond %{QUERY_STRING} ^q(.*)$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^search/libraries/(\d+)/(.*)$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_library_id=$1&%{QUERY_STRING}
 
 # /search/0/16
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -47,6 +54,7 @@ RewriteRule ^search/libraries/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_Searc
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^search/libraries/(\d+)/(\d+)/(\d+)/*$ /?oo-page=1&page-class=VideoLibrary_SearchPage&external_video_library_id=$1&start=$2&duration=$3
+
 
 # /search/libraries/1/tags/1,2/26/26
 RewriteCond %{REQUEST_FILENAME} !-f
