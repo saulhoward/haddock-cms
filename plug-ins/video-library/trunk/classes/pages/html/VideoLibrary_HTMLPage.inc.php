@@ -73,7 +73,15 @@ PublicHTML_HTMLPage
     public function
         get_head_meta_keywords()
     {
-        return $this->get_page_builder()->get_head_meta_keywords();
+        return $this->get_page_builder()->get_head_meta_keywords(
+            $this->get_head_meta_extra_keywords()
+        );
+    }
+
+    public function
+        get_head_meta_extra_keywords()
+    {
+        return NULL;
     }
 
     public function

@@ -232,6 +232,15 @@ VideoLibrary_ExternalVideoLibraryPage
 	}
 
     public function
+        get_head_meta_extra_keywords()
+    {
+        $video_data = $this->get_video_data();
+        return VideoLibrary_DisplayHelper::get_tags_csv_string(
+          $video_data['tags']
+        );
+    }
+
+    public function
         render_body_div_header()
     {
 		$title = $this->get_head_title();
