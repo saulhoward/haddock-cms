@@ -166,7 +166,11 @@ SQL;
             $external_video_library_id,
             $search_string,
             $start = NULL,
-            $duration = NULL
+            $duration = NULL,
+            $options = array (
+                'count' => FALSE,
+                'admin' => FALSE
+            )
         )
     {
         $dbh = DB::m();
@@ -174,7 +178,11 @@ SQL;
             $external_video_library_id,
             $search_string,
             $start,
-            $duration
+            $duration,
+            array(
+                'count' => $options['count'],
+                'admin' => $options['admin']
+            )
         );
         $query  = self::assemble_query_from_sql_parts($sql);
         // print_r($query);exit;
@@ -193,7 +201,8 @@ SQL;
             $start = NULL,
             $duration = NULL,
             $options = array(
-                'count' => FALSE
+                'count' => FALSE,
+                'admin' => FALSE
             )
         )
     {
@@ -1228,7 +1237,11 @@ SQL;
             $tag_names,       //array
             $ignore_video_id = NULL,
             $start = NULL, 
-            $duration = NULL
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE,
+                'admin' => FALSE
+            )
         )
     {
        // print_r($start . '  ' . $duration);exit;
@@ -1239,7 +1252,11 @@ SQL;
                 $tag_names,
                 $ignore_video_id,
                 $start,
-                $duration
+                $duration,
+                array(
+                    'count' => $options['count'],
+                    'admin' => $options['admin']
+                )
             );
         // print_r($sql); exit;
         $query  = self::assemble_query_from_sql_parts($sql);
