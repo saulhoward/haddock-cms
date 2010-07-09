@@ -223,7 +223,7 @@ SQL;
         $sql['where'] .= <<<SQL
 AND
         MATCH (hpi_video_library_external_videos.name)
-        AGAINST ('$search_string' IN BOOLEAN MODE)
+        AGAINST ('$search_string')
 
 SQL;
 

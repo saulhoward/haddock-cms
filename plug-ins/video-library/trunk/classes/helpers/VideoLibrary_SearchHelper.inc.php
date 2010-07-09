@@ -71,8 +71,8 @@ VideoLibrary_SearchHelper
 
         $videos = self::get_videos_for_union(
             array(
-                $named_videos_sql,
-                $tagged_videos_sql
+                $tagged_videos_sql,
+                $named_videos_sql
             ),
             array(
                 'count' => $options['count']
@@ -124,7 +124,7 @@ VideoLibrary_SearchHelper
         $i =0;
         $query = '';
         if ($options['count']) {
-            $query .= 'SELECT SUM(count) AS count FROM (' . "\n";
+            $query .= 'SELECT count(id) AS count FROM (' . "\n";
         }
         foreach ($sql_parts as $sql) {
             if ($i > 0) {
@@ -133,7 +133,7 @@ VideoLibrary_SearchHelper
             $i++;
 
             $query .= "\n" . '(';
-            $query  .= self::assemble_query_from_sql_parts_for_union($sql);
+            $query  .= self::assemble_query_from_sql_parts_for_union($sql, $options);
             $query .= ')' . "\n";
         }
 
@@ -146,7 +146,7 @@ VideoLibrary_SearchHelper
             $query .= ') AS count';
             // print_r($query);exit;
         }
-            // print_r($query);exit;
+        // print_r($query);exit;
         $result = mysql_query($query, $dbh);
 
         $videos = array();
@@ -163,8 +163,19 @@ VideoLibrary_SearchHelper
     }
 
     public static function
-        assemble_query_from_sql_parts_for_union($sql)
+        assemble_query_from_sql_parts_for_union(
+            $sql,
+            $options = array(
+                'count' => FALSE
+            )
+    )
     {
+        if ($options['count']) {
+            $sql['select']  = str_replace('COUNT(', '', $sql['select']);
+            $sql['select']  = str_replace(') AS count', '', $sql['select']);
+            $sql['select']  = $sql['select'] . ' AS id';
+
+        }
         return $sql['select']  . "\n"
             . $sql['from']  . "\n"
             . $sql['joins']  . "\n"
