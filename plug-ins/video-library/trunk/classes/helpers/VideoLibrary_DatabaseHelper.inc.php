@@ -202,7 +202,8 @@ SQL;
             $duration = NULL,
             $options = array(
                 'count' => FALSE,
-                'admin' => FALSE
+                'admin' => FALSE,
+                'union_query' => FALSE
             )
         )
     {
@@ -211,7 +212,11 @@ SQL;
 
         $sql = array();
         if ($options['count']) {
-            $sql['select'] = self::get_select_sql_for_external_videos_count();
+            $sql['select'] = self::get_select_sql_for_external_videos_count(
+                array(
+                    'union_query' => $options['union_query']
+                )
+            );
         } else {
             $sql['select'] = self::get_select_sql_for_external_videos();
         }
@@ -875,7 +880,8 @@ SQL;
             $duration = NULL,
             $options = array(
                 'count' => FALSE,
-                'admin' => FALSE
+                'admin' => FALSE,
+                'union_query' => FALSE
             )
         )
     {
@@ -888,7 +894,8 @@ SQL;
             array(
                 'count' => $options['count'],
                 'admin' => $options['admin'],
-                'use_ids_for_tags' => FALSE
+                'use_ids_for_tags' => FALSE,
+                'union_query' => $options['union_query']
             )
         );
     }
@@ -1043,7 +1050,8 @@ SQL;
             $options = array(
                 'count' => FALSE,
                 'admin' => FALSE,
-                'use_ids_for_tags' => TRUE
+                'use_ids_for_tags' => TRUE,
+                'union_query' => FALSE
             )
         )
     {
@@ -1054,7 +1062,11 @@ SQL;
         // print_r($tags);exit;
         if ($num_tags > 0 && $num_tags <= 58) {
             if ($options['count']) {
-                $sql_select = "SELECT COUNT( DISTINCT t2v" . ($num_tags - 1) . ".external_video_id) AS count ";
+                if ($options['union_query']) {
+                    $sql_select = "SELECT DISTINCT t2v" . ($num_tags - 1) . ".external_video_id AS id ";
+                } else {
+                    $sql_select = "SELECT COUNT( DISTINCT t2v" . ($num_tags - 1) . ".external_video_id) AS count ";
+                }
             } else {
                 $sql_select = "SELECT DISTINCT ";
                 $sql_select .= self::get_data_for_select_sql_for_external_videos() . ',' . "\n";
@@ -1500,13 +1512,25 @@ SQL;
     }
 
     public static function
-        get_select_sql_for_external_videos_count() 
+        get_select_sql_for_external_videos_count(
+            $options = array(
+                'union_query' => FALSE     
+                )
+            ) 
     {
+        if ($options['union_query']) {
         return <<<SQL
+SELECT DISTINCT hpi_video_library_external_videos.id AS id
+
+SQL;
+
+        } else {
+            return <<<SQL
 SELECT COUNT( DISTINCT hpi_video_library_external_videos.id ) AS count
 
 SQL;
 
+        }
     }
 
     public static function

@@ -137,10 +137,46 @@ SQL;
             )
         )
     {
+        return self::get_sql_parts_for_external_videos_matching_any_of_these_tags(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id,
+            $ignore_video_id,
+            $start,
+            $duration,
+            array(
+                'count' => $options['count'],
+                'principal_tags' => $options['principal_tags'],
+                'use_ids_for_tags' => TRUE,
+            )
+        );
+    }
+
+
+    public static function
+        get_sql_parts_for_external_videos_matching_any_of_these_tags(
+            $external_video_library_id,
+            $tag_ids,
+            $external_video_provider_id = NULL,
+            $ignore_video_id = NULL,
+            $start = NULL,
+            $duration = NULL,
+            $options = array(
+                'count' => FALSE,
+                'principal_tags' => FALSE,
+                'use_ids_for_tags' => TRUE,
+                'union_query' => FALSE
+            )
+        )
+    {
         $sql = array();
 
         if ($options['count']) {
-            $sql['select'] = VideoLibrary_DatabaseHelper::get_select_sql_for_external_videos_count();
+            $sql['select'] = VideoLibrary_DatabaseHelper::get_select_sql_for_external_videos_count(
+                array(
+                    'union_query' => $options['union_query']     
+                )
+            );
         } else {
             $sql['select'] = VideoLibrary_DatabaseHelper::get_select_sql_for_external_videos();
             $sql['select'] .= ' ,' ."\n" . 'COUNT( * ) AS tag_count' . "\n";
@@ -211,16 +247,34 @@ SQL;
                 }
                 $i++;
                 if ($options['principal_tags']) {
-                    $sql['where'] .= <<<SQL
+                    if ($options['use_ids_for_tags']) {
+                        $sql['where'] .= <<<SQL
     ( hpi_video_library_tags.id = '$tag_id' AND hpi_video_library_tags.principal = 'yes' )
 
 SQL;
 
+                    } else {
+                        $sql['where'] .= <<<SQL
+    ( hpi_video_library_tags.tag = '$tag_id' AND hpi_video_library_tags.principal = 'yes' )
+
+SQL;
+
+                    }
+
                 } else {
-                    $sql['where'] .= <<<SQL
+                    if ($options['use_ids_for_tags']) {
+                        $sql['where'] .= <<<SQL
     ( hpi_video_library_tags.id = '$tag_id' )
 
 SQL;
+
+                    } else {
+                        $sql['where'] .= <<<SQL
+    ( hpi_video_library_tags.tag = '$tag_id' )
+
+SQL;
+
+                    }
 
                 }
             }

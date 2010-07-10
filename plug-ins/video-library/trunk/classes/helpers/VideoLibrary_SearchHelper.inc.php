@@ -37,13 +37,14 @@ VideoLibrary_SearchHelper
                 $duration,
                 array(
                     'count' => $options['count'],
-                    'admin' => $options['admin']
+                    'admin' => $options['admin'],
+                    'union_query' => TRUE
                 )
             );
         if ($options['count'] == FALSE) {
             /*
-             * Because the tagged sql has an extra column, for its 
-             * quirky merging behaviour, I have to insert a dummy one 
+             * Because the tagged sql has an extra column (for its 
+             * quirky merging behaviour) I have to insert a dummy one 
              * here to union them
              */
             $named_videos_sql['select'] .= ',' . "\n" . 'external_video_id';
@@ -51,25 +52,52 @@ VideoLibrary_SearchHelper
 
         /*
          * Search Tags of the videos,
-         * currently only matches if the search str is an exact tag
          */
+        $search_string = VideoLibrary_TagsHelper::filter_tag($search_string);
         $tag_names = array(
-            VideoLibrary_TagsHelper::filter_tag($search_string)
+            $search_string
         );
-        $tagged_videos_sql = VideoLibrary_DatabaseHelper::
-            get_sql_parts_for_external_videos_for_tag_names(
+        $search_string_exploded = explode(' ', $search_string);
+        foreach ($search_string_exploded as $tag_name) {
+            $tag_names[] = VideoLibrary_TagsHelper::filter_tag($tag_name);
+        }
+        // print_r($tag_names);exit;
+
+        /*
+         * Old style, uses tag1 AND tag2, so less results
+         */
+        // $tagged_videos_sql = VideoLibrary_DatabaseHelper::
+            // get_sql_parts_for_external_videos_for_tag_names(
+                // $external_video_library_id,
+                // $tag_names,
+                // NULL,
+                // $start,
+                // $duration,
+                // array(
+                    // 'count' => $options['count'],
+                    // 'admin' => $options['admin'],
+                    // 'union_query' => TRUE
+                // )
+            // );
+        /*
+         * This related vids function uses tag1 OR tag2
+         */
+        $tagged_videos_sql = VideoLibrary_RelatedVideosDatabaseHelper::
+            get_sql_parts_for_external_videos_matching_any_of_these_tags(
                 $external_video_library_id,
                 $tag_names,
+                NULL,
                 NULL,
                 $start,
                 $duration,
                 array(
                     'count' => $options['count'],
-                    'admin' => $options['admin']
+                    'use_ids_for_tags' => FALSE,
+                    'union_query' => TRUE
                 )
             );
 
-        $videos = self::get_videos_for_union(
+        $videos = self::get_external_videos_through_union_query(
             array(
                 $tagged_videos_sql,
                 $named_videos_sql
@@ -79,12 +107,8 @@ VideoLibrary_SearchHelper
             )
         );
 
-        if ($options['count']) {
-            return $videos[0]['count'];
-        }
         // print_r($videos);exit;
         return $videos;
-
     }
 
     public static function
@@ -93,7 +117,7 @@ VideoLibrary_SearchHelper
             $search_string
         )
     {
-        $count = VideoLibrary_SearchHelper::
+        return VideoLibrary_SearchHelper::
             get_external_videos_for_search_string(
                 $external_video_library_id,
                 $search_string,
@@ -103,22 +127,16 @@ VideoLibrary_SearchHelper
                     'count' => TRUE
                 )
             );   
-
-        // print_r($count);exit;
-
-        return $count;
-
     }
 
     public static function
-        get_videos_for_union(
+        get_external_videos_through_union_query(
             $sql_parts, // array
             $options = array(
                 'count' => FALSE
             )
         )
     {
-
         $dbh = DB::m();
 
         $i =0;
@@ -133,7 +151,7 @@ VideoLibrary_SearchHelper
             $i++;
 
             $query .= "\n" . '(';
-            $query  .= self::assemble_query_from_sql_parts_for_union($sql, $options);
+            $query  .= self::assemble_query_from_sql_parts_for_union($sql);
             $query .= ')' . "\n";
         }
 
@@ -146,39 +164,30 @@ VideoLibrary_SearchHelper
             $query .= ') AS count';
             // print_r($query);exit;
         }
+
         // print_r($query);exit;
         $result = mysql_query($query, $dbh);
-
         $videos = array();
-
         while ($row = mysql_fetch_assoc($result)) {
             $videos[] = $row;
         }   
-        //print_r($tags);exit;
         if ($options['count']) {
             // print_r($videos);exit;
-            // return array($videos);
-        } 
+            return $videos[0]['count'];
+        }
         return $videos;
     }
 
     public static function
         assemble_query_from_sql_parts_for_union(
-            $sql,
-            $options = array(
-                'count' => FALSE
-            )
+            $sql
     )
     {
-        if ($options['count']) {
-            /*
-             * TODO: DOn't do regex on returned sql!!!
-             */
-            $sql['select']  = str_replace('COUNT(', '', $sql['select']);
-            $sql['select']  = str_replace(') AS count', '', $sql['select']);
-            $sql['select']  = $sql['select'] . ' AS id';
-
-        }
+        /**
+         * Basically, don't include the 'limit' sql.
+         * The 'select' sql is already correct, as we passed the 
+         * 'union_query' option when retrieving the sql
+         */
         return $sql['select']  . "\n"
             . $sql['from']  . "\n"
             . $sql['joins']  . "\n"
