@@ -256,6 +256,7 @@ VideoLibrary_DisplayHelper
             $video_data['external_video_library_id']
         );
         $views = $video_data['views'];
+        $added = self::format_date_added_for_info_div($video_data['date_added']);
 
         $info_dl = <<<HTML
 <dl>
@@ -265,6 +266,9 @@ VideoLibrary_DisplayHelper
         <dt>Views:</dt>
                 <dd>$views</dd>
 
+        <dt>Added:</dt>
+                <dd class="date_added">$added</dd>
+
         <dt>Tags:</dt>
                 <dd class="tags">$tags</dd>
 </dl>
@@ -273,6 +277,12 @@ HTML;
         $info_div->append($info_dl);
 
         return $info_div;
+    }
+
+    public static function
+        format_date_added_for_info_div($date)
+    {
+        return VideoLibrary_FormatHelper::get_fuzzy_time($date);
     }
 
     public static function

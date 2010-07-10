@@ -1561,6 +1561,7 @@ SQL;
     hpi_video_library_external_videos.thumbnail_url AS thumbnail_url,
     hpi_video_library_external_videos.length_seconds AS length_seconds,
     hpi_video_library_external_videos.status AS status,
+    hpi_video_library_external_videos.date_added AS date_added,
     hpi_video_library_external_videos.providers_internal_id AS providers_internal_id,
     hpi_video_library_external_video_libraries.id AS external_video_library_id,
     hpi_video_library_external_video_providers.id AS external_video_provider_id,

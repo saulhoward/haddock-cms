@@ -81,6 +81,7 @@ VideoLibrary_SearchHelper
         /*
          * This related vids function uses tag1 OR tag2
          */
+        $tag_names = VideoLibrary_DatabaseHelper::limit_tags($tag_names);
         $tagged_videos_sql = VideoLibrary_RelatedVideosDatabaseHelper::
             get_sql_parts_for_external_videos_matching_any_of_these_tags(
                 $external_video_library_id,
