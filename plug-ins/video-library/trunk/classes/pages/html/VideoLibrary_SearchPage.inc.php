@@ -14,6 +14,7 @@ VideoLibrary_ThumbnailsPage
     private $search_string;
 
     private $tag_ids;
+    private $tags;
 
     private $external_video_provider_id;
 
@@ -183,6 +184,32 @@ VideoLibrary_ThumbnailsPage
     }
 
     private function
+        get_tags()
+    {
+        if (isset($this->tags)) {
+            return $this->tags;
+        } elseif (isset($_GET['tag_ids'])) {
+            $this->set_tags(
+                VideoLibrary_DatabaseHelper
+                ::get_tags_for_tag_ids(
+                    $this->get_tag_ids()
+                )
+            );
+            return $this->tags;
+        } else {
+            return NULL;
+        }
+    }
+
+    private function
+        set_tags(
+            $tags
+        )
+    {
+        $this->tags = $tags;
+    }
+
+    private function
         set_tag_ids(
             $tag_ids
         )
@@ -230,20 +257,10 @@ VideoLibrary_ThumbnailsPage
             $external_video_provider = NULL;
         }
 
-        if (isset($_GET['tag_ids'])) {
-            $tags =	VideoLibrary_DatabaseHelper
-                ::get_tags_for_tag_ids(
-                    $this->get_tag_ids()
-                );
-        } else {
-            $tags = NULL;
-
-        }
         if (isset($_GET['q'])) {
             $search_query =	$_GET['q'];
         } else {
             $search_query = NULL;
-
         }
         // if (isset($_GET['external_video_library_id'])) {
             // $external_video_library_id =	$_GET['external_video_library_id'];
@@ -255,17 +272,54 @@ VideoLibrary_ThumbnailsPage
 
         return	VideoLibrary_DisplayHelper
             ::get_search_page_videos_description_div(
-                $tags, 
+                $this->get_tags(), 
                 $external_video_provider,
                 $this->get_external_video_library_id(),
                 $search_query
             );
     }
 
-    // public function
-        // get_head_title_extension()
-    // {   
-        // return parent::get_head_title_extension();
-    // }   
+    public function
+        get_head_title_extension()
+    {
+        if (isset($_GET['q'])){
+            return $this->get_head_title_from_search_query($_GET['q']);
+        }
+        if (isset($_GET['tag_ids'])){
+            return $this->get_head_title_from_tags($this->get_tags());
+        }
+        else {
+            return parent::get_head_title_extension();
+        }
+    }
+
+    public function
+        get_head_title_from_tags($tags)
+    {
+        $title = '';
+
+        $i = 0;
+        foreach ($tags as $tag) {
+            if ($i > 0 ) {
+                $title .= ' ';
+            }
+            $i++;
+            $tag_str = $tag['tag'];
+            $tag_str = VideoLibrary_TagsHelper::filter_tag($tag_str);
+            $tag_str = ucwords($tag_str);
+            $tag_str = trim($tag_str);
+            $title .= $tag_str;
+        }
+        return $title . ' Videos';
+    }
+
+    public function
+        get_head_title_from_search_query($query)
+    {
+        $query = VideoLibrary_TagsHelper::filter_tag($query);
+        $query = ucwords($query);
+        $query = trim($query);
+        return $query . ' Videos';
+    }
 }
 ?>

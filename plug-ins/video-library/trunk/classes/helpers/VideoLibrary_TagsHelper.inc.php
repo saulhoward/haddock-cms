@@ -57,9 +57,9 @@ VideoLibrary_TagsHelper
 			$tag
 		)
 	{
-                /*
+        /*
 		 *Get rid of anything that's not A-Z, a-z and spaces
-                 */
+         */
 		$tag = preg_replace('([^a-zA-Z,\s])', '', $tag);
 
 		/*
