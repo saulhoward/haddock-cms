@@ -53,11 +53,10 @@ VideoLibrary_SearchHelper
         /*
          * Search Tags of the videos,
          */
-        $search_string = VideoLibrary_TagsHelper::filter_tag($search_string);
         $tag_names = array(
-            $search_string
+            VideoLibrary_TagsHelper::filter_tag($search_string)
         );
-        $search_string_exploded = explode(' ', $search_string);
+        $search_string_exploded = explode(' ', trim($search_string));
         foreach ($search_string_exploded as $tag_name) {
             $tag_names[] = VideoLibrary_TagsHelper::filter_tag($tag_name);
         }
