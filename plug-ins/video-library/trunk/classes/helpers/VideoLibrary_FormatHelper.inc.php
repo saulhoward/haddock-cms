@@ -71,11 +71,11 @@ VideoLibrary_FormatHelper
         // number of weeks (between 1 and 3)...
         if ( ($sod_now-$sod) < (ONE_WEEK*3.5) ) {
             if ( ($sod_now-$sod) < (ONE_WEEK*1.5) ) {
-                return 'about a week ago';
+                return 'a week ago';
             } else if ( ($sod_now-$sod) < (ONE_DAY*2.5) ) {
-                return 'about two weeks ago';
+                return 'two weeks ago';
             } else {
-                return 'about three weeks ago';
+                return 'three weeks ago';
             }
         }
 
@@ -83,7 +83,7 @@ VideoLibrary_FormatHelper
         if ( ($sod_now-$sod) < (ONE_MONTH*11.5) ) {
             for ( $i = (ONE_WEEK*3.5), $m=0; $i < ONE_YEAR; $i += ONE_MONTH, $m++ ) {
                 if ( ($sod_now-$sod) <= $i ) {
-                    return 'about ' . $convert[$m] . ' month' . (($m>1)?'s':'') . ' ago';
+                    return $convert[$m] . ' month' . (($m>1)?'s':'') . ' ago';
                 }
             }
         }
@@ -91,7 +91,7 @@ VideoLibrary_FormatHelper
         // number of years...
         for ( $i = (ONE_MONTH*11.5), $y=0; $i < (ONE_YEAR*10); $i += ONE_YEAR, $y++ ) {
             if ( ($sod_now-$sod) <= $i ) {
-                return 'about ' . $convert[$y] . ' year' . (($y>1)?'s':'') . ' ago';
+                return $convert[$y] . ' year' . (($y>1)?'s':'') . ' ago';
             }
         }
 
