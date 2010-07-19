@@ -905,6 +905,7 @@ SQL;
     hpi_feed_aggregator_feeds.name AS name,
     hpi_feed_aggregator_feeds.title AS title,
     hpi_feed_aggregator_feeds.description AS description,
+    hpi_feed_aggregator_feeds.summary_display_quantity_multiplier AS summary_display_quantity_multiplier,
     hpi_feed_aggregator_feeds.url AS url
 
 SQL;

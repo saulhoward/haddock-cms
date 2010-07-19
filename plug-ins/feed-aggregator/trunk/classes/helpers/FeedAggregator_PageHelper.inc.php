@@ -77,6 +77,23 @@ FeedAggregator_PageHelper
 
         $div = new HTMLTags_Div();
         foreach ($feeds as $feed) {
+            
+            // print_r($feed);exit;
+
+            /** 
+             * summary_display_quantity_multiplier
+             * This multiplier allows us to give some feeds more headlines if they
+             * tend to have short summaries
+             */
+            if (
+                $options['length'] == 'summaries'
+                &&
+                isset($feed['summary_display_quantity_multiplier'])
+            ) {
+                $number_of_items_per_feed =
+                    round($number_of_items_per_feed * $feed['summary_display_quantity_multiplier']);
+            }
+
             $feed['items'] = 
                 FeedAggregator_DatabaseHelper::get_items_for_feed_id(
                     $feed['id'],
