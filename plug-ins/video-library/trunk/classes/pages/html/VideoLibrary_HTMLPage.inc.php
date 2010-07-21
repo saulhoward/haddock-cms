@@ -57,7 +57,6 @@ PublicHTML_HTMLPage
         } 
         $this->render_head_link_stylesheet(); 
 ?>
-<?php $this->render_head_link_stylesheet(); ?>
 	<link
 		rel="Shortcut Icon"
 		type="image/ico"
