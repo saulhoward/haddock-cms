@@ -153,6 +153,12 @@ VideoLibrary_PageBuilder
     }
 
     public function
+        get_head_meta_description_extra()
+    {
+        return $this->get_head_meta_description();
+    }
+
+    public function
         get_html_page_css_includes()
     {
         return <<<HTML

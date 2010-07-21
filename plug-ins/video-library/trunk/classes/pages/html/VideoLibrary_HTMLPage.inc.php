@@ -33,11 +33,52 @@ PublicHTML_HTMLPage
         $this->page_builder->set_current_page_class($this);
     }
 
+	public function
+		render_head()
+	{
+?>
+<head>
+	<title><?php echo $this->get_head_title(); ?></title>
+	<meta
+		name="author"
+		content="<?php echo $this->get_head_meta_author(); ?>"
+	/>
+	<meta
+		name="keywords"
+		content="<?php echo $this->get_head_meta_keywords(); ?>"
+	/>
+	<meta
+		name="description"
+		content="<?php echo $this->get_head_meta_description(); ?>"
+	/>
+<?php 
+        if ($image_link = $this->get_head_link_image()) {
+            echo $image_link;
+        } 
+        $this->render_head_link_stylesheet(); 
+?>
+<?php $this->render_head_link_stylesheet(); ?>
+	<link
+		rel="Shortcut Icon"
+		type="image/ico"
+		href="/favicon.ico"
+	/>
+<?php $this->render_head_script_javascript(); ?>
+</head>
+<?	
+	}
+	
     public function
         render_body()
     {
     }
-    
+
+    protected function
+        get_head_link_image()
+    {
+        return NULL;
+    }
+
     protected function
         render_head_link_stylesheet()
     {

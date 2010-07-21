@@ -240,6 +240,23 @@ VideoLibrary_ExternalVideoLibraryPage
         );
     }
 
+    protected function
+        get_head_link_image()
+    {
+        $video_data = $this->get_video_data();
+        return '<link rel="image_src" href="' . $video_data['thumbnail_url'] . '" / >' . "\n";
+    }
+
+    public function
+        get_head_meta_description()
+    {
+        $video_data = $this->get_video_data();
+        return $video_data['name'] . 
+            $this->get_page_builder()->get_head_meta_description_extra()
+            . ' Tags: '
+            . $this->get_head_meta_extra_keywords();
+    }
+
     public function
         render_body_div_header()
     {
