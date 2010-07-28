@@ -9,12 +9,12 @@
 class
 UserLogin_ManageUsersRedirectScript
 extends
-UserLogin_RestrictedRedirectScript                                                                                                          
+UserLogin_RedirectScript                                                                                                          
 {
-
     protected function
         do_actions() 
     {
+        // print_r($_POST);exit;
         $return_url = $this->get_failed_manage_user_return_url();
 
         /*
@@ -191,6 +191,7 @@ UserLogin_RestrictedRedirectScript
                 $svm->delete('manage-users-form: email', $exception_on_not_set);
                 $svm->delete('manage-users-form: type', $exception_on_not_set);
                 $svm->delete('manage-users-form: real_name', $exception_on_not_set);
+                $successful = TRUE;
             } catch (InputValidation_InvalidInputException $e) {
                 if (isset($_GET['add-new-user'])) {
                     $return_url = $this->get_failed_add_user_return_url();
@@ -204,8 +205,40 @@ UserLogin_RestrictedRedirectScript
                     'error_message',
                     urlencode($e->getMessage())
                 );
+                $successful = FALSE;
             }
+
+            // And, Log in
+            if ($successful) {
+                $admin_login_manager = UserLogin_LoginManager::get_instance();
+                try {
+                    $admin_login_manager->log_in($_POST['name'], $_POST['password']);
+
+                    // unset($_SESSION['user-login-data']['error-message']);
+
+                    // if (isset($_SESSION['user-login-data']['desired-url'])) {
+                    // // print_r($_SESSION['user-login-data']['desired-url']);exit;
+                    // $return_url = $_SESSION['user-login-data']['desired-url'];
+                    // }
+                } catch (HaddockProjectOrganisation_LoginException $e) {
+                    if (isset($_GET['add-new-user'])) {
+                        $return_url = $this->get_failed_add_user_return_url();
+                    }
+
+                    if (isset($_GET['edit-user'])) {
+                        $return_url = $this->get_failed_edit_user_return_url($_GET['user_id']);
+                    }
+
+                    $return_url->set_get_variable(
+                        'error_message',
+                        urlencode($e->getMessage())
+                    );
+                }
+            }
+
+
         }
+        // print_r($return_url);exit;
         $this->set_return_to_url($return_url);
     }
 
@@ -230,6 +263,7 @@ UserLogin_RestrictedRedirectScript
     private function     
         get_successful_manage_user_return_url()     
     {
+        // return UserLogin_URLHelper::get_account_page_url();     
         return UserLogin_URLHelper::get_account_page_url();     
     }
 }       

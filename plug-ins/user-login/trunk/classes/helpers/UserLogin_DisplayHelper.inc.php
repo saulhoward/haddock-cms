@@ -57,6 +57,7 @@ UserLogin_DisplayHelper
 
         } else {
             $name_li = new HTMLTags_LI();
+            $name_li->set_attribute_str('id', 'user-name');
             $name_li->append(
                 $user_login_manager->get_name()
             );
@@ -98,11 +99,11 @@ UserLogin_DisplayHelper
         get_error_message_div()
     {
         $div = new HTMLTags_Div();
-        $div->set_attribute_str('class', 'error');
         if (isset($_SESSION['user-login-data']['error-message'])) {
             $div->append(new HTMLTags_P($_SESSION['user-login-data']['error-message']));
         } 
         if (isset($_GET['error_message'])) {
+            $div->set_attribute_str('class', 'error');
             $div->append(new HTMLTags_P($_GET['error_message']));
         }
         return $div;
@@ -163,7 +164,7 @@ UserLogin_DisplayHelper
         <li>
             <label for="password" >Password</label> 
             <input 
-            type = "text"
+            type = "password"
             id = "password"
             name = "password"
             /> 
@@ -171,19 +172,19 @@ UserLogin_DisplayHelper
         <li>
             <label for="confirm_password" >Repeat Password</label> 
             <input 
-            type = "text"
+            type = "password"
             id = "confirm_password"
             name = "confirm_password"
             /> 
         </li>
-        <li>
-            <input 
-            type = "submit"
-            value = "Register"
-            class = "submit"
-            /> 
-        </li>
     </ul>
+    <div class="submit_buttons_div">
+        <input 
+        type = "submit"
+        value = "Register"
+        class = "submit"
+        /> 
+    </div>
 </fieldset>
 </form>
 
