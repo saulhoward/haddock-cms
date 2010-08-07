@@ -13,7 +13,7 @@ FeedAggregator_CLIHelper
     {
         $dbh = DB::m();
 
-        $id = mysql_real_escape_string($id);
+        //$id = mysql_real_escape_string($id);
 
         $query = <<<SQL
 SELECT
