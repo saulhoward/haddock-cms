@@ -1,0 +1,9 @@
+/**
+ * Extra styles for the exceptions page.
+ *
+ * @copyright 2008-02-25, RFI
+ */
+
+ol#trace-list {
+	margin-left: 1.5em;
+}
