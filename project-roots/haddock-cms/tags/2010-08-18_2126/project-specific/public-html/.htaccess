@@ -1,0 +1,5 @@
+# Allowing access to project-specific/public-html
+# (c) 2008-07-07, Robert Impey
+
+Order Allow,Deny
+Allow from all
