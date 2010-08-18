@@ -1,0 +1,20 @@
+return Textile_TranslationHelper::translate_textile_to_html($text);
+
+h2. Contact
+
+We would love to hear your suggestions and comments. The main discussion board for Haddock CMS is the Google Group.
+
+"http://groups.google.com/group/haddock-cms":http://groups.google.com/group/haddock-cms
+
+If you do not want to share your message with the public group, please send your email to
+
+"robert@haddock-cms.com":mailto:robert@haddock-cms.com
+
+If you find a bug or have a suggestion for an enhencement, please visit the Issues page on the main Google Code site.
+
+"http://code.google.com/p/haddock-cms/issues/list":http://code.google.com/p/haddock-cms/issues/list
+
+If you are interested in the other projects of Haddock CMS's developers, please visit their pages:
+
+* "Robert Impey":http://programming.impey.info/
+* "Saul Howard":http://saulhoward.com/

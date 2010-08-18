@@ -1,0 +1,12 @@
+return Textile_TranslationHelper::translate_textile_to_html($text);
+
+h2. Example Sites
+
+Haddock CMS has been used extensively in mission critical, live web sites. Here are a few examples.
+
+* "Haddock CMS":http://www.haddock-cms.com/
+* "Oedipus Decision Maker":http://beta.oedipus.drama-theory.com/
+* "Robert Impey's Programming Page":http://programming.impey.info/
+* "Woodlands Bed and Breakfast":http://www.woodlandsbedandbreakfast.com/
+
+If you wish to submit your own Haddock CMS site to this list, please visit the contact page for details.
