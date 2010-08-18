@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigation>
+	<section
+		name="plug-ins"
+	>
+		<module
+			name="navigation"
+			access_level="Developer"
+		>
+			<page
+				name="manage-urls"
+				title="Manage URLs"
+				url="/haddock/public-html/public-html/index.php?oo-page=1&amp;page-class=Navigation_ManageURLsAdminPage"
+			/>
+			<page
+				name="manage-trees"
+				url="/haddock/public-html/public-html/index.php?oo-page=1&amp;page-class=Navigation_ManageTreesAdminPage"
+			/>
+			<page
+				name="manage-nodes"
+				url="/haddock/public-html/public-html/index.php?oo-page=1&amp;page-class=Navigation_ManageNodesAdminPage"
+			/>
+		</module>
+		<module
+			name="news"
+		>
+			<page
+				name="manage-news-items"
+				url="/haddock/public-html/public-html/index.php?oo-page=1&amp;page-class=News_ManageNewsItemsAdminPage"
+			/>
+		</module>
+		<module name="mailing-list">
+			<page name="mailing-list" />
+			<page
+				name="list-people-csv"
+				title="People CSV"
+			/>
+		</module>
+		<module
+			name="db-pages"
+			title="DB Pages"
+		>
+			<page
+				name="manage-db-pages"
+				title="Manage DB Pages"
+				url="/haddock/public-html/public-html/index.php?oo-page=1&amp;page-class=DBPages_ManagePagesAdminPage"
+			/>
+		</module>
+	</section>
+	<section
+		name="haddock"
+		title="Core"
+	>
+		<module
+			name="admin"
+			access_level="Developer,Admin"
+		>
+			<page
+				name="manage-users"
+			/>
+			<page name="disk-usage" />
+		</module>
+		<module
+			name="database"
+			access_level="Developer"
+		>
+			<page name="tables-list" />
+			<page name="select-viewer" />
+		</module>
+		<module
+			name="logging"
+			access_level="Developer,Admin"
+		>
+			<page name="entrances" />
+		</module>
+		<module
+			name="unit-tests"
+			access_level="Developer"
+		>
+			<page name="run-all-tests" />
+		</module>
+	</section>
+</navigation>
