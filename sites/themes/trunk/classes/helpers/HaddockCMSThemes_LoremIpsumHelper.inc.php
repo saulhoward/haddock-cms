@@ -25,6 +25,7 @@ class
 <h2><?php echo $title; ?> Lorem Ipsum</h2>
 <?php
 		self::render_lorem_ipsum_ps(5);
+		self::render_lorem_ipsum_ul(5);
 	}
 	
 	/**
@@ -49,6 +50,21 @@ class
 </p>
 <?php
 		}
+	}
+	
+	public static function
+		render_lorem_ipsum_ul($number_of_lis = 1)
+	{
+		$words = explode(
+			' ',
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor'
+		);
+		
+		echo "<ul>\n";
+		for ($i = 0; $i < $number_of_lis; $i++) {
+			echo "<li>" . $words[$i % count($words)] . "</li>\n";
+		}
+		echo "</ul>\n";
 	}
 }
 ?>
