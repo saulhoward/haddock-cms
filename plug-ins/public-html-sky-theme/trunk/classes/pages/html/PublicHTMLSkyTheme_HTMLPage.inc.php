@@ -15,6 +15,10 @@ extends
 	{
 		HTMLTags_LinkRenderer
 			::render_style_sheet_link(
+				'/plug-ins/public-html-sky-theme/public-html/styles/styles.css'
+			);
+		HTMLTags_LinkRenderer
+			::render_style_sheet_link(
 				'/plug-ins/public-html-sky-theme/public-html/styles/layout.css'
 			);
 		HTMLTags_LinkRenderer
@@ -104,16 +108,5 @@ extends
 		$this->render_content_of_body_div_navigation();
 		echo '</div>' . PHP_EOL;
 	}
-	
-#	public function
-#		render_html()
-#	{
-#		parent::render_html();
-#
-#<script type="text/javascript">
-#round_all_corners('bw-rc');
-#</script>
-#
-#	}
 }
 ?>
