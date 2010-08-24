@@ -8,8 +8,6 @@ div.bw-rc div {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	
-	/*background-position: center left;*/
 }
 
 div.bw-rc div.c {
@@ -23,8 +21,6 @@ div.bw-rc div.horiz div {
 
 div.bw-rc div.horiz div.c {
 	background-repeat: repeat-x;
-	
-	/*background-position: top;*/
 }
 
 div.bw-rc div.r {
@@ -53,26 +49,19 @@ div.bw-rc div.h div {
 
 div.bw-rc div.h div.l {
 	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tl.png');
-	/*background-image: url('/images/corner-icons/tl.gif');*/
 
 	background-position: bottom left;
-
-	/*display: none;*/
 }
 
 div.bw-rc div.h div.c {
 	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/t.png');
 	
 	background-position: bottom;
-	
-	/*display: none;*/
 }
 
 div.bw-rc div.h div.r {
 	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/corner-icons/tr.png');
 	background-position: bottom right;
-	
-	/*display: none;*/
 }
 
 /*
@@ -80,7 +69,6 @@ div.bw-rc div.h div.r {
  */
 
 div.bw-rc div.m {
-	/*display: none;*/
 	height: 100%;
 }
 

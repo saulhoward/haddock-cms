@@ -13,8 +13,6 @@ body {
 	
 	background-image: url('/plug-ins/public-html-sky-theme/public-html/images/background-gradient.png');
 	background-repeat: repeat-x;
-	
-	/*text-align: center;*/
 }
 
 div {
@@ -31,20 +29,13 @@ div#container {
 	padding-left: 30px;
 	padding-right: 30px;
 	
-	/*clear: both;*/
-	
 	margin: 0 auto;
 }
 
 div#header {
-	/*clear: right;*/
 }
 
 div#navigation {
-	/*width: 10em;*/
-	
-	/*float: left;*/
-	
 	text-align: center;
 }
 
@@ -59,8 +50,6 @@ div#secondary_navigation ul.navigation {
 ul.navigation li {
 	list-style: none;
 	
-	/*float: left;*/
-	
 	display: inline;
 	
 	margin: 0.5em;
@@ -71,22 +60,11 @@ div#secondary_navigation ul.navigation li {
 }
 
 div#content {
-	/*width: 40em;*/
-	
-	/*float: left;*/
-	/**/
-	/*display: inline;*/
-	/**/
-	/*clear: none;*/
-	/**/
-	/*position: relative;*/
 }
 
 div#footer {
-	/*clear: both;*/
 	width: 100%;
 	
-	/*padding-top: 30px;*/
 	padding-top: 1em;
 	padding-bottom: 1em;
 }

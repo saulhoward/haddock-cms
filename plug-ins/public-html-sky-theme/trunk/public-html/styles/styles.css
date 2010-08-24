@@ -4,3 +4,6 @@
  * (c) 2009-02-03, Robert Impey
  */
 
+li {
+	list-style: none;
+}
