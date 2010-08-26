@@ -10,14 +10,12 @@ FeedAggregator_PageHelper
 {
     public static function
         get_feed_summaries_div(
-            $tags,                     // array
-            $number_of_feeds,
+            $feeds,
             $number_of_items_per_feed
         )
     {
         $div = self::get_feed_div(
-            $tags,
-            $number_of_feeds,
+            $feeds,
             $number_of_items_per_feed,
             array(
                 'length' => 'summaries'
@@ -28,14 +26,12 @@ FeedAggregator_PageHelper
 
    public static function
         get_feed_headlines_div(
-            $tags,                     // array
-            $number_of_feeds,
+            $feeds,
             $number_of_items_per_feed
         )
     {
         $div = self::get_feed_div(
-            $tags,
-            $number_of_feeds,
+            $feeds,
             $number_of_items_per_feed,
             array(
                 'length' => 'headlines'
@@ -44,16 +40,10 @@ FeedAggregator_PageHelper
         return $div;
     }
 
-
-
     public static function
-        get_feed_div(
+        get_feeds(
             $tags,                     // array
-            $number_of_feeds,
-            $number_of_items_per_feed,
-            $options = array(
-                'length' => 'summaries' // headlines, summaries, full
-            )
+            $number_of_feeds
         )
     {
         $feeds = FeedAggregator_DatabaseHelper::
@@ -63,18 +53,18 @@ FeedAggregator_PageHelper
                 0,
                 $number_of_feeds
             );
+        return $feeds;
+    }
 
-        // foreach ($tags as $tag) {
-            // if ($tag == 'itunes') {
-                // print_r($tags);
-                // print_r('  //  ');
-                // print_r($feeds);exit;
-            // }
-        // }
-        // print_r($tags);
-        // print_r('  //  ');
-        // print_r($feeds);exit;
-
+    public static function
+        get_feed_div(
+            $feeds,
+            $number_of_items_per_feed,
+            $options = array(
+                'length' => 'summaries' // headlines, summaries, full
+            )
+        )
+    {
         $div = new HTMLTags_Div();
         foreach ($feeds as $feed) {
             
