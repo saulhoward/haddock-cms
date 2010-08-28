@@ -82,9 +82,13 @@ class
 	
 	public static function
 		get_current_language_code()
-	{
-		return $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-	}
+    {
+        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            return $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+        } else {
+            return self::get_default_language_code();
+        }
+    }
 	
 	public static function
 		get_site_text_file_name(
