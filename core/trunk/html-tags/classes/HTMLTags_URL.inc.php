@@ -321,10 +321,14 @@ class
 		
 		if (preg_match('{([^?]*)(?:\?((?:[^=]+=[^=&]+)(?:&[^=]+=[^=&]+)*))?}', $url_str, $matches)) {
 			#echo 'print_r($matches): ' . "\n";
-			#print_r($matches);
-			
-			$file = $matches[1];
-			$get_vars = $matches[2];
+            #print_r($matches);
+
+            $file = $matches[1];
+            if (isset($matches[2])) {
+                $get_vars = $matches[2];
+            } else {
+                $get_vars = NULL;
+            }
 			
 			$url->set_file($file);
 			
