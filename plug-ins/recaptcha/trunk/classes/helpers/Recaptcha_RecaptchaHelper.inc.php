@@ -25,6 +25,36 @@ Recaptcha_RecaptchaHelper
     }
 
     public static function
+        check_recaptcha_answer(
+            $server_remote_address,
+            $challenge_field,
+            $response_field
+        )
+    {
+        self::include_recaptcha_library();
+        $resp = \hpi_recaptcha\recaptcha_check_answer(
+            self::get_private_key_from_config(),
+            $server_remote_address,
+            $challenge_field,
+            $response_field
+        );
+
+        if (!$resp->is_valid) {
+            // What happens when the CAPTCHA was entered incorrectly
+            throw new Recaptcha_Exception("The CAPTCHA was incorrect. Please try again.");
+        } else {
+            return TRUE;
+        }
+    }
+
+    public static function
+        get_private_key_from_config()
+    {
+        $cm = self::get_config_manager();
+        return $cm->get_private_key();
+    }
+
+    public static function
         get_public_key_from_config()
     {
         $cm = self::get_config_manager();
