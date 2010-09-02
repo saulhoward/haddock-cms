@@ -29,7 +29,6 @@ UserLogin_RedirectScript
          * ----------------------------------------
          */
         $_POST['type'] = 'User'; // faking this for now, might be useful later
-
         if (
             isset($_GET['add-new-user'])
             ||
@@ -46,6 +45,24 @@ UserLogin_RedirectScript
             $svm->set('manage-users-form: email', $_POST['email']);
 
             try {
+
+                /**
+                 * First, the CAPTCHA, if it exists.
+                 * Only checking for reCAPTCHA for now
+                 */
+                if (
+                    isset($_POST["recaptcha_challenge_field"])
+                    &&
+                    isset($_POST["recaptcha_response_field"])
+                ) {
+                    // This will throw exception if bad
+                    Recaptcha_RecaptchaHelper::check_recaptcha_answer(
+                        $_SERVER["REMOTE_ADDR"],
+                        $_POST["recaptcha_challenge_field"],
+                        $_POST["recaptcha_response_field"]
+                    );
+                }
+
                 /*
                  * Preliminary checks that the values are valid.
                  */
@@ -192,7 +209,7 @@ UserLogin_RedirectScript
                 $svm->delete('manage-users-form: type', $exception_on_not_set);
                 $svm->delete('manage-users-form: real_name', $exception_on_not_set);
                 $successful = TRUE;
-            } catch (InputValidation_InvalidInputException $e) {
+            } catch (Exception $e) {
                 if (isset($_GET['add-new-user'])) {
                     $return_url = $this->get_failed_add_user_return_url();
                 }
