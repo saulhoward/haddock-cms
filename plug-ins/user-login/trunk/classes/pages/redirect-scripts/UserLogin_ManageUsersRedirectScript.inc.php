@@ -173,16 +173,6 @@ UserLogin_RedirectScript
                 /*
                  * Update the tables.
                  */
-                if (isset($_GET['add-new-user'])) {
-                    $login_manager->add_new_user(
-                        $_POST['name'],
-                        $_POST['password'],
-                        $_POST['type'],
-                        $_POST['real_name'],
-                        $_POST['email']
-                    );
-                }
-
                 if (isset($_GET['edit-user'])) {
                     $login_manager->update_user(
                         $_GET['user_id'],
@@ -201,6 +191,17 @@ UserLogin_RedirectScript
                 }
 
                 $return_url = $this->get_successful_manage_user_return_url();
+
+                if (isset($_GET['add-new-user'])) {
+                    $login_manager->add_new_user(
+                        $_POST['name'],
+                        $_POST['password'],
+                        $_POST['type'],
+                        $_POST['real_name'],
+                        $_POST['email']
+                    );
+                    $return_url = $this->get_successful_add_user_return_url();
+                }
 
                 $exception_on_not_set = FALSE;
 
@@ -282,6 +283,13 @@ UserLogin_RedirectScript
     {
         // return UserLogin_URLHelper::get_account_page_url();     
         return UserLogin_URLHelper::get_account_page_url();     
+    }
+
+    private function     
+        get_successful_add_user_return_url()     
+    {
+        // return UserLogin_URLHelper::get_account_page_url();     
+        return UserLogin_URLHelper::get_account_page_url_for_new_accounts();     
     }
 }       
 ?> 

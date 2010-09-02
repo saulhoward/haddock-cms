@@ -117,5 +117,13 @@ UserLogin_URLHelper
                 self::get_config_manager()->get_account_page_class_name()
             );
     }
+    public static function
+        get_account_page_url_for_new_accounts()
+    {
+        $url = self::get_account_page_url();
+        $url->set_get_variable("new_account", 1);
+        return $url;
+    }
+
 }
 ?>
