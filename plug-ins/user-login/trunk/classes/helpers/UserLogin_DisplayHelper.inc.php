@@ -219,10 +219,17 @@ HTML;
     }
 
     public static function
-        get_account_div($user_name)
+        get_account_div(
+            $user_name
+        )
     {
         $div = new HTMLTags_Div();
-        $div->append('<p>' . $user_name . '</p>');
+$html = <<<HTML
+<p>Welcome $user_name.</p>
+
+HTML;
+
+        $div->append($html);
         return $div;
     }
 
