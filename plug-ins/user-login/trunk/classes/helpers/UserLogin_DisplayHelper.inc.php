@@ -112,6 +112,23 @@ UserLogin_DisplayHelper
     public static function
         get_registration_div()
     {
+        return self::get_registration_div_with_extra_line(NULL);
+    }
+
+    public static function
+        get_registration_div_with_captcha(
+           $captcha_html 
+       )
+    {
+        return self::get_registration_div_with_extra_line('<li>' . $captcha_html . '</li>');
+
+    }
+
+    public static function
+        get_registration_div_with_extra_line(
+            $extra_li = NULL
+        )
+    {
         $div = new HTMLTags_Div();
         $div->set_attribute_str('class', 'registration');
 
@@ -177,6 +194,13 @@ UserLogin_DisplayHelper
             name = "confirm_password"
             /> 
         </li>
+HTML;
+
+        if (!is_null($extra_li)) {
+            $form .= "\n" . $extra_li . "\n";
+        }
+
+        $form .= <<<HTML
     </ul>
     <div class="submit_buttons_div">
         <input 
