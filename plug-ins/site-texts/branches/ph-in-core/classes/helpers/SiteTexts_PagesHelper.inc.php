@@ -29,30 +29,27 @@ class
 			. DIRECTORY_SEPARATOR . 'site-texts'
 			. DIRECTORY_SEPARATOR . 'page-class-name.txt';
 	}
-	
+		
+	public static function
+		get_metadata_for_current_page()
+    {
+        return SiteTexts_MetadataHelper
+            ::get_metadata(
+                self::get_current_page(),
+                self::get_current_language_code()
+            );
+    }
+
 	public static function
 		get_content_for_current_page()
-	{
-		if (isset($_GET['page'])) {
-
-			$page_name = $_GET['page'];
-
-			if (isset($_GET['language'])) {
-				$language_code = $_GET['language'];
-			} else {
-				$language_code = NULL;
-			}
-			
-			/*
-			 * TO DO: Check that the page name is nice.
-			 */
-			
-			return SiteTexts_SiteTextsHelper
-				::get_site_text($page_name, 'content', $language_code);
-		} else {
-			throw Exception('The page name must be set!');
-		}
-	}
+    {
+        return SiteTexts_SiteTextsHelper
+            ::get_site_text(
+                self::get_current_page(),
+                'content',
+                self::get_current_language_code()
+            );
+    }
 
 	public static function
 		get_current_language_code()
@@ -68,12 +65,10 @@ class
 		get_current_page()
 	{
 		if (isset($_GET['page'])) {
-
 			$page_name = $_GET['page'];
 			/*
 			 * TO DO: Check that the page name is nice.
 			 */
-			
 			return $page_name;
 		} else {
 			throw Exception('The page name must be set!');
