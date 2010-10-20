@@ -33,10 +33,17 @@ UserLogin_DisplayHelper
     public static function
         get_login_status_div()
     {
-        $user_login_manager = UserLogin_LoginManager::get_instance();
-
         $div = new HTMLTags_Div();
         $div->set_attribute_str('id', 'login-status');
+        $div->append(self::get_login_status_ul());
+        return $div;
+    }
+
+    public static function
+        get_login_status_ul()
+    {
+        $user_login_manager = UserLogin_LoginManager::get_instance();
+
         $ul = new HTMLTags_UL();
 
         if (!$user_login_manager->is_logged_in()) {
@@ -70,10 +77,8 @@ UserLogin_DisplayHelper
             $ul->append($log_out_li);
         }
 
-        $div->append($ul);
-        return $div;
+        return $ul;
     }
-
 
     public static function
         get_log_out_div()
