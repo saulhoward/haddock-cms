@@ -8,7 +8,7 @@
 
 Everything in Haddock is a class. 
 
-An HTML page is a class that extends [Public_HTMLPage].
+An HTML page is a class that extends {{{Public_HTMLPage}}}.
 
 If you want to create a new page, you extend that class and override some of the methods, e.g. {{{render_body_div_content}}}. Or simply implement the abstract function {{{content}}}.
 
