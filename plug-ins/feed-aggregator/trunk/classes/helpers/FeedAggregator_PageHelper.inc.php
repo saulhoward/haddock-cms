@@ -68,8 +68,7 @@ FeedAggregator_PageHelper
         $div = new HTMLTags_Div();
         $div->set_attribute_str('class', 'feeds-wrapper');
         foreach ($feeds as $feed) {
-            
-            // print_r($feed);exit;
+                        // print_r($feed);exit;
 
             /** 
              * summary_display_quantity_multiplier
