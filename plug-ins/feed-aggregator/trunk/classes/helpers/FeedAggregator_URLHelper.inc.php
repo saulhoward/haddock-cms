@@ -12,7 +12,7 @@ FeedAggregator_URLHelper
         get_item_external_url($item)
     {
         $url = new HTMLTags_URL();
-        $url->set_file($item['link']);
+        $url->set_file(urldecode($item['link']));
         return $url;
     }
 
