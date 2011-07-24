@@ -82,10 +82,7 @@ extends
 	public function
 		get_head_meta_author()
 	{
-		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-		$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
-
-		return $config_manager->get_copyright_holder();
+		return HaddockProjectOrganisation_ProjectInformationHelper::get_copyright_holder();
 	}
 	
 	public function
