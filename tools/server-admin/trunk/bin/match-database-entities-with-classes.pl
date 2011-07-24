@@ -357,7 +357,7 @@ if ($interactive) {
                     
                     my $php_class = 'Database_';
                     
-                    my $php_class_file = '/haddock/database/classes/';
+                    my $php_class_file = '/plug-ins/database/classes/';
                     if ($toc eq 'class') {
                         $php_class_file .= 'elements';
                     } elsif ($toc eq 'renderer') {
@@ -406,7 +406,7 @@ if ($interactive) {
                     print STDERR "Saving data in $file.\n" if $debug;
                     
                     my $php_class = 'Database_';
-                    my $php_class_file = '/haddock/database/classes/';
+                    my $php_class_file = '/plug-ins/database/classes/';
                     
                     if ($debug) {
                         print STDERR "Type: $field_data_ref->{Type}\n"; #
