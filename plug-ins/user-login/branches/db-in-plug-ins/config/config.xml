@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<haddock-project-organisation>
+		<config-manager>UserLogin_ConfigManager</config-manager>
+	</haddock-project-organisation>
+
+    <page-classes>
+        <login value="UserLogin_LoginPage" />
+        <log-out-return-to value="UserLogin_LoginPage" />
+        <registration value="UserLogin_RegistrationPage" />
+        <account value="UserLogin_AccountPage" />
+        <password-reset-confirmation value="UserLogin_PasswordResetConfirmationPage" />
+    </page-classes>
+
+    <email>
+        <password-reset-email>
+            <reply-to-address value="null@null.com" />
+            <subject value="Your password has been reset" />
+            <body>
+<![CDATA[
+Hi,
+
+The password for $email has been reset.
+
+Your new password is $new_password
+
+Thankyou,
+
+Haddock
+]]>
+            </body>
+        </password-reset-email>
+    </email>
+
+</config>
