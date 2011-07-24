@@ -10,13 +10,6 @@ abstract class
 extends
 	PublicHTML_HTTPResponseWithMessageBody
 {
-	#public function
-	#	send_http_headers()
-	#{
-	#	parent::send_http_headers();
-	#	#header('Content-type: application/xhtml+xml');
-	#}
-	
 	public function
 		render()
 	{
@@ -39,7 +32,6 @@ extends
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php
 		$this->render_head();
-		#exit;
 		$this->render_body();
 ?>
 </html>
@@ -55,9 +47,6 @@ extends
 	public function
 		render_head()
 	{
-		#print_r($this); exit;
-		#var_dump($this instanceof PublicHTML_HTMLPage); exit;
-		
 ?>
 <head>
 	<title><?php echo $this->get_head_title(); ?></title>
@@ -114,14 +103,6 @@ extends
 	protected function
 		render_head_link_stylesheet()
 	{
-		#HTMLTags_LinkRenderer
-		#	::render_style_sheet_link(
-		#		'http://yui.yahooapis.com/2.3.1/build/reset-fonts-grids/reset-fonts-grids.css'
-		#	);
-		#HTMLTags_LinkRenderer
-		#	::render_style_sheet_link(
-		#		'http://yui.yahooapis.com/2.3.1/build/base/base-min.css'
-		#	);
 		HTMLTags_LinkRenderer
 			::render_style_sheet_link(
 				'/plug-ins/public-html/public-html/styles/reset-fonts-grids.css'
@@ -136,11 +117,6 @@ extends
 			);
 	}
 	
-	/**
-	 * This is a bit ugly but I'm not sure how else to do this.
-	 *
-	 * The default action is to print nothing but this can be extended.
-	 */
 	public function
 		render_head_script_javascript()
 	{
@@ -227,14 +203,6 @@ extends
 	protected function
 		get_project_title()
 	{
-		#/*
-		# * Find the module config manager.
-		# */
-		#$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-		#$config_manager = $cmf->get_config_manager('haddock', 'haddock-project-organisation');
-		#
-		#return $config_manager->get_project_name();
-		
 		return
 			HaddockProjectOrganisation_ProjectInformationHelper
 				::get_title();
