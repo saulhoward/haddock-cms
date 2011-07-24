@@ -5,14 +5,6 @@
  * @copyright Clear Line Web Design, 2007-03-05
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/renderers/'
-    . 'Database_TableRenderer.inc.php';
-    
-require_once PROJECT_ROOT
-    . '/haddock/formatting/classes/'
-    . 'Formatting_DateTime.inc.php';
-
 class
     Shop_PhotographsTableRenderer
 extends

@@ -5,33 +5,6 @@
  * @copyright Clear Line Web Design, 2007-02-16
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-. '/haddock/database/classes/renderers/'
-. 'Database_RowRenderer.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_P.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TR.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_A.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/'
-	. 'HTMLTags_URL.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/extensions/'
-	. 'HTMLTags_HReviewDiv.inc.php';
-
 class
 	Shop_CommentRowRenderer
 	extends

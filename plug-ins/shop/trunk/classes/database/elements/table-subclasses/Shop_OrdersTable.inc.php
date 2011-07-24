@@ -5,13 +5,9 @@
  * @copyright Clear Line Web Design, 2007-04-09
  */
 
-require_once PROJECT_ROOT
-. '/haddock/database/classes/elements/'
-. 'Database_Table.inc.php';
-
 class
 	Shop_OrdersTable
-	extends
+extends
 	Database_Table
 {
 //        public function check_for_product_in_current_session($product_id, $session_id)

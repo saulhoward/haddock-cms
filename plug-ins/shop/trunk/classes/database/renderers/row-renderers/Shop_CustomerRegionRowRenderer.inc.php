@@ -6,29 +6,9 @@
  */
 
 
-require_once PROJECT_ROOT
-. '/haddock/html-tags/classes/standard/'
-. 'HTMLTags_P.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_BR.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_Abbr.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/formatting/classes/'
-	. 'Formatting_DateTime.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/database/classes/renderers/'
-	. 'Database_RowRenderer.inc.php';
-
 class
 	Shop_CustomerRegionRowRenderer
-	extends
+extends
 	Database_RowRenderer
 {
 	public function

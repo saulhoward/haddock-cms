@@ -6,9 +6,9 @@
  */
 
 class
-Shop_ProductBrandsTable
+    Shop_ProductBrandsTable
 extends
-Database_Table
+    Database_Table
 {
 	public function
 		add_product_brand (

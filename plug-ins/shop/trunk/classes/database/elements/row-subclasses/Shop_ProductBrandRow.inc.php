@@ -6,9 +6,9 @@
  */
 
 class
-Shop_ProductBrandRow
+    Shop_ProductBrandRow
 extends
-Database_Row
+    Database_Row
 {
 	public function 
 		get_name()

@@ -5,17 +5,6 @@
  * @copyright Clear Line Web Design, 2007-03-05
  */
 
-/*
- * Define the necessary classes.
- */
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/renderers/row-renderers/'
-    . 'Database_ImageRowRenderer.inc.php';
-
-require_once PROJECT_ROOT
-    . '/haddock/html-tags/classes/standard/'
-    . 'HTMLTags_IMG.inc.php';
-
 /**
  * A class to render images from a database.
  */
