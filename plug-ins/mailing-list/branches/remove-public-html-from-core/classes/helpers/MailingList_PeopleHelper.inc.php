@@ -6,7 +6,7 @@
  */
 
 class
-	MailingList_PeopleHelper
+    MailingList_PeopleHelper
 {
 	public static function
 		add_person(
@@ -33,16 +33,6 @@ class
 	public static function
 		attemp_to_add_person()
 	{
-		#echo 'print_r($_GET)' . "\n"; print_r($_GET);
-		
-		#echo 'print_r($_POST)' . "\n"; print_r($_POST);
-		
-		//echo 'print_r($_SESSION)' . "\n";
-		//print_r($_SESSION);
-		
-		#echo '$_SESSION[\'name\']: ' . $_SESSION['name'] . "\n";
-		#echo '$_SESSION[\'email\']: ' . $_SESSION['email'] . "\n";
-		
 		$return_to_url = MailingList_SignUpURLFactory::get_email_adding_html_page();
 		#print_r($return_to_url); exit;
 		
@@ -93,8 +83,6 @@ class
 			}
 		}
 
-		#print_r($return_to_url); exit;
-		
 		return $return_to_url;
 	}
 
@@ -107,11 +95,6 @@ class
 		$database = $mysql_user->get_database();
 
 		$people_table = $database->get_table('hpi_mailing_list_people');
-
-		#$conditions = array();
-		#$conditions['status'] = 'accepted';
-		#
-		#$people = $people_table->get_rows_where($conditions);
 
 		$people = $people_table->get_all_rows();
 
