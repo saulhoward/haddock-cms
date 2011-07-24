@@ -5,7 +5,6 @@
  * @copyright Clear Line Web Design, 2007-02-16
  */
 
-
 class
     Shop_CommenterRow
 extends

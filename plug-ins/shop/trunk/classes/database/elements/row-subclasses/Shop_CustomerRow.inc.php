@@ -5,10 +5,6 @@
  * @copyright Clear Line Web Design, 2007-03-05
  */
 
-require_once PROJECT_ROOT
-. '/haddock/database/classes/elements/'
-. 'Database_Row.inc.php';
-
 class
 	Shop_CustomerRow
 	extends

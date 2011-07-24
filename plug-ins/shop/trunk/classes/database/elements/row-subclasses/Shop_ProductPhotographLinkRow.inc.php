@@ -7,7 +7,7 @@
 
 class
 	Shop_ProductPhotographLinkRow
-	extends
+extends
 	Database_Row
 {
 	public function

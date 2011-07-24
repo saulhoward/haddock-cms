@@ -5,10 +5,6 @@
  * @copyright Clear Line Web Design, 2007-04-09
  */
 
-require_once PROJECT_ROOT
-	. '/haddock/database/classes/elements/'
-	. 'Database_Table.inc.php';
-
 class
 	Shop_ProductCategoriesTable
 extends

@@ -5,59 +5,6 @@
  * @copyright Clear Line Web Design, 2007-04-09
  */
 
-require_once PROJECT_ROOT
-. '/haddock/database/classes/renderers/'
-. 'Database_TableRenderer.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_UL.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_Option.inc.php';
-
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_Select.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_P.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_Caption.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_Table.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TR.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TH.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TFoot.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_THead.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TBody.inc.php';
-
-require_once PROJECT_ROOT
-	. '/haddock/html-tags/classes/standard/'
-	. 'HTMLTags_TD.inc.php';
-
 class
 	Shop_OrdersTableRenderer
 	extends

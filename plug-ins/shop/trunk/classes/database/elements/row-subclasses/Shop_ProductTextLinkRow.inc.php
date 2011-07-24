@@ -5,13 +5,9 @@
  * @copyright Clear Line Web Design, 2007-03-03
  */
 
-require_once PROJECT_ROOT
-. '/haddock/database/classes/elements/'
-. 'Database_Row.inc.php';
-
 class
 	Shop_ProductTextLinkRow
-	extends
+extends
 	Database_Row
 {
 	public function

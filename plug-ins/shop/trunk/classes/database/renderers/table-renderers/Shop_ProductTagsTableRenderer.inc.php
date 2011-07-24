@@ -4,18 +4,6 @@
  *
  * @copyright Clear Line Web Design, 2007-03-05
  */
-
-//require_once PROJECT_ROOT
-//    . '/haddock/database/classes/renderers/'
-//    . 'Database_TableRenderer.inc.php';
-//    
-//require_once PROJECT_ROOT
-//    . '/haddock/html-tags/classes/standard/'
-//    . 'HTMLTags_A.inc.php';
-//    
-//require_once PROJECT_ROOT
-//    . '/haddock/html-tags/classes/standard/'
-//    . 'HTMLTags_Heading.inc.php';
     
 class
     Shop_ProductTagsTableRenderer
