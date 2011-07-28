@@ -9,60 +9,7 @@ class
 	UserLogin_UsersTableRenderer
 extends
 	Database_TableRenderer
-{
-	//public function
-	//    get_admin_users_html_div(
-	//        $order_by,
-	//        $direction,
-	//        $limit,
-	//        $offset
-	//    )
-	//{
-	//    $users_table = $this->get_element();
-	//    
-	//    //$admin_users_html_table = new HTMLTags_Table();
-	//    //$admin_users_html_table->set_attribute_str('id', 'admin_users_table');
-	//    //
-	//    ///*
-	//    // * The head
-	//    // */
-	//    //$thead = new HTMLTags_THead();
-	//    //
-	//    //$header_tr = new HTMLTags_TR();
-	//    //
-	//    //$header_tr->append_tag_to_content(new HTMLTags_TH('Name'));
-	//    //$header_tr->append_tag_to_content(new HTMLTags_TH('Email'));
-	//    //$header_tr->append_tag_to_content(new HTMLTags_TH('Real Name'));
-	//    //$header_tr->append_tag_to_content(new HTMLTags_TH('Type'));
-	//    //
-	//    //$actions_th = new HTMLTags_TH('Actions');
-	//    //
-	//    //$actions_th->set_attribute_str('colspan', 3);
-	//    //
-	//    //$header_tr->append_tag_to_content($actions_th);
-	//    //
-	//    //$thead->append_tag_to_content($header_tr);
-	//    //
-	//    //$admin_users_html_table->append_tag_to_content($thead);
-	//    //
-	//    ///*
-	//    // * The body.
-	//    // */
-	//    //$tbody = new HTMLTags_TBody();
-	//    //
-	//    //$admin_users = $users_table->get_admin_users_viewable_by_currently_logged_in_user();
-	//    //
-	//    //foreach ($admin_users as $admin_user) {
-	//    //    $admin_user_renderer = $admin_user->get_renderer();
-	//    //    
-	//    //    $tbody->append_tag_to_content($admin_user_renderer->get_admin_users_html_table_tr());
-	//    //}
-	//    //
-	//    //$admin_users_html_table->append_tag_to_content($tbody);
-	//    
-	//    return $admin_users_html_div;
-	//}
-	
+{	
 	public function
 		get_admin_users_admin_actions()
 	{
@@ -104,15 +51,15 @@ extends
 	{
 		$add_new_user_form = new HTMLTags_SimpleOLForm('add_new_user');
 		
-	$redirect_script = Admin_AdminIncluderURLFactory
-		::get_url(
-		'haddock',
-		'admin',
-		'manage-users',
-		'redirect-script'
-		);
+                $redirect_script = Admin_AdminIncluderURLFactory
+                    ::get_url(
+                        'haddock',
+                        'admin',
+                        'manage-users',
+                        'redirect-script'
+                    );
 		
-	$action_href = clone $redirect_script;
+                $action_href = clone $redirect_script;
 	
 		$action_href->set_get_variable('add-new-user');
 		
@@ -194,7 +141,7 @@ extends
 
 		$add_new_user_form->set_submit_text('Add');
 				
-	$cancel_href = clone $redirect_script;
+                $cancel_href = clone $redirect_script;
 	
 		$cancel_href->set_get_variable('cancel');
 		
