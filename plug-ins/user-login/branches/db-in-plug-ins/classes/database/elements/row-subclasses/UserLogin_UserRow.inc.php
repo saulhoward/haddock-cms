@@ -6,7 +6,7 @@
  */
 
 class
-	UserLogin_UserRow
+    UserLogin_UserRow
 extends
     Database_Row
 {
@@ -41,6 +41,7 @@ extends
 		reset_password()
 	{
 		$real_name = $this->get_real_name();
+                
 		/*
 		 * Check that the user has an email address to send the new password to.
 		 */
