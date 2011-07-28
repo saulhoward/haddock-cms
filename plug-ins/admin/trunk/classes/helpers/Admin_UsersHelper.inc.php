@@ -44,7 +44,7 @@ class
 					$user_row['name'],
 					$user_row['email'],
 					$user_row['real_name'],
-					$user_row['email']
+					$user_row['type']
 				);
 		}
 		
