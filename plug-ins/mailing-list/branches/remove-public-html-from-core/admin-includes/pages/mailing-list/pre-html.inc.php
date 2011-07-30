@@ -7,9 +7,6 @@
  * RFI & SANH 2007-01-04
  */
 
-require_once PROJECT_ROOT
-    . '/haddock/database/classes/'
-    . 'Database_MySQLUserFactory.inc.php';
 
 /**
  * Create the database objects.
@@ -34,7 +31,6 @@ if (isset($_GET['direction'])) {
 } else {
     define('DIRECTION', 'DESC');
 }
-#echo 'DIRECTION: ' . DIRECTION . "\n";
 
 if (isset($_GET['limit'])) {
     define('LIMIT', $_GET['limit']);
@@ -48,7 +44,6 @@ if (isset($_GET['offset'])) {
         define('OFFSET', $_GET['offset']);
     } else {
         define('OFFSET', (floor($_GET['offset'] / LIMIT) * LIMIT));
-        #echo OFFSET;
     }
 } else {
     define('OFFSET', 0);
