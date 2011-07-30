@@ -376,7 +376,7 @@ extends
 	private function
 		get_admin_navigation_xml_filename()
 	{
-		return $this->get_name() . '/config/haddock/admin/navigation.xml';
+		return $this->get_name() . '/config/plug-ins/admin/navigation.xml';
 	}
 	
 	public function
