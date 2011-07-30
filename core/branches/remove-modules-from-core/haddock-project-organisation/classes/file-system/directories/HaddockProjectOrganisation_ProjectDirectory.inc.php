@@ -40,42 +40,9 @@ extends
 	private $core_modules_directory;
 	
 	/**
-	 * An array of HaddockProjectOrganisation_CoreModuleDirectory
-	 * objects.
-	 * One for each of the core modules used by this project.
-	 */
-	#private $core_module_directories;
-	
-	/**
 	 * The FileSystem_Directory for the plug-ins.
 	 */
 	private $plug_in_modules_directory;
-	
-	/**
-	 * An array of HaddockProjectOrganisation_PlugInModuleDirectory
-	 * objects.
-	 * One for each of the plug-in modules used by this project.
-	 */
-	#private $plug_in_module_directories;
-	
-	/**
-	 * Data extracted from the directory name in
-	 * an array.
-	 * 
-	 * e.g.
-	 *  - purpose
-	 *  - project
-	 *  - host
-	 */
-#    private $directory_name_data;
-	
-	/**
-	 * The Database_TableNameTranslatorFactory object
-	 * associated with this project.
-	 */
-#    private $table_name_translator_factory;
-	
-#    private $database_username_suggestion;
 	
 	private $database_class_finder;
 	
@@ -144,22 +111,6 @@ extends
 	public function
 		get_core_module_directories()
 	{
-		//if (!isset($this->core_module_directories)) {
-		//    $core_modules_directory = $this->get_core_modules_directory();
-		//    
-		//    $dirs = $core_modules_directory->get_subdirectories();
-		//    $this->core_module_directories = array();
-		//    
-		//    foreach ($dirs as $dir) {
-		//        $this->core_module_directories[]
-		//            = new HaddockProjectOrganisation_CoreModuleDirectory(
-		//                $dir->get_name(), $this
-		//            );
-		//    }
-		//}
-		//
-		//return $this->core_module_directories;
-		
 		$core_modules_directory = $this->get_core_modules_directory();
 		
 		return $core_modules_directory->get_module_directories();
@@ -167,17 +118,7 @@ extends
 	
 	public function
 		get_core_module_directory($module)
-	{
-		//$core_module_directories = $this->get_core_module_directories();
-		//
-		//foreach ($core_module_directories as $cmd) {
-		//    if ($cmd->get_identifying_name() == $module) {
-		//        return $cmd;
-		//    }
-		//}
-		//
-		//throw new Exception("No core module called $module!");
-		
+	{	
 		$core_modules_directory = $this->get_core_modules_directory();
 		
 		return $core_modules_directory->get_module_directory($module);
@@ -198,7 +139,6 @@ extends
 	public function
 		get_plug_in_modules_directory()
 	{
-		#return new FileSystem_Directory($this->get_name() . '/plug-ins');
 		if (!isset($this->plug_in_modules_directory)) {
 			$this->plug_in_modules_directory
 				= new HaddockProjectOrganisation_PlugInModulesDirectory(
@@ -212,23 +152,7 @@ extends
 	
 	public function
 		get_plug_in_module_directories()
-	{
-		//if (!isset($this->plug_in_module_directories)) {
-		//    $plug_in_modules_directory = $this->get_plug_in_modules_directory();
-		//    
-		//    $this->plug_in_module_directories = array();
-		//    
-		//    foreach ($plug_in_modules_directory->get_subdirectories() as $p_i_m_d) {
-		//        $this->plug_in_module_directories[]
-		//            = new HaddockProjectOrganisation_PlugInModuleDirectory(
-		//                $p_i_m_d->get_name(),
-		//                $this
-		//            );
-		//    }
-		//}
-		//
-		//return $this->plug_in_module_directories;
-		
+	{	
 		$plug_in_modules_directory = $this->get_plug_in_modules_directory();
 		
 		return $plug_in_modules_directory->get_module_directories();
@@ -236,17 +160,7 @@ extends
 	
 	public function
 		get_plug_in_module_directory($module)
-	{
-		//$plug_in_module_directories = $this->get_plug_in_module_directories();
-		//
-		//foreach ($plug_in_module_directories as $pimd) {
-		//    if ($pimd->get_identifying_name() == $module) {
-		//        return $pimd;
-		//    }
-		//}
-		//
-		//throw new Exception("No plug-in module called $module!");
-		
+	{	
 		$plug_in_modules_directory = $this->get_plug_in_modules_directory();
 		
 		return $plug_in_modules_directory->get_module_directory($module);
@@ -273,67 +187,6 @@ extends
 		
 		return $module_directories;
 	}
-	
-	///**
-	// * The module might be
-	// *  the project specific modules
-	// *  one of the core haddock modules
-	// *  one of the plug-in modules.
-	// */
-	//public function
-	//    get_module_directory($module_name)
-	//{
-	//    #$module_directory = null;
-	//    
-	//    $project_specific_directory = $this->get_project_specific_directory();
-	//    
-	//    if ($module_name == 'project-specific') {
-	//        return $project_specific_directory;
-	//        #return $this->get_project_specific_directory();
-	//    }
-	//    
-	//    $module_name_as_l_o_w
-	//        = $project_specific_directory->get_module_name_as_l_o_w();
-	//    if (
-	//        $module_name_as_l_o_w
-	//        ->get_words_as_delimited_lc_string('-') == $module_name
-	//    ) {
-	//        #$module_directory = $project_specific_directory;
-	//        return $project_specific_directory;
-	//        #return $this->get_project_specific_directory();
-	//    } else {
-	//        $core_module_directories = $this->get_core_module_directories();
-	//        
-	//        foreach ($core_module_directories as $c_m_d) {
-	//            $module_name_as_l_o_w = $c_m_d->get_module_name_as_l_o_w();
-	//            if (
-	//                $module_name_as_l_o_w->get_words_as_delimited_lc_string('-')
-	//                == $module_name
-	//            ) {
-	//                #$module_directory = $c_m_d;
-	//                #break;
-	//                return $c_m_d;
-	//            }
-	//        }
-	//        
-	//        $plug_in_module_directories = $this->get_plug_in_module_directories();
-	//        
-	//        foreach ($plug_in_module_directories as $p_i_m_d) {
-	//            $module_name_as_l_o_w = $p_i_m_d->get_module_name_as_l_o_w();
-	//            if (
-	//                $module_name_as_l_o_w->get_words_as_delimited_lc_string('-')
-	//                == $module_name
-	//            ) {
-	//                #$module_directory = $c_m_d;
-	//                #break;
-	//                return $p_i_m_d;
-	//            }
-	//        }
-	//    }
-	//    
-	//    #return $module_directory;
-	//    throw new Exception("No module called $module_name!");
-	//}
 	
 	/**
 	 * Finds a module and returns the appropriate subclass of HaddockProjectOrganisation_ModuleDirectory.
@@ -378,60 +231,6 @@ extends
 		);
 	}
 
-	##################################################################
-	# Our projects have to be saved in directories that have names
-	# from which we can extract data.
-	
-	//private function
-	//    get_directory_name_data()
-	//{
-	//    if (!isset($this->directory_name_data)) {
-	//        #$regex = '/([\w-]+)\.([\w-]+)\.([\w-]+)\.clearlinewebdesign.com/';
-	//        $regex = '{haddock-projects(?:\\\\|/)([\w-]+)(?:\\\\|/)([\w-]+)(?:\\\\|/)([\w-]+)}';
-	//        
-	//        if (preg_match($regex, PROJECT_ROOT, $matches)) {
-	//            #$this->directory_name_data['purpose'] = $matches[1];
-	//            #$this->directory_name_data['project'] = $matches[2];
-	//            #$this->directory_name_data['host'] = $matches[3];
-	//            
-	//            $this->directory_name_data['host'] = $matches[1];
-	//            $this->directory_name_data['project'] = $matches[2];
-	//            $this->directory_name_data['purpose'] = $matches[3];
-	//        } else {
-	//            throw new Exception('Unable to extract directory name data from "' . PROJECT_ROOT . "\"!\n");
-	//        }
-	//    }
-	//    
-	//    return $this->directory_name_data;
-	//}
-	//
-	//public function
-	//    get_current_purpose_name()
-	//{
-	//    $directory_name_data = $this->get_directory_name_data();
-	//    return $directory_name_data['purpose'];
-	//}
-	//
-	//public function
-	//    get_current_project_name()
-	//{
-	//    //$directory_name_data = $this->get_directory_name_data();
-	//    //return $directory_name_data['project'];
-	//    
-	//    $project_specific_directory = $this->get_project_specific_directory();
-	//    
-	//    $config_file =  $project_specific_directory->get_config_file();
-	//    
-	//    return $config_file->get_project_name();
-	//}
-	//
-	//public function
-	//    get_current_host_name()
-	//{
-	//    $directory_name_data = $this->get_directory_name_data();
-	//    return $directory_name_data['host'];
-	//}
-	
 	public function
 		get_mysql_user()
 	{
@@ -439,69 +238,6 @@ extends
 		
 		return $mysql_user_factory->get_for_this_project();
 	}
-	
-	//public function
-	//    get_table_specification_files()
-	//{
-	//    $table_specification_files = array();
-	//    
-	//    return $table_specification_files;
-	//}
-	//
-	//public function
-	//    get_names_of_tables_in_files()
-	//{
-	//    $names_of_tables_in_files = array();
-	//    
-	//    return $names_of_tables_in_files;
-	//}
-	
-	##################################################################
-	# Helps us turn table names into class names.
-	
-	//public function
-	//    get_table_name_translator_factory()
-	//{
-	//    if (!isset($this->table_name_translator_factory)) {
-	//        $this->table_name_translator_factory
-	//            = new Database_TableNameTranslatorFactory($this);
-	//    }
-	//    
-	//    return $this->table_name_translator_factory;
-	//}
-	//
-	//public function
-	//    get_database_username_suggestion()
-	//{
-	//    if (!isset($this->database_username_suggestion)) {
-	//        $this->database_username_suggestion = '';
-	//        
-	//        $purpose = $this->get_current_purpose_name();
-	//        
-	//        $this->database_username_suggestion .= strtolower($purpose[0]);
-	//        
-	//        $this->database_username_suggestion .= '_';
-	//        
-	//        $project = $this->get_current_project_name();
-	//        
-	//        foreach (explode('-', $project) as $p_w) {
-	//            $this->database_username_suggestion .= strtolower($p_w[0]);
-	//        }
-	//        
-	//        $this->database_username_suggestion .= '_';
-	//        
-	//        $host = $this->get_current_host_name();
-	//        
-	//        $this->database_username_suggestion .= strtolower($host[0]);
-	//    }
-	//    
-	//    return $this->database_username_suggestion;
-	//}
-	//
-	//public function get_database_name_suggestion()
-	//{
-	//    return $this->get_database_username_suggestion();
-	//}
 	
 	public function get_database_class_finder()
 	{
@@ -534,7 +270,6 @@ extends
 				= $this->get_project_specific_directory();
 			
 			$this->php_class_files
-			#$php_class_files
 				= $project_specific_directory->get_php_class_files();
 			
 			/*
@@ -548,7 +283,6 @@ extends
 				
 				foreach ($c_m_php_class_files as $c_m_php_class_file) {
 					$this->php_class_files[]
-					#$php_class_files[]
 						= $c_m_php_class_file;
 				}
 			}
@@ -571,8 +305,6 @@ extends
 			}
 		}
 		
-		#print_r($php_class_files);
-		
 		usort(
 			$this->php_class_files,
 			array(
@@ -582,7 +314,6 @@ extends
 		);
 		
 		return $this->php_class_files;
-		#return $php_class_files;
 	}
 	
 	/**
@@ -619,7 +350,6 @@ extends
 				break;
 			}
 		}
-		#print_r($parent_reflection_class);
 		
 		/*
 		 * Filter out the classes that are not subclasses of <code>$parent_class_name</code>.
@@ -872,43 +602,6 @@ extends
 		}
 	}
 	
-	///*
-	// * Methods to do with the instance specific config file.
-	// *
-	// * This is a file that is not under SVN control and is
-	// * specific to a single instance of this project.
-	// *
-	// * e.g. the config for a site on a dev machine might be
-	// * different from that on a production machine.
-	// */
-	//private function
-	//    get_instance_specific_config_filename()
-	//{
-	//    $instance_specific_config_filename = $this->get_name();
-	//    
-	//    $instance_specific_config_filename .= '/config/config.xml';
-	//    
-	//    return $instance_specific_config_filename;
-	//}
-	//
-	//public function
-	//    has_instance_specific_config_file()
-	//{
-	//    return file_exists($this->get_instance_specific_config_filename());
-	//}
-	//
-	//public function
-	//    get_instance_specific_config_file()
-	//{
-	//    if ($this->has_instance_specific_config_file()) {
-	//        $iscfm = HPO_ISCFileManager::get_instance();
-	//        
-	//        return $iscfm->get_isc_file();
-	//    } else {
-	//        throw new HPO_NoISCFileException();
-	//    }
-	//}
-	
 	public function
 		get_script_directories()
 	{
@@ -922,19 +615,5 @@ extends
 		
 		return $script_directories;
 	}
-	
-#    public function
-#        get_admin_navigation_xml_file()
-#    {
-#        $psd = $this->get_project_specific_directory();
-#
-#        if ($psd->has_admin_navigation_xml_file()) {
-#            $anxf = $psd->get_admin_navigation_xml_file();
-#        } else {
-#            $anxf = $this->generate_admin_navigation_xml_file();
-#        }
-#        
-#        return $anxf;
-#    }
 }
 ?>
