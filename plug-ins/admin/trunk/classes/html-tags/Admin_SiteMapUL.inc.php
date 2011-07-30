@@ -5,10 +5,6 @@
  * @copyright 2007-08-20, RFI
  */
 
-#require_once PROJECT_ROOT
-#    . '/haddock/html-tags/classes/standard/'
-#    . 'HTMLTags_UL.inc.php';
-
 /**
  * Builds the navigation menu in the admin section.
  *
@@ -151,7 +147,6 @@ MSG;
 							
 							$module_title = $this->anxf->get_module_title_in_section($module, $section);
 							
-							#$module_li->append_str_to_content($module);
 							$module_title_h4 = new HTMLTags_Heading(4, $module_title);
 							$module_title_h4->set_attribute_str('id', 'module-title');
 							
@@ -161,8 +156,6 @@ MSG;
 							$module_ul->set_attribute_str('class', 'module-pages-list');
 							
 							$pages = $this->anxf->get_pages_in_module($module, $section);
-							
-							#echo 'count($pages): ' . count(\$pages) . "\n";
 							
 							foreach ($pages as $page) {
 								if (

@@ -83,7 +83,7 @@ class
 				
 				$this->url->set_file('/');
 				
-				$this->url->set_get_variable('section', 'haddock');
+				$this->url->set_get_variable('section', 'plug-ins');
 				$this->url->set_get_variable('module', 'admin');
 				$this->url->set_get_variable('page', 'admin-includer');
 				$this->url->set_get_variable('type', 'html');
@@ -93,7 +93,7 @@ class
 					&& 
 					$this->get_special_page()  == 'db-table-xml'
 				) {			
-					$this->url->set_get_variable('admin-section', 'haddock');
+					$this->url->set_get_variable('admin-section', 'plug-ins');
 					$this->url->set_get_variable('admin-module', 'database');
 					$this->url->set_get_variable('admin-page', 'table-xml');
 	

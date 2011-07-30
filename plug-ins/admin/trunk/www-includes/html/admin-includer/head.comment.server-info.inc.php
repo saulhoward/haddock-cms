@@ -7,7 +7,7 @@
  */
 
 require PROJECT_ROOT
-    . '/haddock/public-html/www-includes/html/'
+    . '/plug-ins/public-html/www-includes/html/'
     . 'head.comment.server-info.inc.php';
 
 echo "<!--\n";

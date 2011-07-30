@@ -13,7 +13,7 @@ extends
 	protected function
 		get_module_prefix_string()
 	{
-		return '/haddock/admin/';
+		return '/plug-ins/admin/';
 	}
 
 	public function

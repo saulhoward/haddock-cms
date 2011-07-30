@@ -117,7 +117,6 @@ extends
 		
 		$module_element = $this->get_module_element_in_section($module, $section);
 		
-		#$page_elements = $module_element->getElementsByTagName('page');
 		$all_page_elements = $module_element->getElementsByTagName('page');
 		
 		foreach ($all_page_elements as $pe) {
@@ -407,42 +406,7 @@ extends
 	public function
 		get_url_for_page_in_section($page, $section)
 	{
-		#$page_element = $this->get_page_element_in_section($page, $section);
-		#
-		#if ($page_element->hasAttribute('url')) {
-		#	$url = new HTMLTags_URL($page_element->getAttribute('url'));
-		#} else {
-		#	$url = new HTMLTags_URL();
-		#	
-		#	$url->set_file('/');
-		#	
-		#	$url->set_get_variable('section', 'haddock');
-		#	$url->set_get_variable('module', 'admin');
-		#	$url->set_get_variable('page', 'admin-includer');
-		#	$url->set_get_variable('type', 'html');
-		#		
-		#	if (
-		#		$page_element->hasAttribute('special_page') 
-		#		&& 
-		#		$page_element->getAttribute('special_page') == 'db-table-xml'
-		#	) {			
-		#		$url->set_get_variable('admin-section', 'haddock');
-		#		$url->set_get_variable('admin-module', 'database');
-		#		$url->set_get_variable('admin-page', 'table-xml');
-		#
-		#		$url->set_get_variable('db-section', $section);
-		#		$url->set_get_variable('db-xml-file', $page);
-		#	} else {
-		#		$url->set_get_variable('admin-section', $section);
-		#		$url->set_get_variable('admin-page', $page);
-		#	}
-		#}
-		#
-		#return $url;
-		
 		$page = $this->get_page_object_in_section($page, $section);
-		
-		#print_r($page);
 		
 		return $page->get_url();
 	}
@@ -450,44 +414,7 @@ extends
 	public function
 		get_url_for_page_in_module_in_section($page, $module, $section)
 	{
-		#$page_element = $this->get_page_element_in_module_in_section($page, $module, $section);
-		#
-		#if ($page_element->hasAttribute('url')) {
-		#	$url = new HTMLTags_URL($page_element->getAttribute('url'));
-		#} else {
-		#	$url = new HTMLTags_URL();
-		#	
-		#	$url->set_file('/');
-		#	
-		#	$url->set_get_variable('section', 'haddock');
-		#	$url->set_get_variable('module', 'admin');
-		#	$url->set_get_variable('page', 'admin-includer');
-		#	$url->set_get_variable('type', 'html');
-		#	
-		#	if (
-		#		$page_element->hasAttribute('special_page') 
-		#		&& 
-		#		$page_element->getAttribute('special_page') == 'db-table-xml'
-		#	) {			
-		#		$url->set_get_variable('admin-section', 'haddock');
-		#		$url->set_get_variable('admin-module', 'database');
-		#		$url->set_get_variable('admin-page', 'table-xml');
-		#
-		#		$url->set_get_variable('db-section', $section);
-		#		$url->set_get_variable('db-module', $module);
-		#		$url->set_get_variable('db-xml-file', $page);
-		#	} else {
-		#		$url->set_get_variable('admin-section', $section);
-		#		$url->set_get_variable('admin-module', $module);
-		#		$url->set_get_variable('admin-page', $page);
-		#	}
-		#}
-		#
-		#return $url;
-		
 		$page = $this->get_page_object_in_module_in_section($page, $module, $section);
-		
-		#print_r($page);
 		
 		return $page->get_url();
 	}
@@ -516,8 +443,6 @@ extends
 			$access_level
 		)
 	{
-		#echo "\$access_level: $access_level\n";
-
 		$section_element = $this->get_section_element($section);
 
 		if ($section_element->hasAttribute('access_level')) {
@@ -525,8 +450,6 @@ extends
 
 			$access_levels = preg_split('/\s*,\s*/', $access_levels_str);
 			
-			#print_r($access_levels); exit;
-
 			if (!in_array($access_level, $access_levels)) {
 				return FALSE;
 			}
@@ -542,8 +465,6 @@ extends
 			$access_level
 		)
 	{
-		#echo "\$access_level: $access_level\n";
-
 		$module_element = $this->get_module_element_in_section($module, $section);
 
 		if ($module_element->hasAttribute('access_level')) {
@@ -551,8 +472,6 @@ extends
 
 			$access_levels = preg_split('/\s*,\s*/', $access_levels_str);
 			
-			#print_r($access_levels); exit;
-
 			if (!in_array($access_level, $access_levels)) {
 				return FALSE;
 			}
@@ -568,8 +487,6 @@ extends
 			$access_level
 		)
 	{
-		#echo "\$access_level: $access_level\n";
-
 		$page_element = $this->get_page_element_in_section($page, $section);
 
 		if ($page_element->hasAttribute('access_level')) {
@@ -577,8 +494,6 @@ extends
 
 			$access_levels = preg_split('/\s*,\s*/', $access_levels_str);
 			
-			#print_r($access_levels); exit;
-
 			if (!in_array($access_level, $access_levels)) {
 				return FALSE;
 			}
