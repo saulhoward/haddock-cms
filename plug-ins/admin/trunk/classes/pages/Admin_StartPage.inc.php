@@ -31,27 +31,7 @@ extends
 		content()
 	{
 		$cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-		
-		/*
-		 * The admin module has been moved to the plug-ins directory.
-		 *
-		 * RFI 2009-10-08
-		 */
-		#$config_manager = $cmf->get_config_manager('haddock', 'admin');
 		$config_manager = $cmf->get_config_manager('plug-ins', 'admin');
-		
-		if (DEBUG) {
-			echo DEBUG_DELIM_OPEN;
-			
-			echo '__FILE__: ' . __FILE__ . PHP_EOL;
-			echo '__METHOD__: ' . __METHOD__ . PHP_EOL;
-			echo '__LINE__: ' . __LINE__ . PHP_EOL;
-			
-			echo 'print_r($config_manager):' . PHP_EOL;
-			print_r($config_manager);
-			
-			echo DEBUG_DELIM_CLOSE;
-		}
 		
 		$widget_classes= $config_manager->get_start_page_widget_classes();
 
@@ -59,12 +39,6 @@ extends
 		$div->set_attribute_str('id', 'StartPageWidgetContainer');
 		foreach ($widget_classes as $key => $value)
 		{
-			/* had to trim() $value to make it work
-			 */
-			// $content = call_user_func(array(trim($value), 'get_widget_div'));
-
-			/* Can't believe this works...
-			 */
 			$widget_class_str = trim($value);
 			$instance = new $widget_class_str();
 			$content = $instance->get_widget_div();
