@@ -12,11 +12,6 @@
  * Define constants that are used throughout
  * the project.
  */
-#require_once $_SERVER['DOCUMENT_ROOT']
-#	. '/haddock/public-html/public-html/define-include-paths.inc.php';
-	
-#require_once $_SERVER['DOCUMENT_ROOT']
-#	. '/haddock/public-html/public-html/define-debug-constants.inc.php';
 define('PROJECT_ROOT', realpath($_SERVER['DOCUMENT_ROOT']));
 
 require_once PROJECT_ROOT
@@ -59,28 +54,6 @@ if (DEBUG) {
 	echo DEBUG_DELIM_CLOSE;
 }
 
-//require_once PROJECT_ROOT
-//    . '/haddock/public-html/classes/'
-//    . 'PublicHTML_PageManager.inc.php';
-//
-//require_once PROJECT_ROOT
-//    . '/haddock/haddock-project-organisation/classes/'
-//    . 'HaddockProjectOrganisation_ProjectDirectoryFinder.inc.php';
-//
-//$project_directory_finder
-//    = HaddockProjectOrganisation_ProjectDirectoryFinder::get_instance();
-//
-//$project_directory
-//    = $project_directory_finder->get_project_directory_for_this_project();
-//
-///*
-// * Does this project have an __autoload function?
-// */
-//$project_directory->define_autoload_inc_file();
-
-#require_once PROJECT_ROOT
-#    . '/project-specific/haddock-project-organisation/autoload.inc.php';
-
 require PROJECT_ROOT
 	. '/haddock/haddock-project-organisation/includes/'
 	. 'autoload.inc.php';
@@ -113,8 +86,6 @@ if (isset($_GET['oo-page'])) {
 			
 			$pcro = $pcrof->get_page_class_reflection_object();
 		} else {
-			#echo "No page class set!\n";
-			
 			/*
 			 * Find the default location and redirect there.
 			 */
@@ -124,20 +95,12 @@ if (isset($_GET['oo-page'])) {
 		}
 		
 		$pcro->run();
-	#} catch (ReflectionException $re) {
-	#	#print_r($e);
-	#	#echo "Unable to show that page!\n";
-	#	echo $re->getMessage();
 	} catch (Exception $e) {
-		#echo "Exception thrown!\n"; exit;
-		
 		$exception_page_url
 			= PublicHTML_ExceptionHelper
 				::set_session_and_get_exception_page_url($e);
-		
-		#print_r($e); exit;
-		
-		header('Location: ' . $exception_page_url->get_as_string());
+	
+                header('Location: ' . $exception_page_url->get_as_string());
 		exit;
 	}
 } else {
@@ -164,9 +127,6 @@ if (isset($_GET['oo-page'])) {
 	}
 
 	$page_manager = PublicHTML_PageManager::get_instance();
-	
-	//echo 'print_r($page_manager)' . "\n";
-	//print_r($page_manager);
 	
 	$page_manager->set_section(
 		isset($_GET['section'])
@@ -201,39 +161,12 @@ if (isset($_GET['oo-page'])) {
 		echo DEBUG_DELIM_CLOSE;
 	}
 	
-	#echo 'print_r($page_manager)' . "\n";
-	#print_r($page_manager);
-	
-	#echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
-	#
-	#if ($page_manager->get_section() != 'project-specific') {
-	#    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
-	#}
-	#
-	#echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
-	#echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
-	#exit;
-	
-	if ($page_manager->is_page()) {
-		#echo "Page found!\n"; exit;
-	} else {
-		#echo "Page not found!\n"; exit;
-		
-		$page_manager->set_section('haddock');
+	if (!$page_manager->is_page()) {
+		$page_manager->set_section('plug-ins');
 		$page_manager->set_module('public-html');
 		$page_manager->set_page('page-not-found');
 		$page_manager->set_type('html');
 	}
-	
-	#echo '$page_manager->get_section(): ' . $page_manager->get_section() . "\n";
-	#
-	#if ($page_manager->get_section() != 'project-specific') {
-	#    echo '$page_manager->get_module(): ' . $page_manager->get_module() . "\n";
-	#}
-	#
-	#echo '$page_manager->get_page(): ' . $page_manager->get_page() . "\n";
-	#echo '$page_manager->get_type(): ' . $page_manager->get_type() . "\n";
-	#exit;
 	
 	$page_manager->render_inc_file('complete-page');
 }
