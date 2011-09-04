@@ -24,8 +24,6 @@ class
 				. DIRECTORY_SEPARATOR . 'pages'
 				. DIRECTORY_SEPARATOR . 'html';
 		
-		#echo '$html_pages_directory_name: ' . $html_pages_directory_name . PHP_EOL;
-		
 		FileSystem_DirectoryHelper
 			::mkdir_parents($html_pages_directory_name);
 		
@@ -33,14 +31,10 @@ class
 			= $project_specific_directory->get_camel_case_root()
 				. '_' . 'HTMLPage';
 		
-		#echo '$project_specific_html_page_class_name: ' . $project_specific_html_page_class_name . PHP_EOL;
-		
 		$project_specific_html_page_class_file_name
 			= $html_pages_directory_name
 				. DIRECTORY_SEPARATOR
 				. $project_specific_html_page_class_name . '.inc.php';
-		
-		#echo '$project_specific_html_page_class_file_name: ' . $project_specific_html_page_class_file_name . PHP_EOL;
 		
 		if (is_file($project_specific_html_page_class_file_name)) {
 			throw new ErrorHandling_SprintfException(
