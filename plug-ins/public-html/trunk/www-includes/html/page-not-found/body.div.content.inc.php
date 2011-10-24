@@ -6,21 +6,11 @@
  * @copyright Clear Line Web Design, 2007-08-03
  */
 
-#<div
-#    id="content"
-#>
-#    <p
-#       class="error"
-#    >
-#        Sorry, the page you requested does not exist.
-#    </p>
-#</div>
-
 /*
  * Create the singleton objects.
  */
 $cmf = HaddockProjectOrganisation_ConfigManagerFactory::get_instance();
-$cm = $cmf->get_config_manager('haddock', 'public-html');
+$cm = $cmf->get_config_manager('plug-ins', 'public-html');
 
 /*
  * Create the HTML objects.
