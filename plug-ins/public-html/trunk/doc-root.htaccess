@@ -3,10 +3,7 @@
 ## © 2007-08-03, RFI
 
 <IfModule mod_rewrite.c>
-	#RewriteRule ^/?$ /haddock/public-html/public-html/
 	RewriteRule ^/?$ /plug-ins/public-html/public-html/index.php
-	
-	#RewriteRule ^$ /haddock/public-html/public-html/index.php?section=haddock&module=public-html&page=home&type=html
 	
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^styles/(.*) /project-specific/public-html/styles/$1
@@ -26,7 +23,6 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^favicon.ico /project-specific/public-html/images/favicon.ico
 	
-	#RewriteRule ^\?(.+)$ /haddock/public-html/public-html/index.php?$1
 </IfModule>
 
 # Back up using mod_alias
@@ -44,4 +40,3 @@
 	
 	RedirectMatch temp ^/([^/]*)\.htm$ $1.html
 </IfModule>
-
