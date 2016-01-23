@@ -1,0 +1,5 @@
+# Introduction #
+
+Currently there is the concept of a core set of modules and plug-in modules that add extra functionality to a project.
+
+The core modules provide functionality that is essential to allow projects that use the Haddock CMS. The code that goes into the core should never be considered sacred and we should attempt to refactor as much code from the core to plug-ins as possible.
